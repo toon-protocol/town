@@ -14,6 +14,10 @@
     "./nip34": {
       "types": "./dist/nip34/index.d.ts",
       "import": "./dist/nip34/index.js"
+    },
+    "./toon": {
+      "types": "./dist/toon/index.d.ts",
+      "import": "./dist/toon/index.js"
     }
   },
   "files": [
