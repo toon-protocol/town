@@ -133,14 +133,21 @@ const gateReport = {
     p1_coverage_target_pass: '90%',
     p1_coverage_minimum: '80%',
     p1_coverage_actual: `${effectiveP1Coverage}%`,
-    p1_status: effectiveP1Coverage >= 90 ? 'MET' : effectiveP1Coverage >= 80 ? 'PARTIAL' : 'NOT MET',
+    p1_status:
+      effectiveP1Coverage >= 90
+        ? 'MET'
+        : effectiveP1Coverage >= 80
+          ? 'PARTIAL'
+          : 'NOT MET',
 
     overall_coverage_minimum: '80%',
     overall_coverage_actual: `${overallCoverage}%`,
     overall_status: overallCoverage >= 80 ? 'MET' : 'NOT MET',
   },
 
-  uncovered_requirements: coverageMatrix.gap_analysis.critical_gaps.concat(coverageMatrix.gap_analysis.high_gaps),
+  uncovered_requirements: coverageMatrix.gap_analysis.critical_gaps.concat(
+    coverageMatrix.gap_analysis.high_gaps
+  ),
 
   recommendations: coverageMatrix.recommendations,
 };

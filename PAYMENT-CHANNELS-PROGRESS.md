@@ -7,6 +7,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
 ## What Works ✅
 
 ### 1. Contract Architecture
+
 - **TokenNetworkRegistry deployed** at `0x0165878A594ca255338adfa4d48449f69242Eb8F`
   - Properly creates and manages TokenNetwork instances per token
   - Follows Raiden Network pattern for multi-token payment channels
@@ -16,6 +17,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
   - 10,000 tokens funded to each peer's EVM address
 
 ### 2. Bootstrap Flow
+
 1. **Discovery Phase** ✅
    - Peer2 queries Peer1's Nostr relay for kind:10032 event
    - Successfully retrieves Peer1's ILP info
@@ -45,6 +47,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
 **Error:** `nonce has already been used (nonce too low)`
 
 **Root Cause:**
+
 - Ethers.js caches transaction nonces in the provider
 - Multiple test runs with Anvil restarts create nonce mismatches
 - Connector signs transaction with cached nonce (e.g., 0)
@@ -52,6 +55,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
 - Transaction broadcast fails
 
 **Evidence from logs:**
+
 ```json
 {
   "level": 50,
@@ -66,6 +70,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
 ```
 
 **Transaction details:**
+
 - Function: `approve(address,uint256)` (selector: `0x095ea7b3`)
 - Spender: TokenNetwork contract
 - Amount: max uint256 (unlimited approval)
@@ -74,6 +79,7 @@ Significant progress made on integrating payment channels into the bootstrap flo
 ### Why This Matters
 
 This is a **test environment artifact**, not a production issue:
+
 - In production with stable blockchain, nonce management works correctly
 - The issue only appears when restarting Anvil between test runs
 - The connector's payment channel code is working as designed
@@ -81,6 +87,7 @@ This is a **test environment artifact**, not a production issue:
 ## Code Changes Made
 
 ### 1. Contract Deployment (`DeployLocal.s.sol`)
+
 ```solidity
 // Added TokenNetworkRegistry import
 import "../src/TokenNetworkRegistry.sol";
@@ -91,6 +98,7 @@ address tokenNetworkAddress = registry.createTokenNetwork(address(agentToken));
 ```
 
 ### 2. Test Script (`run-local-bootstrap-test.sh`)
+
 ```bash
 # Updated contract addresses
 export TOKEN_NETWORK_REGISTRY=0x0165878A594ca255338adfa4d48449f69242Eb8F
@@ -101,6 +109,7 @@ export SETTLEMENT_ENABLED=true
 ```
 
 ### 3. Connector (`connector-node.ts`)
+
 ```typescript
 // Added token address self-mapping for direct lookups
 tokenAddressMap.set('M2M', m2mTokenAddress);
@@ -109,6 +118,7 @@ tokenAddressMap.set(m2mTokenAddress, m2mTokenAddress); // Self-mapping
 ```
 
 ### 4. Bootstrap Service (`BootstrapService.ts`)
+
 ```typescript
 // Added channel client wiring
 setChannelClient(client: ConnectorChannelClient): void {
@@ -130,18 +140,21 @@ if (!spspResponse.channelId && this.channelClient) {
 ```
 
 ### 5. BLS Entrypoint (`entrypoint-with-bootstrap.ts`)
+
 ```typescript
 // Created HTTP channel client
 const channelClient = createHttpChannelClient(connectorAdminUrl!);
 bootstrapService.setChannelClient(channelClient);
 
 // Fixed SPSP pricing for genesis peers
-const price = spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPrice;
+const price =
+  spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPrice;
 ```
 
 ## Next Steps
 
 ### Short-term (Testing)
+
 1. **Option A: Clear nonce cache**
    - Restart connector processes between test runs
    - Ensure Anvil state is completely reset
@@ -155,6 +168,7 @@ const price = spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPric
    - Add retry logic with nonce refresh
 
 ### Long-term (Production)
+
 1. **Verify channel lifecycle**
    - Test deposit, withdrawal, close operations
    - Verify signed claims creation and exchange
@@ -178,6 +192,7 @@ const price = spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPric
 ## Testing Evidence
 
 ### Peer2 Bootstrap Log
+
 ```
 🔔 Bootstrap event: bootstrap:phase { type: 'bootstrap:phase', phase: 'handshaking' }
 [Bootstrap] Failed to open channel with nostr-719705df863f0190: Failed to open channel via HTTP
@@ -185,6 +200,7 @@ const price = spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPric
 ```
 
 ### Connector Log (showing progress)
+
 ```json
 {"msg":"Depositing to channel"}
 {"msg":"Approving max token allowance for TokenNetwork"}
@@ -194,6 +210,7 @@ const price = spspMinPrice !== undefined ? BigInt(spspMinPrice) : calculatedPric
 ```
 
 The logs show the connector successfully:
+
 1. Queried the TokenNetworkRegistry ✅
 2. Prepared deposit transaction ✅
 3. Created approve transaction ✅
@@ -205,6 +222,7 @@ The logs show the connector successfully:
 The payment channel integration is **functionally complete**. The architecture is correct, the code flow works as designed, and we're only blocked by a test environment artifact (nonce caching with Anvil restarts).
 
 In a production environment with stable blockchain state, this would work end-to-end:
+
 - Bootstrap discovers peers ✅
 - SPSP negotiates settlement ✅
 - Channels open with proper approvals ✅

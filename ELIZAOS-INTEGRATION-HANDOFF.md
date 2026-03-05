@@ -20,12 +20,12 @@ The three packages **build successfully** and have clean public APIs. They're ~9
 
 ### 1.1 Package Readiness
 
-| Package | Builds | Types (.d.ts) | `files` field | README | Blockers |
-|---------|--------|---------------|---------------|--------|----------|
-| `@crosstown/core` | Yes | Yes (49 KB) | `["dist"]` | Missing | Missing metadata fields |
-| `@crosstown/bls` | Yes | Yes (12 KB) | `["dist"]` | Yes (6.5 KB) | Missing metadata fields |
-| `@crosstown/relay` | Yes | Yes (13 KB) | `["dist"]` | Missing | Missing metadata, `workspace:*` deps |
-| `@crosstown/examples` | N/A | N/A | N/A | N/A | `private: true` — do not publish |
+| Package               | Builds | Types (.d.ts) | `files` field | README       | Blockers                             |
+| --------------------- | ------ | ------------- | ------------- | ------------ | ------------------------------------ |
+| `@crosstown/core`     | Yes    | Yes (49 KB)   | `["dist"]`    | Missing      | Missing metadata fields              |
+| `@crosstown/bls`      | Yes    | Yes (12 KB)   | `["dist"]`    | Yes (6.5 KB) | Missing metadata fields              |
+| `@crosstown/relay`    | Yes    | Yes (13 KB)   | `["dist"]`    | Missing      | Missing metadata, `workspace:*` deps |
+| `@crosstown/examples` | N/A    | N/A           | N/A           | N/A          | `private: true` — do not publish     |
 
 ### 1.2 Metadata to Add (All Packages)
 
@@ -36,17 +36,17 @@ Each package.json needs:
   "repository": {
     "type": "git",
     "url": "https://github.com/ALLiDoizCode/crosstown.git",
-    "directory": "packages/<package-name>"
+    "directory": "packages/<package-name>",
   },
   "author": "...",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
   },
-  "license": "MIT"   // already present
+  "license": "MIT", // already present
 }
 ```
 
-### 1.3 Fix workspace:* References
+### 1.3 Fix workspace:\* References
 
 `@crosstown/relay` depends on core and bls using `workspace:*`. Before publishing, these must become real version ranges:
 
@@ -125,7 +125,9 @@ export function createAgentRuntimeClient(baseUrl: string): AgentRuntimeClient {
 import { ConnectorNode } from '@agent-runtime/connector';
 
 // New — direct in-process client (no HTTP)
-export function createDirectRuntimeClient(connector: ConnectorNode): AgentRuntimeClient {
+export function createDirectRuntimeClient(
+  connector: ConnectorNode
+): AgentRuntimeClient {
   return {
     async sendIlpPacket(params) {
       const result = await connector.sendPacket({
@@ -139,7 +141,7 @@ export function createDirectRuntimeClient(connector: ConnectorNode): AgentRuntim
         fulfillment: result.fulfillment?.toString('base64'),
         // ...
       };
-    }
+    },
   };
 }
 
@@ -157,7 +159,9 @@ The `BusinessLogicServer.handlePacket()` is currently a **private** method wrapp
 // packages/bls/src/bls/BusinessLogicServer.ts
 export class BusinessLogicServer {
   // Change from private to public
-  public handlePacket(request: HandlePacketRequest): HandlePacketAcceptResponse | HandlePacketRejectResponse {
+  public handlePacket(
+    request: HandlePacketRequest
+  ): HandlePacketAcceptResponse | HandlePacketRejectResponse {
     // ... existing logic unchanged
   }
 }
@@ -213,10 +217,17 @@ export function createCrosstownNode(config: CrosstownConfig): CrosstownNode {
   // 5. Trust, SPSP, relay
   const trustManager = new SocialTrustManager(config.relays);
   const spspClient = new NostrSpspClient(config.relays, config.secretKey);
-  const spspServer = new NostrSpspServer(config.relays, config.secretKey, { ilpAddress: config.ilpAddress });
+  const spspServer = new NostrSpspServer(config.relays, config.secretKey, {
+    ilpAddress: config.ilpAddress,
+  });
 
   return {
-    connector, bls, bootstrap, trustManager, spspClient, spspServer,
+    connector,
+    bls,
+    bootstrap,
+    trustManager,
+    spspClient,
+    spspServer,
     async start() {
       await connector.start();
       await bootstrap.bootstrap();
@@ -238,7 +249,7 @@ export function createCrosstownNode(config: CrosstownConfig): CrosstownNode {
     "@agent-runtime/connector": "^1.0.0",
     "@agent-runtime/shared": "^1.0.0",
     // ... existing deps
-  }
+  },
 }
 ```
 
@@ -246,8 +257,15 @@ export function createCrosstownNode(config: CrosstownConfig): CrosstownNode {
 
 ```typescript
 // packages/core/src/index.ts — add new exports
-export { createCrosstownNode, type CrosstownNode, type CrosstownConfig } from './compose.js';
-export { createDirectRuntimeClient, createHttpRuntimeClient } from './bootstrap/agent-runtime-client.js';
+export {
+  createCrosstownNode,
+  type CrosstownNode,
+  type CrosstownConfig,
+} from './compose.js';
+export {
+  createDirectRuntimeClient,
+  createHttpRuntimeClient,
+} from './bootstrap/agent-runtime-client.js';
 
 // Re-export connector types for convenience
 export type { ConnectorNode, ConnectorConfig } from '@agent-runtime/connector';
@@ -302,21 +320,21 @@ packages/elizaos-plugin/
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./dist/index.d.ts",
+    },
   },
   "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
   },
   "dependencies": {
     "@crosstown/core": "^1.0.0",
-    "@crosstown/bls": "^1.0.0"
+    "@crosstown/bls": "^1.0.0",
   },
   "peerDependencies": {
-    "@elizaos/core": "^1.0.0"
+    "@elizaos/core": "^1.0.0",
   },
-  "license": "MIT"
+  "license": "MIT",
 }
 ```
 
@@ -363,10 +381,7 @@ export const crosstownPlugin: Plugin = {
     paymentHistoryProvider,
   ],
 
-  evaluators: [
-    paymentOutcomeEvaluator,
-    trustEvolutionEvaluator,
-  ],
+  evaluators: [paymentOutcomeEvaluator, trustEvolutionEvaluator],
 
   routes: [
     { type: 'GET', path: '/status', handler: getNetworkStatus },
@@ -388,7 +403,8 @@ import { createCrosstownNode, type CrosstownNode } from '@crosstown/core';
 
 export class CrosstownService extends Service {
   static serviceType = 'crosstown' as const;
-  capabilityDescription = 'Manages ILP connector, Nostr identity, peer discovery, and trust';
+  capabilityDescription =
+    'Manages ILP connector, Nostr identity, peer discovery, and trust';
 
   private node!: CrosstownNode;
 
@@ -396,7 +412,10 @@ export class CrosstownService extends Service {
     const service = new CrosstownService(runtime);
 
     const nostrKey = runtime.getSetting('CROSSTOWN_NOSTR_PRIVATE_KEY');
-    if (!nostrKey) throw new Error('CROSSTOWN_NOSTR_PRIVATE_KEY required in character secrets');
+    if (!nostrKey)
+      throw new Error(
+        'CROSSTOWN_NOSTR_PRIVATE_KEY required in character secrets'
+      );
 
     service.node = createCrosstownNode({
       nodeId: runtime.character.name,
@@ -404,7 +423,8 @@ export class CrosstownService extends Service {
       relayPort: Number(runtime.getSetting('RELAY_PORT') || 7100),
       ilpAddress: runtime.getSetting('CROSSTOWN_ILP_ADDRESS') as string,
       secretKey: nostrKey as string,
-      relays: (runtime.getSetting('CROSSTOWN_RELAYS') as string)?.split(',') || [],
+      relays:
+        (runtime.getSetting('CROSSTOWN_RELAYS') as string)?.split(',') || [],
       autoBootstrap: runtime.getSetting('CROSSTOWN_AUTO_BOOTSTRAP') !== 'false',
     });
 
@@ -417,11 +437,21 @@ export class CrosstownService extends Service {
   }
 
   // Accessors for Actions and Providers
-  getNode(): CrosstownNode { return this.node; }
-  getConnector() { return this.node.connector; }
-  getTrustManager() { return this.node.trustManager; }
-  getSpspClient() { return this.node.spspClient; }
-  getBootstrapPhase() { return this.node.bootstrap.getPhase?.() || 'unknown'; }
+  getNode(): CrosstownNode {
+    return this.node;
+  }
+  getConnector() {
+    return this.node.connector;
+  }
+  getTrustManager() {
+    return this.node.trustManager;
+  }
+  getSpspClient() {
+    return this.node.spspClient;
+  }
+  getBootstrapPhase() {
+    return this.node.bootstrap.getPhase?.() || 'unknown';
+  }
 }
 ```
 
@@ -442,11 +472,11 @@ With the plugin published, an agent operator's entire config is one character fi
     "CROSSTOWN_RELAYS": "wss://relay.damus.io,wss://relay.nostr.band",
     "CROSSTOWN_AUTO_BOOTSTRAP": "true",
     "CROSSTOWN_TRUST_THRESHOLD": "0.5",
-    "CROSSTOWN_MAX_PAYMENT": "100"
+    "CROSSTOWN_MAX_PAYMENT": "100",
   },
   "secrets": {
-    "CROSSTOWN_NOSTR_PRIVATE_KEY": "<hex-encoded-nostr-private-key>"
-  }
+    "CROSSTOWN_NOSTR_PRIVATE_KEY": "<hex-encoded-nostr-private-key>",
+  },
 }
 ```
 
@@ -458,38 +488,38 @@ No YAML config. No Docker compose. No multiple processes. One file, one process.
 
 ### crosstown — Publish Existing Packages
 
-| # | Task | Package | Effort |
-|---|------|---------|--------|
-| 1 | Add repository, author, publishConfig to package.json | core, bls, relay | S |
-| 2 | Add README.md | core, relay | S |
-| 3 | Replace `workspace:*` with real versions before publish | relay | S |
-| 4 | Version bump to 1.0.0 | core, bls, relay | S |
-| 5 | `npm pack` each package and verify contents | core, bls, relay | S |
-| 6 | Publish to npm in order: bls → core → relay | core, bls, relay | S |
+| #   | Task                                                    | Package          | Effort |
+| --- | ------------------------------------------------------- | ---------------- | ------ |
+| 1   | Add repository, author, publishConfig to package.json   | core, bls, relay | S      |
+| 2   | Add README.md                                           | core, relay      | S      |
+| 3   | Replace `workspace:*` with real versions before publish | relay            | S      |
+| 4   | Version bump to 1.0.0                                   | core, bls, relay | S      |
+| 5   | `npm pack` each package and verify contents             | core, bls, relay | S      |
+| 6   | Publish to npm in order: bls → core → relay             | core, bls, relay | S      |
 
 ### crosstown — Integration Refactoring
 
-| # | Task | Package | Effort |
-|---|------|---------|--------|
-| 7 | Add `@agent-runtime/connector` as dependency | core | S |
-| 8 | Create `createDirectRuntimeClient()` (in-process alternative to HTTP) | core | M |
-| 9 | Make `BusinessLogicServer.handlePacket()` public | bls | S |
-| 10 | Create `createCrosstownNode()` composition function | core | M |
-| 11 | Update core exports | core | S |
+| #   | Task                                                                  | Package | Effort |
+| --- | --------------------------------------------------------------------- | ------- | ------ |
+| 7   | Add `@agent-runtime/connector` as dependency                          | core    | S      |
+| 8   | Create `createDirectRuntimeClient()` (in-process alternative to HTTP) | core    | M      |
+| 9   | Make `BusinessLogicServer.handlePacket()` public                      | bls     | S      |
+| 10  | Create `createCrosstownNode()` composition function                   | core    | M      |
+| 11  | Update core exports                                                   | core    | S      |
 
 ### crosstown — New ElizaOS Plugin
 
-| # | Task | Package | Effort |
-|---|------|---------|--------|
-| 12 | Create package scaffolding | elizaos-plugin | S |
-| 13 | Implement CrosstownService | elizaos-plugin | M |
-| 14 | Implement PAY action | elizaos-plugin | L |
-| 15 | Implement DISCOVER_PEERS, CHECK_TRUST, BOOTSTRAP_NETWORK actions | elizaos-plugin | M |
-| 16 | Implement trustScore, peerStatus, ilpBalance providers | elizaos-plugin | M |
-| 17 | Implement networkStatus, paymentHistory providers | elizaos-plugin | M |
-| 18 | Implement paymentOutcome, trustEvolution evaluators | elizaos-plugin | M |
-| 19 | Add REST routes | elizaos-plugin | S |
-| 20 | Publish to npm | elizaos-plugin | S |
+| #   | Task                                                             | Package        | Effort |
+| --- | ---------------------------------------------------------------- | -------------- | ------ |
+| 12  | Create package scaffolding                                       | elizaos-plugin | S      |
+| 13  | Implement CrosstownService                                       | elizaos-plugin | M      |
+| 14  | Implement PAY action                                             | elizaos-plugin | L      |
+| 15  | Implement DISCOVER_PEERS, CHECK_TRUST, BOOTSTRAP_NETWORK actions | elizaos-plugin | M      |
+| 16  | Implement trustScore, peerStatus, ilpBalance providers           | elizaos-plugin | M      |
+| 17  | Implement networkStatus, paymentHistory providers                | elizaos-plugin | M      |
+| 18  | Implement paymentOutcome, trustEvolution evaluators              | elizaos-plugin | M      |
+| 19  | Add REST routes                                                  | elizaos-plugin | S      |
+| 20  | Publish to npm                                                   | elizaos-plugin | S      |
 
 ### Dependencies (Order of Work)
 

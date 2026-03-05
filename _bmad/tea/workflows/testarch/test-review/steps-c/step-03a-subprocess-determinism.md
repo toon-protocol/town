@@ -79,14 +79,18 @@ if (testFileContent.includes('Math.random()')) {
 }
 
 // Check for Date.now()
-if (testFileContent.includes('Date.now()') || testFileContent.includes('new Date()')) {
+if (
+  testFileContent.includes('Date.now()') ||
+  testFileContent.includes('new Date()')
+) {
   violations.push({
     file: testFile,
     line: findLineNumber('Date.now()'),
     severity: 'HIGH',
     category: 'time-dependency',
     description: 'Test uses Date.now() or new Date() without mocking',
-    suggestion: 'Mock system time with test.useFakeTimers() or use fixed timestamps',
+    suggestion:
+      'Mock system time with test.useFakeTimers() or use fixed timestamps',
   });
 }
 
@@ -116,7 +120,10 @@ const passedChecks = totalChecks - failedChecks;
 
 // Weight violations by severity
 const severityWeights = { HIGH: 10, MEDIUM: 5, LOW: 2 };
-const totalPenalty = violations.reduce((sum, v) => sum + severityWeights[v.severity], 0);
+const totalPenalty = violations.reduce(
+  (sum, v) => sum + severityWeights[v.severity],
+  0
+);
 
 // Score: 100 - (penalty points)
 const score = Math.max(0, 100 - totalPenalty);

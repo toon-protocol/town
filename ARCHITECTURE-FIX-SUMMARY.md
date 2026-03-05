@@ -3,6 +3,7 @@
 ## What Was Wrong
 
 ### ❌ Direct BLS Client (Hack)
+
 I created a client that sent HTTP requests directly to peer's BLS endpoint, **bypassing the entire ILP/connector architecture**:
 
 ```
@@ -10,6 +11,7 @@ Peer2 → HTTP → Peer1's BLS (WRONG!)
 ```
 
 This broke:
+
 - ILP packet routing
 - Connector settlement tracking
 - The fundamental purpose of having connectors
@@ -17,6 +19,7 @@ This broke:
 ## What's Correct Now
 
 ### ✅ SPSP via ILP (Always)
+
 SPSP packets flow through proper ILP routing:
 
 ```
@@ -24,7 +27,9 @@ Peer2 BLS → Connector2 → BTP → Connector1 → Peer1 BLS (CORRECT!)
 ```
 
 ### ✅ BTP Auth with Empty String
+
 The chicken-and-egg problem is solved by:
+
 - **BTP doesn't require authentication**
 - Use empty string `''` for `authToken`
 - Peers can connect immediately without secret exchange
@@ -66,6 +71,7 @@ The chicken-and-egg problem is solved by:
 ## Key Principles
 
 ### 1. SPSP is ALWAYS ILP
+
 SPSP is not a separate protocol - it's **Nostr events sent as ILP packet data**.
 
 ```typescript
@@ -79,13 +85,15 @@ const data = Buffer.from(toonBytes).toString('base64');
 // Send via ILP (NOT direct HTTP!)
 await runtimeClient.sendIlpPacket({
   destination: 'g.crosstown.peer1',
-  amount: '0',           // Free bootstrap handshake
-  data,                  // TOON-encoded Nostr event
+  amount: '0', // Free bootstrap handshake
+  data, // TOON-encoded Nostr event
 });
 ```
 
 ### 2. BTP Doesn't Need Auth
+
 For Crosstown's use case:
+
 - Peers discover each other via Nostr (public info)
 - No need for pre-shared secrets
 - BTP auth can be empty string
@@ -94,13 +102,15 @@ For Crosstown's use case:
 await connectorAdmin.addPeer({
   id: 'nostr-719705df...',
   url: 'btp+ws://connector-peer1:3001',
-  authToken: '',  // No auth needed!
+  authToken: '', // No auth needed!
   routes: [{ prefix: 'g.crosstown.peer1' }],
 });
 ```
 
 ### 3. Connector is Always in the Middle
+
 The connector handles:
+
 - **Routing**: Find path to destination ILP address
 - **BTP**: WebSocket connection to peer connectors
 - **Settlement**: Track balances, trigger on-chain settlement
@@ -114,18 +124,21 @@ Inbound:  Peer BLS → Peer Connector → BTP → Connector → BLS
 ## Local Development Benefits
 
 ### Before (Docker)
+
 ```
 Code change → Build → Docker build image → Restart container → Test
 Time: 5-10 minutes
 ```
 
 ### After (Local Node)
+
 ```
 Code change → Build → Restart process → Test
 Time: 5 seconds
 ```
 
 ### Why Local is Better
+
 1. **Instant restarts** - `Ctrl+C` and re-run (1-2s)
 2. **Direct console logs** - No `docker logs` needed
 3. **Fast builds** - No Docker layer caching
@@ -142,18 +155,21 @@ Time: 5 seconds
 ## Files Changed
 
 ### Fixed
+
 - `packages/core/src/bootstrap/BootstrapService.ts`
   - ✅ Removed direct BLS client hack
   - ✅ BTP auth uses empty string
   - ✅ SPSP flows through ILP
 
 ### Deprecated (Can Delete)
+
 - `packages/core/src/bootstrap/direct-bls-client.ts`
 - `packages/core/src/types.ts` - Remove `blsHttpEndpoint?` field
 - `packages/bls/src/entrypoint-with-bootstrap.ts` - Remove blsHttpEndpoint construction
 - `packages/core/src/events/parsers.ts` - Remove blsHttpEndpoint parsing
 
 ### New
+
 - `LOCAL-DEV-SETUP.md` - Local development guide
 - `dev-peer1.sh` - Start genesis peer locally
 - `dev-peer2.sh` - Start joiner peer locally

@@ -25,7 +25,11 @@
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
 import { CrosstownClient } from '../../src/CrosstownClient.js';
 
@@ -42,7 +46,9 @@ describe('CrosstownClient HTTP Mode E2E', () => {
 
       if (!connectorHealth.ok) {
         console.warn('⚠️  Connector health check failed. Skipping E2E tests.');
-        console.warn('   Run: docker compose -f docker-compose-simple.yml up -d');
+        console.warn(
+          '   Run: docker compose -f docker-compose-simple.yml up -d'
+        );
         return;
       }
 
@@ -53,7 +59,9 @@ describe('CrosstownClient HTTP Mode E2E', () => {
 
       if (!blsHealth.ok) {
         console.warn('⚠️  BLS health check failed. Skipping E2E tests.');
-        console.warn('   Run: docker compose -f docker-compose-simple.yml up -d');
+        console.warn(
+          '   Run: docker compose -f docker-compose-simple.yml up -d'
+        );
         return;
       }
 
@@ -64,7 +72,9 @@ describe('CrosstownClient HTTP Mode E2E', () => {
     } catch (error) {
       console.warn('⚠️  Infrastructure not running. Skipping E2E tests.');
       console.warn('   Run: docker compose -f docker-compose-simple.yml up -d');
-      console.warn(`   Error: ${error instanceof Error ? error.message : String(error)}`);
+      console.warn(
+        `   Error: ${error instanceof Error ? error.message : String(error)}`
+      );
     }
   }, 10000);
 
@@ -215,7 +225,9 @@ describe('CrosstownClient HTTP Mode E2E', () => {
         secretKey
       );
 
-      await expect(client.publishEvent(event)).rejects.toThrow('Client not started');
+      await expect(client.publishEvent(event)).rejects.toThrow(
+        'Client not started'
+      );
     });
   });
 

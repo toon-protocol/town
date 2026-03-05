@@ -26,14 +26,14 @@ Successfully migrated from `agent-runtime` to `connector:latest` (v1.19.0), the 
 
 ### Core Services
 
-| Service | Status | Health Check |
-|---------|--------|-------------|
-| **Connector (v1.19.0)** | ✅ Healthy | `http://localhost:8080/health` |
-| **Crosstown BLS** | ✅ Healthy | `http://localhost:3100/health` |
-| **Nostr Relay** | ✅ Running | `ws://localhost:7100` |
-| **Admin API** | ✅ Running | `http://localhost:8081/admin/*` |
-| **BTP Server** | ✅ Running | `ws://localhost:3000` |
-| **Explorer UI** | ✅ Running | `http://localhost:3001` |
+| Service                 | Status     | Health Check                    |
+| ----------------------- | ---------- | ------------------------------- |
+| **Connector (v1.19.0)** | ✅ Healthy | `http://localhost:8080/health`  |
+| **Crosstown BLS**       | ✅ Healthy | `http://localhost:3100/health`  |
+| **Nostr Relay**         | ✅ Running | `ws://localhost:7100`           |
+| **Admin API**           | ✅ Running | `http://localhost:8081/admin/*` |
+| **BTP Server**          | ✅ Running | `ws://localhost:3000`           |
+| **Explorer UI**         | ✅ Running | `http://localhost:3001`         |
 
 ### Payment Channel Infrastructure
 
@@ -45,6 +45,7 @@ curl http://localhost:8081/admin/peers              # ✅ Returns peer list
 ```
 
 **Infrastructure Status:**
+
 - ✅ Payment channel SDK initialized
 - ✅ Settlement monitor active (60s polling, 1 M2M threshold)
 - ✅ Settlement executor running (registry: 0xCbf6...252C)
@@ -54,11 +55,13 @@ curl http://localhost:8081/admin/peers              # ✅ Returns peer list
 ### Event Storage & Retrieval
 
 **Bootstrap Event Published:**
+
 ```bash
 echo '["REQ","test",{"kinds":[10032],"limit":5}]' | websocat -n1 -t ws://localhost:7100
 ```
 
 **Response:**
+
 ```
 ["EVENT","test","id: 947e55b948dcfa6c03bf81aaf266a29d6fe28ad3469556ec6d2530190f7179fe
 pubkey: aa1857d0ff1fcb1aeb1907b3b98290f3ecb5545473c0b9296fb0b44481deb572
@@ -70,6 +73,7 @@ sig: 362f73adf177b6acb1c972b0a5a0afd8061666a658d87df3fcf9f36913769ad9e48321936d6
 ```
 
 ✅ **Confirmed:**
+
 - Events stored in TOON format
 - Relay serving events via Nostr WebSocket
 - Bootstrap service published ILP peer info
@@ -82,14 +86,17 @@ sig: 362f73adf177b6acb1c972b0a5a0afd8061666a658d87df3fcf9f36913769ad9e48321936d6
 ### Base Sepolia Testnet
 
 **Network:**
+
 - RPC URL: `https://sepolia.base.org`
 - Chain ID: `84532`
 
 **Smart Contracts:**
+
 - Token Network Registry: `0xCbf6f43A17034e733744cBCc130FfcCA3CF3252C`
 - M2M Token: `0x39eaF99Cd4965A28DFe8B1455DD42aB49D0836B9`
 
 **Wallet (Node Bravo):**
+
 - Address: `0x2A4b89D2b272C89Ae1DE990344cD85AA91826A52`
 - Private Key: Configured from testnet-wallets.json
 
@@ -149,6 +156,7 @@ DELETE /admin/routes/:prefix              # Remove route
 **Problem:** Connector v1.19.0 image missing Express package required for HTTP APIs
 
 **Error:**
+
 ```
 express is required for HTTP admin/health APIs. Install it with: npm install express
 ```
@@ -156,6 +164,7 @@ express is required for HTTP admin/health APIs. Install it with: npm install exp
 **Solution:** Created `connector:patched` image with Express 4.x
 
 **Dockerfile:**
+
 ```dockerfile
 FROM connector:latest
 WORKDIR /app
@@ -181,6 +190,7 @@ bash tests/event-storage-test.sh
 ```
 
 **Results:**
+
 - ✅ Core infrastructure verified
 - ✅ BLS accessible and validating payments
 - ✅ Relay serving events via WebSocket
@@ -221,6 +231,7 @@ docker images | grep -E "connector|crosstown"
 > "there should be a connector image this is the newest version of what was agent-runtime. replace the agent-runtime container with this new image and test it again"
 
 ✅ **Delivered:**
+
 1. Identified connector:latest (v1.19.0) as newest version
 2. Replaced agent-runtime with connector image
 3. Patched missing Express dependency

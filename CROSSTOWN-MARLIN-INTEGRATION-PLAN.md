@@ -33,6 +33,7 @@ Crosstown nodes can operate on **three complementary layers** simultaneously:
 3. **Application Layer**: Specialized services (AI inference, CI/CD, analytics) run in Marlin TEEs
 
 This creates a **complete decentralized stack**:
+
 - **Compute**: Marlin Oyster (confidential, verifiable execution)
 - **Payments**: ILP (micropayments with streaming)
 - **Discovery**: Nostr (social trust graphs)
@@ -41,12 +42,14 @@ This creates a **complete decentralized stack**:
 ### What Makes This Unique
 
 **No existing platform combines:**
+
 - Social trust graphs for service discovery
 - Micropayment routing for usage-based pricing
 - Confidential computing with attestation verification
 - Recursive deployment (infrastructure hosts itself)
 
 **Competitive positioning:**
+
 - 40-60% cheaper than OpenAI/AWS for AI inference
 - Verifiable execution (TEE attestations)
 - No minimum spend (pay per token/request)
@@ -74,12 +77,14 @@ This creates a **complete decentralized stack**:
 ```
 
 **Benefits:**
+
 - **Verifiable relay operations**: Prove no censorship/tampering
 - **Private key security**: Signing keys never leave TEE
 - **Cost efficiency**: $12/month vs $30/month traditional VPS
 - **Trusted peering**: Peers verify attestations during bootstrap
 
 **Economics:**
+
 - Monthly cost: $12 (Marlin) vs $30 (AWS) vs $4 (Hetzner)
 - Revenue potential: $30/month (relay fees + routing)
 - **Profit: $16-21/month (114-233% ROI)** ✅
@@ -91,6 +96,7 @@ This creates a **complete decentralized stack**:
 Crosstown nodes accept ILP payments to deploy client workloads to Marlin.
 
 **Flow:**
+
 ```
 1. Client sends ILP-gated Nostr event (kind:23196 "Deploy Request")
    {
@@ -111,12 +117,14 @@ Crosstown nodes accept ILP payments to deploy client workloads to Marlin.
 ```
 
 **Value Proposition:**
+
 - **Abstract Marlin complexity**: Client doesn't need USDC/ETH or oyster-cvm CLI
 - **ILP payment abstraction**: Pay in ILP, node handles crypto conversion
 - **Trust-based allocation**: Nostr follows get priority/discounts
 - **Social reputation**: Choose operators via follow graph
 
 **Economics:**
+
 - 1-hour workload: $0.017-0.023 (competitive with AWS Lambda)
 - Monthly workload: $13.70-14.20
 - **Trust-discounted (50% off): $7.10 for follows**
@@ -133,6 +141,7 @@ Crosstown nodes accept ILP payments to deploy client workloads to Marlin.
 The most profitable use case with highest margins.
 
 **Architecture:**
+
 ```
 ┌────────────────────────────────────────────────────────────┐
 │  Client (Alice) - AI Agent Developer                       │
@@ -166,36 +175,37 @@ The most profitable use case with highest margins.
 
 **Economics - Carol (Provider) serving 10 clients:**
 
-| Item | Amount |
-|------|--------|
-| Revenue (10 clients × $150/month) | $1,500/month |
-| Marlin L4 GPU rental ($0.30/hour × 720 hours) | $216/month |
-| Bob's routing fees (1%) | $15/month |
-| Bandwidth (10TB) | $10/month |
-| Settlement gas (daily batching) | $3/month |
-| **Total costs** | $244/month |
-| **Profit** | **$1,256/month** |
-| **Margin** | **84%** ✅ |
+| Item                                          | Amount           |
+| --------------------------------------------- | ---------------- |
+| Revenue (10 clients × $150/month)             | $1,500/month     |
+| Marlin L4 GPU rental ($0.30/hour × 720 hours) | $216/month       |
+| Bob's routing fees (1%)                       | $15/month        |
+| Bandwidth (10TB)                              | $10/month        |
+| Settlement gas (daily batching)               | $3/month         |
+| **Total costs**                               | $244/month       |
+| **Profit**                                    | **$1,256/month** |
+| **Margin**                                    | **84%** ✅       |
 
 **Economics - Bob (Crosstown Node) serving 10 providers:**
 
-| Item | Amount |
-|------|--------|
-| Routing revenue (1% of $15k flow) | $150/month |
-| Self-hosting cost (Marlin) | $12/month |
-| Settlement gas (batched) | $6/month |
-| **Profit** | **$132/month** ✅ |
+| Item                              | Amount            |
+| --------------------------------- | ----------------- |
+| Routing revenue (1% of $15k flow) | $150/month        |
+| Self-hosting cost (Marlin)        | $12/month         |
+| Settlement gas (batched)          | $6/month          |
+| **Profit**                        | **$132/month** ✅ |
 
 **Economics - Alice (Client) comparison:**
 
-| Provider | Price per 1M Tokens | Alice's Monthly Cost (3M tokens) |
-|----------|---------------------|----------------------------------|
-| **Together.ai (commodity)** | $0.10-0.56 | $0.30-1.68 |
-| **Crosstown (specialized)** | $5.00 | $15.00 |
-| **Claude Sonnet** | $15.00 | $45.00 |
-| **OpenAI GPT-4** | $45.00 | $135.00 |
+| Provider                    | Price per 1M Tokens | Alice's Monthly Cost (3M tokens) |
+| --------------------------- | ------------------- | -------------------------------- |
+| **Together.ai (commodity)** | $0.10-0.56          | $0.30-1.68                       |
+| **Crosstown (specialized)** | $5.00               | $15.00                           |
+| **Claude Sonnet**           | $15.00              | $45.00                           |
+| **OpenAI GPT-4**            | $45.00              | $135.00                          |
 
 **Positioning:** 9-10× more expensive than commodity, but 3-9× cheaper than hyperscalers with added benefits:
+
 - ✅ Verifiable execution (TEE attestations)
 - ✅ No data retention (privacy)
 - ✅ Micropayments (no minimum spend)
@@ -231,6 +241,7 @@ Marlin Oyster
 ```
 
 **Working Capital Requirements:**
+
 - Alice: $50 (channel deposit)
 - Bob: $2,200 (channels to 10 providers + buffer)
 - Carol: $20 (daily settlement buffer)
@@ -244,25 +255,28 @@ Marlin Oyster
 
 ### Overall Assessment: ✅ **VIABLE with Strategic Positioning**
 
-| Model | Monthly Profit | Margin | Risk | Recommendation |
-|-------|---------------|--------|------|----------------|
-| **Layer 1: Self-Hosting** | $16-21 | 114-233% | 🟢 LOW | **Start here** - proven economics |
-| **Layer 2: Deployment Service** | $57 | 80% | 🟡 MEDIUM | Trust-based only, short workloads |
-| **Layer 3: AI Inference** | $1,256 | 84% | 🔴 HIGH | **Highest upside** - specialized models |
+| Model                           | Monthly Profit | Margin   | Risk      | Recommendation                          |
+| ------------------------------- | -------------- | -------- | --------- | --------------------------------------- |
+| **Layer 1: Self-Hosting**       | $16-21         | 114-233% | 🟢 LOW    | **Start here** - proven economics       |
+| **Layer 2: Deployment Service** | $57            | 80%      | 🟡 MEDIUM | Trust-based only, short workloads       |
+| **Layer 3: AI Inference**       | $1,256         | 84%      | 🔴 HIGH   | **Highest upside** - specialized models |
 
 ### Critical Success Factors
 
 **Layer 1 (Self-Hosting):**
+
 - ✅ Marlin pricing competitive with traditional VPS
 - ✅ Low volume viable (400 events/month break-even)
 - ✅ Clear cost savings ($18/month vs traditional)
 
 **Layer 2 (Deployment):**
+
 - 🟡 Trust-based discounting drives adoption
 - 🟡 Target short-duration workloads (<24 hours)
 - 🟡 Avoid competing with $4/month VPS providers
 
 **Layer 3 (AI Inference):**
+
 - 🔴 **Marlin GPU pricing must be <$0.40/hour** (CRITICAL)
 - 🔴 Achieve 40%+ utilization (requires 10+ clients)
 - 🔴 Price at premium tier ($5-8/M tokens, not commodity)
@@ -271,29 +285,34 @@ Marlin Oyster
 ### What DOESN'T Work
 
 ❌ **Commodity AI inference at Together.ai prices:**
+
 - Llama 3.1 70B @ $2/M tokens → **-$1,175/month loss**
 - Llama 3.1 8B @ $0.30/M tokens → **-$257/month loss**
 - **Reason:** GPU costs too high relative to commodity pricing
 
 ❌ **24/7 VPS competing with Hetzner on price:**
+
 - Crosstown @ $14/month vs Hetzner @ $4/month
 - **Can't win on pure price**
 
 ### What WORKS
 
 ✅ **Premium/specialized AI inference:**
+
 - Fine-tuned models for specific domains (Web3 security, DAO governance, etc.)
 - Price: $5-8/M tokens (15-50× commodity, but 40-60% cheaper than OpenAI)
 - Margin: 36-84% depending on scale
 - **Target:** Privacy-focused enterprises, DAOs, Web3 developers
 
 ✅ **Trust-based deployment service:**
+
 - 50-75% discounts for Nostr follows
 - Sticky client relationships (low churn)
 - Predictable recurring revenue
 - **Target:** Developer communities, existing Nostr users
 
 ✅ **Crosstown self-hosting:**
+
 - Cost savings + revenue generation
 - Low risk, proven model
 - **Target:** All node operators
@@ -305,23 +324,25 @@ Marlin Oyster
 ### Phase 1: Crosstown Docker Compose → Marlin
 
 **Current setup:**
+
 ```yaml
 # docker-compose.yml
 services:
   crosstown-relay:
     image: crosstown/relay:latest
-    ports: ["3000:3000"]
+    ports: ['3000:3000']
 
   crosstown-connector:
     image: agent-society/connector:latest
-    ports: ["8081:8081"]
+    ports: ['8081:8081']
 
   crosstown-bls:
     image: crosstown/bls:latest
-    ports: ["3100:3100"]
+    ports: ['3100:3100']
 ```
 
 **Marlin deployment:**
+
 ```bash
 # 1. Fund wallet (USDC + ETH on Arbitrum)
 # Minimum: 1 USDC + 0.001 ETH
@@ -347,6 +368,7 @@ oyster-cvm verify \
 ```
 
 **Integration requirements:**
+
 - ✅ Docker networking: host mode or explicit port mappings
 - ✅ Volume persistence: Marlin supports limited volume mounts
 - ✅ Environment variables: Pass via deployment command
@@ -359,17 +381,20 @@ oyster-cvm verify \
 Extend `BootstrapService` to exchange and verify TEE attestations during peer handshake.
 
 **Current bootstrap (3 phases):**
+
 1. **Discovery**: Load peers, query relays for kind:10032, register with connector
 2. **Handshake**: SPSP via ILP for settlement negotiation
 3. **Announce**: Publish own kind:10032 as paid ILP PREPARE
 
 **New bootstrap (4 phases):**
+
 1. **Discovery**: (unchanged)
 2. **Handshake**: SPSP + **attestation exchange**
 3. **Attestation Verification**: Verify peer is running in TEE
 4. **Announce**: Publish kind:10032 **with attestation proof**
 
 **Code changes:**
+
 ```typescript
 // packages/core/src/bootstrap/BootstrapService.ts
 
@@ -425,34 +450,36 @@ private async verifyAttestation(proof: AttestationProof): Promise<boolean> {
 Add capability for Crosstown nodes to deploy client workloads.
 
 **New service:**
+
 ```typescript
 // packages/core/src/deployment/DeploymentService.ts
 
 export class DeploymentService {
   constructor(
     private readonly connector: ConnectorClient,
-    private readonly walletKey: string  // For Marlin payments
+    private readonly walletKey: string // For Marlin payments
   ) {}
 
   async deployForClient(request: DeploymentRequest): Promise<DeploymentResult> {
     // 1. Validate ILP payment covers costs
-    const estimatedCost = this.estimateMarlinCost(request.resources, request.duration);
-    const requiredPayment = estimatedCost * 1.2;  // 20% margin
+    const estimatedCost = this.estimateMarlinCost(
+      request.resources,
+      request.duration
+    );
+    const requiredPayment = estimatedCost * 1.2; // 20% margin
 
     if (request.ilpPaymentAmount < requiredPayment) {
       throw new DeploymentError('Insufficient payment');
     }
 
     // 2. Write client's docker-compose to temp file
-    const composeFile = await this.writeComposeFile(
-      request.dockerCompose
-    );
+    const composeFile = await this.writeComposeFile(request.dockerCompose);
 
     // 3. Deploy to Marlin
     const deployment = await this.deployToMarlin({
       composeFile,
       durationMinutes: request.duration,
-      architecture: request.arch || 'amd64'
+      architecture: request.arch || 'amd64',
     });
 
     // 4. Return deployment info + attestation
@@ -461,11 +488,13 @@ export class DeploymentService {
       enclaveIp: deployment.enclave_ip,
       imageId: deployment.image_id,
       attestation: await this.getAttestation(deployment.enclave_ip),
-      expiresAt: Date.now() + (request.duration * 60 * 1000)
+      expiresAt: Date.now() + request.duration * 60 * 1000,
     };
   }
 
-  private async deployToMarlin(params: MarlinDeployParams): Promise<MarlinDeployment> {
+  private async deployToMarlin(
+    params: MarlinDeployParams
+  ): Promise<MarlinDeployment> {
     const result = await exec(`
       oyster-cvm deploy \
         --wallet-private-key ${this.walletKey} \
@@ -480,6 +509,7 @@ export class DeploymentService {
 ```
 
 **Event handler:**
+
 ```typescript
 // Handle kind:23196 (Deploy Request) events
 relay.on('event', async (event) => {
@@ -494,7 +524,7 @@ relay.on('event', async (event) => {
       // Deploy to Marlin
       const result = await deploymentService.deployForClient({
         ...request,
-        ilpPaymentAmount: payment.amount
+        ilpPaymentAmount: payment.amount,
       });
 
       // Publish result as kind:23197 (Deploy Response)
@@ -511,6 +541,7 @@ relay.on('event', async (event) => {
 ### kind:10032 Extension - ILP Peer Info with Compute Capabilities
 
 **Current schema:**
+
 ```json
 {
   "kind": 10032,
@@ -526,6 +557,7 @@ relay.on('event', async (event) => {
 ```
 
 **Extended schema:**
+
 ```json
 {
   "kind": 10032,
@@ -581,8 +613,8 @@ Advertise specific services (AI inference, CI/CD, analytics, etc.)
       "per_1k_tokens": "0.005 ILP",
       "per_1m_tokens": "5.0 ILP",
       "trust_discount": {
-        "follows": 0.25,      // 25% off for direct follows
-        "wot_score_10": 0.5   // 50% off for WoT score >= 10
+        "follows": 0.25, // 25% off for direct follows
+        "wot_score_10": 0.5 // 50% off for WoT score >= 10
       }
     },
     "performance": {
@@ -608,7 +640,7 @@ Advertise specific services (AI inference, CI/CD, analytics, etc.)
     ["t", "ai-inference"],
     ["t", "llm"],
     ["t", "web3"],
-    ["i", "g.crosstown.ai.carol"]  // ILP address
+    ["i", "g.crosstown.ai.carol"] // ILP address
   ]
 }
 ```
@@ -625,7 +657,7 @@ Client requests deployment of a Docker workload.
   "pubkey": "client_pubkey",
   "created_at": 1708704000,
   "content": {
-    "docker_compose": "dmVyc2lvbjogJzMuOCcKc2VydmljZXM6CiAgd2ViOgogICAgaW1hZ2U6IG5naW54OmxhdGVzdAogICAgcG9ydHM6CiAgICAgIC0gIjgwOjgwIg==",  // base64
+    "docker_compose": "dmVyc2lvbjogJzMuOCcKc2VydmljZXM6CiAgd2ViOgogICAgaW1hZ2U6IG5naW54OmxhdGVzdAogICAgcG9ydHM6CiAgICAgIC0gIjgwOjgwIg==", // base64
     "duration_minutes": 60,
     "resources": {
       "cpu_cores": 2,
@@ -636,7 +668,7 @@ Client requests deployment of a Docker workload.
     "architecture": "amd64",
     "environment": {
       "NODE_ENV": "production",
-      "API_KEY": "encrypted:..."  // Client-side encrypted
+      "API_KEY": "encrypted:..." // Client-side encrypted
     },
     "callback": {
       "ilp_address": "g.crosstown.user.alice",
@@ -644,9 +676,9 @@ Client requests deployment of a Docker workload.
     }
   },
   "tags": [
-    ["p", "operator_pubkey"],  // Target node operator
-    ["amount", "1000000"],      // ILP payment amount (in smallest unit)
-    ["invoice", "lnbc..."]      // Optional: Lightning invoice for payment
+    ["p", "operator_pubkey"], // Target node operator
+    ["amount", "1000000"], // ILP payment amount (in smallest unit)
+    ["invoice", "lnbc..."] // Optional: Lightning invoice for payment
   ]
 }
 ```
@@ -664,7 +696,7 @@ Operator responds with deployment details.
   "created_at": 1708704000,
   "content": {
     "request_id": "event_id_of_request",
-    "status": "success",  // or "failed"
+    "status": "success", // or "failed"
     "deployment": {
       "enclave_id": "0x9abc...",
       "enclave_ip": "203.0.113.45",
@@ -676,7 +708,7 @@ Operator responds with deployment details.
         "tee_quote": "base64_encoded_quote",
         "verification_url": "https://attestation.crosstown.network/verify/0x9abc"
       },
-      "expires_at": 1708707600,  // Unix timestamp
+      "expires_at": 1708707600, // Unix timestamp
       "cost": {
         "estimated": "1000000 ILP units",
         "actual": "950000 ILP units",
@@ -715,7 +747,7 @@ Client requests AI inference from a provider.
     "payment": {
       "max_tokens": 1000,
       "max_cost": "10000 ILP units",
-      "stream_payment": true  // Pay per token as generated
+      "stream_payment": true // Pay per token as generated
     }
   },
   "tags": [
@@ -754,7 +786,7 @@ Provider returns inference result.
   "tags": [
     ["e", "request_event_id", "", "reply"],
     ["p", "client_pubkey"],
-    ["amount", "3420"]  // Actual cost
+    ["amount", "3420"] // Actual cost
   ]
 }
 ```
@@ -768,6 +800,7 @@ Provider returns inference result.
 **Objective:** Validate assumptions, secure resources, obtain pricing
 
 **Tasks:**
+
 - [ ] Contact Marlin team for pilot program access
   - Request actual pricing for compute tiers
   - Negotiate 30-60 day trial period
@@ -799,6 +832,7 @@ Provider returns inference result.
 **Objective:** Validate Layer 3 (AI Inference) economics with real deployment
 
 **Architecture:**
+
 ```
 ┌─────────────┐
 │   1 Node    │  Bob (Crosstown on Marlin testnet)
@@ -841,6 +875,7 @@ Provider returns inference result.
    - [ ] Weekly feedback sessions
 
 **Metrics to Track:**
+
 - Actual Marlin costs (compare with estimates)
 - Provider uptime and reliability
 - Inference latency (p50, p95, p99)
@@ -850,12 +885,14 @@ Provider returns inference result.
 - Attestation verification overhead
 
 **Budget:** $1,500
+
 - Marlin compute: $300 (30 days × $10/day)
 - LLM GPU: $750 (30 days × $25/day)
 - Alpha credits: $250 (5 × $50)
 - Buffer: $200
 
 **Success Criteria:**
+
 - [ ] 40%+ GPU utilization achieved
 - [ ] Actual costs within 20% of estimates
 - [ ] <5% client churn
@@ -863,6 +900,7 @@ Provider returns inference result.
 - [ ] No critical attestation failures
 
 **Go/No-Go Decision Point:**
+
 - ✅ GO: If margins >20% and clients willing to pay
 - ❌ NO-GO: If costs exceed revenue by >10%
 
@@ -873,6 +911,7 @@ Provider returns inference result.
 **Objective:** Scale to profitability, validate Layer 2 (Deployment Service)
 
 **Architecture:**
+
 ```
 ┌─────────────┐
 │   3 Nodes   │  Bob + 2 operators (geographic distribution)
@@ -915,6 +954,7 @@ Provider returns inference result.
    - [ ] Offer launch discounts (50% off first month)
 
 **Metrics to Track:**
+
 - Total network throughput ($X/month)
 - Provider profitability ($/month)
 - Node operator profitability ($/month)
@@ -924,12 +964,14 @@ Provider returns inference result.
 - Churn rate
 
 **Budget:** $5,000
+
 - Infrastructure: $3,000 (3 nodes + 3 providers × 90 days)
 - Marketing: $1,000 (Nostr ads, content creation)
 - Partnerships: $500 (integration bounties)
 - Buffer: $500
 
 **Success Criteria:**
+
 - [ ] $500+/month provider revenue (1 provider profitable)
 - [ ] $30+/month node operator revenue
 - [ ] 20+ paying customers
@@ -937,6 +979,7 @@ Provider returns inference result.
 - [ ] CAC < 3× LTV
 
 **Go/No-Go Decision Point:**
+
 - ✅ GO: If 1+ providers profitable, growing MRR
 - ❌ NO-GO: If providers losing money, high churn
 
@@ -947,6 +990,7 @@ Provider returns inference result.
 **Objective:** Scale to 50+ nodes, 10+ providers, 100+ customers
 
 **Architecture:**
+
 ```
 ┌──────────────┐
 │  10-20 Nodes │  Geographic distribution, redundancy
@@ -990,6 +1034,7 @@ Provider returns inference result.
    - [ ] Long-term roadmap
 
 **Metrics to Track:**
+
 - Network transaction volume ($X/month)
 - Total value locked (payment channels)
 - Active providers / nodes
@@ -998,6 +1043,7 @@ Provider returns inference result.
 - Brand awareness (Nostr reach, mentions)
 
 **Budget:** $15,000
+
 - Infrastructure: $10,000 (scaling costs)
 - Marketing: $3,000 (content, ads, events)
 - Development: $1,000 (bounties, audits)
@@ -1005,6 +1051,7 @@ Provider returns inference result.
 - Buffer: $500
 
 **Success Criteria:**
+
 - [ ] $10k-30k/month network throughput
 - [ ] 10+ profitable providers
 - [ ] 50+ paying customers
@@ -1018,6 +1065,7 @@ Provider returns inference result.
 **Objective:** Achieve profitability, expand to adjacent markets
 
 **Focus Areas:**
+
 - **Vertical expansion:** Add new service types (CI/CD, analytics, storage)
 - **Geographic expansion:** Providers in EU, Asia, Latin America
 - **Model diversity:** Support more LLMs, multimodal models
@@ -1036,10 +1084,12 @@ Provider returns inference result.
 **Critical threshold:** GPU rental <$0.40/hour for L4-class
 
 **Current estimates:**
+
 - L4 GPU: $0.30-0.60/hour (ESTIMATE)
 - H100 GPU: $1.80-2.40/hour (ESTIMATE)
 
 **If 50% higher than estimates:**
+
 - All AI inference scenarios become unprofitable
 - Must pivot to Layer 1 (Self-Hosting) only
 - Delay Layer 3 launch until pricing improves
@@ -1051,11 +1101,13 @@ Provider returns inference result.
 ### 2. Achieve 40%+ GPU Utilization
 
 **Why it matters:**
+
 - At 20% utilization: -$257/month loss
 - At 40% utilization: +$83/month profit
 - At 80% utilization: +$1,247/month profit
 
 **How to achieve:**
+
 1. **Reservation model:** Pre-sold capacity (guaranteed utilization)
 2. **Volume discounts:** Encourage high-volume clients
 3. **Dynamic pricing:** Cheaper during off-peak (incentivize usage)
@@ -1070,12 +1122,14 @@ Provider returns inference result.
 **Avoid competing with Together.ai at $0.10-0.56/M tokens**
 
 **Target positioning:**
+
 - **Commodity providers:** $0.10-0.56/M (lowest price)
 - **Crosstown specialized:** $5/M (verifiable, private, decentralized)
 - **Crosstown premium:** $8/M (70B models, complex reasoning)
 - **Hyperscalers:** $15-45/M (OpenAI, Claude - highest price)
 
 **Value drivers:**
+
 - ✅ TEE attestations (verifiable inference)
 - ✅ No data retention (privacy)
 - ✅ Micropayments (no minimum spend)
@@ -1083,6 +1137,7 @@ Provider returns inference result.
 - ✅ Domain-specific (fine-tuned models)
 
 **Target customers:**
+
 - DAOs requiring verifiable AI decisions
 - Privacy-focused enterprises
 - Web3 developers (smart contract analysis, etc.)
@@ -1093,16 +1148,19 @@ Provider returns inference result.
 ### 4. Efficient Settlement Batching
 
 **Without batching:**
+
 - Bob's gas costs: $90/month
 - Bob's revenue: $15/month
 - **Net: -$75/month loss** ❌
 
 **With daily batching:**
+
 - Bob's gas costs: $3/month
 - Bob's revenue: $15/month
 - **Net: +$12/month profit** ✅
 
 **Best practices:**
+
 - Batch settlements across multiple clients/providers
 - Settle daily (not hourly or per-transaction)
 - Use multi-claim settlement contracts
@@ -1115,12 +1173,14 @@ Provider returns inference result.
 **Hypothesis:** Nostr social graph drives customer acquisition
 
 **Mechanisms:**
+
 1. **Discovery:** Find services through follow graph
 2. **Reputation:** Trust scores from WoT (Web of Trust)
 3. **Discounts:** 25-75% off for follows
 4. **Stickiness:** Social relationships reduce churn
 
 **Metrics to validate:**
+
 - % of customers acquired via social graph
 - Churn rate: social vs. non-social customers
 - Discount effectiveness: conversion rate at 25% vs 50% vs 75%
@@ -1134,28 +1194,28 @@ Provider returns inference result.
 
 ### High-Risk Factors 🔴
 
-| Risk | Impact | Probability | Mitigation |
-|------|--------|-------------|------------|
-| **Marlin pricing 50% higher** | All AI inference unprofitable | MEDIUM | Get actual pricing ASAP, pilot before scaling |
-| **Low utilization (<20%)** | Providers lose money | MEDIUM | Reservation model, volume discounts |
-| **Insufficient demand** | Network doesn't grow | LOW | Alpha validation, partnerships with AI frameworks |
-| **Sybil attacks on reputation** | Trust system exploited | MEDIUM | Multi-signal reputation + stake requirements |
+| Risk                            | Impact                        | Probability | Mitigation                                        |
+| ------------------------------- | ----------------------------- | ----------- | ------------------------------------------------- |
+| **Marlin pricing 50% higher**   | All AI inference unprofitable | MEDIUM      | Get actual pricing ASAP, pilot before scaling     |
+| **Low utilization (<20%)**      | Providers lose money          | MEDIUM      | Reservation model, volume discounts               |
+| **Insufficient demand**         | Network doesn't grow          | LOW         | Alpha validation, partnerships with AI frameworks |
+| **Sybil attacks on reputation** | Trust system exploited        | MEDIUM      | Multi-signal reputation + stake requirements      |
 
 ### Medium-Risk Factors 🟡
 
-| Risk | Impact | Probability | Mitigation |
-|------|--------|-------------|------------|
-| **ILP routing fee competition** | Margins compressed | HIGH | Differentiate on attestations, not just routing |
-| **Gas price spikes** | Settlement costs spike | MEDIUM | Dynamic batching thresholds, L2 alternatives |
-| **Trust discounting ineffective** | Customer acquisition fails | MEDIUM | Time-limited promos, graduated discounts |
-| **TEE vendor lock-in** | Can't switch providers | MEDIUM | Abstraction layer for multiple TEE types |
+| Risk                              | Impact                     | Probability | Mitigation                                      |
+| --------------------------------- | -------------------------- | ----------- | ----------------------------------------------- |
+| **ILP routing fee competition**   | Margins compressed         | HIGH        | Differentiate on attestations, not just routing |
+| **Gas price spikes**              | Settlement costs spike     | MEDIUM      | Dynamic batching thresholds, L2 alternatives    |
+| **Trust discounting ineffective** | Customer acquisition fails | MEDIUM      | Time-limited promos, graduated discounts        |
+| **TEE vendor lock-in**            | Can't switch providers     | MEDIUM      | Abstraction layer for multiple TEE types        |
 
 ### Low-Risk Factors 🟢
 
-| Risk | Impact | Probability | Mitigation |
-|------|--------|-------------|------------|
-| **Arbitrum gas fees stable** | Predictable costs | LOW | Already stable, multiple L2 backups |
-| **Technical feasibility proven** | Integration works | LOW | Docker + oyster-cvm tested |
+| Risk                             | Impact            | Probability | Mitigation                          |
+| -------------------------------- | ----------------- | ----------- | ----------------------------------- |
+| **Arbitrum gas fees stable**     | Predictable costs | LOW         | Already stable, multiple L2 backups |
+| **Technical feasibility proven** | Integration works | LOW         | Docker + oyster-cvm tested          |
 
 ---
 
@@ -1277,18 +1337,18 @@ Provider returns inference result.
 
 ## Quick Reference: Key Decisions
 
-| Decision Point | Recommendation | Rationale |
-|----------------|----------------|-----------|
-| **Which layer to start?** | Layer 1 (Self-Hosting) | Lowest risk, proven economics |
-| **Pricing strategy?** | Premium tier ($5-8/M tokens) | Can't compete with commodity, differentiate on verifiability |
-| **Target market?** | Web3 developers, DAOs, privacy-focused | Willing to pay premium for attestations |
-| **Settlement frequency?** | Daily batching | 75% gas savings vs. 6-hour |
-| **Discount model?** | 25-75% for Nostr follows | Build network effects via social graph |
-| **Event kind for compute?** | Extend kind:10032 | Reuse existing peer info structure |
-| **Attestation verification?** | During bootstrap handshake | Establish trust early, cache for reputation |
-| **GPU provider?** | Start with L4-class | Cheaper than H100, sufficient for 8B models |
-| **Pilot duration?** | 30 days | Enough to validate utilization, not too expensive |
-| **Go/no-go threshold?** | 20% margins at 40% utilization | Minimum viable profitability |
+| Decision Point                | Recommendation                         | Rationale                                                    |
+| ----------------------------- | -------------------------------------- | ------------------------------------------------------------ |
+| **Which layer to start?**     | Layer 1 (Self-Hosting)                 | Lowest risk, proven economics                                |
+| **Pricing strategy?**         | Premium tier ($5-8/M tokens)           | Can't compete with commodity, differentiate on verifiability |
+| **Target market?**            | Web3 developers, DAOs, privacy-focused | Willing to pay premium for attestations                      |
+| **Settlement frequency?**     | Daily batching                         | 75% gas savings vs. 6-hour                                   |
+| **Discount model?**           | 25-75% for Nostr follows               | Build network effects via social graph                       |
+| **Event kind for compute?**   | Extend kind:10032                      | Reuse existing peer info structure                           |
+| **Attestation verification?** | During bootstrap handshake             | Establish trust early, cache for reputation                  |
+| **GPU provider?**             | Start with L4-class                    | Cheaper than H100, sufficient for 8B models                  |
+| **Pilot duration?**           | 30 days                                | Enough to validate utilization, not too expensive            |
+| **Go/no-go threshold?**       | 20% margins at 40% utilization         | Minimum viable profitability                                 |
 
 ---
 

@@ -17,8 +17,10 @@ import WebSocket from 'ws';
 import { encode as toonEncode, decode as toonDecode } from '@toon-format/toon';
 
 // Configuration
-const PEER1_SECRET = '97540d8331784dbe8e452d569f6423a2898ed2c90e6da32d809162180ea16c0e';
-const PEER3_SECRET = '46c748682e0c7462d21f1ccd05ada395ee193fee054e4aec3f931bbedacc25ae';
+const PEER1_SECRET =
+  '97540d8331784dbe8e452d569f6423a2898ed2c90e6da32d809162180ea16c0e';
+const PEER3_SECRET =
+  '46c748682e0c7462d21f1ccd05ada395ee193fee054e4aec3f931bbedacc25ae';
 
 const PEER1_BLS = 'http://localhost:3110';
 const PEER2_BLS = 'http://localhost:3120';
@@ -29,7 +31,9 @@ const PEER3_RELAY = 'ws://localhost:7130';
 
 const PEER2_ILP_ADDRESS = 'g.crosstown.peer2';
 
-console.log('🧪 Testing Multi-Hop ILP Routing and Cross-Relay Event Propagation\n');
+console.log(
+  '🧪 Testing Multi-Hop ILP Routing and Cross-Relay Event Propagation\n'
+);
 console.log('📋 Test Flow:');
 console.log('   1. Peer1 sends paid event → Genesis → Peer2');
 console.log('   2. Peer3 subscribes to Peer2 relay');
@@ -49,12 +53,15 @@ console.log('1️⃣  Peer1: Creating signed event...');
 const peer1SecretBytes = hexToBytes(PEER1_SECRET);
 const peer1Pubkey = getPublicKey(peer1SecretBytes);
 
-testEvent = finalizeEvent({
-  kind: 1,
-  created_at: Math.floor(Date.now() / 1000),
-  tags: [['test', 'multi-hop-routing']],
-  content: `Multi-hop test event from peer1 via genesis to peer2 at ${new Date().toISOString()}`,
-}, peer1SecretBytes);
+testEvent = finalizeEvent(
+  {
+    kind: 1,
+    created_at: Math.floor(Date.now() / 1000),
+    tags: [['test', 'multi-hop-routing']],
+    content: `Multi-hop test event from peer1 via genesis to peer2 at ${new Date().toISOString()}`,
+  },
+  peer1SecretBytes
+);
 
 console.log(`   Event ID: ${testEvent.id}`);
 console.log(`   From: ${peer1Pubkey.slice(0, 16)}...`);
@@ -124,7 +131,11 @@ await new Promise((resolve, reject) => {
   }, 5000);
 
   ws2.on('open', () => {
-    const subscription = JSON.stringify(['REQ', 'test-peer2', { ids: [testEvent.id] }]);
+    const subscription = JSON.stringify([
+      'REQ',
+      'test-peer2',
+      { ids: [testEvent.id] },
+    ]);
     ws2.send(subscription);
   });
 
@@ -173,7 +184,7 @@ ws3ToPeer2.on('open', () => {
   const subscription = JSON.stringify([
     'REQ',
     'peer3-sync',
-    { authors: [peer1Pubkey], limit: 10 }
+    { authors: [peer1Pubkey], limit: 10 },
   ]);
 
   console.log(`   Subscribing to events from ${peer1Pubkey.slice(0, 16)}...\n`);
@@ -257,7 +268,11 @@ await new Promise((resolve, reject) => {
   }, 5000);
 
   ws3.on('open', () => {
-    const subscription = JSON.stringify(['REQ', 'test-peer3', { ids: [testEvent.id] }]);
+    const subscription = JSON.stringify([
+      'REQ',
+      'test-peer3',
+      { ids: [testEvent.id] },
+    ]);
     ws3.send(subscription);
   });
 
@@ -300,18 +315,26 @@ console.log('📊 TEST RESULTS');
 console.log('═'.repeat(70));
 
 console.log('\n✅ Multi-hop ILP routing:');
-console.log(`   Peer1 → Genesis → Peer2: ${eventInPeer2Relay ? 'SUCCESS' : 'FAILED'}`);
+console.log(
+  `   Peer1 → Genesis → Peer2: ${eventInPeer2Relay ? 'SUCCESS' : 'FAILED'}`
+);
 
 console.log('\n✅ Cross-relay event propagation:');
-console.log(`   Peer3 subscribed to Peer2: ${eventReceivedByPeer3 ? 'SUCCESS' : 'FAILED'}`);
-console.log(`   Event republished to Peer3: ${eventInPeer3Relay ? 'SUCCESS' : 'FAILED'}`);
+console.log(
+  `   Peer3 subscribed to Peer2: ${eventReceivedByPeer3 ? 'SUCCESS' : 'FAILED'}`
+);
+console.log(
+  `   Event republished to Peer3: ${eventInPeer3Relay ? 'SUCCESS' : 'FAILED'}`
+);
 
 console.log('\n✅ Event verification:');
 console.log(`   Event in Peer2 relay: ${eventInPeer2Relay ? 'YES' : 'NO'}`);
 console.log(`   Event in Peer3 relay: ${eventInPeer3Relay ? 'YES' : 'NO'}`);
 
 if (eventInPeer2Relay && eventReceivedByPeer3 && eventInPeer3Relay) {
-  console.log('\n🎉 SUCCESS! Complete multi-hop routing and relay synchronization working!\n');
+  console.log(
+    '\n🎉 SUCCESS! Complete multi-hop routing and relay synchronization working!\n'
+  );
   ws3ToPeer2.close();
   process.exit(0);
 } else {
@@ -325,5 +348,5 @@ if (eventInPeer2Relay && eventReceivedByPeer3 && eventInPeer3Relay) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

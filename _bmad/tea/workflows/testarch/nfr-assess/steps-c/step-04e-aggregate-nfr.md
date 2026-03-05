@@ -47,7 +47,9 @@ domains.forEach((domain) => {
 const riskLevels = { HIGH: 3, MEDIUM: 2, LOW: 1, NONE: 0 };
 const domainRisks = domains.map((d) => assessments[d].risk_level);
 const maxRiskValue = Math.max(...domainRisks.map((r) => riskLevels[r]));
-const overallRisk = Object.keys(riskLevels).find((k) => riskLevels[k] === maxRiskValue);
+const overallRisk = Object.keys(riskLevels).find(
+  (k) => riskLevels[k] === maxRiskValue
+);
 ```
 
 **Risk assessment:**
@@ -77,9 +79,15 @@ domains.forEach((domain) => {
 const complianceSummary = {};
 Object.entries(allCompliance).forEach(([standard, statuses]) => {
   const hasFail = statuses.some((s) => s.status === 'FAIL');
-  const hasPartial = statuses.some((s) => s.status === 'PARTIAL' || s.status === 'CONCERN');
+  const hasPartial = statuses.some(
+    (s) => s.status === 'PARTIAL' || s.status === 'CONCERN'
+  );
 
-  complianceSummary[standard] = hasFail ? 'FAIL' : hasPartial ? 'PARTIAL' : 'PASS';
+  complianceSummary[standard] = hasFail
+    ? 'FAIL'
+    : hasPartial
+      ? 'PARTIAL'
+      : 'PASS';
 });
 ```
 
@@ -93,8 +101,12 @@ Object.entries(allCompliance).forEach(([standard, statuses]) => {
 const crossDomainRisks = [];
 
 // Example: Performance + Scalability issue
-const perfConcerns = assessments.performance.findings.filter((f) => f.status !== 'PASS');
-const scaleConcerns = assessments.scalability.findings.filter((f) => f.status !== 'PASS');
+const perfConcerns = assessments.performance.findings.filter(
+  (f) => f.status !== 'PASS'
+);
+const scaleConcerns = assessments.scalability.findings.filter(
+  (f) => f.status !== 'PASS'
+);
 if (perfConcerns.length > 0 && scaleConcerns.length > 0) {
   crossDomainRisks.push({
     domains: ['performance', 'scalability'],
@@ -104,8 +116,12 @@ if (perfConcerns.length > 0 && scaleConcerns.length > 0) {
 }
 
 // Example: Security + Reliability issue
-const securityFails = assessments.security.findings.filter((f) => f.status === 'FAIL');
-const reliabilityConcerns = assessments.reliability.findings.filter((f) => f.status !== 'PASS');
+const securityFails = assessments.security.findings.filter(
+  (f) => f.status === 'FAIL'
+);
+const reliabilityConcerns = assessments.reliability.findings.filter(
+  (f) => f.status !== 'PASS'
+);
 if (securityFails.length > 0 && reliabilityConcerns.length > 0) {
   crossDomainRisks.push({
     domains: ['security', 'reliability'],
@@ -125,11 +141,13 @@ const allPriorityActions = domains.flatMap((domain) =>
     domain,
     action,
     urgency: assessments[domain].risk_level === 'HIGH' ? 'URGENT' : 'NORMAL',
-  })),
+  }))
 );
 
 // Sort by urgency
-const prioritizedActions = allPriorityActions.sort((a, b) => (a.urgency === 'URGENT' ? -1 : 1));
+const prioritizedActions = allPriorityActions.sort((a, b) =>
+  a.urgency === 'URGENT' ? -1 : 1
+);
 ```
 
 ---
@@ -161,7 +179,11 @@ const executiveSummary = {
 };
 
 // Save for Step 5 (report generation)
-fs.writeFileSync('/tmp/tea-nfr-summary-{{timestamp}}.json', JSON.stringify(executiveSummary, null, 2), 'utf8');
+fs.writeFileSync(
+  '/tmp/tea-nfr-summary-{{timestamp}}.json',
+  JSON.stringify(executiveSummary, null, 2),
+  'utf8'
+);
 ```
 
 ---

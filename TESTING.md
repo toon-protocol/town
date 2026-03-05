@@ -5,12 +5,15 @@ This document describes how to test the Crosstown bootstrap flow with payment ch
 ## Prerequisites
 
 ### Required Services
+
 - **Anvil** (local Ethereum blockchain): Running via Docker
 - **Connector** (ILP routing): From the connector repository
 - **Crosstown nodes**: Two peers for testing
 
 ### Contract Deployment
+
 Contracts must be deployed to Anvil before testing:
+
 - **AGENT Token** (ERC20): Test token for payments
 - **TokenNetworkRegistry**: Manages payment channel networks per token
 - **TokenNetwork**: Individual channel network for AGENT token
@@ -26,6 +29,7 @@ bash test-payment-channels.sh
 ```
 
 This script:
+
 1. ✅ Restarts Anvil for fresh blockchain state
 2. ✅ Deploys TokenNetworkRegistry and contracts
 3. ✅ Verifies peer wallets have AGENT tokens
@@ -35,6 +39,7 @@ This script:
 7. ✅ Reports results
 
 **Expected Output:**
+
 ```
 channelCount: 1
 [Bootstrap] Opened channel 0x...
@@ -50,6 +55,7 @@ bash verify-channel-state.sh
 ```
 
 This checks:
+
 - Token allowances (should be max uint256)
 - Token balances (peer2 should have 9,999 AGENT after 100 deposited)
 - Recent blockchain transactions
@@ -64,6 +70,7 @@ docker ps | grep anvil
 ```
 
 If not running:
+
 ```bash
 docker restart crosstown-anvil
 ```
@@ -79,6 +86,7 @@ cd /Users/jonathangreen/Documents/connector/packages/contracts
 ```
 
 Contract addresses (deterministic on Anvil):
+
 - AGENT Token: `0x5FC8d32690cc91D4c39d9d3abcBD16989F875707`
 - TokenNetworkRegistry: `0x0165878A594ca255338adfa4d48449f69242Eb8F`
 - TokenNetwork: `0x3B02fF1e626Ed7a8fd6eC5299e2C54e1421B626B`
@@ -90,6 +98,7 @@ bash run-local-bootstrap-test.sh
 ```
 
 Watch for:
+
 ```
 🔔 Bootstrap event: bootstrap:ready {
   type: 'bootstrap:ready',
@@ -103,6 +112,7 @@ Watch for:
 ### Peer Configuration
 
 **Peer 1 (Genesis):**
+
 - Node ID: `peer1`
 - ILP Address: `g.crosstown.peer1`
 - BLS Port: `3101`
@@ -112,6 +122,7 @@ Watch for:
 - SPSP Min Price: `0` (genesis peer)
 
 **Peer 2 (Joiner):**
+
 - Node ID: `peer2`
 - ILP Address: `g.crosstown.peer2`
 - BLS Port: `3102`
@@ -152,12 +163,14 @@ Watch for:
 **Symptoms:** Bootstrap completes but `channelCount: 0`
 
 **Common Causes:**
+
 1. Settlement disabled in config
 2. Nonce conflicts from previous test runs
 3. Insufficient token balance
 4. Contract not deployed
 
 **Solutions:**
+
 ```bash
 # Restart Anvil and redeploy
 docker restart crosstown-anvil
@@ -179,6 +192,7 @@ bash test-payment-channels.sh
 **Cause:** Connector has cached nonce from previous blockchain state
 
 **Solution:** The connector now has automatic nonce retry logic that handles this. If you still see persistent errors:
+
 ```bash
 # Kill all connector processes
 lsof -ti :8091,:8092 | xargs kill -9
@@ -195,6 +209,7 @@ bash test-payment-channels.sh
 **Symptoms:** `EADDRINUSE` errors when starting nodes
 
 **Solution:**
+
 ```bash
 # Find and kill processes on test ports
 for port in 3051 3052 8091 8092 7101 7102 3101 3102; do
@@ -213,6 +228,7 @@ done
 ## Log Files
 
 Test output is written to `/tmp/`:
+
 - `/tmp/connector-peer1.log` - Peer1 connector logs (JSON)
 - `/tmp/crosstown-peer1.log` - Peer1 crosstown node logs
 - `/tmp/connector-peer2.log` - Peer2 connector logs (JSON)
@@ -222,21 +238,25 @@ Test output is written to `/tmp/`:
 ### Useful Log Queries
 
 **Check for channel opening:**
+
 ```bash
 grep "Opened channel" /tmp/crosstown-peer2.log
 ```
 
 **Check for nonce retries:**
+
 ```bash
 strings /tmp/connector-peer2.log | grep "Nonce error"
 ```
 
 **Check final bootstrap status:**
+
 ```bash
 grep "channelCount" /tmp/crosstown-peer2.log
 ```
 
 **Check blockchain transactions:**
+
 ```bash
 strings /tmp/connector-peer2.log | grep "approve\|setTotalDeposit"
 ```
@@ -244,7 +264,9 @@ strings /tmp/connector-peer2.log | grep "approve\|setTotalDeposit"
 ## Test Scripts Reference
 
 ### test-payment-channels.sh
+
 Complete end-to-end test with automatic setup and teardown.
+
 - Manages Anvil lifecycle
 - Deploys contracts
 - Verifies balances
@@ -252,14 +274,18 @@ Complete end-to-end test with automatic setup and teardown.
 - Reports results
 
 ### run-local-bootstrap-test.sh
+
 Core bootstrap test that starts two peers and tests the flow.
+
 - Starts 2 connector + 2 crosstown processes
 - Waits for bootstrap to complete
 - Verifies peer discovery, BTP connection, SPSP exchange
 - Reports channelCount
 
 ### verify-channel-state.sh
+
 On-chain verification of payment channel state.
+
 - Checks token allowances
 - Verifies token balances
 - Lists recent transactions
@@ -279,6 +305,7 @@ A successful test shows:
 ```
 
 Blockchain state:
+
 ```
 ✅ Peer2 has max uint256 token allowance for TokenNetwork
 ✅ Peer2 balance reduced from 10,000 to 9,999 AGENT (100 deposited)
@@ -289,6 +316,7 @@ Blockchain state:
 ## Documentation
 
 For complete technical details:
+
 - **PAYMENT-CHANNELS-SUCCESS.md** - Complete success documentation with transaction details
 - **PAYMENT-CHANNELS-PROGRESS.md** - Development journey and all fixes applied
 - **CLAUDE.md** - Project overview and architecture

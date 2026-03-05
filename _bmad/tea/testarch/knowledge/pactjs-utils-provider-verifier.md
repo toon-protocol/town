@@ -27,7 +27,10 @@ Use `buildVerifierOptions`, `buildMessageVerifierOptions`, `handlePactBrokerUrlA
 
 ```typescript
 import { Verifier } from '@pact-foundation/pact';
-import { buildVerifierOptions, createRequestFilter } from '@seontechnologies/pactjs-utils';
+import {
+  buildVerifierOptions,
+  createRequestFilter,
+} from '@seontechnologies/pactjs-utils';
 import type { StateHandlers } from '@seontechnologies/pactjs-utils';
 
 const stateHandlers: StateHandlers = {
@@ -262,12 +265,19 @@ const opts: VerifierOptions = {
   pactBrokerToken: process.env.PACT_BROKER_TOKEN,
   publishVerificationResult: process.env.CI === 'true',
   providerVersion: process.env.GIT_SHA || process.env.GITHUB_SHA || 'dev',
-  providerVersionBranch: process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME,
+  providerVersionBranch:
+    process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME,
   consumerVersionSelectors:
     process.env.PACT_BREAKING_CHANGE === 'true'
       ? [{ matchingBranch: true }]
-      : [{ matchingBranch: true }, { mainBranch: true }, { deployedOrReleased: true }],
-  pactUrls: process.env.PACT_PAYLOAD_URL ? [process.env.PACT_PAYLOAD_URL] : undefined,
+      : [
+          { matchingBranch: true },
+          { mainBranch: true },
+          { deployedOrReleased: true },
+        ],
+  pactUrls: process.env.PACT_PAYLOAD_URL
+    ? [process.env.PACT_PAYLOAD_URL]
+    : undefined,
   stateHandlers: {
     /* ... */
   },

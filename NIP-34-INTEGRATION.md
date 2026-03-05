@@ -9,6 +9,7 @@ Crosstown integrates **NIP-34 (Git Stuff)** to enable Git operations via Nostr e
 Crosstown supports **two ways** to interact with Git repositories:
 
 ### 1. HTTP Git Operations (via git-proxy)
+
 Traditional `git clone/push/pull` with ILP payment gating.
 
 ```
@@ -16,12 +17,14 @@ git clone http://localhost:3003/user/repo.git
 ```
 
 **Use for:**
+
 - Standard Git workflows
 - IDE integrations
 - Large file transfers
 - Binary files
 
 ### 2. Nostr Event-Based Operations (NIP-34)
+
 Submit Git operations as Nostr events that get applied to Forgejo.
 
 ```
@@ -29,6 +32,7 @@ nostr publish --kind 1617 patch.txt
 ```
 
 **Use for:**
+
 - Decentralized collaboration
 - Censorship resistance
 - Social Git (follows, mentions)
@@ -36,13 +40,13 @@ nostr publish --kind 1617 patch.txt
 
 ## NIP-34 Event Types
 
-| Kind | Type | Description | Payment Required |
-|------|------|-------------|------------------|
-| **30617** | Repository Announcement | Publish repository metadata, clone URLs | ✅ Yes |
-| **1617** | Patch | Submit code changes (format-patch) | ✅ Yes |
-| **1618** | Pull Request | Reference branch/commits for merge | ✅ Yes |
-| **1621** | Issue | Bug report or feature request | ✅ Yes |
-| **1630-1633** | Status Updates | Open/merged/closed/draft states | ✅ Yes |
+| Kind          | Type                    | Description                             | Payment Required |
+| ------------- | ----------------------- | --------------------------------------- | ---------------- |
+| **30617**     | Repository Announcement | Publish repository metadata, clone URLs | ✅ Yes           |
+| **1617**      | Patch                   | Submit code changes (format-patch)      | ✅ Yes           |
+| **1618**      | Pull Request            | Reference branch/commits for merge      | ✅ Yes           |
+| **1621**      | Issue                   | Bug report or feature request           | ✅ Yes           |
+| **1630-1633** | Status Updates          | Open/merged/closed/draft states         | ✅ Yes           |
 
 All NIP-34 events require ILP payment to be stored by the relay.
 
@@ -156,7 +160,7 @@ crosstown:
   environment:
     # Enable NIP-34
     FORGEJO_URL: http://forgejo:3000
-    FORGEJO_TOKEN: ${FORGEJO_TOKEN}  # Set in .env
+    FORGEJO_TOKEN: ${FORGEJO_TOKEN} # Set in .env
     FORGEJO_OWNER: crosstown
 ```
 
@@ -167,6 +171,7 @@ crosstown:
 Creates or updates repository metadata in Forgejo.
 
 **Event Structure:**
+
 ```json
 {
   "kind": 30617,
@@ -181,6 +186,7 @@ Creates or updates repository metadata in Forgejo.
 ```
 
 **Handler Action:**
+
 - Creates repository in Forgejo if doesn't exist
 - Updates description and settings
 - Adds maintainers as collaborators
@@ -190,6 +196,7 @@ Creates or updates repository metadata in Forgejo.
 Applies a `git format-patch` patch directly to the repository.
 
 **Event Structure:**
+
 ```json
 {
   "kind": 1617,
@@ -203,6 +210,7 @@ Applies a `git format-patch` patch directly to the repository.
 ```
 
 **Handler Action:**
+
 1. Clones repository
 2. Checks out parent commit
 3. Applies patch using `git am`
@@ -213,6 +221,7 @@ Applies a `git format-patch` patch directly to the repository.
 References commits from a contributor's fork/branch.
 
 **Event Structure:**
+
 ```json
 {
   "kind": 1618,
@@ -227,6 +236,7 @@ References commits from a contributor's fork/branch.
 ```
 
 **Handler Action:**
+
 1. Fetches contributor's commits
 2. Creates PR in Forgejo
 3. Links to Nostr event for discussion
@@ -236,6 +246,7 @@ References commits from a contributor's fork/branch.
 Creates an issue in Forgejo's issue tracker.
 
 **Event Structure:**
+
 ```json
 {
   "kind": 1621,
@@ -250,6 +261,7 @@ Creates an issue in Forgejo's issue tracker.
 ```
 
 **Handler Action:**
+
 - Creates issue in Forgejo
 - Sets labels from `t` tags
 - Links to Nostr event
@@ -263,6 +275,7 @@ price = event_size_bytes × BASE_PRICE_PER_BYTE
 ```
 
 **Example:**
+
 - Small patch (5KB): 5120 × 10 = **51,200 units**
 - Large patch (50KB): 51200 × 10 = **512,000 units**
 - Issue (2KB): 2048 × 10 = **20,480 units**
@@ -272,43 +285,48 @@ price = event_size_bytes × BASE_PRICE_PER_BYTE
 ## Benefits of NIP-34 Integration
 
 ### 1. Censorship Resistance
+
 - Patches stored on Nostr relays
 - Multiple relays = redundancy
 - Can't be taken down by single entity
 
 ### 2. Social Integration
+
 - Follow maintainers (NIP-02)
 - Mention contributors in patches
 - Zap developers for merged PRs
 
 ### 3. Decentralized Collaboration
+
 - No central Git host required
 - Repository announcements discoverable via Nostr
 - Cross-relay collaboration
 
 ### 4. Monetization
+
 - Developers earn from accepted patches
 - ILP micropayments for contributions
 - Direct peer-to-peer payments
 
 ### 5. Provenance
+
 - All events cryptographically signed
 - Immutable contribution history
 - Portable across platforms
 
 ## Comparison: HTTP vs NIP-34
 
-| Feature | HTTP Git | NIP-34 Events |
-|---------|----------|---------------|
-| **Operation** | `git push` | Nostr event |
-| **Size Limit** | Unlimited | ~60KB per event |
-| **Payment** | Per operation | Per event |
-| **Censorship** | Can be blocked | Relay redundancy |
-| **Discovery** | URL-based | Nostr follows |
-| **Social** | None | Full Nostr integration |
-| **Offline** | No | Events can queue |
-| **Binary Files** | ✅ Yes | ❌ No |
-| **Large Repos** | ✅ Yes | ❌ Use PRs |
+| Feature          | HTTP Git       | NIP-34 Events          |
+| ---------------- | -------------- | ---------------------- |
+| **Operation**    | `git push`     | Nostr event            |
+| **Size Limit**   | Unlimited      | ~60KB per event        |
+| **Payment**      | Per operation  | Per event              |
+| **Censorship**   | Can be blocked | Relay redundancy       |
+| **Discovery**    | URL-based      | Nostr follows          |
+| **Social**       | None           | Full Nostr integration |
+| **Offline**      | No             | Events can queue       |
+| **Binary Files** | ✅ Yes         | ❌ No                  |
+| **Large Repos**  | ✅ Yes         | ❌ Use PRs             |
 
 ## Example Workflow
 
@@ -415,6 +433,7 @@ git format-patch HEAD~1 --stdout > test.patch
 ```
 
 **Causes:**
+
 - Invalid patch format
 - Merge conflicts
 - Repository doesn't exist

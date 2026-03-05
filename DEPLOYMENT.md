@@ -41,12 +41,14 @@ Complete guide for deploying Crosstown in **External Mode** with the Agent-Runti
 ## 📦 **Prerequisites**
 
 ### 1. **Docker & Docker Compose**
+
 ```bash
 docker --version  # Should be ≥ 20.10
 docker compose version  # Should be ≥ 2.0
 ```
 
 ### 2. **Agent-Runtime Repository**
+
 The agent-runtime must be in a sibling directory:
 
 ```bash
@@ -57,16 +59,20 @@ The agent-runtime must be in a sibling directory:
 ```
 
 **Clone agent-runtime if you don't have it:**
+
 ```bash
 cd ~/projects
 git clone https://github.com/anthropics/agent-runtime.git  # Update with actual URL
 ```
 
 ### 3. **Nostr Secret Key**
+
 Generate a secret key for your node:
+
 ```bash
 openssl rand -hex 32
 ```
+
 Save this - you'll need it for the `.env` file.
 
 ---
@@ -84,6 +90,7 @@ nano .env
 ```
 
 **Minimum required configuration:**
+
 ```bash
 NODE_ID=my-node
 NOSTR_SECRET_KEY=<your-64-char-hex-key>
@@ -121,6 +128,7 @@ docker compose -f docker-compose-full-stack.yml ps
 ```
 
 **Test endpoints:**
+
 ```bash
 # Crosstown BLS health
 curl http://localhost:3100/health
@@ -151,6 +159,7 @@ docker compose -f docker-compose-full-stack.yml logs -f tigerbeetle
 ### **Explorer UI Dashboard**
 
 Open http://localhost:3001 in your browser to view:
+
 - Active peer connections
 - ILP packet flow
 - Balance tracking
@@ -159,11 +168,11 @@ Open http://localhost:3001 in your browser to view:
 
 ### **Health Check Endpoints**
 
-| Service | Endpoint | Expected Response |
-|---------|----------|-------------------|
+| Service       | Endpoint                     | Expected Response                     |
+| ------------- | ---------------------------- | ------------------------------------- |
 | Crosstown BLS | http://localhost:3100/health | `{"status":"healthy","nodeId":"..."}` |
-| Agent-Runtime | http://localhost:8080/health | `200 OK` |
-| Nostr Relay | ws://localhost:7100 | WebSocket upgrade required |
+| Agent-Runtime | http://localhost:8080/health | `200 OK`                              |
+| Nostr Relay   | ws://localhost:7100          | WebSocket upgrade required            |
 
 ---
 
@@ -182,6 +191,7 @@ ASSET_SCALE=6             # 6 = micro-USD (1 unit = 0.000001 USD)
 ```
 
 **Example:**
+
 - 1 KB Nostr event = 1024 bytes × 10 = 10,240 units = $0.01024
 - SPSP request = ~200 bytes × 5 = 1,000 units = $0.001
 
@@ -244,6 +254,7 @@ curl -X POST http://localhost:3000/ilp/send \
 ```
 
 Expected flow:
+
 1. Connector routes packet to Crosstown BLS
 2. BLS validates payment amount
 3. BLS decodes TOON event
@@ -304,8 +315,8 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "443:443"
-      - "80:80"
+      - '443:443'
+      - '80:80'
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./certs:/etc/nginx/certs:ro
@@ -344,10 +355,10 @@ volumes:
 services:
   crosstown:
     logging:
-      driver: "json-file"
+      driver: 'json-file'
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
 ```
 
 ---
@@ -357,16 +368,19 @@ services:
 ### **Issue: Container Won't Start**
 
 **Check logs:**
+
 ```bash
 docker compose -f docker-compose-full-stack.yml logs crosstown
 ```
 
 **Common causes:**
+
 - Missing `NOSTR_SECRET_KEY` in `.env`
 - Invalid ILP address format (must start with `g.`)
 - Agent-runtime not healthy (check dependency order)
 
 **Fix:**
+
 ```bash
 # Restart in correct order
 docker compose -f docker-compose-full-stack.yml down
@@ -380,12 +394,14 @@ docker compose -f docker-compose-full-stack.yml up -d crosstown
 ### **Issue: "Cannot connect to agent-runtime"**
 
 **Check connectivity:**
+
 ```bash
 docker compose -f docker-compose-full-stack.yml exec crosstown \
   wget -O- http://agent-runtime:8080/health
 ```
 
 **If fails:**
+
 - Verify both containers are on same network
 - Check agent-runtime health status
 - Review agent-runtime logs for errors
@@ -393,17 +409,20 @@ docker compose -f docker-compose-full-stack.yml exec crosstown \
 ### **Issue: Peer Discovery Not Working**
 
 **Check bootstrap logs:**
+
 ```bash
 docker compose -f docker-compose-full-stack.yml logs crosstown | grep Bootstrap
 ```
 
 **Verify ArDrive is enabled:**
+
 ```bash
 # In .env
 ARDRIVE_ENABLED=true
 ```
 
 **Check relay connectivity:**
+
 ```bash
 docker compose -f docker-compose-full-stack.yml exec crosstown \
   nc -zv localhost 7100
@@ -412,17 +431,20 @@ docker compose -f docker-compose-full-stack.yml exec crosstown \
 ### **Issue: Payment Channels Not Opening**
 
 **Verify settlement configuration:**
+
 ```bash
 docker compose -f docker-compose-full-stack.yml exec crosstown \
   printenv | grep SETTLEMENT
 ```
 
 **Check agent-runtime admin API:**
+
 ```bash
 curl http://localhost:8081/admin/channels
 ```
 
 **Common causes:**
+
 - Missing `SUPPORTED_CHAINS` configuration
 - No settlement address for negotiated chain
 - Insufficient initial deposit

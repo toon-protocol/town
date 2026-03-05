@@ -16,7 +16,8 @@ import WebSocket from 'ws';
 import { encode as toonEncode, decode as toonDecode } from '@toon-format/toon';
 
 // Peer1's secret key (from deploy script)
-const PEER1_SECRET = '97540d8331784dbe8e452d569f6423a2898ed2c90e6da32d809162180ea16c0e';
+const PEER1_SECRET =
+  '97540d8331784dbe8e452d569f6423a2898ed2c90e6da32d809162180ea16c0e';
 const GENESIS_RELAY_WS = 'ws://localhost:7100';
 const GENESIS_ILP_ADDRESS = 'g.crosstown.genesis';
 
@@ -27,12 +28,15 @@ console.log('1️⃣  Creating signed Nostr event...');
 const secretBytes = hexToBytes(PEER1_SECRET);
 const pubkey = getPublicKey(secretBytes);
 
-const event = finalizeEvent({
-  kind: 1,
-  created_at: Math.floor(Date.now() / 1000),
-  tags: [],
-  content: `Test paid event published via ILP at ${new Date().toISOString()}`,
-}, secretBytes);
+const event = finalizeEvent(
+  {
+    kind: 1,
+    created_at: Math.floor(Date.now() / 1000),
+    tags: [],
+    content: `Test paid event published via ILP at ${new Date().toISOString()}`,
+  },
+  secretBytes
+);
 
 console.log(`   Event ID: ${event.id.slice(0, 16)}...`);
 console.log(`   Pubkey: ${event.pubkey.slice(0, 16)}...`);
@@ -90,7 +94,7 @@ try {
 
 // Step 4: Wait a moment for the event to be stored
 console.log('\n4️⃣  Waiting for event to be stored...');
-await new Promise(resolve => setTimeout(resolve, 2000));
+await new Promise((resolve) => setTimeout(resolve, 2000));
 
 // Step 5: Query the event from genesis relay
 console.log('\n5️⃣  Querying event from genesis relay...');
@@ -101,11 +105,7 @@ ws.on('open', () => {
   console.log('   Connected to relay');
 
   // Subscribe to the event we just published
-  const subscription = JSON.stringify([
-    'REQ',
-    'test-sub',
-    { ids: [event.id] }
-  ]);
+  const subscription = JSON.stringify(['REQ', 'test-sub', { ids: [event.id] }]);
 
   console.log(`   Requesting event: ${event.id.slice(0, 16)}...`);
   ws.send(subscription);
@@ -129,16 +129,22 @@ ws.on('message', (data) => {
       console.log(`   Content: "${receivedEvent.content}"`);
       console.log(`   Pubkey: ${receivedEvent.pubkey.slice(0, 16)}...`);
       console.log(`   Signature: ${receivedEvent.sig.slice(0, 16)}...`);
-      console.log(`   Matches sent event: ${receivedEvent.id === event.id ? 'YES' : 'NO'}`);
+      console.log(
+        `   Matches sent event: ${receivedEvent.id === event.id ? 'YES' : 'NO'}`
+      );
       eventReceived = true;
     } catch (error) {
       console.error('   ERROR decoding TOON:', error.message);
     }
   } else if (msg[0] === 'EOSE') {
     if (eventReceived) {
-      console.log('\n🎉 SUCCESS! Paid event was published and stored via ILP payment');
+      console.log(
+        '\n🎉 SUCCESS! Paid event was published and stored via ILP payment'
+      );
     } else {
-      console.log('\n❌ Event not found in relay (payment may have been rejected)');
+      console.log(
+        '\n❌ Event not found in relay (payment may have been rejected)'
+      );
     }
     ws.close();
   } else if (msg[0] === 'NOTICE') {

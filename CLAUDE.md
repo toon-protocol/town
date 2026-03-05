@@ -1,194 +1,81 @@
 # Crosstown Protocol
 
-An ILP-gated Nostr relay that solves the relay sustainability problem through micropayments. Pay to write, free to read.
+ILP-gated Nostr relay. Pay to write, free to read.
 
-Crosstown bridges Nostr and Interledger Protocol (ILP) to enable:
-- **Peer Discovery via NIP-02**: Social graphs become payment routing networks
-- **SPSP over Nostr**: Exchange payment parameters via Nostr events (no HTTPS required)
-- **Payment Channels**: Automatic on-chain channel creation with off-chain settlement
-- **ILP-Gated Writes**: Sustainable relay business model through pay-per-event micropayments
-- **TOON-Native**: Events encoded in TOON format for efficient agent digestion
-
-**Quick Start**: Deploy a genesis node in 2 minutes → [Getting Started](#getting-started)
+> **Detailed rules, patterns, and conventions are in `_bmad-output/project-context.md`** -- loaded automatically by BMAD workflows. This file covers setup, commands, and operational knowledge not found there.
 
 ---
 
-## Architecture
+## Commands
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│               @crosstown/core (library)                     │
-│                                                             │
-│  - NostrPeerDiscovery: NIP-02 → peer list                   │
-│  - NostrSpspClient: SPSP over Nostr events                  │
-│  - BootstrapService: join network, handshake, announce      │
-│  - Event kinds for ILP peering (kind:10032, kind:23194/95)  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│            @crosstown/relay + @crosstown/bls                │
-│                                                             │
-│  - Nostr relay (NIP-01 WebSocket)                           │
-│  - BLS validates ILP payments, stores events                │
-│  - TOON-native: events stored and served in TOON format     │
-│  - Pay to write, free to read                               │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    ILP Connector                             │
-│                                                             │
-│  - Routes packets (no Nostr knowledge)                      │
-│  - Manages balances with configured peers                   │
-│  - Settlement via payment channels                          │
-└─────────────────────────────────────────────────────────────┘
+```bash
+# Build & Test
+pnpm install                  # Install all dependencies
+pnpm build                    # Build all packages (pnpm -r run build)
+pnpm test                     # Run all tests (vitest)
+pnpm test:coverage            # Run tests with coverage
+pnpm lint                     # Lint codebase (ESLint flat config)
+pnpm format                   # Format code (Prettier, write mode)
+pnpm format:check             # Check formatting without writing
+
+# Package-level
+cd packages/sdk && pnpm test:integration   # SDK integration tests
+cd packages/client && pnpm test:e2e        # E2E tests (requires running genesis node)
+
+# Deployment
+./deploy-genesis-node.sh      # Deploy full genesis stack (Anvil + Faucet + Connector + Node)
+./deploy-peers.sh 3           # Deploy 3 peer nodes
 ```
 
-**Data Flow**:
-1. Client subscribes to relay (free)
-2. Client sends EVENT with ILP payment (paid)
-3. BLS validates payment, stores event
-4. Other clients query events (free)
-
 ---
 
-## Event Kinds
+## Prerequisites
 
-| Kind | Name | Purpose |
-|------|------|---------|
-| `10032` | ILP Peer Info | Replaceable event with connector's ILP address, BTP endpoint, settlement info |
-| `23194` | SPSP Request | NIP-44 encrypted request for SPSP parameters |
-| `23195` | SPSP Response | NIP-44 encrypted response with SPSP destination and shared secret |
-
-**Note**: These are proposed NIPs. SPSP uses encrypted request/response to securely exchange shared secrets.
-
----
-
-## Key Design Decisions
-
-### Social Graph = Network Graph
-NIP-02 follows represent peering relationships. If Alice follows Bob, Alice trusts Bob to route payments.
-
-### Nostr Populates, Doesn't Replace
-Nostr is for discovery and configuration. Actual packet routing uses local routing tables in the connector. Discovery ≠ Peering.
-
-### Pay to Write, Free to Read
-The relay gates EVENT writes with ILP micropayments, solving relay sustainability. Reading via REQ/EVENT/EOSE is free.
-
-### TOON-Native
-Events are encoded in [TOON format](https://github.com/nicholasgasior/toon) throughout the stack. TOON is the native wire format, designed for agent digestion rather than human readability.
-
-### Payment Channels for Settlement
-Bootstrap automatically creates on-chain payment channels:
-- **SPSP Negotiation**: Exchange settlement parameters (chain, token, addresses)
-- **Channel Creation**: Happens BEFORE SPSP handshake (fixed as of 2026-02-26)
-- **TokenNetwork Integration**: Uses TokenNetworkRegistry for per-token channels
-- **Off-chain Payments**: Signed balance proofs settle on-chain
-- **Nonce Management**: Retry logic handles blockchain conflicts gracefully
-
----
-
-## Getting Started
-
-### Prerequisites
 - Docker & Docker Compose
-- Node.js 18+ (for running tests)
-- Connector contracts repository cloned to `../connector`
-
-### Deploy Genesis Node
-
-```bash
-./deploy-genesis-node.sh
-```
-
-This deploys:
-- Anvil (local blockchain with payment channel contracts)
-- Token Faucet (ETH + AGENT token distribution)
-- ILP Connector (packet routing + settlement)
-- Crosstown Node (Nostr relay + BLS)
-
-**Service Endpoints**:
-- Faucet: http://localhost:3500
-- Relay: ws://localhost:7100
-- BLS: http://localhost:3100
-- Connector: http://localhost:8080
-
-### Verify Deployment
-
-```bash
-cd packages/client
-pnpm test:e2e genesis-bootstrap-with-channels
-```
-
-This E2E test verifies:
-- Bootstrap with payment channel creation
-- Signed balance proof generation
-- Event publishing with ILP payment
-- On-chain channel state validation
-
-### Deploy Peer Nodes
-
-```bash
-./deploy-peers.sh 3  # Deploy 3 peer nodes
-```
+- Node.js >=20 (24.x recommended for local dev)
+- pnpm 8.15.0 (`corepack enable && corepack prepare pnpm@8.15.0 --activate`)
+- Connector contracts repo cloned to `../connector`
 
 ---
 
-## Contract Addresses (Anvil)
+## Genesis Node Endpoints
 
-Deterministic addresses from `DeployLocal.s.sol`:
-- **AGENT Token**: `0x5FbDB2315678afecb367f032d93F642f64180aa3`
-- **TokenNetworkRegistry**: `0xe7f1725e7734ce288f8367e1bb143e90bb3f0512`
-- **TokenNetwork (AGENT)**: `0xCafac3dD18aC6c6e92c921884f9E4176737C052c` (created by registry)
+| Service   | URL                     |
+|-----------|-------------------------|
+| Faucet    | http://localhost:3500    |
+| Relay     | ws://localhost:7100      |
+| BLS       | http://localhost:3100    |
+| Connector | http://localhost:8080    |
+| Anvil     | http://localhost:8545    |
+
+Peer N offsets: BLS `3100+N*10`, Relay `7100+N*10`, Connector `8080+N*10`.
 
 ---
 
-## Project Structure
+## Deployment Verification
 
-```
-crosstown/
-├── packages/
-│   ├── client/       # Client SDK with payment channel support
-│   ├── core/         # Shared protocol logic
-│   ├── relay/        # Nostr relay + TOON encoding
-│   ├── bls/          # Business Logic Server (payment validation)
-│   └── faucet/       # Token distribution for testing
-├── docker/           # Container entrypoint
-├── deploy-genesis-node.sh    # Genesis deployment
-└── deploy-peers.sh           # Peer deployment
+```bash
+# Health checks
+curl http://localhost:3100/health   # BLS
+curl http://localhost:8545           # Anvil
+
+# Full E2E (bootstrap + channels + publish + on-chain validation)
+cd packages/client && pnpm test:e2e genesis-bootstrap-with-channels
+
+# Logs
+docker compose -p crosstown-genesis logs -f crosstown
 ```
 
 ---
 
 ## Troubleshooting
 
-**Genesis node won't start?**
-1. Check Docker is running: `docker ps`
-2. Verify connector contracts exist: `ls ../connector/packages/contracts`
-3. Check logs: `docker logs crosstown-node`
+**Genesis node won't start:**
+1. `docker ps` -- Docker running?
+2. `ls ../connector/packages/contracts` -- Contracts repo present?
+3. `docker logs crosstown-node` -- Check container logs
 
-**Tests failing?**
-1. Ensure genesis node is running: `curl http://localhost:3100/health`
-2. Verify Anvil is healthy: `curl http://localhost:8545`
-3. Check for stale containers: `./deploy-genesis-node.sh --reset`
-
-**For detailed documentation**: See `/docs/` directory
-
----
-
-## Development
-
-- **Monorepo**: Uses pnpm workspaces
-- **Build**: `pnpm -r build` (builds all packages)
-- **Test**: `cd packages/client && pnpm test:e2e`
-- **Logs**: `docker compose -p crosstown-genesis logs -f crosstown`
-
----
-
-## Related Specifications
-
-- [NIP-02: Follow List](https://github.com/nostr-protocol/nips/blob/master/02.md)
-- [RFC 0009: Simple Payment Setup Protocol](https://interledger.org/developers/rfcs/simple-payment-setup-protocol/)
-- [RFC 0032: Peering, Clearing and Settlement](https://interledger.org/developers/rfcs/peering-clearing-settling/)
-- [TOON Format](https://github.com/nicholasgasior/toon)
+**Tests failing:**
+1. `curl http://localhost:3100/health` -- Genesis node up?
+2. `curl http://localhost:8545` -- Anvil healthy?
+3. `./deploy-genesis-node.sh --reset` -- Clear stale containers

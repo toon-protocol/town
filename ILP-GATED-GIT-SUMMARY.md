@@ -49,12 +49,12 @@ packages/git-proxy/
 
 ## Pricing Model
 
-| Operation | Base Price | Per KB | Total Example |
-|-----------|-----------|--------|---------------|
-| **info-refs** | FREE | - | 0 |
-| **clone** (1MB repo) | 100 | 10 × 1024 | 10,340 units |
-| **fetch** (100KB diff) | 100 | 10 × 100 | 1,100 units |
-| **push** (50KB) | 1000 | 10 × 50 | 1,500 units |
+| Operation              | Base Price | Per KB    | Total Example |
+| ---------------------- | ---------- | --------- | ------------- |
+| **info-refs**          | FREE       | -         | 0             |
+| **clone** (1MB repo)   | 100        | 10 × 1024 | 10,340 units  |
+| **fetch** (100KB diff) | 100        | 10 × 100  | 1,100 units   |
+| **push** (50KB)        | 1000       | 10 × 50   | 1,500 units   |
 
 Configurable via environment variables.
 
@@ -67,11 +67,12 @@ Configurable via environment variables.
    - Only accessible via git-proxy
 
 2. **Added git-proxy service**
+
    ```yaml
    git-proxy:
      build: packages/git-proxy/Dockerfile
      ports:
-       - "3003:3002"  # ILP-gated Git HTTP
+       - '3003:3002' # ILP-gated Git HTTP
      environment:
        FORGEJO_URL: http://forgejo:3000
        BLS_URL: http://crosstown:3100
@@ -131,24 +132,31 @@ git clone \
 ## Key Features
 
 ### ✅ Operation Detection
+
 Automatically detects Git operation type:
+
 - `info-refs` - discovery (free)
 - `git-upload-pack` - clone/fetch (read)
 - `git-receive-pack` - push (write)
 
 ### ✅ Dynamic Pricing
+
 Calculates cost based on:
+
 - Operation type (read vs write)
 - Content size (per KB)
 - Configurable base prices
 
 ### ✅ Payment Validation
+
 Integrates with BLS:
+
 - Validates payment proof
 - Checks payment amount
 - Rejects invalid/insufficient payments
 
 ### ✅ Transparent Proxying
+
 - Streams requests/responses
 - Preserves HTTP headers
 - Handles all Git HTTP protocol details
@@ -181,24 +189,31 @@ git clone http://localhost:3003/test/repo.git
 ## Future Work
 
 ### Phase 1: Git Credential Helper
+
 Create `@crosstown/git-helper` package:
+
 - Automatically handles payment on git operations
 - Stores payment proofs
 - Integrates with git credential system
 
 ### Phase 2: SSH Support
+
 Add SSH proxy for `git@` URLs:
+
 - Intercept SSH connections
 - Require payment before forwarding
 - Support SSH keys + ILP payments
 
 ### Phase 3: Payment Streaming
+
 For large repositories:
+
 - Stream payments during transfer
 - Cancel operation if payment stops
 - Resume support
 
 ### Phase 4: Analytics
+
 - Track payment history
 - Repository access statistics
 - Revenue reporting
@@ -229,16 +244,19 @@ GIT_PRICE_PER_KB=50         # Higher per-KB price
 ## Security
 
 ### Payment Security
+
 - ✅ All payments validated with BLS
 - ✅ No trust in client-provided proofs
 - ✅ Prevents replay attacks (TODO: add nonce)
 
 ### Access Control
+
 - ✅ Forgejo not directly accessible
 - ✅ All access goes through payment gateway
 - ⚠️ SSH passthrough not yet gated (TODO)
 
 ### DoS Prevention
+
 - ✅ Discovery (`info-refs`) is free
 - ⚠️ Rate limiting not yet implemented (TODO)
 

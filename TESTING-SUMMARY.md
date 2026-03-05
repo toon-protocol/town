@@ -3,6 +3,7 @@
 ## ✅ Successfully Deployed and Tested
 
 ### Infrastructure Stack
+
 1. **Crosstown Full Node** (`crosstown:optimized` - 864 MB)
    - ✅ BLS (Business Logic Server) - `http://localhost:3100`
    - ✅ Nostr Relay (WebSocket) - `ws://localhost:7100`
@@ -27,6 +28,7 @@
 ### Tested Functionality
 
 #### 1. Health Checks ✅
+
 ```bash
 curl http://localhost:3100/health  # Crosstown
 curl http://localhost:8080/health  # Agent-Runtime
@@ -35,6 +37,7 @@ curl http://localhost:8080/health  # Agent-Runtime
 **Result:** Both services healthy, all components operational
 
 #### 2. Peer Registration ✅
+
 ```bash
 curl -X POST http://localhost:8081/admin/peers \
   -H "Content-Type: application/json" \
@@ -48,6 +51,7 @@ curl -X POST http://localhost:8081/admin/peers \
 **Result:** Peer registered successfully via admin API
 
 #### 3. Route Configuration ✅
+
 ```bash
 curl -X POST http://localhost:8081/admin/routes \
   -H "Content-Type: application/json" \
@@ -60,6 +64,7 @@ curl -X POST http://localhost:8081/admin/routes \
 **Result:** Route added successfully, routing table updated
 
 #### 4. Nostr Relay WebSocket ✅
+
 ```bash
 nc -z localhost 7100  # Port check
 ```
@@ -67,6 +72,7 @@ nc -z localhost 7100  # Port check
 **Result:** WebSocket listener active on port 7100
 
 #### 5. Local Delivery Integration ✅
+
 - Agent-runtime configured to forward packets to `http://crosstown:3100`
 - Crosstown BLS ready to receive ILP packets
 - `/handle-packet` endpoint available for packet processing
@@ -76,6 +82,7 @@ nc -z localhost 7100  # Port check
 ## ⚠️ Payment Channels - Requires Additional Setup
 
 ### Current Status
+
 Payment channel infrastructure is **not enabled** because:
 
 ```
@@ -86,6 +93,7 @@ Payment channel infrastructure is **not enabled** because:
 ```
 
 ### Root Cause
+
 Payment channels require deployed smart contracts on the blockchain. Specifically:
 
 1. **Payment Channel Registry Contract** - Not deployed to Anvil
@@ -93,6 +101,7 @@ Payment channels require deployed smart contracts on the blockchain. Specificall
 3. **Token Contracts** - Optional, for multi-token support
 
 ### What's Configured ✅
+
 - ✅ Anvil blockchain running on http://anvil:8545
 - ✅ BASE blockchain detected (Chain ID: 31337)
 - ✅ Private key configured (Anvil test account #0)
@@ -100,6 +109,7 @@ Payment channels require deployed smart contracts on the blockchain. Specificall
 - ✅ `BASE_ENABLED=true` environment variable
 
 ### What's Missing ❌
+
 - ❌ Payment channel registry contract deployed
 - ❌ `BASE_REGISTRY_ADDRESS` environment variable
 - ❌ Payment channel factory contracts
@@ -112,6 +122,7 @@ Payment channels require deployed smart contracts on the blockchain. Specificall
 ### Option 1: Deploy Contracts to Anvil (Recommended)
 
 #### Step 1: Deploy Payment Channel Contracts
+
 ```bash
 # Clone agent-runtime contracts repository
 git clone <agent-runtime-contracts-repo> ../agent-runtime-contracts
@@ -129,18 +140,21 @@ export REGISTRY_ADDRESS=<deployed-address>
 ```
 
 #### Step 2: Update docker-compose-with-anvil.yml
+
 ```yaml
 agent-runtime:
   environment:
-    BASE_REGISTRY_ADDRESS: "<deployed-registry-address>"
+    BASE_REGISTRY_ADDRESS: '<deployed-registry-address>'
 ```
 
 #### Step 3: Restart Services
+
 ```bash
 docker compose -f docker-compose-with-anvil.yml restart agent-runtime
 ```
 
 #### Step 4: Verify Payment Channels Enabled
+
 ```bash
 curl http://localhost:8081/admin/channels
 # Should return: {"channels": []} instead of error
@@ -154,9 +168,9 @@ Instead of local Anvil, connect to Base Sepolia testnet:
 agent-runtime:
   environment:
     BASE_RPC_URL: https://sepolia.base.org
-    BASE_CHAIN_ID: "84532"
-    BASE_REGISTRY_ADDRESS: "<testnet-registry-address>"
-    BASE_PRIVATE_KEY: "<your-testnet-private-key>"
+    BASE_CHAIN_ID: '84532'
+    BASE_REGISTRY_ADDRESS: '<testnet-registry-address>'
+    BASE_PRIVATE_KEY: '<your-testnet-private-key>'
 ```
 
 ---
@@ -166,6 +180,7 @@ agent-runtime:
 Once contracts are deployed, you can test the full payment channel lifecycle:
 
 ### 1. Create Payment Channel
+
 ```bash
 curl -X POST http://localhost:8081/admin/channels \
   -H "Content-Type: application/json" \
@@ -176,6 +191,7 @@ curl -X POST http://localhost:8081/admin/channels \
 ```
 
 ### 2. Send ILP Packets
+
 ```bash
 curl -X POST http://localhost:8081/admin/ilp/send \
   -H "Content-Type: application/json" \
@@ -187,6 +203,7 @@ curl -X POST http://localhost:8081/admin/ilp/send \
 ```
 
 ### 3. Monitor Channel Balance
+
 ```bash
 curl http://localhost:8081/admin/balances/test-peer-1
 ```
@@ -194,6 +211,7 @@ curl http://localhost:8081/admin/balances/test-peer-1
 **Expected:** Balance should decrease as packets are sent
 
 ### 4. Query Payment Channel Claims
+
 ```bash
 CHANNEL_ID=<channel-id-from-create-response>
 curl http://localhost:8081/admin/channels/$CHANNEL_ID/claims
@@ -202,6 +220,7 @@ curl http://localhost:8081/admin/channels/$CHANNEL_ID/claims
 **Expected:** List of claims for packets sent through the channel
 
 ### 5. Trigger Settlement
+
 ```bash
 # Balance tracking will automatically trigger settlement
 # when threshold is reached, or manually:
@@ -213,6 +232,7 @@ curl -X POST http://localhost:8081/admin/settlement/trigger \
 ```
 
 ### 6. Verify On-Chain Settlement
+
 ```bash
 # Check channel contract state on Anvil
 cast call $CHANNEL_ADDRESS "getState()"  \
@@ -230,6 +250,7 @@ cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 \
 ## 📊 Current Test Results
 
 ### ✅ Working
+
 - Service health checks
 - Peer management (register, list, remove)
 - Route configuration
@@ -240,6 +261,7 @@ cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 \
 - Admin API endpoints
 
 ### ⏳ Requires Contracts
+
 - Payment channel creation
 - Channel balance tracking
 - Payment claims
@@ -247,6 +269,7 @@ cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 \
 - Wallet balance updates
 
 ### 🔧 Issues Fixed During Deployment
+
 1. **Missing Express dependency** → Patched with Express 4.x
 2. **Missing config.yaml** → Created configuration file
 3. **Wrong health check port** → Fixed AGENT_RUNTIME_URL
@@ -258,12 +281,14 @@ cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 \
 ## 🚀 Next Steps
 
 ### For Testing Without Contracts (Current Setup)
+
 - ✅ Test ILP packet routing through admin API
 - ✅ Test peer discovery and registration
 - ✅ Test Nostr relay event queries
 - ✅ Monitor connector health and metrics
 
 ### For Full Payment Channel Testing
+
 1. Deploy payment channel contracts to Anvil
 2. Configure `BASE_REGISTRY_ADDRESS`
 3. Restart agent-runtime

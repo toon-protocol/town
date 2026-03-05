@@ -133,8 +133,18 @@ import { createProviderState } from '@seontechnologies/pactjs-utils';
 // Some interactions require multiple provider states
 // Call .given() multiple times with different states
 await provider
-  .given(...createProviderState({ name: 'user is authenticated', params: { userId: 1 } }))
-  .given(...createProviderState({ name: 'movie with id 5 exists', params: { id: 5 } }))
+  .given(
+    ...createProviderState({
+      name: 'user is authenticated',
+      params: { userId: 1 },
+    })
+  )
+  .given(
+    ...createProviderState({
+      name: 'movie with id 5 exists',
+      params: { id: 5 },
+    })
+  )
   .uponReceiving('an authenticated request for movie 5')
   .withRequest({
     method: 'GET',
@@ -184,7 +194,7 @@ provider.given(
   ...createProviderState({
     name: 'user exists',
     params: { id: 1, createdAt: new Date(), metadata: { role: 'admin' } },
-  }),
+  })
 );
 ```
 
@@ -205,7 +215,9 @@ const STATES = {
   NO_USERS: 'no users exist',
 } as const;
 
-provider.given(...createProviderState({ name: STATES.USER_EXISTS, params: { id: 1 } }));
+provider.given(
+  ...createProviderState({ name: STATES.USER_EXISTS, params: { id: 1 } })
+);
 ```
 
 _Source: @seontechnologies/pactjs-utils consumer-helpers module, pactjs-utils sample-app consumer tests_

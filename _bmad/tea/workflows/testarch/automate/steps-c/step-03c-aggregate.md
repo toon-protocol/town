@@ -125,7 +125,9 @@ if (backendTestsOutput) {
 const allFixtureNeeds = [
   ...apiTestsOutput.fixture_needs,
   ...(e2eTestsOutput ? e2eTestsOutput.fixture_needs : []),
-  ...(backendTestsOutput ? backendTestsOutput.coverageSummary?.fixtureNeeds || [] : []),
+  ...(backendTestsOutput
+    ? backendTestsOutput.coverageSummary?.fixtureNeeds || []
+    : []),
 ];
 
 // Remove duplicates
@@ -213,7 +215,9 @@ export const mockPaymentSuccess = async (page: Page) => {
 import { expect, Page } from '@playwright/test';
 
 export const waitForApiResponse = async (page: Page, urlPattern: string) => {
-  return page.waitForResponse((response) => response.url().includes(urlPattern) && response.ok());
+  return page.waitForResponse(
+    (response) => response.url().includes(urlPattern) && response.ok()
+  );
 };
 ```
 
@@ -225,7 +229,9 @@ export const waitForApiResponse = async (page: Page, urlPattern: string) => {
 
 ```javascript
 const e2eCount = e2eTestsOutput ? e2eTestsOutput.test_count : 0;
-const backendCount = backendTestsOutput ? (backendTestsOutput.coverageSummary?.totalTests ?? 0) : 0;
+const backendCount = backendTestsOutput
+  ? (backendTestsOutput.coverageSummary?.totalTests ?? 0)
+  : 0;
 
 const summary = {
   detected_stack: '{detected_stack}',
@@ -236,29 +242,45 @@ const summary = {
   fixtures_created: uniqueFixtures.length,
   api_test_files: apiTestsOutput.tests.length,
   e2e_test_files: e2eTestsOutput ? e2eTestsOutput.tests.length : 0,
-  backend_test_files: backendTestsOutput ? backendTestsOutput.testsGenerated.length : 0,
+  backend_test_files: backendTestsOutput
+    ? backendTestsOutput.testsGenerated.length
+    : 0,
   priority_coverage: {
     P0:
       (apiTestsOutput.priority_coverage?.P0 ?? 0) +
       (e2eTestsOutput?.priority_coverage?.P0 ?? 0) +
-      (backendTestsOutput?.testsGenerated?.reduce((sum, t) => sum + (t.priority_coverage?.P0 ?? 0), 0) ?? 0),
+      (backendTestsOutput?.testsGenerated?.reduce(
+        (sum, t) => sum + (t.priority_coverage?.P0 ?? 0),
+        0
+      ) ?? 0),
     P1:
       (apiTestsOutput.priority_coverage?.P1 ?? 0) +
       (e2eTestsOutput?.priority_coverage?.P1 ?? 0) +
-      (backendTestsOutput?.testsGenerated?.reduce((sum, t) => sum + (t.priority_coverage?.P1 ?? 0), 0) ?? 0),
+      (backendTestsOutput?.testsGenerated?.reduce(
+        (sum, t) => sum + (t.priority_coverage?.P1 ?? 0),
+        0
+      ) ?? 0),
     P2:
       (apiTestsOutput.priority_coverage?.P2 ?? 0) +
       (e2eTestsOutput?.priority_coverage?.P2 ?? 0) +
-      (backendTestsOutput?.testsGenerated?.reduce((sum, t) => sum + (t.priority_coverage?.P2 ?? 0), 0) ?? 0),
+      (backendTestsOutput?.testsGenerated?.reduce(
+        (sum, t) => sum + (t.priority_coverage?.P2 ?? 0),
+        0
+      ) ?? 0),
     P3:
       (apiTestsOutput.priority_coverage?.P3 ?? 0) +
       (e2eTestsOutput?.priority_coverage?.P3 ?? 0) +
-      (backendTestsOutput?.testsGenerated?.reduce((sum, t) => sum + (t.priority_coverage?.P3 ?? 0), 0) ?? 0),
+      (backendTestsOutput?.testsGenerated?.reduce(
+        (sum, t) => sum + (t.priority_coverage?.P3 ?? 0),
+        0
+      ) ?? 0),
   },
   knowledge_fragments_used: [
     ...apiTestsOutput.knowledge_fragments_used,
     ...(e2eTestsOutput ? e2eTestsOutput.knowledge_fragments_used : []),
-    ...(backendTestsOutput ? backendTestsOutput.knowledge_fragments_used || [] : []),
+    ...(backendTestsOutput
+      ? backendTestsOutput.knowledge_fragments_used || []
+      : []),
   ],
   subprocess_execution: `PARALLEL (based on ${detected_stack})`,
   performance_gain: '~40-70% faster than sequential',
@@ -269,7 +291,11 @@ const summary = {
 Save summary to temp file for validation step:
 
 ```javascript
-fs.writeFileSync('/tmp/tea-automate-summary-{{timestamp}}.json', JSON.stringify(summary, null, 2), 'utf8');
+fs.writeFileSync(
+  '/tmp/tea-automate-summary-{{timestamp}}.json',
+  JSON.stringify(summary, null, 2),
+  'utf8'
+);
 ```
 
 ---
@@ -280,8 +306,10 @@ fs.writeFileSync('/tmp/tea-automate-summary-{{timestamp}}.json', JSON.stringify(
 
 ```javascript
 fs.unlinkSync(apiTestsPath);
-if (e2eTestsOutput) fs.unlinkSync('/tmp/tea-automate-e2e-tests-{{timestamp}}.json');
-if (backendTestsOutput) fs.unlinkSync('/tmp/tea-automate-backend-tests-{{timestamp}}.json');
+if (e2eTestsOutput)
+  fs.unlinkSync('/tmp/tea-automate-e2e-tests-{{timestamp}}.json');
+if (backendTestsOutput)
+  fs.unlinkSync('/tmp/tea-automate-backend-tests-{{timestamp}}.json');
 console.log('✅ Subprocess temp files cleaned up');
 ```
 

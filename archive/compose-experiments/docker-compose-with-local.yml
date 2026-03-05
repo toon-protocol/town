@@ -46,12 +46,16 @@ services:
     volumes:
       - ../connector/packages/contracts:/contracts
     ports:
-      - "8545:8545"
+      - '8545:8545'
     networks:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -72,10 +76,10 @@ services:
       RPC_URL: http://anvil:8545
 
       # Account 1 for ETH (has 10k ETH from Anvil)
-      ETH_PRIVATE_KEY: "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d"
+      ETH_PRIVATE_KEY: '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
 
       # Account 0 (deployer) for AGENT tokens
-      TOKEN_PRIVATE_KEY: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      TOKEN_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
 
       # Token address (set after deployment or let faucet discover it)
       TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
@@ -88,7 +92,7 @@ services:
       RATE_LIMIT_HOURS: ${FAUCET_RATE_LIMIT_HOURS:-1}
 
     ports:
-      - "3500:3500"   # Faucet Web UI
+      - '3500:3500' # Faucet Web UI
     networks:
       - crosstown-network
     depends_on:
@@ -96,7 +100,11 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -116,12 +124,12 @@ services:
       LOCAL_DELIVERY_URL: http://crosstown:3100
 
       # Enable BASE blockchain for payment channels
-      BASE_ENABLED: "true"
+      BASE_ENABLED: 'true'
       BASE_RPC_URL: http://anvil:8545
-      BASE_CHAIN_ID: "31337"
+      BASE_CHAIN_ID: '31337'
 
       # Anvil test account #0 private key (well-known)
-      BASE_PRIVATE_KEY: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      BASE_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
 
       # Payment channel contract addresses (deployed by contract-deployer)
       # These are deterministic addresses from Anvil deployment
@@ -132,10 +140,10 @@ services:
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
 
     ports:
-      - "3000:3000"   # BTP Server
-      - "8080:8080"   # Health check
-      - "8081:8081"   # Admin API
-      - "3001:3001"   # Explorer UI
+      - '3000:3000' # BTP Server
+      - '8080:8080' # Health check
+      - '8081:8081' # Admin API
+      - '3001:3001' # Explorer UI
     volumes:
       - connector-data:/data
       - ./config/connector-config-with-base.yaml:/app/config.yaml:ro
@@ -146,7 +154,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -199,8 +215,8 @@ services:
       DATA_DIR: /data
 
     ports:
-      - "3100:3100"   # BLS HTTP API
-      - "7100:7100"   # Nostr Relay WebSocket
+      - '3100:3100' # BLS HTTP API
+      - '7100:7100' # Nostr Relay WebSocket
     volumes:
       - crosstown-data:/data
     networks:
@@ -210,7 +226,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -232,17 +248,17 @@ services:
       - FORGEJO__security__INSTALL_LOCK=true
 
       # Git operations (git-proxy disabled, using direct access)
-      - FORGEJO__repository__DISABLE_HTTP_GIT=false  # Allow HTTP Git operations
-      - FORGEJO__repository__ENABLE_PUSH_CREATE_USER=false  # No auto-create on push
+      - FORGEJO__repository__DISABLE_HTTP_GIT=false # Allow HTTP Git operations
+      - FORGEJO__repository__ENABLE_PUSH_CREATE_USER=false # No auto-create on push
       - FORGEJO__repository__ENABLE_PUSH_CREATE_ORG=false
 
       # Web editor (enabled since git-proxy is disabled)
       # Note: NIP-34 integration still provides payment-gated Git via Nostr events
-      - FORGEJO__repository__ENABLE_EDITOR_UPLOAD=true  # Allow file uploads via web
-      - FORGEJO__repository__DISABLE_DOWNLOAD_SOURCE_ARCHIVES=false  # Allow downloads
+      - FORGEJO__repository__ENABLE_EDITOR_UPLOAD=true # Allow file uploads via web
+      - FORGEJO__repository__DISABLE_DOWNLOAD_SOURCE_ARCHIVES=false # Allow downloads
 
     ports:
-      - "3004:3000"   # Web UI (direct access, free browsing)
+      - '3004:3000' # Web UI (direct access, free browsing)
     volumes:
       - forgejo-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -251,7 +267,7 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/']
       interval: 30s
       timeout: 10s
       retries: 3

@@ -180,16 +180,23 @@ When `pact_mcp` is `"mcp"`, the subprocess can use SmartBear MCP tools to fetch 
 **Verify outputs exist (based on `{detected_stack}`):**
 
 ```javascript
-const apiOutputExists = fs.existsSync(`/tmp/tea-automate-api-tests-${timestamp}.json`);
+const apiOutputExists = fs.existsSync(
+  `/tmp/tea-automate-api-tests-${timestamp}.json`
+);
 
 // Check based on detected_stack
 if (detected_stack === 'frontend' || detected_stack === 'fullstack') {
-  const e2eOutputExists = fs.existsSync(`/tmp/tea-automate-e2e-tests-${timestamp}.json`);
+  const e2eOutputExists = fs.existsSync(
+    `/tmp/tea-automate-e2e-tests-${timestamp}.json`
+  );
   if (!e2eOutputExists) throw new Error('E2E subprocess output missing!');
 }
 if (detected_stack === 'backend' || detected_stack === 'fullstack') {
-  const backendOutputExists = fs.existsSync(`/tmp/tea-automate-backend-tests-${timestamp}.json`);
-  if (!backendOutputExists) throw new Error('Backend subprocess output missing!');
+  const backendOutputExists = fs.existsSync(
+    `/tmp/tea-automate-backend-tests-${timestamp}.json`
+  );
+  if (!backendOutputExists)
+    throw new Error('Backend subprocess output missing!');
 }
 if (!apiOutputExists) throw new Error('API subprocess output missing!');
 ```

@@ -8,14 +8,18 @@
  * 3. Issues (kind:1621)
  */
 
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { bytesToHex } from '@noble/hashes/utils';
 
 /**
  * Encode a Nostr event in TOON format
  */
 function encodeToonEvent(event) {
-  const tags = event.tags.map(tag => tag.join('\t')).join('\n');
+  const tags = event.tags.map((tag) => tag.join('\t')).join('\n');
   return `${event.id}\t${event.pubkey}\t${event.created_at}\t${event.kind}\t${tags}\t${event.content}\t${event.sig}`;
 }
 
@@ -74,7 +78,6 @@ async function submitNIP34Event(event, description) {
     const result = await response.json();
     console.log(`   ✅ Submitted successfully!\n`);
     return true;
-
   } catch (error) {
     console.log(`   ❌ Error: ${error.message}\n`);
     return false;
@@ -85,7 +88,7 @@ async function submitNIP34Event(event, description) {
  * Wait for a bit
  */
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function main() {
@@ -93,19 +96,22 @@ async function main() {
   console.log('Step 1: Repository Announcement (kind:30617)');
   console.log('============================================================\n');
 
-  const repoEvent = finalizeEvent({
-    kind: 30617,
-    created_at: Math.floor(Date.now() / 1000),
-    tags: [
-      ['d', `${OWNER}/${REPO_NAME}`],
-      ['name', REPO_NAME],
-      ['description', 'Test repository for NIP-34 workflow'],
-      ['web', 'https://github.com/example/test'],
-      ['clone', 'https://github.com/example/test.git'],
-      ['relays', 'wss://relay.damus.io'],
-    ],
-    content: '',
-  }, sk);
+  const repoEvent = finalizeEvent(
+    {
+      kind: 30617,
+      created_at: Math.floor(Date.now() / 1000),
+      tags: [
+        ['d', `${OWNER}/${REPO_NAME}`],
+        ['name', REPO_NAME],
+        ['description', 'Test repository for NIP-34 workflow'],
+        ['web', 'https://github.com/example/test'],
+        ['clone', 'https://github.com/example/test.git'],
+        ['relays', 'wss://relay.damus.io'],
+      ],
+      content: '',
+    },
+    sk
+  );
 
   await submitNIP34Event(repoEvent, 'Repository announcement');
   await sleep(2000);
@@ -139,16 +145,19 @@ index 0000000..8b13789
 2.39.0
 `;
 
-  const patch1Event = finalizeEvent({
-    kind: 1617,
-    created_at: Math.floor(Date.now() / 1000),
-    tags: [
-      ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-      ['p', pk],
-      ['commit', '9c88ec0f6c78b9c0eeb48a1e5f91b8f3d2a6e4b1'],
-    ],
-    content: patchContent,
-  }, sk);
+  const patch1Event = finalizeEvent(
+    {
+      kind: 1617,
+      created_at: Math.floor(Date.now() / 1000),
+      tags: [
+        ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
+        ['p', pk],
+        ['commit', '9c88ec0f6c78b9c0eeb48a1e5f91b8f3d2a6e4b1'],
+      ],
+      content: patchContent,
+    },
+    sk
+  );
 
   await submitNIP34Event(patch1Event, 'Patch: Add README.md');
   await sleep(2000);
@@ -180,16 +189,19 @@ index 0000000..0e259d4
 2.39.0
 `;
 
-  const patch2Event = finalizeEvent({
-    kind: 1617,
-    created_at: Math.floor(Date.now() / 1000) + 1,
-    tags: [
-      ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-      ['p', pk],
-      ['commit', 'a1b2c3d4e5f6789012345678901234567890abcd'],
-    ],
-    content: licensePatch,
-  }, sk);
+  const patch2Event = finalizeEvent(
+    {
+      kind: 1617,
+      created_at: Math.floor(Date.now() / 1000) + 1,
+      tags: [
+        ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
+        ['p', pk],
+        ['commit', 'a1b2c3d4e5f6789012345678901234567890abcd'],
+      ],
+      content: licensePatch,
+    },
+    sk
+  );
 
   await submitNIP34Event(patch2Event, 'Patch: Add LICENSE');
   await sleep(2000);
@@ -198,22 +210,25 @@ index 0000000..0e259d4
   console.log('Step 4: Issue - Documentation needed (kind:1621)');
   console.log('============================================================\n');
 
-  const issueEvent = finalizeEvent({
-    kind: 1621,
-    created_at: Math.floor(Date.now() / 1000) + 2,
-    tags: [
-      ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-      ['p', pk],
-      ['subject', 'Add documentation for NIP-34 integration'],
-    ],
-    content: `We need comprehensive documentation explaining how the NIP-34 integration works.
+  const issueEvent = finalizeEvent(
+    {
+      kind: 1621,
+      created_at: Math.floor(Date.now() / 1000) + 2,
+      tags: [
+        ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
+        ['p', pk],
+        ['subject', 'Add documentation for NIP-34 integration'],
+      ],
+      content: `We need comprehensive documentation explaining how the NIP-34 integration works.
 
 Tasks:
 - [ ] Document event kinds
 - [ ] Explain payment flow
 - [ ] Add examples
 - [ ] Create diagrams`,
-  }, sk);
+    },
+    sk
+  );
 
   await submitNIP34Event(issueEvent, 'Issue: Documentation needed');
   await sleep(2000);
@@ -222,22 +237,25 @@ Tasks:
   console.log('Step 5: Issue - Add CI/CD pipeline (kind:1621)');
   console.log('============================================================\n');
 
-  const issue2Event = finalizeEvent({
-    kind: 1621,
-    created_at: Math.floor(Date.now() / 1000) + 3,
-    tags: [
-      ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-      ['p', pk],
-      ['subject', 'Set up CI/CD pipeline'],
-    ],
-    content: `We should add automated testing and deployment.
+  const issue2Event = finalizeEvent(
+    {
+      kind: 1621,
+      created_at: Math.floor(Date.now() / 1000) + 3,
+      tags: [
+        ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
+        ['p', pk],
+        ['subject', 'Set up CI/CD pipeline'],
+      ],
+      content: `We should add automated testing and deployment.
 
 Proposed pipeline:
 1. Run tests on every commit
 2. Build Docker images
 3. Deploy to staging on merge to main
 4. Manual approval for production`,
-  }, sk);
+    },
+    sk
+  );
 
   await submitNIP34Event(issue2Event, 'Issue: CI/CD pipeline');
   await sleep(2000);
@@ -252,7 +270,9 @@ Proposed pipeline:
   console.log('  • 2 issues (Documentation, CI/CD)\n');
 
   console.log('🔍 Next steps:');
-  console.log('  1. Check Forgejo: http://localhost:3004/crosstownAdmin/nip34-test-repo');
+  console.log(
+    '  1. Check Forgejo: http://localhost:3004/crosstownAdmin/nip34-test-repo'
+  );
   console.log('  2. View logs: docker logs crosstown-node | grep NIP34');
   console.log('  3. Check PRs and issues in Forgejo UI\n');
 }

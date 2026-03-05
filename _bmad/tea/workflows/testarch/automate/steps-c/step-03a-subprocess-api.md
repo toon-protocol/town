@@ -143,7 +143,11 @@ Write JSON to temp file: `/tmp/tea-automate-api-tests-{{timestamp}}.json`
     }
   ],
   "fixture_needs": ["authToken", "userDataFactory", "productDataFactory"],
-  "knowledge_fragments_used": ["api-request", "data-factories", "api-testing-patterns"],
+  "knowledge_fragments_used": [
+    "api-request",
+    "data-factories",
+    "api-testing-patterns"
+  ],
   "test_count": 12,
   "summary": "Generated 12 API test cases covering 3 features"
 }

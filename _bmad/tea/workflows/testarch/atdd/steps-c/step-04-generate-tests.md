@@ -130,8 +130,12 @@ const subprocessContext = {
 **Verify both outputs exist:**
 
 ```javascript
-const apiOutputExists = fs.existsSync(`/tmp/tea-atdd-api-tests-${timestamp}.json`);
-const e2eOutputExists = fs.existsSync(`/tmp/tea-atdd-e2e-tests-${timestamp}.json`);
+const apiOutputExists = fs.existsSync(
+  `/tmp/tea-atdd-api-tests-${timestamp}.json`
+);
+const e2eOutputExists = fs.existsSync(
+  `/tmp/tea-atdd-e2e-tests-${timestamp}.json`
+);
 
 if (!apiOutputExists || !e2eOutputExists) {
   throw new Error('One or both subprocess outputs missing!');

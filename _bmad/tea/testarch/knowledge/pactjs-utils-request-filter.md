@@ -24,7 +24,10 @@ Use `createRequestFilter` and `noOpRequestFilter` from `@seontechnologies/pactjs
 ### Example 1: Basic Auth Injection
 
 ```typescript
-import { buildVerifierOptions, createRequestFilter } from '@seontechnologies/pactjs-utils';
+import {
+  buildVerifierOptions,
+  createRequestFilter,
+} from '@seontechnologies/pactjs-utils';
 
 const opts = buildVerifierOptions({
   provider: 'SampleMoviesAPI',
@@ -88,7 +91,10 @@ const opts = buildVerifierOptions({
 ### Example 3: No-Auth Provider
 
 ```typescript
-import { buildVerifierOptions, noOpRequestFilter } from '@seontechnologies/pactjs-utils';
+import {
+  buildVerifierOptions,
+  noOpRequestFilter,
+} from '@seontechnologies/pactjs-utils';
 
 // For providers that don't require authentication
 const opts = buildVerifierOptions({
@@ -107,7 +113,10 @@ const opts = buildVerifierOptions({
 ### Example 4: Integration with buildVerifierOptions
 
 ```typescript
-import { buildVerifierOptions, createRequestFilter } from '@seontechnologies/pactjs-utils';
+import {
+  buildVerifierOptions,
+  createRequestFilter,
+} from '@seontechnologies/pactjs-utils';
 import type { StateHandlers } from '@seontechnologies/pactjs-utils';
 
 // Complete provider verification setup

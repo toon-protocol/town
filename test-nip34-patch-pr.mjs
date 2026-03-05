@@ -7,7 +7,11 @@
  * 2. Submit patch (kind:1617) - creates branch + files + PR
  */
 
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { encode as encodeToon } from '@toon-format/toon';
 
 const BLS_URL = 'http://localhost:3100';
@@ -59,7 +63,6 @@ async function submitEvent(event, description) {
 
     console.log(`   ✅ Submitted successfully!\n`);
     return true;
-
   } catch (error) {
     console.log(`   ❌ Error: ${error.message}\n`);
     return false;
@@ -67,7 +70,7 @@ async function submitEvent(event, description) {
 }
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function main() {
@@ -75,17 +78,20 @@ async function main() {
   console.log('Step 1: Create Repository');
   console.log('============================================================\n');
 
-  const repoEvent = finalizeEvent({
-    kind: 30617,
-    created_at: Math.floor(Date.now() / 1000),
-    tags: [
-      ['d', `${OWNER}/${REPO_NAME}`],
-      ['name', REPO_NAME],
-      ['description', 'Test repository for patch → PR workflow'],
-      ['clone', `http://localhost:3004/crosstownAdmin/${REPO_NAME}.git`],
-    ],
-    content: '',
-  }, sk);
+  const repoEvent = finalizeEvent(
+    {
+      kind: 30617,
+      created_at: Math.floor(Date.now() / 1000),
+      tags: [
+        ['d', `${OWNER}/${REPO_NAME}`],
+        ['name', REPO_NAME],
+        ['description', 'Test repository for patch → PR workflow'],
+        ['clone', `http://localhost:3004/crosstownAdmin/${REPO_NAME}.git`],
+      ],
+      content: '',
+    },
+    sk
+  );
 
   await submitEvent(repoEvent, 'Creating repository');
   await sleep(2000);
@@ -130,16 +136,19 @@ index 0000000..9876543
 2.39.0
 `;
 
-  const patchEvent = finalizeEvent({
-    kind: 1617,
-    created_at: Math.floor(Date.now() / 1000) + 1,
-    tags: [
-      ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-      ['p', pk],
-      ['commit', 'abc123def456789012345678901234567890abcd'],
-    ],
-    content: patchContent,
-  }, sk);
+  const patchEvent = finalizeEvent(
+    {
+      kind: 1617,
+      created_at: Math.floor(Date.now() / 1000) + 1,
+      tags: [
+        ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
+        ['p', pk],
+        ['commit', 'abc123def456789012345678901234567890abcd'],
+      ],
+      content: patchContent,
+    },
+    sk
+  );
 
   await submitEvent(patchEvent, 'Submitting patch');
   await sleep(3000);
@@ -157,8 +166,12 @@ index 0000000..9876543
   console.log('  6. Created Pull Request automatically\n');
 
   console.log('🔍 Verify:');
-  console.log(`  1. Repository: http://localhost:3004/crosstownAdmin/${REPO_NAME}`);
-  console.log(`  2. Pull Requests: http://localhost:3004/crosstownAdmin/${REPO_NAME}/pulls`);
+  console.log(
+    `  1. Repository: http://localhost:3004/crosstownAdmin/${REPO_NAME}`
+  );
+  console.log(
+    `  2. Pull Requests: http://localhost:3004/crosstownAdmin/${REPO_NAME}/pulls`
+  );
   console.log('  3. View logs: docker logs crosstown-node | grep NIP34\n');
 }
 

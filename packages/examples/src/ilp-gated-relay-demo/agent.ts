@@ -9,7 +9,11 @@
  */
 
 import WebSocket from 'ws';
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { MockIlpConnector, type BlsResponse } from './mock-connector.js';
 
 // Server ports matching relay.ts defaults
@@ -122,12 +126,19 @@ export async function runAgentDemo(): Promise<{
   const estimatedPrice = BigInt(eventJson.length * 10 + 100);
   console.log(`[Agent] Sending payment of ${estimatedPrice} units...`);
 
-  const response: BlsResponse = await connector.sendPayment(event, estimatedPrice);
+  const response: BlsResponse = await connector.sendPayment(
+    event,
+    estimatedPrice
+  );
 
   if (response.accept) {
     console.log(`[Agent] Payment accepted!`);
-    console.log(`[Agent] Fulfillment: ${response.fulfillment?.slice(0, 20)}...`);
-    console.log(`[Agent] Event ID: ${(response.metadata as { eventId: string })?.eventId}`);
+    console.log(
+      `[Agent] Fulfillment: ${response.fulfillment?.slice(0, 20)}...`
+    );
+    console.log(
+      `[Agent] Event ID: ${(response.metadata as { eventId: string })?.eventId}`
+    );
   } else {
     console.error(`[Agent] Payment rejected!`);
     console.error(`[Agent] Error: ${response.code} - ${response.message}`);
@@ -157,7 +168,9 @@ export async function runAgentDemo(): Promise<{
  */
 async function main(): Promise<void> {
   console.log('[Agent] Starting agent demo...');
-  console.log('[Agent] Note: Relay must be running on ports 3000 (BLS) and 7000 (WS)\n');
+  console.log(
+    '[Agent] Note: Relay must be running on ports 3000 (BLS) and 7000 (WS)\n'
+  );
 
   try {
     await runAgentDemo();

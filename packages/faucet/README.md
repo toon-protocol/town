@@ -51,9 +51,11 @@ RATE_LIMIT_HOURS=1      # Hours between requests per address
 ## API Endpoints
 
 ### `GET /health`
+
 Health check endpoint.
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -63,9 +65,11 @@ Health check endpoint.
 ```
 
 ### `GET /api/info`
+
 Get faucet information.
 
 **Response:**
+
 ```json
 {
   "ethAmount": "100",
@@ -82,9 +86,11 @@ Get faucet information.
 ```
 
 ### `POST /api/request`
+
 Request tokens for an address.
 
 **Request:**
+
 ```json
 {
   "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
@@ -92,6 +98,7 @@ Request tokens for an address.
 ```
 
 **Success Response:**
+
 ```json
 {
   "success": true,
@@ -110,6 +117,7 @@ Request tokens for an address.
 ```
 
 **Error Response (Rate Limited):**
+
 ```json
 {
   "error": "Rate limit exceeded",
@@ -168,6 +176,7 @@ npm run dev
 ## Rate Limiting
 
 The faucet implements in-memory rate limiting based on Ethereum addresses:
+
 - Default: 1 request per address per hour
 - Limits are stored in memory (reset on container restart)
 - Case-insensitive address matching
@@ -184,15 +193,18 @@ The faucet implements in-memory rate limiting based on Ethereum addresses:
 ## Troubleshooting
 
 **Faucet shows "Waiting for contract deployment":**
+
 - The contract-deployer service hasn't completed yet
 - Check logs: `docker compose logs contract-deployer`
 - Wait a few seconds and refresh the page
 
 **"Token contract not yet deployed" error:**
+
 - Set `TOKEN_ADDRESS` environment variable manually
 - Or wait for the faucet to auto-detect it
 
 **Rate limit persists after container restart:**
+
 - Rate limits are in-memory only and reset on restart
 - Restart the faucet container: `docker compose restart faucet`
 

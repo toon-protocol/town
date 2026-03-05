@@ -7,6 +7,7 @@
 ## The Problem
 
 **Before the fix:**
+
 - Forgejo web UI accessible via git-proxy (port 3003)
 - Non-Git paths defaulted to FREE "info-refs" operation
 - Users could bypass ILP payment by:
@@ -25,10 +26,10 @@
 
 **Separate concerns into different ports:**
 
-| Port | Service | Payment | What's Allowed |
-|------|---------|---------|----------------|
-| **3004** | Forgejo Web UI | ❌ FREE | Browse, read, view |
-| **3003** | Git Proxy | ✅ REQUIRED | Clone, push, pull |
+| Port     | Service        | Payment     | What's Allowed     |
+| -------- | -------------- | ----------- | ------------------ |
+| **3004** | Forgejo Web UI | ❌ FREE     | Browse, read, view |
+| **3003** | Git Proxy      | ✅ REQUIRED | Clone, push, pull  |
 
 ### 2. Git Proxy Hardening
 
@@ -37,7 +38,7 @@ Added `REJECT_NON_GIT` security flag:
 ```typescript
 // Before: All paths proxied
 app.all('*', async (c) => {
-  const operation = parseOperation(path);  // Defaults to 'info-refs' (FREE)
+  const operation = parseOperation(path); // Defaults to 'info-refs' (FREE)
   // ... proxy to Forgejo
 });
 
@@ -51,11 +52,13 @@ app.all('*', async (c) => {
 ```
 
 **Accepted Git paths:**
+
 - `/repo.git/info/refs`
 - `/repo.git/git-upload-pack`
 - `/repo.git/git-receive-pack`
 
 **Rejected paths:**
+
 - `/` (homepage)
 - `/user/settings`
 - `/admin/*`
@@ -245,22 +248,26 @@ open http://localhost:3004/admin/test-repo/_edit/main/README.md
 **If you're upgrading from the insecure version:**
 
 1. **Stop services:**
+
    ```bash
    docker compose -f docker-compose-with-local.yml down
    ```
 
 2. **Pull latest changes:**
+
    ```bash
    git pull origin main
    ```
 
 3. **Rebuild git-proxy:**
+
    ```bash
    pnpm --filter @crosstown/git-proxy build
    docker build -f packages/git-proxy/Dockerfile -t crosstown/git-proxy .
    ```
 
 4. **Update .env (optional):**
+
    ```bash
    # Security is now ON by default
    # To disable (NOT recommended):
@@ -268,11 +275,13 @@ open http://localhost:3004/admin/test-repo/_edit/main/README.md
    ```
 
 5. **Restart services:**
+
    ```bash
    docker compose -f docker-compose-with-local.yml up -d
    ```
 
 6. **Verify security:**
+
    ```bash
    # Should fail
    curl http://localhost:3003/
@@ -284,12 +293,14 @@ open http://localhost:3004/admin/test-repo/_edit/main/README.md
 ### Update Git Remote URLs
 
 **Old URL (insecure):**
+
 ```bash
 # Used port 3003 for both web and Git
 git clone http://localhost:3003/admin/repo.git
 ```
 
 **New URL (secure):**
+
 ```bash
 # Web UI: port 3004 (browse)
 open http://localhost:3004/admin/repo
@@ -375,11 +386,13 @@ forgejo:
 ## Impact
 
 ### Before Fix
+
 - 🔴 **Payment Bypass:** Web UI allowed all operations without payment
 - 🔴 **Security Risk:** Users could commit, upload, edit via browser
 - 🔴 **Revenue Loss:** No payment enforcement
 
 ### After Fix
+
 - ✅ **Payment Enforced:** All write operations require ILP payment
 - ✅ **No Bypass:** Web editor disabled, Git operations gated
 - ✅ **Clear Separation:** Web UI (free) vs Git operations (paid)

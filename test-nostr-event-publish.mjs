@@ -26,7 +26,11 @@ function createNostrEvent(kind, content, secretKey) {
 async function publishNostrEvent() {
   console.log('📝 Publishing Nostr Event via HTTP Connector\n');
 
-  const event = createNostrEvent(1, 'Test event from HTTP mode - ' + Date.now(), null);
+  const event = createNostrEvent(
+    1,
+    'Test event from HTTP mode - ' + Date.now(),
+    null
+  );
   console.log('Event:', JSON.stringify(event, null, 2));
 
   // Encode event as TOON (simplified - just JSON for now)
@@ -58,7 +62,9 @@ async function publishNostrEvent() {
       console.log('\n✅ Event published successfully!');
       return true;
     } else {
-      console.log(`\n⚠️  Event not fulfilled: ${result.code} - ${result.message}`);
+      console.log(
+        `\n⚠️  Event not fulfilled: ${result.code} - ${result.message}`
+      );
       return false;
     }
   } catch (error) {

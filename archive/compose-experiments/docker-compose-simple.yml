@@ -29,18 +29,18 @@ services:
       LOCAL_DELIVERY_URL: http://crosstown:3100
 
       # Enable BASE blockchain for payment channels (development mode uses in-memory mock)
-      BASE_ENABLED: "false"
+      BASE_ENABLED: 'false'
 
       # Enable in-memory balance tracking without blockchain
-      BALANCE_TRACKING_ENABLED: "true"
+      BALANCE_TRACKING_ENABLED: 'true'
 
       # Optional: Enable Explorer UI (default: true)
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
     ports:
-      - "3000:3000"   # BTP Server
-      - "8080:8080"   # Health check
-      - "8081:8081"   # Admin API
-      - "3001:3001"   # Explorer UI
+      - '3000:3000' # BTP Server
+      - '8080:8080' # Health check
+      - '8081:8081' # Admin API
+      - '3001:3001' # Explorer UI
     volumes:
       - connector-data:/data
       - ./config/connector-config.yaml:/app/config.yaml:ro
@@ -48,7 +48,15 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -90,8 +98,8 @@ services:
       DATA_DIR: /data
 
     ports:
-      - "3100:3100"   # BLS HTTP API
-      - "7100:7100"   # Nostr Relay WebSocket
+      - '3100:3100' # BLS HTTP API
+      - '7100:7100' # Nostr Relay WebSocket
     volumes:
       - crosstown-data:/data
     networks:
@@ -101,7 +109,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3

@@ -100,7 +100,9 @@ test.describe('Users API', () => {
 
     const error = await response.json();
     expect(error.code).toBe('VALIDATION_ERROR');
-    expect(error.details).toContainEqual(expect.objectContaining({ field: 'email', message: expect.any(String) }));
+    expect(error.details).toContainEqual(
+      expect.objectContaining({ field: 'email', message: expect.any(String) })
+    );
   });
 });
 ```
@@ -120,7 +122,10 @@ test.describe('Users API', () => {
 
 ```typescript
 // tests/api/orders.spec.ts
-import { test, expect } from '@seontechnologies/playwright-utils/api-request/fixtures';
+import {
+  test,
+  expect,
+} from '@seontechnologies/playwright-utils/api-request/fixtures';
 import { z } from 'zod';
 
 // Define schema for type safety and validation
@@ -132,7 +137,7 @@ const OrderSchema = z.object({
       productId: z.string(),
       quantity: z.number().positive(),
       price: z.number().positive(),
-    }),
+    })
   ),
   total: z.number().positive(),
   status: z.enum(['pending', 'processing', 'shipped', 'delivered']),
@@ -177,7 +182,11 @@ test.describe('Orders API', () => {
   });
 
   test('should list orders with pagination', async ({ apiRequest }) => {
-    const { status, body } = await apiRequest<{ orders: Order[]; total: number; page: number }>({
+    const { status, body } = await apiRequest<{
+      orders: Order[];
+      total: number;
+      page: number;
+    }>({
       method: 'GET',
       path: '/api/orders',
       params: { page: 1, limit: 10, status: 'pending' },
@@ -210,9 +219,12 @@ test.describe('Orders API', () => {
 import { test, expect } from '@seontechnologies/playwright-utils/fixtures';
 
 test.describe('Service Integration', () => {
-  const USER_SERVICE_URL = process.env.USER_SERVICE_URL || 'http://localhost:3001';
-  const ORDER_SERVICE_URL = process.env.ORDER_SERVICE_URL || 'http://localhost:3002';
-  const INVENTORY_SERVICE_URL = process.env.INVENTORY_SERVICE_URL || 'http://localhost:3003';
+  const USER_SERVICE_URL =
+    process.env.USER_SERVICE_URL || 'http://localhost:3001';
+  const ORDER_SERVICE_URL =
+    process.env.ORDER_SERVICE_URL || 'http://localhost:3002';
+  const INVENTORY_SERVICE_URL =
+    process.env.INVENTORY_SERVICE_URL || 'http://localhost:3003';
 
   test('order service should validate user exists', async ({ apiRequest }) => {
     // Create user in user-service
@@ -281,7 +293,7 @@ test.describe('Service Integration', () => {
           baseUrl: INVENTORY_SERVICE_URL,
         }),
       (response) => response.body.quantity === initialInventory.quantity - 2,
-      { timeout: 10000, interval: 500 },
+      { timeout: 10000, interval: 500 }
     );
 
     expect(updatedInventory.quantity).toBe(initialInventory.quantity - 2);
@@ -304,7 +316,10 @@ test.describe('Service Integration', () => {
 
 ```typescript
 // tests/api/graphql.spec.ts
-import { test, expect } from '@seontechnologies/playwright-utils/api-request/fixtures';
+import {
+  test,
+  expect,
+} from '@seontechnologies/playwright-utils/api-request/fixtures';
 
 const GRAPHQL_ENDPOINT = '/graphql';
 
@@ -563,7 +578,7 @@ test.describe('Background Jobs', () => {
         timeout: 60000,
         interval: 2000,
         log: `Waiting for export job ${job.id} to complete`,
-      },
+      }
     );
 
     expect(completedJob.status).toBe('completed');
@@ -571,7 +586,10 @@ test.describe('Background Jobs', () => {
     expect(completedJob.recordCount).toBeGreaterThan(0);
   });
 
-  test('should handle job failure gracefully', async ({ apiRequest, recurse }) => {
+  test('should handle job failure gracefully', async ({
+    apiRequest,
+    recurse,
+  }) => {
     // Trigger job that will fail
     const { body: job } = await apiRequest({
       method: 'POST',
@@ -586,7 +604,7 @@ test.describe('Background Jobs', () => {
     const { body: failedJob } = await recurse(
       () => apiRequest({ method: 'GET', path: `/api/exports/${job.id}` }),
       (response) => ['completed', 'failed'].includes(response.body.status),
-      { timeout: 30000 },
+      { timeout: 30000 }
     );
 
     expect(failedJob.status).toBe('failed');
@@ -608,9 +626,10 @@ test.describe('Background Jobs', () => {
 
     // Poll for webhook delivery status
     const { body: webhookStatus } = await recurse(
-      () => apiRequest({ method: 'GET', path: `/api/webhooks/order/${order.id}` }),
+      () =>
+        apiRequest({ method: 'GET', path: `/api/webhooks/order/${order.id}` }),
       (response) => response.body.delivered === true,
-      { timeout: 30000, interval: 1000 },
+      { timeout: 30000, interval: 1000 }
     );
 
     expect(webhookStatus.delivered).toBe(true);
@@ -653,7 +672,9 @@ test.describe('Authenticated API Tests', () => {
     authToken = token;
   });
 
-  test('should access protected endpoint with token', async ({ apiRequest }) => {
+  test('should access protected endpoint with token', async ({
+    apiRequest,
+  }) => {
     const { status, body } = await apiRequest({
       method: 'GET',
       path: '/api/me',
@@ -722,7 +743,10 @@ test.describe('Authenticated API Tests', () => {
 
 ```typescript
 // tests/api/operations.spec.ts
-import { test, expect } from '@seontechnologies/playwright-utils/api-request/fixtures';
+import {
+  test,
+  expect,
+} from '@seontechnologies/playwright-utils/api-request/fixtures';
 
 test.describe('API Tests with Generated Operations', () => {
   test('should create entity with full type safety', async ({ apiRequest }) => {
@@ -749,7 +773,10 @@ test.describe('API Tests with Generated Operations', () => {
     expect(body.total).toBeGreaterThan(10);
   });
 
-  test('should poll async operation until complete', async ({ apiRequest, recurse }) => {
+  test('should poll async operation until complete', async ({
+    apiRequest,
+    recurse,
+  }) => {
     const { body: job } = await apiRequest({
       operation: startJobOp({ workspaceId }),
       headers: getHeaders(workspaceId),
@@ -763,7 +790,7 @@ test.describe('API Tests with Generated Operations', () => {
           headers: getHeaders(workspaceId),
         }),
       (res) => res.body.status === 'completed',
-      { timeout: 60000, interval: 2000 },
+      { timeout: 60000, interval: 2000 }
     );
   });
 });

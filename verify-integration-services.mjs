@@ -15,8 +15,8 @@ try {
       jsonrpc: '2.0',
       method: 'eth_blockNumber',
       params: [],
-      id: 1
-    })
+      id: 1,
+    }),
   });
   const anvilData = await anvilResponse.json();
   console.log('✅ Anvil is responding:', anvilData.result);

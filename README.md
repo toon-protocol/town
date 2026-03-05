@@ -17,16 +17,19 @@ The key insight: **Nostr's social graph becomes the payment routing graph**. If 
 ## Why Use Crosstown?
 
 **For Relay Operators:**
+
 - Generate revenue from writes (finally a business model!)
 - No need to manually configure peering relationships
 - Spam protection via pay-per-byte pricing
 
 **For AI Agents:**
+
 - Discover and connect to ILP payment networks without hardcoded configs
 - Pay for Nostr storage using existing ILP infrastructure
 - Bootstrap payment channels automatically using Nostr follows
 
 **For Protocol Developers:**
+
 - Proof-of-concept for solving relay sustainability
 - Reference implementation for ILP-gated content
 - Demonstrates Nostr as a service discovery layer
@@ -37,26 +40,27 @@ Crosstown uses **custom Nostr event kinds** to enable ILP peering and payment-ga
 
 ### Core ILP Peering Events
 
-| Kind | Name | Discovery | Purpose |
-|------|------|-----------|---------|
-| **10032** | ILP Peer Info | Public (anyone can read) | Advertise your node's ILP address, BTP endpoint, supported chains, and settlement addresses — like a business card |
-| **23194** | SPSP Request | Private (NIP-44 encrypted) | "I want to open a payment channel with you — here are my supported chains" |
-| **23195** | SPSP Response | Private (NIP-44 encrypted) | "Channel opened on chain X at address Y — here's your channel ID and payment destination" |
+| Kind      | Name          | Discovery                  | Purpose                                                                                                            |
+| --------- | ------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **10032** | ILP Peer Info | Public (anyone can read)   | Advertise your node's ILP address, BTP endpoint, supported chains, and settlement addresses — like a business card |
+| **23194** | SPSP Request  | Private (NIP-44 encrypted) | "I want to open a payment channel with you — here are my supported chains"                                         |
+| **23195** | SPSP Response | Private (NIP-44 encrypted) | "Channel opened on chain X at address Y — here's your channel ID and payment destination"                          |
 
 ### NIP-34: Git Operations via Nostr (Payment-Gated)
 
-| Kind | Name | Purpose |
-|------|------|---------|
+| Kind      | Name                    | Purpose                                        |
+| --------- | ----------------------- | ---------------------------------------------- |
 | **30617** | Repository Announcement | Advertise Git repositories available via Nostr |
-| **1617** | Patch | Submit code changes (like `git push`) |
-| **1621** | Issue | Create issues in repositories |
-| **1622** | Reply | Comment on patches or issues |
+| **1617**  | Patch                   | Submit code changes (like `git push`)          |
+| **1621**  | Issue                   | Create issues in repositories                  |
+| **1622**  | Reply                   | Comment on patches or issues                   |
 
 **NIP-34 provides payment-gated Git operations** — users pay via ILP to submit patches, create issues, and interact with repositories. Unlike traditional Git HTTP (which is free), NIP-34 submissions require micropayments and are automatically applied to the Forgejo Git server.
 
 **Why these event kinds?**
-- **10032** is a *replaceable event* — when your connector details change (new settlement address, different chains), you publish a new event with the same `d` tag and it replaces the old one
-- **23194/23195** use *NIP-44 encryption* — negotiation happens in the open (via relays) but payment secrets stay private
+
+- **10032** is a _replaceable event_ — when your connector details change (new settlement address, different chains), you publish a new event with the same `d` tag and it replaces the old one
+- **23194/23195** use _NIP-44 encryption_ — negotiation happens in the open (via relays) but payment secrets stay private
 - **NIP-34 kinds (30617, 1617, 1621, 1622)** provide payment-gated Git operations via Nostr events
 
 ### NIP-34 Git Integration: Payment-Gated Git via Nostr
@@ -92,17 +96,18 @@ Developer                    Crosstown BLS                 Forgejo Git Server
 
 **Why use NIP-34 instead of HTTP Git?**
 
-| Feature | HTTP Git (port 3004) | NIP-34 (via Nostr) |
-|---------|----------------------|---------------------|
-| **Payment** | FREE | PAID (micropayments via ILP) |
-| **Protocol** | Standard Git HTTP | Nostr events |
-| **Spam protection** | None | Payment requirement |
-| **Decentralization** | Centralized (direct to server) | Decentralized (via Nostr relays) |
-| **Monetization** | No revenue | Repository owners earn from contributions |
+| Feature              | HTTP Git (port 3004)           | NIP-34 (via Nostr)                        |
+| -------------------- | ------------------------------ | ----------------------------------------- |
+| **Payment**          | FREE                           | PAID (micropayments via ILP)              |
+| **Protocol**         | Standard Git HTTP              | Nostr events                              |
+| **Spam protection**  | None                           | Payment requirement                       |
+| **Decentralization** | Centralized (direct to server) | Decentralized (via Nostr relays)          |
+| **Monetization**     | No revenue                     | Repository owners earn from contributions |
 
 **Setting up NIP-34:**
 
 1. **Configure Forgejo API token** in `.env`:
+
    ```bash
    FORGEJO_TOKEN=your-api-token-here
    FORGEJO_OWNER=admin
@@ -110,6 +115,7 @@ Developer                    Crosstown BLS                 Forgejo Git Server
    ```
 
 2. **Submit a patch via Nostr** (requires ILP payment):
+
    ```bash
    # Example: Submit a patch as a kind:1617 event
    # Payment is automatically required by BLS
@@ -165,16 +171,17 @@ New Node                               Genesis Node (already on network)
 
 Crosstown is a monorepo with four packages:
 
-| Package | Purpose | Status | Key Exports |
-|---------|---------|--------|-------------|
-| **[@crosstown/core](packages/core)** | Discovery & peering foundation | ✅ Active | `createCrosstownNode()`, `BootstrapService`, `RelayMonitor`, SPSP client/server, settlement negotiation, NIP-34 handler |
-| **[@crosstown/relay](packages/relay)** | Nostr relay WebSocket server | ✅ Active | `NostrRelayServer`, `EventStore`, TOON encoding, upstream relay propagation via `RelaySubscriber` |
-| **[@crosstown/bls](packages/bls)** | Standalone Business Logic Server | ✅ Active | `createBlsServer()` — HTTP server that validates ILP payments and stores events, NIP-34 integration |
-| **[@crosstown/faucet](packages/faucet)** | Token distribution service | ✅ Active | Web-based faucet for distributing test ETH and AGENT tokens to developers |
-| **[@crosstown/git-proxy](packages/git-proxy)** | HTTP Git payment gateway | ⚠️ Disabled | ILP-gated Git HTTP operations (needs redesign per RFC-0035) |
-| **[@crosstown/examples](packages/examples)** | Working demos | ✅ Active | `ilp-gated-relay-demo` showing the full stack in action |
+| Package                                        | Purpose                          | Status      | Key Exports                                                                                                             |
+| ---------------------------------------------- | -------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **[@crosstown/core](packages/core)**           | Discovery & peering foundation   | ✅ Active   | `createCrosstownNode()`, `BootstrapService`, `RelayMonitor`, SPSP client/server, settlement negotiation, NIP-34 handler |
+| **[@crosstown/relay](packages/relay)**         | Nostr relay WebSocket server     | ✅ Active   | `NostrRelayServer`, `EventStore`, TOON encoding, upstream relay propagation via `RelaySubscriber`                       |
+| **[@crosstown/bls](packages/bls)**             | Standalone Business Logic Server | ✅ Active   | `createBlsServer()` — HTTP server that validates ILP payments and stores events, NIP-34 integration                     |
+| **[@crosstown/faucet](packages/faucet)**       | Token distribution service       | ✅ Active   | Web-based faucet for distributing test ETH and AGENT tokens to developers                                               |
+| **[@crosstown/git-proxy](packages/git-proxy)** | HTTP Git payment gateway         | ⚠️ Disabled | ILP-gated Git HTTP operations (needs redesign per RFC-0035)                                                             |
+| **[@crosstown/examples](packages/examples)**   | Working demos                    | ✅ Active   | `ilp-gated-relay-demo` showing the full stack in action                                                                 |
 
 **Package Relationships:**
+
 - `@crosstown/core` is the foundation (no dependencies on other packages)
 - `@crosstown/relay` depends on `@crosstown/bls` (integrates BLS validation with relay serving)
 - `@crosstown/bls` can run standalone (Docker) or embedded (imported by relay)
@@ -183,6 +190,7 @@ Crosstown is a monorepo with four packages:
 ### Data Flow: How Writes and Reads Work
 
 **Reading (Free)**
+
 ```
 Client              Relay
   │                   │
@@ -198,6 +206,7 @@ Client              Relay
 ```
 
 **Writing (Paid via ILP)**
+
 ```
 Client              Connector               Relay (BLS)           EventStore
   │                      │                        │                     │
@@ -218,6 +227,7 @@ Client              Connector               Relay (BLS)           EventStore
 ```
 
 **Key Points:**
+
 - Reads use standard Nostr WebSocket protocol (NIP-01)
 - Writes bypass WebSocket and use ILP packet routing
 - Events are TOON-encoded (text format) and transmitted as UTF-8 bytes in ILP packet data
@@ -235,6 +245,7 @@ Crosstown can run in two modes:
 **How it works:** Import `@crosstown/core` and `@crosstown/relay` as libraries. The ILP connector runs in-process — no HTTP overhead, just direct function calls.
 
 **Benefits:**
+
 - Zero network latency between relay and connector
 - Single process to manage
 - Easier debugging
@@ -244,9 +255,9 @@ import { createCrosstownNode } from '@crosstown/core';
 import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
 
 const node = createCrosstownNode({
-  connector,              // EmbeddableConnectorLike instance
-  handlePacket,           // ILP packet handler function
-  secretKey,              // 32-byte Nostr secret key (Uint8Array)
+  connector, // EmbeddableConnectorLike instance
+  handlePacket, // ILP packet handler function
+  secretKey, // 32-byte Nostr secret key (Uint8Array)
   ilpInfo: {
     ilpAddress: 'g.agent.peer1',
     btpEndpoint: 'btp+ws://localhost:3000',
@@ -271,7 +282,9 @@ node.relayMonitor.on((event) => console.log(event));
 
 // Bootstrap: discover peers, handshake genesis, announce self
 const result = await node.start();
-console.log(`Connected to ${result.peerCount} peers, opened ${result.channelCount} channels`);
+console.log(
+  `Connected to ${result.peerCount} peers, opened ${result.channelCount} channels`
+);
 
 // Explicit peering with discovered peers
 const discovered = node.relayMonitor.getDiscoveredPeers();
@@ -287,6 +300,7 @@ for (const peer of discovered) {
 **How it works:** The BLS runs as an HTTP server. Your external connector sends ILP packets via `POST /handle-packet`. The Nostr relay runs on a separate WebSocket port.
 
 **Build and run:**
+
 ```bash
 docker build -f docker/Dockerfile -t crosstown .
 docker run -p 3100:3100 -p 7100:7100 \
@@ -301,12 +315,13 @@ docker run -p 3100:3100 -p 7100:7100 \
 
 **Exposed ports:**
 
-| Port | Service | Protocol |
-|------|---------|----------|
-| **3100** | BLS — accepts `POST /handle-packet` with ILP PREPARE packets | HTTP |
-| **7100** | Nostr relay — standard NIP-01 WebSocket for reads | WebSocket |
+| Port     | Service                                                      | Protocol  |
+| -------- | ------------------------------------------------------------ | --------- |
+| **3100** | BLS — accepts `POST /handle-packet` with ILP PREPARE packets | HTTP      |
+| **7100** | Nostr relay — standard NIP-01 WebSocket for reads            | WebSocket |
 
 **Benefits:**
+
 - Decouples relay from connector lifecycle
 - Can scale independently
 - Works with any ILP connector that speaks HTTP
@@ -330,11 +345,13 @@ The BLS validates in this order (fail-fast):
 5. **Return proof** → Generate ILP FULFILL with cryptographic fulfillment
 
 **Why validate TOON before payment?**
+
 - Prevents paying to store garbage data
 - Fails fast on malformed packets (saves processing)
 - Ensures only valid Nostr events consume storage
 
 **Special rules:**
+
 - **Relay owner writes free** — You don't pay to publish on your own relay (checked after signature verification)
 - **SPSP bootstrap pricing** — kind:23194 events can have lower minimums to make joining the network cheaper
 
@@ -345,12 +362,14 @@ The BLS validates in this order (fail-fast):
 **Solution:** Use [TOON](https://toonformat.dev) — a compact, human-readable encoding of the JSON data model.
 
 **Event lifecycle (TOON all the way):**
+
 1. Client encodes event to TOON text → converts to UTF-8 bytes → embeds in ILP packet data
 2. **BLS decodes UTF-8 → parses TOON (validates format)** → verifies signature → checks payment → stores as TOON in SQLite
 3. Relay reads TOON from disk → sends TOON to WebSocket subscribers
 4. `RelaySubscriber` propagates TOON to upstream relays
 
 **Why TOON?**
+
 - **Compact:** 5-10% smaller than JSON for simple events, more efficient for uniform arrays
 - **Human-readable:** Uses YAML-like `key: value` syntax — easier to debug than binary formats
 - **LLM-optimized:** Designed for token efficiency and reliable parsing by language models
@@ -358,6 +377,7 @@ The BLS validates in this order (fail-fast):
 - **Deterministic:** Lossless round-trips preserve all data and structure
 
 **Example:** A simple text note (actual measurements):
+
 ```yaml
 # TOON format (327 bytes UTF-8)
 id: aaaa...aaaa
@@ -378,21 +398,23 @@ sig: cccc...cccc
 
 **Problem:** Auto-peering with every discovered node could open you to attacks or unwanted connections.
 
-**Solution:** Separate *seeing* peers from *connecting* to them.
+**Solution:** Separate _seeing_ peers from _connecting_ to them.
 
 **How it works:**
 
-| Phase | What Happens | Triggered By |
-|-------|--------------|--------------|
-| **Discovery** | `RelayMonitor` subscribes to kind:10032 events and maintains a live list of available peers | Automatic (continuous) |
-| **Peering** | You explicitly call `node.peerWith(pubkey)` which triggers: connector registration → SPSP handshake (kind:23194/23195) → settlement negotiation → channel opening | Manual (when you decide) |
+| Phase         | What Happens                                                                                                                                                      | Triggered By             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| **Discovery** | `RelayMonitor` subscribes to kind:10032 events and maintains a live list of available peers                                                                       | Automatic (continuous)   |
+| **Peering**   | You explicitly call `node.peerWith(pubkey)` which triggers: connector registration → SPSP handshake (kind:23194/23195) → settlement negotiation → channel opening | Manual (when you decide) |
 
 **Why this matters:**
+
 - **Security** — You control who you peer with
 - **Cost** — Opening payment channels costs gas; you only pay for peers you trust
 - **Awareness** — You always know who's available, even if you haven't peered yet
 
 **Example:**
+
 ```typescript
 // Discovery happens automatically in the background
 const discovered = node.relayMonitor.getDiscoveredPeers();
@@ -401,7 +423,7 @@ console.log(`Found ${discovered.length} peers`);
 // Peering only happens when you decide
 for (const peer of discovered) {
   if (await myTrustCheck(peer.pubkey)) {
-    await node.peerWith(peer.pubkey);  // Now we're connected
+    await node.peerWith(peer.pubkey); // Now we're connected
   }
 }
 ```
@@ -415,6 +437,7 @@ for (const peer of discovered) {
 **How it works:**
 
 1. **Advertise** — Both nodes publish kind:10032 events listing their supported chains:
+
    ```json
    {
      "supportedChains": ["evm:base:84532", "evm:sepolia:11155111"],
@@ -438,6 +461,7 @@ for (const peer of discovered) {
 **Chain format:** `{blockchain}:{network}:{chainId}`
 
 Examples:
+
 - `evm:base:84532` — Base Sepolia testnet
 - `evm:base:8453` — Base mainnet
 - `xrp:mainnet` — XRP Ledger mainnet
@@ -448,19 +472,21 @@ Examples:
 
 **Solution:** Four complementary discovery mechanisms:
 
-| Source | When Used | Why It Exists |
-|--------|-----------|---------------|
-| **Config (`knownPeers`)** | Bootstrap | Hardcoded genesis nodes — the first peers you connect to when joining the network |
-| **ArDrive Registry** | Bootstrap | Decentralized peer list stored on Arweave — global registry of Crosstown nodes |
-| **Environment (`ADDITIONAL_PEERS`)** | Runtime | JSON-formatted peer injection — useful for Docker deployments or dynamic configuration |
-| **RelayMonitor** | Ongoing | Real-time subscription to kind:10032 events — discovers new peers as they join |
+| Source                               | When Used | Why It Exists                                                                          |
+| ------------------------------------ | --------- | -------------------------------------------------------------------------------------- |
+| **Config (`knownPeers`)**            | Bootstrap | Hardcoded genesis nodes — the first peers you connect to when joining the network      |
+| **ArDrive Registry**                 | Bootstrap | Decentralized peer list stored on Arweave — global registry of Crosstown nodes         |
+| **Environment (`ADDITIONAL_PEERS`)** | Runtime   | JSON-formatted peer injection — useful for Docker deployments or dynamic configuration |
+| **RelayMonitor**                     | Ongoing   | Real-time subscription to kind:10032 events — discovers new peers as they join         |
 
 **Bootstrap flow:**
+
 1. Load peers from config → merge with ArDrive registry → merge with env var
 2. Peer with at least one genesis node (usually the first peer in your known peers list)
 3. Once connected, `RelayMonitor` subscribes to the relay and discovers new peers continuously
 
 **Why multiple sources?**
+
 - **Redundancy** — If ArDrive is down, you can still bootstrap from config
 - **Flexibility** — Environment variables let you inject peers without rebuilding
 - **Decentralization** — ArDrive provides a shared registry without requiring a central server
@@ -494,6 +520,7 @@ pnpm demo:ilp-gated-relay
 ```
 
 **What the demo does:**
+
 1. Creates two nodes (genesis and joiner) with mock ILP connectors
 2. Genesis publishes its kind:10032 peer info event
 3. Joiner discovers genesis via relay subscription
@@ -514,19 +541,20 @@ open http://localhost:3500
 
 **What you get:**
 
-| Service | URL | Purpose | Payment |
-|---------|-----|---------|---------|
-| **🚰 Token Faucet** | http://localhost:3500 | Get 100 ETH + 10,000 AGENT tokens instantly | FREE |
-| **⚡ Anvil** | http://localhost:8545 | Local Ethereum blockchain (chain ID 31337) | FREE |
-| **🔗 Connector** | http://localhost:8080 | ILP packet routing (v1.19.1) | - |
-| **📊 Explorer UI** | http://localhost:3001 | Monitor ILP packets and balances | FREE |
-| **📡 Crosstown BLS** | http://localhost:3100 | Payment validation & event storage | - |
-| **🌐 Nostr Relay** | ws://localhost:7100 | Read events for free | FREE |
-| **🦊 Forgejo Web UI** | http://localhost:3004 | Browse repos, edit files, view commits | FREE |
-| **📦 Forgejo Git HTTP** | http://localhost:3004/repo.git | Standard Git operations (clone, push, pull) | FREE |
-| **⚡ NIP-34 Git** | Via Nostr events | Submit patches/issues via Nostr | PAID (ILP) |
+| Service                 | URL                            | Purpose                                     | Payment    |
+| ----------------------- | ------------------------------ | ------------------------------------------- | ---------- |
+| **🚰 Token Faucet**     | http://localhost:3500          | Get 100 ETH + 10,000 AGENT tokens instantly | FREE       |
+| **⚡ Anvil**            | http://localhost:8545          | Local Ethereum blockchain (chain ID 31337)  | FREE       |
+| **🔗 Connector**        | http://localhost:8080          | ILP packet routing (v1.19.1)                | -          |
+| **📊 Explorer UI**      | http://localhost:3001          | Monitor ILP packets and balances            | FREE       |
+| **📡 Crosstown BLS**    | http://localhost:3100          | Payment validation & event storage          | -          |
+| **🌐 Nostr Relay**      | ws://localhost:7100            | Read events for free                        | FREE       |
+| **🦊 Forgejo Web UI**   | http://localhost:3004          | Browse repos, edit files, view commits      | FREE       |
+| **📦 Forgejo Git HTTP** | http://localhost:3004/repo.git | Standard Git operations (clone, push, pull) | FREE       |
+| **⚡ NIP-34 Git**       | Via Nostr events               | Submit patches/issues via Nostr             | PAID (ILP) |
 
 **Quick workflow:**
+
 1. **Get tokens** → Visit faucet, enter your address, receive tokens
 2. **Deploy contracts** → Automatically deployed on startup
 3. **Test payments** → Send ILP packets through the connector
@@ -534,6 +562,7 @@ open http://localhost:3500
 5. **Read for free** → Query events via WebSocket
 
 **Token Faucet Features:**
+
 - Distributes **100 ETH** and **10,000 AGENT tokens** per request
 - **Rate limited** to 1 request per address per hour
 - **Auto-discovery** of deployed contract addresses
@@ -541,10 +570,12 @@ open http://localhost:3500
 - **RESTful API** for programmatic access
 
 **Deployed Contracts (Local Anvil):**
+
 - **AGENT Token** (ERC20): Mock token for testing payment channels
 - **TokenNetwork**: Payment channel registry for off-chain transfers
 
 **Stop the stack:**
+
 ```bash
 docker compose -f docker-compose-with-local.yml down
 ```
@@ -564,6 +595,7 @@ docker run -p 3100:3100 -p 7100:7100 \
 ```
 
 Visit:
+
 - `http://localhost:3100/health` — BLS health check
 - `ws://localhost:7100` — Nostr relay WebSocket
 
@@ -584,12 +616,12 @@ Crosstown implements and extends several Nostr event kinds:
 
 **Status:** ✅ Fully implemented with ILP payment gating
 
-| Kind | Name | Purpose |
-|------|------|---------|
-| **30617** | Repository Announcement | Advertise Git repositories |
-| **1617** | Patch | Submit code changes (paid via ILP) |
-| **1621** | Issue | Create repository issues (paid via ILP) |
-| **1622** | Reply | Comment on patches/issues (paid via ILP) |
+| Kind      | Name                    | Purpose                                  |
+| --------- | ----------------------- | ---------------------------------------- |
+| **30617** | Repository Announcement | Advertise Git repositories               |
+| **1617**  | Patch                   | Submit code changes (paid via ILP)       |
+| **1621**  | Issue                   | Create repository issues (paid via ILP)  |
+| **1622**  | Reply                   | Comment on patches/issues (paid via ILP) |
 
 **Integration:** Crosstown's BLS validates NIP-34 events and automatically applies them to Forgejo via API. This enables **payment-gated Git operations** — users pay micropayments to submit patches, and repository owners earn revenue from contributions.
 
@@ -599,13 +631,14 @@ Crosstown implements and extends several Nostr event kinds:
 
 **Status:** ⚠️ Implemented in Crosstown, not yet submitted as formal NIP
 
-| Kind | Name | Type | Purpose |
-|------|------|------|---------|
-| **10032** | ILP Peer Info | Parameterized replaceable | Advertise ILP connector details (address, BTP endpoint, supported chains, settlement addresses) |
-| **23194** | SPSP Request | Ephemeral encrypted (NIP-44) | Request payment channel setup with settlement chain negotiation |
-| **23195** | SPSP Response | Ephemeral encrypted (NIP-44) | Respond with opened channel ID and payment destination |
+| Kind      | Name          | Type                         | Purpose                                                                                         |
+| --------- | ------------- | ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| **10032** | ILP Peer Info | Parameterized replaceable    | Advertise ILP connector details (address, BTP endpoint, supported chains, settlement addresses) |
+| **23194** | SPSP Request  | Ephemeral encrypted (NIP-44) | Request payment channel setup with settlement chain negotiation                                 |
+| **23195** | SPSP Response | Ephemeral encrypted (NIP-44) | Respond with opened channel ID and payment destination                                          |
 
 **Why this could be a NIP:**
+
 - Enables **decentralized ILP connector discovery** without DNS or central registries
 - Provides **encrypted payment channel negotiation** using existing Nostr infrastructure
 - Makes **micropayment routing** inherit Nostr's social graph (follow someone → route payments through them)
@@ -615,17 +648,20 @@ Crosstown implements and extends several Nostr event kinds:
 ## Related Specifications
 
 ### Nostr Specifications
+
 - [NIP-01: Basic Protocol](https://github.com/nostr-protocol/nips/blob/master/01.md) — Base Nostr relay protocol
 - [NIP-34: Git Stuff](https://github.com/nostr-protocol/nips/blob/master/34.md) — Git operations via Nostr events (repositories, patches, issues)
 - [NIP-44: Encrypted Payloads](https://github.com/nostr-protocol/nips/blob/master/44.md) — Secures SPSP handshakes
 
 ### Interledger Specifications
+
 - [RFC 0009: SPSP](https://interledger.org/developers/rfcs/simple-payment-setup-protocol/) — Simple Payment Setup Protocol
 - [RFC 0027: ILPv4](https://interledger.org/developers/rfcs/interledger-protocol-v4/) — Interledger Protocol V4
 - [RFC 0032: Peering, Clearing and Settlement](https://interledger.org/developers/rfcs/peering-clearing-settling/) — ILP peering model
 - [RFC 0035: ILP Over HTTP](https://interledger.org/developers/rfcs/ilp-over-http/) — Transport ILP packets over HTTP
 
 ### Other
+
 - [TOON Format](https://toonformat.dev) — Compact, human-readable JSON encoding for LLMs
 
 ## License

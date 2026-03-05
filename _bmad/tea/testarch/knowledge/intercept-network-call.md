@@ -141,7 +141,10 @@ test('conditional mocking', async ({ page, interceptNetworkCall }) => {
 **Implementation**:
 
 ```typescript
-test('should handle API errors gracefully', async ({ page, interceptNetworkCall }) => {
+test('should handle API errors gracefully', async ({
+  page,
+  interceptNetworkCall,
+}) => {
   // Simulate 500 error
   const errorCall = interceptNetworkCall({
     url: '**/api/users',
@@ -172,7 +175,9 @@ test('should handle timeout', async ({ page, interceptNetworkCall }) => {
   await page.goto('/slow-page');
 
   // UI should show timeout error
-  await expect(page.getByText('Request timed out')).toBeVisible({ timeout: 10000 });
+  await expect(page.getByText('Request timed out')).toBeVisible({
+    timeout: 10000,
+  });
 });
 ```
 
@@ -330,7 +335,11 @@ The utility uses [picomatch](https://github.com/micromatch/picomatch) for powerf
 // Vanilla Playwright - complex predicate
 const predicate = (response) => {
   const url = response.url();
-  return url.endsWith('/api/users') || url.match(/\/api\/users\/\d+/) || (url.includes('/api/users/') && url.includes('/profile'));
+  return (
+    url.endsWith('/api/users') ||
+    url.match(/\/api\/users\/\d+/) ||
+    (url.includes('/api/users/') && url.includes('/profile'))
+  );
 };
 page.waitForResponse(predicate);
 

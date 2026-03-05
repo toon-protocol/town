@@ -8,6 +8,7 @@ This dramatically speeds up the development iteration cycle.
 ## Prerequisites
 
 ✅ **Already Running:**
+
 - Anvil (Ethereum local node): `http://localhost:8545` (Chain ID: 31337)
 - Token Faucet: `http://localhost:3500`
 - Token Contract: `0x5FbDB2315678afecb367f032d93F642f64180aa3`
@@ -79,6 +80,7 @@ docker-compose -f docker-compose-bootstrap.yml -f docker-compose-bootstrap-dev.y
 ### Phase 1: Genesis Startup
 
 **Expected Genesis (Peer1) Logs:**
+
 ```
 ✅ Nostr relay started on port 7100
 ✅ SPSP server started
@@ -87,6 +89,7 @@ docker-compose -f docker-compose-bootstrap.yml -f docker-compose-bootstrap-dev.y
 ```
 
 **Verify:**
+
 ```bash
 # Check genesis published kind:10032
 docker logs crosstown-peer1 2>&1 | grep -E "kind:10032|Genesis"
@@ -98,6 +101,7 @@ curl http://localhost:7101/health || echo "Relay not responding"
 ### Phase 2: Joiner Discovery
 
 **Expected Joiner (Peer2) Logs:**
+
 ```
 ✅ Querying ws://crosstown-peer1:7100 for peer info
 ✅ Peer discovered: 719705df...
@@ -105,6 +109,7 @@ curl http://localhost:7101/health || echo "Relay not responding"
 ```
 
 **Verify:**
+
 ```bash
 # Check joiner discovered genesis
 docker logs crosstown-peer2 2>&1 | grep -E "discovered|peer-registered"
@@ -116,6 +121,7 @@ curl http://localhost:8092/admin/peers | jq '.[] | select(.id | startswith("nost
 ### Phase 3: SPSP Handshake
 
 **Expected Logs:**
+
 ```
 Genesis (Peer1):
   📨 SPSP request from b2c3d4e5f6a7b8c9...
@@ -129,6 +135,7 @@ Joiner (Peer2):
 ```
 
 **Verify:**
+
 ```bash
 # Check SPSP handshake
 docker logs crosstown-peer1 2>&1 | grep SPSP
@@ -188,23 +195,26 @@ curl http://localhost:8092/admin/channels | jq .
 ### Common Issues
 
 **Issue: "No kind:10032 event found"**
+
 - Genesis hasn't published yet, wait 5-10 seconds
 - Check genesis logs: `docker logs crosstown-peer1 | grep kind:10032`
 
 **Issue: "SPSP handshake rejected"**
+
 - Check payment channel opening failed
 - Check channel client logs in connector
 
 **Issue: "Connection closed before receiving events"**
+
 - Relay WebSocket timeout
 - Check relay is running: `curl http://localhost:7101/health`
 
 ## Performance Comparison
 
-| Method | Time to Iterate |
-|--------|----------------|
-| **Docker Image Rebuild** | 5-10 minutes |
-| **Local Build + Volume Mount** | 5-10 seconds |
+| Method                         | Time to Iterate |
+| ------------------------------ | --------------- |
+| **Docker Image Rebuild**       | 5-10 minutes    |
+| **Local Build + Volume Mount** | 5-10 seconds    |
 
 ## File Structure
 
@@ -232,6 +242,7 @@ crosstown-peer1:
 ```
 
 This mounts the **entire package directories** (not just dist) so Node.js module resolution finds:
+
 - `package.json` (for exports/main)
 - `dist/` (for compiled code)
 - `*.d.ts` (for TypeScript types)

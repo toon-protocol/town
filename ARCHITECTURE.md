@@ -237,7 +237,9 @@ Peer 1                                    Peer 2
 ## Component Responsibilities
 
 ### Crosstown Node
+
 **Role:** Core ILP + Nostr integration
+
 - Validate ILP payments
 - Store Nostr events
 - Handle NIP-34 Git operations
@@ -245,34 +247,44 @@ Peer 1                                    Peer 2
 - Bootstrap coordination
 
 ### Git Proxy
+
 **Role:** Payment gateway for Git HTTP
+
 - Intercept git operations
 - Calculate operation cost
 - Enforce payment requirement
 - Proxy to Forgejo
 
 ### Forgejo
+
 **Role:** Git repository storage
+
 - Store Git objects
 - Manage users/permissions
 - Provide web UI
 - Track issues/PRs
 
 ### ILP Connector
+
 **Role:** Payment packet routing
+
 - Route ILP packets between peers
 - Manage peer balances
 - Settlement execution
 - Admin API
 
 ### Anvil
+
 **Role:** Local blockchain
+
 - Deploy payment channel contracts
 - Execute settlements
 - Provide test ETH/tokens
 
 ### Token Faucet
+
 **Role:** Test token distribution
+
 - Dispense ETH for gas
 - Dispense AGENT tokens
 - Rate limiting
@@ -328,17 +340,17 @@ Peer 1                  Peer 2                  Peer 3
 
 ## Port Reference
 
-| Port | Service | Protocol | Purpose |
-|------|---------|----------|---------|
-| **3003** | git-proxy | HTTP | Git operations (clone/push) |
-| **3100** | crosstown | HTTP | BLS packet delivery |
-| **7100** | crosstown | WebSocket | Nostr relay |
-| **8080** | connector | HTTP | Health check |
-| **8081** | connector | HTTP | Admin API |
-| **3001** | connector | HTTP | Explorer UI |
-| **8545** | anvil | HTTP | Ethereum JSON-RPC |
-| **3500** | faucet | HTTP | Token dispenser |
-| **3000** | forgejo | HTTP | Git web UI (internal) |
+| Port     | Service   | Protocol  | Purpose                     |
+| -------- | --------- | --------- | --------------------------- |
+| **3003** | git-proxy | HTTP      | Git operations (clone/push) |
+| **3100** | crosstown | HTTP      | BLS packet delivery         |
+| **7100** | crosstown | WebSocket | Nostr relay                 |
+| **8080** | connector | HTTP      | Health check                |
+| **8081** | connector | HTTP      | Admin API                   |
+| **3001** | connector | HTTP      | Explorer UI                 |
+| **8545** | anvil     | HTTP      | Ethereum JSON-RPC           |
+| **3500** | faucet    | HTTP      | Token dispenser             |
+| **3000** | forgejo   | HTTP      | Git web UI (internal)       |
 
 ---
 
@@ -361,16 +373,19 @@ Local Build:
 ## Security Model
 
 ### Payment Validation
+
 - All operations require valid ILP payment
 - Payment proofs validated by BLS
 - No operations without payment
 
 ### Access Control
+
 - Forgejo: username/password
 - Git Proxy: ILP payment = access
 - Connector Admin API: no auth (local only)
 
 ### Network Isolation
+
 - Forgejo not exposed externally
 - All Git access via payment proxy
 - Internal Docker network

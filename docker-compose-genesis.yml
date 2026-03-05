@@ -47,12 +47,16 @@ services:
     volumes:
       - ../connector/packages/contracts:/contracts
     ports:
-      - "8545:8545"
+      - '8545:8545'
     networks:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -69,10 +73,10 @@ services:
       RPC_URL: http://anvil:8545
 
       # Account 1 for ETH (has 10k ETH from Anvil)
-      ETH_PRIVATE_KEY: "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d"
+      ETH_PRIVATE_KEY: '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
 
       # Account 0 (deployer) for AGENT tokens
-      TOKEN_PRIVATE_KEY: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      TOKEN_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
 
       # Token address (deterministic from Anvil deployment)
       TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
@@ -85,7 +89,7 @@ services:
       RATE_LIMIT_HOURS: ${FAUCET_RATE_LIMIT_HOURS:-1}
 
     ports:
-      - "3500:3500"
+      - '3500:3500'
     networks:
       - crosstown-network
     depends_on:
@@ -93,7 +97,11 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -112,12 +120,12 @@ services:
       LOCAL_DELIVERY_URL: http://crosstown:3100
 
       # Enable BASE blockchain for payment channels
-      BASE_ENABLED: "true"
+      BASE_ENABLED: 'true'
       BASE_RPC_URL: http://anvil:8545
-      BASE_CHAIN_ID: "31337"
+      BASE_CHAIN_ID: '31337'
 
       # Anvil test account #0 private key (well-known)
-      BASE_PRIVATE_KEY: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      BASE_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
 
       # Payment channel contract addresses (deterministic from Anvil deployment)
       BASE_TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
@@ -127,13 +135,13 @@ services:
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
 
       # Allow external client BTP connections (peerId → env var BTP_PEER_{ID}_SECRET)
-      BTP_PEER_CLIENT_SECRET: "${BTP_CLIENT_SECRET:-open}"
+      BTP_PEER_CLIENT_SECRET: '${BTP_CLIENT_SECRET:-open}'
 
     ports:
-      - "3000:3000"   # BTP Server
-      - "8080:8080"   # Health check
-      - "8081:8081"   # Admin API
-      - "3001:3001"   # Explorer UI
+      - '3000:3000' # BTP Server
+      - '8080:8080' # Health check
+      - '8081:8081' # Admin API
+      - '3001:3001' # Explorer UI
     volumes:
       - connector-data:/data
       - ./config/connector-config-with-base.yaml:/app/config.yaml:ro
@@ -144,7 +152,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -187,7 +203,7 @@ services:
       M2M_TOKEN_ADDRESS: ${M2M_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
 
       # Settlement Configuration (Payment Channels)
-      SUPPORTED_CHAINS: "evm:base:31337"
+      SUPPORTED_CHAINS: 'evm:base:31337'
       SETTLEMENT_ADDRESS_EVM_BASE_31337: ${PEER_EVM_ADDRESS:-0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266}
       PREFERRED_TOKEN_EVM_BASE_31337: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
       TOKEN_NETWORK_EVM_BASE_31337: ${BASE_TOKEN_NETWORK_ADDRESS:-0xCafac3dD18aC6c6e92c921884f9E4176737C052c}
@@ -201,8 +217,8 @@ services:
       DATA_DIR: /data
 
     ports:
-      - "3100:3100"   # BLS HTTP API
-      - "7100:7100"   # Nostr Relay WebSocket
+      - '3100:3100' # BLS HTTP API
+      - '7100:7100' # Nostr Relay WebSocket
     volumes:
       - crosstown-data:/data
     networks:
@@ -212,7 +228,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -246,7 +262,7 @@ services:
       - FORGEJO__repository__DEFAULT_PRIVATE=false
 
     ports:
-      - "3004:3000"
+      - '3004:3000'
     volumes:
       - forgejo-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -255,7 +271,7 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/']
       interval: 30s
       timeout: 10s
       retries: 3

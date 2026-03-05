@@ -77,15 +77,15 @@ docker logs crosstown-node 2>&1 | grep NIP-34
 
 You now have a complete stack running:
 
-| Service | Port | Purpose |
-|---------|------|---------|
-| **Crosstown Node** | 3100, 7100 | BLS + Nostr relay + NIP-34 handler |
-| **ILP Connector** | 8080, 8081, 3001 | Payment routing + admin API |
-| **Git Proxy** | 3003 | ILP-gated Git operations (clone/push) |
-| **Forgejo Web UI** | 3004 | Browse repos (FREE, read-only) |
-| **Forgejo (internal)** | - | Git repository storage |
-| **Anvil** | 8545 | Local Ethereum (for payment channels) |
-| **Token Faucet** | 3500 | Get test tokens |
+| Service                | Port             | Purpose                               |
+| ---------------------- | ---------------- | ------------------------------------- |
+| **Crosstown Node**     | 3100, 7100       | BLS + Nostr relay + NIP-34 handler    |
+| **ILP Connector**      | 8080, 8081, 3001 | Payment routing + admin API           |
+| **Git Proxy**          | 3003             | ILP-gated Git operations (clone/push) |
+| **Forgejo Web UI**     | 3004             | Browse repos (FREE, read-only)        |
+| **Forgejo (internal)** | -                | Git repository storage                |
+| **Anvil**              | 8545             | Local Ethereum (for payment channels) |
+| **Token Faucet**       | 3500             | Get test tokens                       |
 
 ---
 
@@ -259,22 +259,26 @@ VERBOSE=true                       # Detailed Crosstown logs
 ### NIP-34 Not Enabled
 
 **Symptom:**
+
 ```
 📝 NIP-34 Git integration disabled
 ```
 
 **Solution:**
+
 1. Check `.env` has `FORGEJO_TOKEN` and `FORGEJO_OWNER`
 2. Restart: `docker compose -f docker-compose-with-local.yml restart crosstown-node`
 
 ### Forgejo Token Invalid
 
 **Symptom:**
+
 ```
 ⚠️  Failed to initialize NIP-34 handler: 401 Unauthorized
 ```
 
 **Solution:**
+
 1. Regenerate token in Forgejo settings
 2. Update `.env` file
 3. Restart crosstown-node
@@ -282,12 +286,14 @@ VERBOSE=true                       # Detailed Crosstown logs
 ### Git Proxy Returns 502
 
 **Symptom:**
+
 ```
 git clone http://localhost:3003/admin/test-repo.git
 fatal: unable to access: 502 Bad Gateway
 ```
 
 **Solution:**
+
 1. Check Forgejo is running: `docker ps | grep forgejo`
 2. Check git-proxy logs: `docker logs crosstown-git-proxy`
 3. Verify internal network: `docker exec crosstown-git-proxy ping forgejo`
@@ -295,11 +301,13 @@ fatal: unable to access: 502 Bad Gateway
 ### Connector Not Healthy
 
 **Symptom:**
+
 ```
 crosstown-connector unhealthy
 ```
 
 **Solution:**
+
 1. Check config: `docker logs crosstown-connector | grep error`
 2. Verify config file: `config/connector-config-with-base.yaml`
 3. Restart: `docker compose -f docker-compose-with-local.yml restart connector`
@@ -307,11 +315,13 @@ crosstown-connector unhealthy
 ### Port Already in Use
 
 **Symptom:**
+
 ```
 Error: bind: address already in use
 ```
 
 **Solution:**
+
 1. Find conflicting process: `lsof -i :3003` (or whichever port)
 2. Stop it or change port in docker-compose.yml
 3. Restart: `docker compose -f docker-compose-with-local.yml up -d`
@@ -360,6 +370,7 @@ docker compose -f docker-compose-bootstrap.yml up -d
 ## Summary
 
 ✅ **What you have:**
+
 - ILP-gated Git server (pay to push/pull)
 - Nostr relay with NIP-34 support
 - Local Ethereum network (Anvil)
@@ -367,6 +378,7 @@ docker compose -f docker-compose-bootstrap.yml up -d
 - Token faucet for testing
 
 ✅ **What you can do:**
+
 - Clone/push Git repos with ILP payments
 - Submit patches via Nostr events
 - Test peer discovery and bootstrap

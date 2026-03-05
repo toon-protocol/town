@@ -55,14 +55,14 @@ services:
         exec tigerbeetle start --addresses=0.0.0.0:3000 /data/0_0.tigerbeetle
       '
     ports:
-      - "3002:3000"
+      - '3002:3000'
     volumes:
       - tigerbeetle-data:/data
     networks:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pgrep tigerbeetle || exit 1"]
+      test: ['CMD-SHELL', 'pgrep tigerbeetle || exit 1']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -80,9 +80,9 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-info}
 
       # Local Delivery (forward packets to Crosstown BLS)
-      LOCAL_DELIVERY_ENABLED: "true"
+      LOCAL_DELIVERY_ENABLED: 'true'
       LOCAL_DELIVERY_URL: http://crosstown:3100
-      LOCAL_DELIVERY_TIMEOUT: "30000"
+      LOCAL_DELIVERY_TIMEOUT: '30000'
 
       # Ports
       BTP_SERVER_PORT: 3000
@@ -97,10 +97,10 @@ services:
       # SETTLEMENT_ENABLED: "true"
       # SUPPORTED_CHAINS: "evm:base:8453,evm:polygon:137"
     ports:
-      - "3000:3000"   # BTP Server (for peer connections)
-      - "8080:8080"   # Health check
-      - "8081:8081"   # Admin API (for Crosstown bootstrap to register peers)
-      - "3001:3001"   # Explorer UI (monitoring dashboard)
+      - '3000:3000' # BTP Server (for peer connections)
+      - '8080:8080' # Health check
+      - '8081:8081' # Admin API (for Crosstown bootstrap to register peers)
+      - '3001:3001' # Explorer UI (monitoring dashboard)
     networks:
       - crosstown-network
     depends_on:
@@ -108,7 +108,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -125,7 +133,7 @@ services:
       # Required Configuration
       # ──────────────────────────────────────────────────────────────
       NODE_ID: ${NODE_ID:-crosstown-node}
-      NOSTR_SECRET_KEY: ${NOSTR_SECRET_KEY}  # Generate: openssl rand -hex 32
+      NOSTR_SECRET_KEY: ${NOSTR_SECRET_KEY} # Generate: openssl rand -hex 32
       ILP_ADDRESS: ${ILP_ADDRESS:-g.crosstown.node}
 
       # ──────────────────────────────────────────────────────────────
@@ -138,14 +146,14 @@ services:
       # ──────────────────────────────────────────────────────────────
       # Service Ports
       # ──────────────────────────────────────────────────────────────
-      BLS_PORT: 3100       # HTTP API (connector calls /handle-packet here)
-      WS_PORT: 7100        # Nostr Relay WebSocket
+      BLS_PORT: 3100 # HTTP API (connector calls /handle-packet here)
+      WS_PORT: 7100 # Nostr Relay WebSocket
 
       # ──────────────────────────────────────────────────────────────
       # Pricing Configuration
       # ──────────────────────────────────────────────────────────────
       BASE_PRICE_PER_BYTE: ${BASE_PRICE_PER_BYTE:-10}
-      SPSP_MIN_PRICE: ${SPSP_MIN_PRICE:-5}  # Lower price for SPSP requests
+      SPSP_MIN_PRICE: ${SPSP_MIN_PRICE:-5} # Lower price for SPSP requests
 
       # ──────────────────────────────────────────────────────────────
       # Asset Configuration
@@ -181,8 +189,8 @@ services:
       DATA_DIR: /data
 
     ports:
-      - "3100:3100"   # BLS HTTP API
-      - "7100:7100"   # Nostr Relay WebSocket
+      - '3100:3100' # BLS HTTP API
+      - '7100:7100' # Nostr Relay WebSocket
     volumes:
       - crosstown-data:/data
     networks:
@@ -192,7 +200,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -213,8 +221,8 @@ services:
       - FORGEJO__server__ROOT_URL=http://localhost:3003/
       - FORGEJO__security__INSTALL_LOCK=true
     ports:
-      - "3003:3000"   # Web UI (HTTP)
-      - "2222:22"     # Git over SSH
+      - '3003:3000' # Web UI (HTTP)
+      - '2222:22' # Git over SSH
     volumes:
       - forgejo-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -223,7 +231,7 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/']
       interval: 30s
       timeout: 10s
       retries: 3

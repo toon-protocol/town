@@ -199,24 +199,33 @@ import { functionTestStep } from '@seontechnologies/playwright-utils';
 // Define todo items for the test
 const TODO_ITEMS = ['buy groceries', 'pay bills', 'schedule meeting'];
 
-const createDefaultTodos = functionTestStep('Create default todos', async (page: Page) => {
-  await log.info('Creating default todos');
-  await log.step('step within a functionWrapper');
-  const todoPage = new TodoPage(page);
+const createDefaultTodos = functionTestStep(
+  'Create default todos',
+  async (page: Page) => {
+    await log.info('Creating default todos');
+    await log.step('step within a functionWrapper');
+    const todoPage = new TodoPage(page);
 
-  for (const item of TODO_ITEMS) {
-    await todoPage.addTodo(item);
+    for (const item of TODO_ITEMS) {
+      await todoPage.addTodo(item);
+    }
+
+    await log.success('Created all default todos');
   }
+);
 
-  await log.success('Created all default todos');
-});
-
-const checkNumberOfTodosInLocalStorage = functionTestStep('Check total todos count fn-step', async (page: Page, expected: number) => {
-  await log.info(`Verifying todo count: ${expected}`);
-  const result = await page.waitForFunction((e) => JSON.parse(localStorage['react-todos']).length === e, expected);
-  await log.success(`Verified todo count: ${expected}`);
-  return result;
-});
+const checkNumberOfTodosInLocalStorage = functionTestStep(
+  'Check total todos count fn-step',
+  async (page: Page, expected: number) => {
+    await log.info(`Verifying todo count: ${expected}`);
+    const result = await page.waitForFunction(
+      (e) => JSON.parse(localStorage['react-todos']).length === e,
+      expected
+    );
+    await log.success(`Verified todo count: ${expected}`);
+    return result;
+  }
+);
 ```
 
 ### Example 5: File Logging

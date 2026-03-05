@@ -8,6 +8,7 @@
 ## Executive Summary
 
 The @crosstown/client is **fully functional** for:
+
 - ILP-gated event publishing
 - Payment channel management
 - SPSP handshake with settlement negotiation
@@ -25,12 +26,14 @@ Multi-hop routing discovered to need configuration adjustments (routing table se
 **Test:** `publish-to-peer1.ts`
 
 **Configuration:**
+
 ```typescript
-connectorUrl: 'http://localhost:8090'  // Peer1 connector
-btpUrl: 'ws://localhost:3010'           // Peer1 BTP
+connectorUrl: 'http://localhost:8090'; // Peer1 connector
+btpUrl: 'ws://localhost:3010'; // Peer1 BTP
 ```
 
 **Results:**
+
 - ✅ BTP connection established
 - ✅ Authentication successful
 - ✅ Event published
@@ -38,6 +41,7 @@ btpUrl: 'ws://localhost:3010'           // Peer1 BTP
 - ✅ Fulfillment received
 
 **Evidence:**
+
 ```json
 {
   "msg": "Packet fulfilled by business logic server",
@@ -53,6 +57,7 @@ btpUrl: 'ws://localhost:3010'           // Peer1 BTP
 **Test:** `with-payment-channels.ts`
 
 **Configuration:**
+
 ```typescript
 evmPrivateKey: '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
 chainRpcUrls: { 'evm:base:31337': 'http://localhost:8545' }
@@ -63,6 +68,7 @@ tokenNetworks: { 'evm:base:31337': '0xCafac3dD18aC6c6e92c921884f9E4176737C052c' 
 ```
 
 **Results:**
+
 - ✅ Payment channel opened on-chain
 - ✅ Channel state: **open**
 - ✅ Channel tracked by client
@@ -70,6 +76,7 @@ tokenNetworks: { 'evm:base:31337': '0xCafac3dD18aC6c6e92c921884f9E4176737C052c' 
 - ✅ Events published with payment-channel-claim protocol data
 
 **On-Chain Verification:**
+
 ```
 Channel ID: 0x0a868fcee142962fa9ed73587f9a4fc7b5605c06a57e70a0ac0551b4a80e1d18
 State: open
@@ -80,8 +87,9 @@ Opened At: 2026-02-26T15:06:31.000Z
 ```
 
 **Client API:**
+
 ```typescript
-const channels = client.getTrackedChannels();  // Returns: ['0x0a868fc...']
+const channels = client.getTrackedChannels(); // Returns: ['0x0a868fc...']
 const claim = await client.signBalanceProof(channelId, 1000n);
 // claim.nonce: 2
 // claim.amount: 1000
@@ -95,6 +103,7 @@ await client.publishEvent(event, { claim });
 **Status:** Attempted but encountered serialization issue
 
 **Log Output:**
+
 ```
 [Bootstrap] Creating payment channel on evm:base:31337 with nostr-aa1857d0ff1fcb1a...
 [Bootstrap] Opened channel 0x0a868fcee142962fa9ed73587f9a4fc7b5605c06a57e70a0ac0551b4a80e1d18
@@ -114,11 +123,13 @@ await client.publishEvent(event, { claim });
 **Test:** `multi-hop-routing.ts`
 
 **Expected Flow:**
+
 ```
 Client → Peer1 Connector → Genesis Connector → Genesis BLS
 ```
 
 **Actual Flow:**
+
 ```
 Client → Peer1 Connector → Peer1 BLS (local delivery)
 ```
@@ -127,6 +138,7 @@ Client → Peer1 Connector → Peer1 BLS (local delivery)
 Both genesis and peer1 use the same ILP address prefix `g.crosstown.relay` for their local relays, causing peer1 to route locally instead of forwarding.
 
 **Routing Decision Log:**
+
 ```json
 {
   "msg": "Routing decision",
@@ -145,37 +157,37 @@ Both genesis and peer1 use the same ILP address prefix `g.crosstown.relay` for t
 
 ### Core Methods ✅
 
-| Method | Status | Notes |
-|--------|--------|-------|
-| `constructor()` | ✅ | Validates config, creates SimplePool |
-| `start()` | ✅ | Bootstraps network, opens channels |
-| `publishEvent()` | ✅ | Sends ILP packet with TOON payload |
-| `publishEvent(event, { claim })` | ✅ | Sends with payment-channel-claim |
-| `stop()` | ⚠️ | Works but nostr-tools crashes after |
-| `isStarted()` | ✅ | Returns boolean state |
-| `getPeersCount()` | ✅ | Returns discovered peer count |
-| `getDiscoveredPeers()` | ✅ | Returns peer list |
-| `getTrackedChannels()` | ✅ | Returns channel ID array |
-| `signBalanceProof()` | ✅ | Creates signed claim |
+| Method                           | Status | Notes                                |
+| -------------------------------- | ------ | ------------------------------------ |
+| `constructor()`                  | ✅     | Validates config, creates SimplePool |
+| `start()`                        | ✅     | Bootstraps network, opens channels   |
+| `publishEvent()`                 | ✅     | Sends ILP packet with TOON payload   |
+| `publishEvent(event, { claim })` | ✅     | Sends with payment-channel-claim     |
+| `stop()`                         | ⚠️     | Works but nostr-tools crashes after  |
+| `isStarted()`                    | ✅     | Returns boolean state                |
+| `getPeersCount()`                | ✅     | Returns discovered peer count        |
+| `getDiscoveredPeers()`           | ✅     | Returns peer list                    |
+| `getTrackedChannels()`           | ✅     | Returns channel ID array             |
+| `signBalanceProof()`             | ✅     | Creates signed claim                 |
 
 ### Configuration Fields ✅
 
-| Field | Status | Notes |
-|-------|--------|-------|
-| `connectorUrl` | ✅ | HTTP connector endpoint |
-| `btpUrl` | ✅ | BTP WebSocket endpoint |
-| `secretKey` | ✅ | Nostr private key |
-| `ilpInfo` | ✅ | ILP address and peer info |
-| `toonEncoder` | ✅ | TOON encoding function |
-| `toonDecoder` | ✅ | TOON decoding function |
-| `relayUrl` | ✅ | Nostr relay URL |
-| `evmPrivateKey` | ✅ | EVM wallet for channels |
-| `chainRpcUrls` | ✅ | Maps chain to RPC |
-| `supportedChains` | ✅ | Chain identifier array |
-| `settlementAddresses` | ✅ | Maps chain to address |
-| `preferredTokens` | ✅ | Maps chain to token |
-| `tokenNetworks` | ✅ | Maps chain to TokenNetwork |
-| `knownPeers` | ✅ | Bootstrap peer list |
+| Field                 | Status | Notes                      |
+| --------------------- | ------ | -------------------------- |
+| `connectorUrl`        | ✅     | HTTP connector endpoint    |
+| `btpUrl`              | ✅     | BTP WebSocket endpoint     |
+| `secretKey`           | ✅     | Nostr private key          |
+| `ilpInfo`             | ✅     | ILP address and peer info  |
+| `toonEncoder`         | ✅     | TOON encoding function     |
+| `toonDecoder`         | ✅     | TOON decoding function     |
+| `relayUrl`            | ✅     | Nostr relay URL            |
+| `evmPrivateKey`       | ✅     | EVM wallet for channels    |
+| `chainRpcUrls`        | ✅     | Maps chain to RPC          |
+| `supportedChains`     | ✅     | Chain identifier array     |
+| `settlementAddresses` | ✅     | Maps chain to address      |
+| `preferredTokens`     | ✅     | Maps chain to token        |
+| `tokenNetworks`       | ✅     | Maps chain to TokenNetwork |
+| `knownPeers`          | ✅     | Bootstrap peer list        |
 
 ---
 
@@ -286,7 +298,11 @@ Genesis Account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 
 ```typescript
 import { CrosstownClient } from '@crosstown/client';
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
 
 const secretKey = generateSecretKey();
@@ -308,12 +324,15 @@ const client = new CrosstownClient({
 
 await client.start();
 
-const event = finalizeEvent({
-  kind: 1,
-  content: 'Hello Crosstown!',
-  tags: [],
-  created_at: Math.floor(Date.now() / 1000),
-}, secretKey);
+const event = finalizeEvent(
+  {
+    kind: 1,
+    content: 'Hello Crosstown!',
+    tags: [],
+    created_at: Math.floor(Date.now() / 1000),
+  },
+  secretKey
+);
 
 const result = await client.publishEvent(event);
 // result.success: true
@@ -334,7 +353,7 @@ const client = new CrosstownClient({
   knownPeers: [{ pubkey: GENESIS_PUBKEY, relayUrl: '...', btpEndpoint: '...' }],
 });
 
-await client.start();  // Opens payment channel on-chain
+await client.start(); // Opens payment channel on-chain
 
 const channels = client.getTrackedChannels();
 const channelId = channels[0];
@@ -370,6 +389,7 @@ await client.publishEvent(event, { claim });
 **The @crosstown/client is production-ready for ILP-gated Nostr event publishing.**
 
 All core functionality works:
+
 - ✅ Event publishing with ILP micropayments
 - ✅ Payment channel creation and management
 - ✅ Signed balance proof claims
@@ -377,11 +397,13 @@ All core functionality works:
 - ✅ On-chain contract interaction
 
 Known limitations are **documented and non-blocking**:
+
 - nostr-tools crash is post-success and can be caught
 - SPSP serialization doesn't prevent channel creation
 - Multi-hop routing needs configuration, not code changes
 
 **Next Steps:**
+
 1. Configure routing tables for proper multi-hop testing
 2. Add BigInt serialization helper for SPSP
 3. Replace nostr-tools SimplePool for Node.js compatibility

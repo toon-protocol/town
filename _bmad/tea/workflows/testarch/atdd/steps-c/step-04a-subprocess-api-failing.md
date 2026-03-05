@@ -68,7 +68,9 @@ import { test, expect } from '@playwright/test';
 // import { apiRequest } from '@playwright-utils/api';
 
 test.describe('[Story Name] API Tests (ATDD)', () => {
-  test.skip('[P0] should register new user successfully', async ({ request }) => {
+  test.skip('[P0] should register new user successfully', async ({
+    request,
+  }) => {
     // THIS TEST WILL FAIL - Endpoint not implemented yet
     const response = await request.post('/api/users/register', {
       data: {
@@ -160,7 +162,11 @@ Write JSON to temp file: `/tmp/tea-atdd-api-tests-{{timestamp}}.json`
     }
   ],
   "fixture_needs": ["userDataFactory"],
-  "knowledge_fragments_used": ["api-request", "data-factories", "api-testing-patterns"],
+  "knowledge_fragments_used": [
+    "api-request",
+    "data-factories",
+    "api-testing-patterns"
+  ],
   "test_count": 3,
   "tdd_phase": "RED",
   "summary": "Generated 3 FAILING API tests for user registration story"

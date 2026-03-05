@@ -8,14 +8,15 @@
 
 Crosstown uses **separate ports** to enforce payment for Git operations while allowing free web browsing:
 
-| Port | Service | Access | Payment Required |
-|------|---------|--------|------------------|
-| **3004** | Forgejo Web UI | ✅ Direct | ❌ FREE |
-| **3003** | Git Proxy | 🔒 Gated | ✅ REQUIRED |
+| Port     | Service        | Access    | Payment Required |
+| -------- | -------------- | --------- | ---------------- |
+| **3004** | Forgejo Web UI | ✅ Direct | ❌ FREE          |
+| **3003** | Git Proxy      | 🔒 Gated  | ✅ REQUIRED      |
 
 ### Why Two Ports?
 
 **Problem:** Without separation, users could bypass payment by:
+
 - Using web editor to commit files
 - Uploading files via browser
 - Creating repos through UI
@@ -30,6 +31,7 @@ Crosstown uses **separate ports** to enforce payment for Git operations while al
 ### FREE (Port 3004 - Web UI)
 
 ✅ **Allowed:**
+
 - Browse repository code
 - View issues and PRs
 - Read documentation
@@ -37,6 +39,7 @@ Crosstown uses **separate ports** to enforce payment for Git operations while al
 - Download archives
 
 ❌ **Blocked:**
+
 - Web-based file editing
 - File uploads via browser
 - Creating commits through UI
@@ -45,12 +48,14 @@ Crosstown uses **separate ports** to enforce payment for Git operations while al
 ### PAID (Port 3003 - Git Operations)
 
 ✅ **Requires Payment:**
+
 - `git clone` - Download repository
 - `git fetch` - Get updates
 - `git push` - Upload changes
 - `git pull` - Fetch + merge
 
 💰 **Pricing:**
+
 - Clone/Fetch: 100 units + 10/KB
 - Push: 1000 units + 10/KB
 
@@ -75,6 +80,7 @@ The git-proxy **only** accepts Git HTTP paths:
 ```
 
 **Response for non-Git paths:**
+
 ```json
 {
   "error": "Not a Git operation",
@@ -116,11 +122,13 @@ Forgejo **only** accepts Git operations from authenticated git-proxy.
 ### ❌ Attack: Access Web UI via Git Proxy
 
 **Attempt:**
+
 ```bash
 curl http://localhost:3003/user/settings
 ```
 
 **Blocked By:** Git proxy rejects non-Git paths
+
 ```json
 {
   "error": "Not a Git operation",
@@ -133,6 +141,7 @@ curl http://localhost:3003/user/settings
 **Attempt:** Edit file in browser at `http://localhost:3004`
 
 **Blocked By:** Forgejo config disables web editor
+
 ```
 Feature disabled by administrator
 ```
@@ -142,6 +151,7 @@ Feature disabled by administrator
 **Attempt:** Use "Upload File" button in web UI
 
 **Blocked By:** `ENABLE_EDITOR_UPLOAD=false`
+
 ```
 Uploads disabled
 ```
@@ -149,11 +159,13 @@ Uploads disabled
 ### ❌ Attack: Clone Without Payment
 
 **Attempt:**
+
 ```bash
 git clone http://localhost:3003/admin/repo.git
 ```
 
 **Blocked By:** Git proxy requires payment proof
+
 ```
 HTTP/1.1 402 Payment Required
 {
@@ -165,6 +177,7 @@ HTTP/1.1 402 Payment Required
 ### ✅ Valid: Browse Web UI
 
 **Allowed:**
+
 ```bash
 curl http://localhost:3004/admin/repo
 ```
@@ -174,6 +187,7 @@ curl http://localhost:3004/admin/repo
 ### ✅ Valid: Clone with Payment
 
 **Allowed:**
+
 ```bash
 git clone \
   -c http.extraHeader="X-ILP-Payment-Proof: <proof>" \
@@ -201,15 +215,15 @@ REJECT_NON_GIT=false  # DANGEROUS: Allows web UI via proxy
 ```yaml
 forgejo:
   ports:
-    - "3004:3000"  # Web UI - internal only in production
+    - '3004:3000' # Web UI - internal only in production
   environment:
-    - FORGEJO__repository__ENABLE_EDITOR_UPLOAD=false  # Critical!
+    - FORGEJO__repository__ENABLE_EDITOR_UPLOAD=false # Critical!
 
 git-proxy:
   ports:
-    - "3003:3002"  # Git operations - payment required
+    - '3003:3002' # Git operations - payment required
   environment:
-    - REJECT_NON_GIT=true  # Critical!
+    - REJECT_NON_GIT=true # Critical!
 ```
 
 ---
@@ -233,7 +247,7 @@ Currently SSH is **NOT gated**:
 ```yaml
 git-proxy:
   ports:
-    - "2222:22"  # SSH passthrough - TODO: add payment gate
+    - '2222:22' # SSH passthrough - TODO: add payment gate
 ```
 
 **Mitigation:** Disable SSH or require authentication:
@@ -241,7 +255,7 @@ git-proxy:
 ```yaml
 forgejo:
   environment:
-    - FORGEJO__server__DISABLE_SSH=true  # Disable entirely
+    - FORGEJO__server__DISABLE_SSH=true # Disable entirely
 ```
 
 **Roadmap:** SSH proxy with ILP payment requirement
@@ -255,12 +269,13 @@ forgejo:
 ```yaml
 forgejo:
   # DO NOT expose port 3000 externally in production
-  ports: []  # No external access
+  ports: [] # No external access
   networks:
-    - crosstown-network  # Internal only
+    - crosstown-network # Internal only
 ```
 
 **Access via reverse proxy:**
+
 ```nginx
 server {
   listen 443 ssl;
@@ -285,8 +300,8 @@ Add to git-proxy (future enhancement):
 ```yaml
 git-proxy:
   environment:
-    - RATE_LIMIT_REQUESTS=100  # Per IP per hour
-    - RATE_LIMIT_BYTES=1000000  # 1MB per hour
+    - RATE_LIMIT_REQUESTS=100 # Per IP per hour
+    - RATE_LIMIT_BYTES=1000000 # 1MB per hour
 ```
 
 ### 3. Authentication
@@ -297,10 +312,11 @@ Forgejo provides user authentication for web UI:
 forgejo:
   environment:
     - FORGEJO__security__INSTALL_LOCK=true
-    - FORGEJO__service__REQUIRE_SIGNIN_VIEW=true  # Login required
+    - FORGEJO__service__REQUIRE_SIGNIN_VIEW=true # Login required
 ```
 
 Git operations still require **both**:
+
 1. Forgejo auth (username/password)
 2. ILP payment proof
 
@@ -344,25 +360,30 @@ docker logs -f crosstown-git-proxy | grep "Rejected"
 ## Security Checklist
 
 ✅ **Port Separation**
+
 - [ ] Forgejo on port 3004 (web UI)
 - [ ] Git proxy on port 3003 (Git operations)
 
 ✅ **Forgejo Configuration**
+
 - [ ] `ENABLE_EDITOR_UPLOAD=false`
 - [ ] `ENABLE_PUSH_CREATE_USER=false`
 - [ ] `ENABLE_PUSH_CREATE_ORG=false`
 
 ✅ **Git Proxy Configuration**
+
 - [ ] `REJECT_NON_GIT=true`
 - [ ] Payment validation enabled
 - [ ] BLS integration working
 
 ✅ **Network Security**
+
 - [ ] Forgejo not directly accessible (production)
 - [ ] All Git operations via proxy
 - [ ] SSH disabled or gated
 
 ✅ **Testing**
+
 - [ ] Web UI accessible on 3004
 - [ ] Non-Git paths blocked on 3003
 - [ ] Git operations require payment

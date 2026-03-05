@@ -40,9 +40,16 @@ Read outputs from 4 quality subprocesses, calculate weighted overall score (0-10
 // Use the SAME timestamp generated in Step 3 (do not regenerate).
 const timestamp = subprocessContext?.timestamp;
 if (!timestamp) {
-  throw new Error('Missing timestamp from Step 3 context. Pass Step 3 timestamp into Step 3F.');
+  throw new Error(
+    'Missing timestamp from Step 3 context. Pass Step 3 timestamp into Step 3F.'
+  );
 }
-const dimensions = ['determinism', 'isolation', 'maintainability', 'performance'];
+const dimensions = [
+  'determinism',
+  'isolation',
+  'maintainability',
+  'performance',
+];
 const results = {};
 
 dimensions.forEach((dim) => {
@@ -54,7 +61,9 @@ dimensions.forEach((dim) => {
 **Verify all succeeded:**
 
 ```javascript
-const allSucceeded = dimensions.every((dim) => results[dim].score !== undefined);
+const allSucceeded = dimensions.every(
+  (dim) => results[dim].score !== undefined
+);
 if (!allSucceeded) {
   throw new Error('One or more quality subprocesses failed!');
 }
@@ -110,7 +119,7 @@ const allViolations = dimensions.flatMap((dim) =>
   results[dim].violations.map((v) => ({
     ...v,
     dimension: dim,
-  })),
+  }))
 );
 
 // Group by severity
@@ -138,11 +147,13 @@ const allRecommendations = dimensions.flatMap((dim) =>
     dimension: dim,
     recommendation: rec,
     impact: results[dim].score < 70 ? 'HIGH' : 'MEDIUM',
-  })),
+  }))
 );
 
 // Sort by impact (HIGH first)
-const prioritizedRecommendations = allRecommendations.sort((a, b) => (a.impact === 'HIGH' ? -1 : 1)).slice(0, 10); // Top 10 recommendations
+const prioritizedRecommendations = allRecommendations
+  .sort((a, b) => (a.impact === 'HIGH' ? -1 : 1))
+  .slice(0, 10); // Top 10 recommendations
 ```
 
 ---
@@ -184,7 +195,11 @@ const reviewSummary = {
 };
 
 // Save for Step 4 (report generation)
-fs.writeFileSync(`/tmp/tea-test-review-summary-${timestamp}.json`, JSON.stringify(reviewSummary, null, 2), 'utf8');
+fs.writeFileSync(
+  `/tmp/tea-test-review-summary-${timestamp}.json`,
+  JSON.stringify(reviewSummary, null, 2),
+  'utf8'
+);
 ```
 
 ---

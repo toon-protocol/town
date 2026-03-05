@@ -15,7 +15,11 @@
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
 import { CrosstownClient } from '../../src/CrosstownClient.js';
 import WebSocket from 'ws';
@@ -23,7 +27,8 @@ import WebSocket from 'ws';
 const RELAY_URL = 'ws://localhost:7100';
 const CONNECTOR_URL = 'http://localhost:8080';
 const BLS_URL = 'http://localhost:3100';
-const GENESIS_PUBKEY = 'aa1857d0ff1fcb1aeb1907b3b98290f3ecb5545473c0b9296fb0b44481deb572';
+const GENESIS_PUBKEY =
+  'aa1857d0ff1fcb1aeb1907b3b98290f3ecb5545473c0b9296fb0b44481deb572';
 
 /**
  * Subscribe to a Nostr relay and wait for an event by ID using NIP-01 protocol.
@@ -130,7 +135,9 @@ describe('CrosstownClient Genesis Bootstrap E2E', () => {
       servicesReady = true;
     } catch (error) {
       console.warn('Genesis node not running. Run: ./deploy-genesis-node.sh');
-      console.warn(`Error: ${error instanceof Error ? error.message : String(error)}`);
+      console.warn(
+        `Error: ${error instanceof Error ? error.message : String(error)}`
+      );
     }
   }, 15000);
 

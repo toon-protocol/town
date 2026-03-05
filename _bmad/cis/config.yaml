@@ -9,4 +9,4 @@ visual_tools: intermediate
 user_name: Jonathan
 communication_language: English
 document_output_language: English
-output_folder: "{project-root}/_bmad-output"
+output_folder: '{project-root}/_bmad-output'

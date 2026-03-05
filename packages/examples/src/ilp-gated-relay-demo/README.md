@@ -171,9 +171,9 @@ const servers = await startRelay({
 
   // Kind-specific overrides
   kindOverrides: new Map([
-    [0, 50n],   // Profile metadata: 50 units/byte
-    [1, 10n],   // Text notes: 10 units/byte (default)
-    [3, 5n],    // Follows: 5 units/byte (cheaper)
+    [0, 50n], // Profile metadata: 50 units/byte
+    [1, 10n], // Text notes: 10 units/byte (default)
+    [3, 5n], // Follows: 5 units/byte (cheaper)
   ]),
 });
 ```
@@ -182,8 +182,8 @@ const servers = await startRelay({
 
 ```typescript
 const servers = await startRelay({
-  blsPort: 3001,  // Custom BLS port
-  wsPort: 7001,   // Custom WebSocket port
+  blsPort: 3001, // Custom BLS port
+  wsPort: 7001, // Custom WebSocket port
 });
 ```
 
@@ -192,7 +192,7 @@ const servers = await startRelay({
 ```typescript
 const servers = await startRelay({
   inMemory: false,
-  dbPath: './my-relay.db',  // SQLite file path
+  dbPath: './my-relay.db', // SQLite file path
 });
 ```
 
@@ -207,6 +207,7 @@ const servers = await startRelay({
 ```
 
 Events from the owner pubkey:
+
 - Are accepted with `amount=0`
 - Still require valid signatures
 - Are stored just like paid events
@@ -252,10 +253,10 @@ If ports 3100 or 7100 are in use:
 
 ## Default Ports
 
-| Service | Port | Protocol |
-|---------|------|----------|
-| BLS (Business Logic Server) | 3100 | HTTP |
-| WebSocket Relay | 7100 | WebSocket |
+| Service                     | Port | Protocol  |
+| --------------------------- | ---- | --------- |
+| BLS (Business Logic Server) | 3100 | HTTP      |
+| WebSocket Relay             | 7100 | WebSocket |
 
 ## API Reference
 
@@ -301,8 +302,8 @@ Content-Type: application/json
 
 ### ILP Error Codes
 
-| Code | Meaning |
-|------|---------|
-| F00 | Bad request (invalid data) |
-| F06 | Insufficient amount |
-| T00 | Internal server error |
+| Code | Meaning                    |
+| ---- | -------------------------- |
+| F00  | Bad request (invalid data) |
+| F06  | Insufficient amount        |
+| T00  | Internal server error      |

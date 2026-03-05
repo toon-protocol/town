@@ -21,12 +21,12 @@ All operations required ILP payment and were cryptographically verified before s
 
 ### ✅ All Events Successfully Paid & Stored
 
-| Event Type | Kind | Payment (units) | Event ID | Status |
-|------------|------|----------------|----------|---------|
-| Repository Announcement | 30617 | 7,000 | `0dab2fa3...` | ✅ STORED |
-| Patch (Add README) | 1617 | 10,450 | `ad5f0a36...` | ✅ STORED |
-| Issue (Documentation) | 1621 | 10,450 | `26e21366...` | ✅ STORED |
-| **TOTAL** | - | **27,900** | - | - |
+| Event Type              | Kind  | Payment (units) | Event ID      | Status    |
+| ----------------------- | ----- | --------------- | ------------- | --------- |
+| Repository Announcement | 30617 | 7,000           | `0dab2fa3...` | ✅ STORED |
+| Patch (Add README)      | 1617  | 10,450          | `ad5f0a36...` | ✅ STORED |
+| Issue (Documentation)   | 1621  | 10,450          | `26e21366...` | ✅ STORED |
+| **TOTAL**               | -     | **27,900**      | -             | -         |
 
 ### Payment Flow
 
@@ -243,15 +243,15 @@ const price = bytes × 10n;  // 10 units per byte
 
 ## Comparison: HTTP Git vs NIP-34
 
-| Feature | HTTP Git (port 3004) | NIP-34 (Nostr events) |
-|---------|---------------------|----------------------|
-| **Protocol** | Git HTTP | Nostr events |
-| **Payment** | ❌ FREE | ✅ PAID (ILP) |
-| **Access** | Direct to Forgejo | Via Crosstown BLS |
-| **Authentication** | Forgejo auth | Nostr keypair |
-| **Spam Protection** | None | Payment requirement |
-| **Decentralization** | Centralized | Decentralized |
-| **Status** | ✅ Working | ✅ Working (events stored) |
+| Feature              | HTTP Git (port 3004) | NIP-34 (Nostr events)      |
+| -------------------- | -------------------- | -------------------------- |
+| **Protocol**         | Git HTTP             | Nostr events               |
+| **Payment**          | ❌ FREE              | ✅ PAID (ILP)              |
+| **Access**           | Direct to Forgejo    | Via Crosstown BLS          |
+| **Authentication**   | Forgejo auth         | Nostr keypair              |
+| **Spam Protection**  | None                 | Payment requirement        |
+| **Decentralization** | Centralized          | Decentralized              |
+| **Status**           | ✅ Working           | ✅ Working (events stored) |
 
 ---
 
@@ -260,6 +260,7 @@ const price = bytes × 10n;  // 10 units per byte
 ### To Complete Full GitHub Scenario
 
 1. **Enable NIP-34 Handler in Crosstown**
+
    ```bash
    # Set in .env
    FORGEJO_URL=http://forgejo:3000
@@ -299,12 +300,14 @@ This creates 4 peers that discover each other and establish payment channels.
 ✅ **Payment-gated Git operations via NIP-34 are fully functional!**
 
 **What works:**
+
 - Submitting repository announcements, patches, and issues as Nostr events
 - ILP payment validation and enforcement
 - Event storage and retrieval via Nostr relay
 - Cryptographic verification and proof generation
 
 **What's ready for integration:**
+
 - Auto-applying patches to Forgejo Git (handler exists, needs token)
 - Auto-creating issues in Forgejo (needs implementation)
 - Multi-peer payment routing for distributed Git hosting

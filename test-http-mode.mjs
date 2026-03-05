@@ -65,7 +65,9 @@ async function testAdminAPI() {
     console.log('\n🗺️  Routes:', JSON.stringify(routes, null, 2));
 
     // Check balances
-    const balancesRes = await fetch('http://localhost:8081/admin/settlement/states');
+    const balancesRes = await fetch(
+      'http://localhost:8081/admin/settlement/states'
+    );
     const balances = await balancesRes.json();
     console.log('\n💰 Settlement states:', JSON.stringify(balances, null, 2));
 
@@ -102,9 +104,15 @@ async function main() {
   console.log('\n╔════════════════════════════════════════════════════════╗');
   console.log('║   Test Results                                         ║');
   console.log('╠════════════════════════════════════════════════════════╣');
-  console.log(`║   BLS Health:       ${blsOk ? '✅ PASS' : '❌ FAIL'}                          ║`);
-  console.log(`║   Admin API:        ${adminOk ? '✅ PASS' : '❌ FAIL'}                          ║`);
-  console.log(`║   ILP Packet Send:  ${packetOk ? '✅ PASS' : '❌ FAIL'}                          ║`);
+  console.log(
+    `║   BLS Health:       ${blsOk ? '✅ PASS' : '❌ FAIL'}                          ║`
+  );
+  console.log(
+    `║   Admin API:        ${adminOk ? '✅ PASS' : '❌ FAIL'}                          ║`
+  );
+  console.log(
+    `║   ILP Packet Send:  ${packetOk ? '✅ PASS' : '❌ FAIL'}                          ║`
+  );
   console.log('╚════════════════════════════════════════════════════════╝');
 
   process.exit(blsOk && adminOk ? 0 : 1);

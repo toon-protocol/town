@@ -41,7 +41,10 @@ The `file-utils` module provides:
 **Implementation**:
 
 ```typescript
-import { handleDownload, readCSV } from '@seontechnologies/playwright-utils/file-utils';
+import {
+  handleDownload,
+  readCSV,
+} from '@seontechnologies/playwright-utils/file-utils';
 import path from 'node:path';
 
 const DOWNLOAD_DIR = path.join(__dirname, '../downloads');
@@ -127,7 +130,8 @@ test('should validate PDF report', async () => {
   const downloadPath = await handleDownload({
     page,
     downloadDir: DOWNLOAD_DIR,
-    trigger: () => page.getByTestId('download-button-Text-based PDF Document').click(),
+    trigger: () =>
+      page.getByTestId('download-button-Text-based PDF Document').click(),
   });
 
   const pdfResult = await readPDF({ filePath: downloadPath });
@@ -135,7 +139,9 @@ test('should validate PDF report', async () => {
   // content is extracted text from all pages
   expect(pdfResult.pagesCount).toBe(1);
   expect(pdfResult.fileName).toContain('.pdf');
-  expect(pdfResult.content).toContain('All you need is the free Adobe Acrobat Reader');
+  expect(pdfResult.content).toContain(
+    'All you need is the free Adobe Acrobat Reader'
+  );
 });
 ```
 
@@ -159,7 +165,9 @@ Text extraction may fail for PDFs that store text as vector graphics (e.g., thos
 const pdfResult = await readPDF({ filePath: downloadPath });
 
 expect(pdfResult.pagesCount).toBe(1);
-expect(pdfResult.info.extractionNotes).toContain('Text extraction from vector-based PDFs is not supported.');
+expect(pdfResult.info.extractionNotes).toContain(
+  'Text extraction from vector-based PDFs is not supported.'
+);
 ```
 
 Such PDFs will have:
@@ -188,10 +196,13 @@ test('should validate ZIP archive', async () => {
 
   // Check file list
   expect(Array.isArray(zipResult.content.entries)).toBe(true);
-  expect(zipResult.content.entries).toContain('Case_53125_10-19-22_AM/Case_53125_10-19-22_AM_case_data.csv');
+  expect(zipResult.content.entries).toContain(
+    'Case_53125_10-19-22_AM/Case_53125_10-19-22_AM_case_data.csv'
+  );
 
   // Extract specific file
-  const targetFile = 'Case_53125_10-19-22_AM/Case_53125_10-19-22_AM_case_data.csv';
+  const targetFile =
+    'Case_53125_10-19-22_AM/Case_53125_10-19-22_AM_case_data.csv';
   const zipWithExtraction = await readZIP({
     filePath: downloadPath,
     fileToExtract: targetFile,
@@ -379,7 +390,10 @@ Vanilla Playwright (real test) snippet:
 
 ```typescript
 // ~80 lines of boilerplate!
-const [download] = await Promise.all([page.waitForEvent('download'), page.getByTestId('download-button-CSV Export').click()]);
+const [download] = await Promise.all([
+  page.waitForEvent('download'),
+  page.getByTestId('download-button-CSV Export').click(),
+]);
 
 const failure = await download.failure();
 expect(failure).toBeNull();
@@ -397,7 +411,7 @@ await expect
         return false;
       }
     },
-    { timeout: 5000, intervals: [100, 200, 500] },
+    { timeout: 5000, intervals: [100, 200, 500] }
   )
   .toBe(true);
 

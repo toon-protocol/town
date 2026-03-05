@@ -63,7 +63,9 @@ async function addPeer(fromPeer, toPeer) {
       console.log(`  ✓ ${fromPeer.id} → ${toPeer.id}: peer added`);
       return true;
     } else {
-      console.log(`  ✗ ${fromPeer.id} → ${toPeer.id}: ${result.error || result.message}`);
+      console.log(
+        `  ✗ ${fromPeer.id} → ${toPeer.id}: ${result.error || result.message}`
+      );
       return false;
     }
   } catch (error) {
@@ -89,7 +91,9 @@ async function addRoute(fromPeer, toPeer) {
       console.log(`  ✓ ${fromPeer.id} → ${toPeer.id}: route added`);
       return true;
     } else {
-      console.log(`  ✗ ${fromPeer.id} → ${toPeer.id}: ${result.error || result.message}`);
+      console.log(
+        `  ✗ ${fromPeer.id} → ${toPeer.id}: ${result.error || result.message}`
+      );
       return false;
     }
   } catch (error) {
@@ -117,7 +121,9 @@ async function createPaymentChannel(fromPeer, toPeer) {
     }
 
     const result = await response.json();
-    console.log(`  ✓ ${fromPeer.id} ↔ ${toPeer.id}: channel created (${result.channelId || 'id pending'})`);
+    console.log(
+      `  ✓ ${fromPeer.id} ↔ ${toPeer.id}: channel created (${result.channelId || 'id pending'})`
+    );
     return true;
   } catch (error) {
     console.log(`  ✗ ${fromPeer.id} ↔ ${toPeer.id}: ${error.message}`);
@@ -159,7 +165,9 @@ async function getChannels(peer) {
 async function main() {
   console.log('╔═══════════════════════════════════════════════════════════╗');
   console.log('║        Crosstown Peer Network Setup                       ║');
-  console.log('╚═══════════════════════════════════════════════════════════╝\n');
+  console.log(
+    '╚═══════════════════════════════════════════════════════════╝\n'
+  );
 
   // Setup peer relationships: peer1 ↔ peer2 ↔ peer3 ↔ peer4
   const relationships = [
@@ -179,7 +187,7 @@ async function main() {
 
   // Small delay for peer connections to establish
   console.log('\n  Waiting for BTP connections...');
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   // Step 2: Add Routes
   console.log('\n2. Adding routes...\n');
@@ -197,7 +205,7 @@ async function main() {
 
   for (const pair of channelPairs) {
     await createPaymentChannel(pair.from, pair.to);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
   // Step 4: Verify Setup
@@ -209,24 +217,32 @@ async function main() {
     const channels = await getChannels(peer);
 
     console.log(`  ${peer.id}:`);
-    console.log(`    Peers: ${peers.length}, Routes: ${routes.length}, Channels: ${channels.length}`);
+    console.log(
+      `    Peers: ${peers.length}, Routes: ${routes.length}, Channels: ${channels.length}`
+    );
 
     if (peers.length > 0) {
-      peers.forEach(p => {
+      peers.forEach((p) => {
         const status = p.connected ? '✓' : '✗';
-        console.log(`      ${status} ${p.peerId} (${p.connectionState || 'unknown'})`);
+        console.log(
+          `      ${status} ${p.peerId} (${p.connectionState || 'unknown'})`
+        );
       });
     }
   }
 
-  console.log('\n╔═══════════════════════════════════════════════════════════╗');
+  console.log(
+    '\n╔═══════════════════════════════════════════════════════════╗'
+  );
   console.log('║  Setup Complete! Ready to test settlement.               ║');
   console.log('║                                                           ║');
   console.log('║  Run: node test-multi-peer-settlement.mjs                ║');
-  console.log('╚═══════════════════════════════════════════════════════════╝\n');
+  console.log(
+    '╚═══════════════════════════════════════════════════════════╝\n'
+  );
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error('\n❌ Setup failed:', error.message);
   process.exit(1);
 });

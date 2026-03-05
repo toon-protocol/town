@@ -99,7 +99,9 @@ For each user journey, create test file in `tests/e2e/[feature].spec.ts`:
 import { test, expect } from '@playwright/test';
 
 test.describe('[Story Name] E2E User Journey (ATDD)', () => {
-  test.skip('[P0] should complete user registration successfully', async ({ page }) => {
+  test.skip('[P0] should complete user registration successfully', async ({
+    page,
+  }) => {
     // THIS TEST WILL FAIL - UI not implemented yet
     await page.goto('/register');
 
@@ -186,7 +188,11 @@ Write JSON to temp file: `/tmp/tea-atdd-e2e-tests-{{timestamp}}.json`
     }
   ],
   "fixture_needs": ["registrationPageMock"],
-  "knowledge_fragments_used": ["fixture-architecture", "network-first", "selector-resilience"],
+  "knowledge_fragments_used": [
+    "fixture-architecture",
+    "network-first",
+    "selector-resilience"
+  ],
   "test_count": 2,
   "tdd_phase": "RED",
   "summary": "Generated 2 FAILING E2E tests for user registration story"

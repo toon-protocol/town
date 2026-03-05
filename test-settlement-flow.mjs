@@ -67,7 +67,9 @@ function createNostrEvent(content) {
  * Send an ILP packet with a Nostr event
  */
 async function sendNostrEventPacket(eventNum) {
-  const event = createNostrEvent(`Test event #${eventNum} - ${new Date().toISOString()}`);
+  const event = createNostrEvent(
+    `Test event #${eventNum} - ${new Date().toISOString()}`
+  );
   const eventData = JSON.stringify(event);
 
   const packet = {
@@ -102,7 +104,9 @@ async function sendNostrEventPacket(eventNum) {
  */
 async function getSettlementState() {
   try {
-    const response = await fetch(`${CONNECTOR_ADMIN_URL}/admin/settlement/states`);
+    const response = await fetch(
+      `${CONNECTOR_ADMIN_URL}/admin/settlement/states`
+    );
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -169,11 +173,18 @@ async function checkSettlementEvents(fromBlock = 0) {
 
     const events = stdout.trim();
     if (events) {
-      return events.split('\n').filter(line => line.includes('Settlement') || line.includes('Channel'));
+      return events
+        .split('\n')
+        .filter(
+          (line) => line.includes('Settlement') || line.includes('Channel')
+        );
     }
     return [];
   } catch (error) {
-    log(`⚠️  Failed to check settlement events: ${error.message}`, colors.yellow);
+    log(
+      `⚠️  Failed to check settlement events: ${error.message}`,
+      colors.yellow
+    );
     return [];
   }
 }
@@ -183,7 +194,9 @@ async function checkSettlementEvents(fromBlock = 0) {
  */
 async function getCurrentBlock() {
   try {
-    const { stdout } = await execAsync(`cast block-number --rpc-url ${ANVIL_RPC_URL}`);
+    const { stdout } = await execAsync(
+      `cast block-number --rpc-url ${ANVIL_RPC_URL}`
+    );
     return parseInt(stdout.trim());
   } catch (error) {
     return 0;
@@ -211,7 +224,7 @@ async function main() {
   const peers = await getPeers();
   log(`📡 Peers configured: ${peers.length}`, colors.blue);
   if (peers.length > 0) {
-    peers.forEach(peer => {
+    peers.forEach((peer) => {
       log(`   - ${peer.peerId || peer.id || 'unknown'}`, colors.blue);
     });
   }
@@ -249,7 +262,7 @@ async function main() {
     }
 
     // Small delay to avoid overwhelming the system
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
   log(`\n✅ Sent: ${successCount}`, colors.green);
@@ -271,7 +284,7 @@ async function main() {
       const initialKeys = Object.keys(initialSettlement);
       const finalKeys = Object.keys(finalSettlement);
 
-      finalKeys.forEach(key => {
+      finalKeys.forEach((key) => {
         if (!initialKeys.includes(key)) {
           log(`   + New peer: ${key}`, colors.green);
         }
@@ -290,10 +303,13 @@ async function main() {
   const events = await checkSettlementEvents(startBlock);
   if (events.length > 0) {
     log(`\n🎉 Settlement events detected:`, colors.green);
-    events.forEach(event => log(`   ${event}`, colors.green));
+    events.forEach((event) => log(`   ${event}`, colors.green));
   } else {
     log(`\n⚠️  No settlement events detected`, colors.yellow);
-    log(`   This may be expected if settlement threshold not reached`, colors.yellow);
+    log(
+      `   This may be expected if settlement threshold not reached`,
+      colors.yellow
+    );
   }
 
   // Step 5: Verify BLS received events
@@ -329,11 +345,20 @@ async function main() {
   log(`   Blocks mined: ${endBlock - startBlock}`, colors.blue);
 
   if (successCount === NUM_EVENTS && events.length > 0) {
-    log(`\n🎉 FULL SUCCESS: All events sent and settlement triggered!`, colors.green);
+    log(
+      `\n🎉 FULL SUCCESS: All events sent and settlement triggered!`,
+      colors.green
+    );
     return 0;
   } else if (successCount === NUM_EVENTS) {
-    log(`\n✅ PARTIAL SUCCESS: All events sent, but settlement not yet triggered`, colors.yellow);
-    log(`   This may be expected - settlement happens at threshold`, colors.yellow);
+    log(
+      `\n✅ PARTIAL SUCCESS: All events sent, but settlement not yet triggered`,
+      colors.yellow
+    );
+    log(
+      `   This may be expected - settlement happens at threshold`,
+      colors.yellow
+    );
     return 0;
   } else {
     log(`\n⚠️  PARTIAL FAILURE: Some events failed to send`, colors.yellow);
@@ -343,8 +368,8 @@ async function main() {
 
 // Run the test
 main()
-  .then(code => process.exit(code))
-  .catch(error => {
+  .then((code) => process.exit(code))
+  .catch((error) => {
     log(`\n❌ Test failed with error: ${error.message}`, colors.red);
     console.error(error);
     process.exit(1);

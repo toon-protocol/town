@@ -62,29 +62,32 @@ docker compose -f docker-compose-with-local.yml ps
 
 ### What You Have
 
-| Service | URL | Description | Payment |
-|---------|-----|-------------|---------|
+| Service            | URL                   | Description                | Payment |
+| ------------------ | --------------------- | -------------------------- | ------- |
 | **Forgejo Web UI** | http://localhost:3004 | Browse repos, issues, docs | ✅ FREE |
-| **Git Operations** | http://localhost:3003 | Clone/push via Git | 💰 PAID |
-| **Crosstown** | http://localhost:3100 | BLS + Nostr relay | - |
-| **Connector** | http://localhost:3001 | ILP routing (Explorer UI) | - |
-| **Faucet** | http://localhost:3500 | Get test tokens | - |
+| **Git Operations** | http://localhost:3003 | Clone/push via Git         | 💰 PAID |
+| **Crosstown**      | http://localhost:3100 | BLS + Nostr relay          | -       |
+| **Connector**      | http://localhost:3001 | ILP routing (Explorer UI)  | -       |
+| **Faucet**         | http://localhost:3500 | Get test tokens            | -       |
 
 ### Use It
 
 **Browse Web UI (free):**
+
 ```bash
 open http://localhost:3004
 # View code, issues, PRs - no payment required
 ```
 
 **Git Operations (paid):**
+
 ```bash
 # Clone requires ILP payment
 git clone http://localhost:3003/admin/test-repo.git
 ```
 
 **Nostr Events (NIP-34):**
+
 ```bash
 # Submit patches as Nostr events
 # See NIP-34-INTEGRATION.md for details
@@ -97,6 +100,7 @@ git clone http://localhost:3003/admin/test-repo.git
 ## Troubleshooting
 
 **NIP-34 still disabled?**
+
 ```bash
 # Check .env has FORGEJO_TOKEN
 cat .env | grep FORGEJO_TOKEN
@@ -106,6 +110,7 @@ docker compose -f docker-compose-with-local.yml restart crosstown-node
 ```
 
 **Service won't start?**
+
 ```bash
 # Check logs
 docker logs crosstown-node
@@ -115,6 +120,7 @@ docker compose -f docker-compose-with-local.yml ps
 ```
 
 **Port conflict?**
+
 ```bash
 # Find what's using the port
 lsof -i :3003

@@ -14,6 +14,7 @@ Successfully implemented and tested complete NIP-34 auto-apply functionality usi
 ## Commits Made
 
 ### 1. Initial Forgejo API Implementation
+
 ```
 commit d27e88d
 fix(nip34): use Forgejo API for auto-apply and fix repository name extraction
@@ -25,6 +26,7 @@ fix(nip34): use Forgejo API for auto-apply and fix repository name extraction
 ```
 
 ### 2. PR and Issue Handler Fix
+
 ```
 commit eb37a66
 fix(nip34): extract repository name in handlePullRequest and handleIssue
@@ -40,11 +42,13 @@ fix(nip34): extract repository name in handlePullRequest and handleIssue
 ### 1. Repository Creation (kind:30617)
 
 **Command:**
+
 ```bash
 node packages/core/test-nip34-github-scenario.mjs
 ```
 
 **Results:**
+
 ```
 [NIP34] Handling NIP-34 event: kind=30617 id=01ea5d00
 [NIP34] Creating repository: nip34-test-repo
@@ -52,6 +56,7 @@ node packages/core/test-nip34-github-scenario.mjs
 ```
 
 **Verification:**
+
 ```bash
 curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo | jq '.name'
 # Output: "nip34-test-repo"
@@ -64,11 +69,13 @@ curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo | jq '
 ### 2. Pull Request Submission (kind:1618)
 
 **Command:**
+
 ```bash
 node test-nip34-pr.mjs
 ```
 
 **Results:**
+
 ```
 [NIP34] Handling NIP-34 event: kind=1618 id=96b67539
 [NIP34] Creating PR issue for crosstownAdmin/nip34-test-repo
@@ -76,6 +83,7 @@ node test-nip34-pr.mjs
 ```
 
 **Verification:**
+
 ```bash
 curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo/issues/1 | jq '.title'
 # Output: "Add new feature: User authentication"
@@ -90,11 +98,13 @@ curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo/issues
 **Scenario:** Different user submits PR to existing repository
 
 **Test:**
+
 1. Repository created by original user (kind:30617)
 2. Contributor submits PR from different pubkey (kind:1618)
 3. PR automatically creates issue in target repository
 
 **Results:**
+
 - ✅ Payment validated (10,000 ILP units for 1000-byte event)
 - ✅ Event stored in BLS
 - ✅ NIP34Handler triggered
@@ -172,28 +182,31 @@ curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo/issues
 
 ## Event Type Support
 
-| Event Kind | Description | Status | Auto-Apply Method |
-|------------|-------------|--------|-------------------|
-| 30617 | Repository Announcement | ✅ Working | Creates repository via API |
-| 1617 | Patch | ✅ Working | Creates branch, applies files, opens PR |
-| 1618 | Pull Request | ✅ Working | Creates documentation issue |
-| 1621 | Issue | ✅ Working | Creates issue via API |
-| 1630-1633 | Status Events | ⚠️ Not Implemented | Returns success (no action) |
+| Event Kind | Description             | Status             | Auto-Apply Method                       |
+| ---------- | ----------------------- | ------------------ | --------------------------------------- |
+| 30617      | Repository Announcement | ✅ Working         | Creates repository via API              |
+| 1617       | Patch                   | ✅ Working         | Creates branch, applies files, opens PR |
+| 1618       | Pull Request            | ✅ Working         | Creates documentation issue             |
+| 1621       | Issue                   | ✅ Working         | Creates issue via API                   |
+| 1630-1633  | Status Events           | ⚠️ Not Implemented | Returns success (no action)             |
 
 ---
 
 ## Files Modified
 
 ### Core Package
+
 - `packages/core/src/nip34/NIP34Handler.ts` - Main handler logic
 - `packages/core/src/nip34/ForgejoClient.ts` - API client
 - `packages/core/src/nip34/index.ts` - Exports
 - `packages/core/tsup.config.ts` - Build configuration
 
 ### Docker Package
+
 - `docker/src/entrypoint.ts` - NIP34Handler initialization
 
 ### Test Scripts
+
 - `packages/core/test-nip34-github-scenario.mjs` - Repository tests
 - `test-nip34-pr.mjs` - PR submission test (new)
 
@@ -202,6 +215,7 @@ curl -s http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-test-repo/issues
 ## Configuration
 
 ### Environment Variables (.env)
+
 ```bash
 # NIP-34 Forgejo Integration
 FORGEJO_URL=http://forgejo:3000
@@ -210,7 +224,9 @@ FORGEJO_OWNER=crosstownAdmin
 ```
 
 ### Forgejo Token Scopes
+
 Required scopes for full functionality:
+
 - ✅ `write:repository` - Create repos, branches, files
 - ✅ `write:issue` - Create issues and PRs
 - ✅ `write:user` - Create user repositories
@@ -220,6 +236,7 @@ Required scopes for full functionality:
 ## Next Steps
 
 ### Enhancements
+
 - [ ] Implement proper patch parsing (currently simplified)
 - [ ] Support multi-file patches
 - [ ] Add binary file patch support
@@ -228,6 +245,7 @@ Required scopes for full functionality:
 - [ ] Support status events (1630-1633)
 
 ### Testing
+
 - [x] Repository creation
 - [x] Pull request submission
 - [x] Issue creation
@@ -237,6 +255,7 @@ Required scopes for full functionality:
 - [ ] Concurrent submissions
 
 ### Documentation
+
 - [x] Test results
 - [x] Architecture diagrams
 - [ ] API documentation
@@ -248,16 +267,19 @@ Required scopes for full functionality:
 ## Performance Metrics
 
 ### Bundle Size
+
 - **Before:** 172 KB (with simple-git)
 - **After:** 15.13 KB (Forgejo API only)
 - **Reduction:** 91.2%
 
 ### Build Time
+
 - Core package: ~3 seconds
 - Docker image: ~60 seconds (cached layers)
 - Full rebuild: ~2 minutes
 
 ### Event Processing
+
 - Repository creation: < 500ms
 - PR issue creation: < 300ms
 - Payment validation: < 100ms
@@ -267,6 +289,7 @@ Required scopes for full functionality:
 ## Known Issues
 
 ### Resolved
+
 - ✅ ESM/CommonJS bundling conflicts (removed simple-git)
 - ✅ Repository owner prefix handling
 - ✅ Forgejo token permissions
@@ -281,6 +304,7 @@ Required scopes for full functionality:
 ✅ **NIP-34 auto-apply is fully operational!**
 
 The payment-gated Git workflow is working end-to-end:
+
 1. Users submit NIP-34 events via ILP payments
 2. Events are validated and stored in BLS
 3. NIP34Handler automatically processes events
@@ -291,6 +315,6 @@ This enables a complete **Nostr-based Git workflow** with built-in monetization 
 
 ---
 
-*Generated: 2026-02-21*
-*Architecture: Forgejo REST API*
-*Status: Production Ready*
+_Generated: 2026-02-21_
+_Architecture: Forgejo REST API_
+_Status: Production Ready_

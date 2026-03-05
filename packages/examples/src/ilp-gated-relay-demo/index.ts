@@ -10,7 +10,11 @@
  */
 
 import WebSocket from 'ws';
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { MockIlpConnector } from './mock-connector.js';
 import { startRelay } from './relay.js';
 
@@ -100,7 +104,9 @@ async function runBasicDemo(): Promise<void> {
 
   if (response.accept) {
     console.log(`[Agent] PAID: Event accepted!`);
-    console.log(`[Agent] Fulfillment: ${response.fulfillment?.slice(0, 20)}...`);
+    console.log(
+      `[Agent] Fulfillment: ${response.fulfillment?.slice(0, 20)}...`
+    );
   } else {
     throw new Error(`Payment rejected: ${response.message}`);
   }
@@ -185,7 +191,9 @@ export async function demonstrateSelfWriteBypass(
   const rejectResponse = await connector.sendPayment(nonOwnerEvent, 1n);
 
   if (!rejectResponse.accept) {
-    console.log(`[Demo] Non-owner event rejected (insufficient): ${rejectResponse.code}`);
+    console.log(
+      `[Demo] Non-owner event rejected (insufficient): ${rejectResponse.code}`
+    );
     console.log(
       `[Demo] Required: ${(rejectResponse.metadata as { required?: string })?.required}, ` +
         `Received: ${(rejectResponse.metadata as { received?: string })?.received}`
@@ -210,10 +218,15 @@ export async function demonstrateSelfWriteBypass(
   const eventJson = JSON.stringify(nonOwnerEvent2);
   const paymentAmount = BigInt(eventJson.length * 10 + 100);
 
-  const acceptResponse = await connector.sendPayment(nonOwnerEvent2, paymentAmount);
+  const acceptResponse = await connector.sendPayment(
+    nonOwnerEvent2,
+    paymentAmount
+  );
 
   if (acceptResponse.accept) {
-    console.log(`[Demo] PAID: Non-owner event accepted with ${paymentAmount} payment`);
+    console.log(
+      `[Demo] PAID: Non-owner event accepted with ${paymentAmount} payment`
+    );
     console.log(`[Demo] Event ID: ${nonOwnerEvent2.id.slice(0, 16)}...`);
   } else {
     throw new Error(`Non-owner payment failed: ${acceptResponse.message}`);

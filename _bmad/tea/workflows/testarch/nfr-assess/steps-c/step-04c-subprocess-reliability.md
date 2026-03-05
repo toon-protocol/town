@@ -59,7 +59,10 @@ This is an **isolated subprocess** running in parallel with other NFR domain ass
       "category": "Error Handling",
       "status": "PASS",
       "description": "Comprehensive error handling with circuit breakers",
-      "evidence": ["Circuit breaker pattern in src/services/", "Retry logic implemented"],
+      "evidence": [
+        "Circuit breaker pattern in src/services/",
+        "Retry logic implemented"
+      ],
       "recommendations": []
     },
     {
@@ -67,7 +70,10 @@ This is an **isolated subprocess** running in parallel with other NFR domain ass
       "status": "CONCERN",
       "description": "No APM (Application Performance Monitoring) tool",
       "evidence": ["Logging present but no distributed tracing"],
-      "recommendations": ["Implement APM (Datadog/New Relic)", "Add distributed tracing"]
+      "recommendations": [
+        "Implement APM (Datadog/New Relic)",
+        "Add distributed tracing"
+      ]
     }
   ],
   "compliance": {

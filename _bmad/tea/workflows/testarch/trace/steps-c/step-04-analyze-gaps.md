@@ -44,15 +44,23 @@ tempOutputFile: '/tmp/tea-trace-coverage-matrix-{{timestamp}}.json'
 **Identify uncovered requirements:**
 
 ```javascript
-const uncoveredRequirements = traceabilityMatrix.filter((req) => req.coverage === 'NONE');
-const partialCoverage = traceabilityMatrix.filter((req) => req.coverage === 'PARTIAL');
-const unitOnlyCoverage = traceabilityMatrix.filter((req) => req.coverage === 'UNIT-ONLY');
+const uncoveredRequirements = traceabilityMatrix.filter(
+  (req) => req.coverage === 'NONE'
+);
+const partialCoverage = traceabilityMatrix.filter(
+  (req) => req.coverage === 'PARTIAL'
+);
+const unitOnlyCoverage = traceabilityMatrix.filter(
+  (req) => req.coverage === 'UNIT-ONLY'
+);
 ```
 
 **Prioritize gaps by risk:**
 
 ```javascript
-const criticalGaps = uncoveredRequirements.filter((req) => req.priority === 'P0');
+const criticalGaps = uncoveredRequirements.filter(
+  (req) => req.priority === 'P0'
+);
 const highGaps = uncoveredRequirements.filter((req) => req.priority === 'P1');
 const mediumGaps = uncoveredRequirements.filter((req) => req.priority === 'P2');
 const lowGaps = uncoveredRequirements.filter((req) => req.priority === 'P3');
@@ -118,7 +126,9 @@ if (endpointCoverageGaps.length > 0) {
   recommendations.push({
     priority: 'HIGH',
     action: `Add API tests for ${endpointCoverageGaps.length} uncovered endpoint(s)`,
-    requirements: endpointCoverageGaps.map((r) => r.id || r.endpoint || 'unknown'),
+    requirements: endpointCoverageGaps.map(
+      (r) => r.id || r.endpoint || 'unknown'
+    ),
   });
 }
 
@@ -152,21 +162,34 @@ recommendations.push({
 
 ```javascript
 const totalRequirements = traceabilityMatrix.length;
-const coveredRequirements = traceabilityMatrix.filter((r) => r.coverage === 'FULL' || r.coverage === 'PARTIAL').length;
-const fullyCovered = traceabilityMatrix.filter((r) => r.coverage === 'FULL').length;
+const coveredRequirements = traceabilityMatrix.filter(
+  (r) => r.coverage === 'FULL' || r.coverage === 'PARTIAL'
+).length;
+const fullyCovered = traceabilityMatrix.filter(
+  (r) => r.coverage === 'FULL'
+).length;
 
-const safePct = (covered, total) => (total > 0 ? Math.round((covered / total) * 100) : 100);
+const safePct = (covered, total) =>
+  total > 0 ? Math.round((covered / total) * 100) : 100;
 const coveragePercentage = safePct(fullyCovered, totalRequirements);
 
 // Priority-specific coverage
 const p0Total = traceabilityMatrix.filter((r) => r.priority === 'P0').length;
-const p0Covered = traceabilityMatrix.filter((r) => r.priority === 'P0' && r.coverage === 'FULL').length;
+const p0Covered = traceabilityMatrix.filter(
+  (r) => r.priority === 'P0' && r.coverage === 'FULL'
+).length;
 const p1Total = traceabilityMatrix.filter((r) => r.priority === 'P1').length;
-const p1Covered = traceabilityMatrix.filter((r) => r.priority === 'P1' && r.coverage === 'FULL').length;
+const p1Covered = traceabilityMatrix.filter(
+  (r) => r.priority === 'P1' && r.coverage === 'FULL'
+).length;
 const p2Total = traceabilityMatrix.filter((r) => r.priority === 'P2').length;
-const p2Covered = traceabilityMatrix.filter((r) => r.priority === 'P2' && r.coverage === 'FULL').length;
+const p2Covered = traceabilityMatrix.filter(
+  (r) => r.priority === 'P2' && r.coverage === 'FULL'
+).length;
 const p3Total = traceabilityMatrix.filter((r) => r.priority === 'P3').length;
-const p3Covered = traceabilityMatrix.filter((r) => r.priority === 'P3' && r.coverage === 'FULL').length;
+const p3Covered = traceabilityMatrix.filter(
+  (r) => r.priority === 'P3' && r.coverage === 'FULL'
+).length;
 
 const p0CoveragePercentage = safePct(p0Covered, p0Total);
 const p1CoveragePercentage = safePct(p1Covered, p1Total);
@@ -195,10 +218,26 @@ const coverageMatrix = {
     overall_coverage_percentage: coveragePercentage,
 
     priority_breakdown: {
-      P0: { total: p0Total, covered: p0Covered, percentage: p0CoveragePercentage },
-      P1: { total: p1Total, covered: p1Covered, percentage: p1CoveragePercentage },
-      P2: { total: p2Total, covered: p2Covered, percentage: p2CoveragePercentage },
-      P3: { total: p3Total, covered: p3Covered, percentage: p3CoveragePercentage },
+      P0: {
+        total: p0Total,
+        covered: p0Covered,
+        percentage: p0CoveragePercentage,
+      },
+      P1: {
+        total: p1Total,
+        covered: p1Covered,
+        percentage: p1CoveragePercentage,
+      },
+      P2: {
+        total: p2Total,
+        covered: p2Covered,
+        percentage: p2CoveragePercentage,
+      },
+      P3: {
+        total: p3Total,
+        covered: p3Covered,
+        percentage: p3CoveragePercentage,
+      },
     },
   },
 

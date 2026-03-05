@@ -64,7 +64,9 @@ import { test } from '@seontechnologies/playwright-utils/api-request/fixtures';
 import { z } from 'zod';
 
 // JSON Schema validation
-test('should validate response schema (JSON Schema)', async ({ apiRequest }) => {
+test('should validate response schema (JSON Schema)', async ({
+  apiRequest,
+}) => {
   const { status, body } = await apiRequest({
     method: 'GET',
     path: '/api/users/123',
@@ -139,7 +141,7 @@ test('should handle 500 errors', async ({ apiRequest }) => {
       method: 'GET',
       path: '/api/error',
       retryConfig: { maxRetries: 0 }, // Disable retry
-    }),
+    })
   ).rejects.toThrow('Request failed with status 500');
 });
 ```
@@ -228,7 +230,7 @@ test('should poll until job completes', async ({ apiRequest, recurse }) => {
   const completedJob = await recurse(
     () => apiRequest({ method: 'GET', path: `/api/jobs/${jobId}` }),
     (response) => response.body.status === 'completed',
-    { timeout: 60000, interval: 2000 },
+    { timeout: 60000, interval: 2000 }
   );
 
   expect(completedJob.body.result).toBeDefined();
@@ -381,7 +383,10 @@ test.describe('GraphQL API', () => {
 // Generated operation definition — structural typing, no import from playwright-utils needed
 // type OperationShape = { path: string; method: 'POST'|'GET'|'PUT'|'DELETE'|'PATCH'|'HEAD'; response: unknown; request: unknown; query?: unknown }
 
-import { test, expect } from '@seontechnologies/playwright-utils/api-request/fixtures';
+import {
+  test,
+  expect,
+} from '@seontechnologies/playwright-utils/api-request/fixtures';
 
 // --- Basic usage: operation replaces method + path ---
 test('should upsert person via operation overload', async ({ apiRequest }) => {
@@ -421,7 +426,10 @@ test('should fetch billing history with raw params', async ({ apiRequest }) => {
 });
 
 // --- Works with recurse (polling) ---
-test('should poll until person is reviewed', async ({ apiRequest, recurse }) => {
+test('should poll until person is reviewed', async ({
+  apiRequest,
+  recurse,
+}) => {
   await recurse(
     async () =>
       apiRequest({
@@ -432,7 +440,7 @@ test('should poll until person is reviewed', async ({ apiRequest, recurse }) => 
       expect(res.status).toBe(200);
       expect(res.body.status).toBe('REVIEWED');
     },
-    { timeout: 30000, interval: 1000 },
+    { timeout: 30000, interval: 1000 }
   );
 });
 
@@ -515,7 +523,9 @@ try {
 **✅ Let retries happen, handle final failure:**
 
 ```typescript
-await expect(apiRequest({ method: 'GET', path: '/api/unstable' })).rejects.toThrow(); // Retries happen automatically, then final error caught
+await expect(
+  apiRequest({ method: 'GET', path: '/api/unstable' })
+).rejects.toThrow(); // Retries happen automatically, then final error caught
 ```
 
 **❌ Disabling TypeScript benefits:**

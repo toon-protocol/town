@@ -159,8 +159,16 @@ Write JSON to temp file: `/tmp/tea-automate-e2e-tests-{{timestamp}}.json`
       }
     }
   ],
-  "fixture_needs": ["authenticatedUserFixture", "paymentMockFixture", "checkoutDataFixture"],
-  "knowledge_fragments_used": ["fixture-architecture", "network-first", "selector-resilience"],
+  "fixture_needs": [
+    "authenticatedUserFixture",
+    "paymentMockFixture",
+    "checkoutDataFixture"
+  ],
+  "knowledge_fragments_used": [
+    "fixture-architecture",
+    "network-first",
+    "selector-resilience"
+  ],
   "test_count": 15,
   "summary": "Generated 15 E2E test cases covering 5 user journeys"
 }

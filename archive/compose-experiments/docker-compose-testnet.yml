@@ -30,25 +30,25 @@ services:
       LOCAL_DELIVERY_URL: http://crosstown:3100
 
       # Enable BASE blockchain with Sepolia testnet
-      BASE_ENABLED: "true"
-      BASE_RPC_URL: "https://sepolia.base.org"
-      BASE_CHAIN_ID: "84532"
+      BASE_ENABLED: 'true'
+      BASE_RPC_URL: 'https://sepolia.base.org'
+      BASE_CHAIN_ID: '84532'
 
       # Testnet wallet - Node Bravo from testnet-wallets.json
-      BASE_PRIVATE_KEY: "0x32e8ddaedf2f1a5372943579ab9e73aa39e1421fdfa0966a586cf8c66ab5ea2c"
+      BASE_PRIVATE_KEY: '0x32e8ddaedf2f1a5372943579ab9e73aa39e1421fdfa0966a586cf8c66ab5ea2c'
 
       # Payment channel contracts on Base Sepolia
-      BASE_REGISTRY_ADDRESS: "0xCbf6f43A17034e733744cBCc130FfcCA3CF3252C"
-      BASE_TOKEN_ADDRESS: "0x39eaF99Cd4965A28DFe8B1455DD42aB49D0836B9"
+      BASE_REGISTRY_ADDRESS: '0xCbf6f43A17034e733744cBCc130FfcCA3CF3252C'
+      BASE_TOKEN_ADDRESS: '0x39eaF99Cd4965A28DFe8B1455DD42aB49D0836B9'
 
       # Optional: Enable Explorer UI
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
 
     ports:
-      - "3000:3000"   # BTP Server
-      - "8080:8080"   # Health check
-      - "8081:8081"   # Admin API
-      - "3001:3001"   # Explorer UI
+      - '3000:3000' # BTP Server
+      - '8080:8080' # Health check
+      - '8081:8081' # Admin API
+      - '3001:3001' # Explorer UI
     volumes:
       - connector-data:/data
       - ./config/connector-config-testnet.yaml:/app/config.yaml:ro
@@ -56,7 +56,15 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -98,8 +106,8 @@ services:
       DATA_DIR: /data
 
     ports:
-      - "3100:3100"   # BLS HTTP API
-      - "7100:7100"   # Nostr Relay WebSocket
+      - '3100:3100' # BLS HTTP API
+      - '7100:7100' # Nostr Relay WebSocket
     volumes:
       - crosstown-data:/data
     networks:
@@ -109,7 +117,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -130,8 +138,8 @@ services:
       - FORGEJO__server__ROOT_URL=http://localhost:3003/
       - FORGEJO__security__INSTALL_LOCK=true
     ports:
-      - "3003:3000"   # Web UI (HTTP)
-      - "2222:22"     # Git over SSH
+      - '3003:3000' # Web UI (HTTP)
+      - '2222:22' # Git over SSH
     volumes:
       - forgejo-data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -140,7 +148,7 @@ services:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/']
       interval: 30s
       timeout: 10s
       retries: 3

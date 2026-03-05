@@ -16,11 +16,13 @@ Added automatic retry logic with fresh nonce fetching to `PaymentChannelSDK.depo
 **Location:** `/Users/jonathangreen/Documents/connector/packages/connector/src/settlement/payment-channel-sdk.ts`
 
 **Key Changes:**
+
 - Retry up to 3 times on `NONCE_EXPIRED` errors
 - Fetch fresh nonce from provider for each attempt
 - 1 second delay between retries
 
 **Evidence from logs:**
+
 ```
 Nonce error on approve, retrying with fresh nonce
 Nonce error on setTotalDeposit, retrying
@@ -31,6 +33,7 @@ Both transactions encountered nonce errors but **successfully recovered** on ret
 ### 2. Clean Test Harness ✅
 
 Created `test-payment-channels.sh` that properly manages:
+
 - Anvil restart for fresh blockchain state
 - Contract deployment
 - Token balance verification
@@ -70,6 +73,7 @@ Complete bootstrap flow with payment channels:
 ## Transaction Details
 
 ### Approve Transaction
+
 ```json
 {
   "level": 30,
@@ -82,6 +86,7 @@ Complete bootstrap flow with payment channels:
 **Retry:** Nonce error on first attempt, succeeded on retry
 
 ### Deposit Transaction
+
 ```json
 {
   "level": 30,
@@ -102,12 +107,14 @@ Complete bootstrap flow with payment channels:
 ## Peer Configuration
 
 ### Peer 1 (Genesis)
+
 - **EVM Address:** `0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC`
 - **Token Balance:** 10,000 AGENT
 - **Nostr Pubkey:** `719705df863f0190e0c124bbb11dd84b6374d077f66c4912a039324c98dc25e3`
 - **ILP Address:** `g.crosstown.peer1`
 
 ### Peer 2 (Joiner)
+
 - **EVM Address:** `0x90F79bf6EB2c4f870365E785982E1f101E93b906`
 - **Token Balance:** 10,000 AGENT
 - **Nostr Pubkey:** `b812567c95eb1bb6b8c639720cdcaf9c514152b0dc150fad330a58cf34ce47f1`
@@ -120,6 +127,7 @@ Complete bootstrap flow with payment channels:
 **File:** `packages/connector/src/settlement/payment-channel-sdk.ts`
 
 **Lines 359-415:** Approve transaction with retry
+
 ```typescript
 // Retry approve transaction with fresh nonce if nonce error occurs
 let approveTx;
@@ -129,7 +137,10 @@ const maxRetries = 3;
 while (retries < maxRetries) {
   try {
     // Explicitly fetch fresh nonce for each attempt
-    const currentNonce = await this.provider.getTransactionCount(myAddress, 'pending');
+    const currentNonce = await this.provider.getTransactionCount(
+      myAddress,
+      'pending'
+    );
 
     approveTx = await token.approve!(tokenNetworkAddress, maxApproval, {
       nonce: currentNonce,
@@ -159,6 +170,7 @@ while (retries < maxRetries) {
 **File:** `test-payment-channels.sh`
 
 Clean test harness that:
+
 - Restarts Anvil for fresh state
 - Deploys contracts
 - Verifies token balances
@@ -171,6 +183,7 @@ Clean test harness that:
 ### 1. Settlement Preference Validation
 
 After channel opens successfully, there's a validation error:
+
 ```
 settlement.preference must be one of: evm, xrp, aptos, any
 ```
@@ -183,11 +196,13 @@ This is a separate issue from channel opening. The channel was already created b
 ## Next Steps
 
 ### Immediate
+
 1. ✅ Channel opening works
 2. ✅ Nonce management robust
 3. ✅ Test harness reliable
 
 ### Future Enhancements
+
 1. **Fix settlement.preference validation** - Ensure correct values are sent to Admin API
 2. **Test multi-peer scenarios** - 3+ peers with payment channels
 3. **Test channel lifecycle**
@@ -203,6 +218,7 @@ This is a separate issue from channel opening. The channel was already created b
 **Payment channels are fully functional!**
 
 The integration successfully:
+
 - ✅ Discovers peers via Nostr
 - ✅ Negotiates settlement via SPSP
 - ✅ Opens payment channels on EVM
@@ -221,6 +237,7 @@ bash test-payment-channels.sh
 ```
 
 Expected output:
+
 ```
 channelCount: 1
 [Bootstrap] Opened channel 0x...

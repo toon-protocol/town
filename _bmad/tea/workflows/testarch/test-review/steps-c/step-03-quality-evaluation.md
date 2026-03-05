@@ -104,9 +104,12 @@ const subprocessContext = {
 ### 4. Verify All Outputs Exist
 
 ```javascript
-const outputs = ['determinism', 'isolation', 'maintainability', 'performance'].map(
-  (dim) => `/tmp/tea-test-review-${dim}-${timestamp}.json`,
-);
+const outputs = [
+  'determinism',
+  'isolation',
+  'maintainability',
+  'performance',
+].map((dim) => `/tmp/tea-test-review-${dim}-${timestamp}.json`);
 
 outputs.forEach((output) => {
   if (!fs.existsSync(output)) {

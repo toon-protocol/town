@@ -29,7 +29,11 @@ HAR-based recording/playback provides:
 // Set mode to 'record' to capture network traffic
 process.env.PW_NET_MODE = 'record';
 
-test('should add, edit and delete a movie', async ({ page, context, networkRecorder }) => {
+test('should add, edit and delete a movie', async ({
+  page,
+  context,
+  networkRecorder,
+}) => {
   // Setup network recorder - it will record all network traffic
   await networkRecorder.setup(context);
 
@@ -48,7 +52,11 @@ test('should add, edit and delete a movie', async ({ page, context, networkRecor
 // Set mode to 'playback' to use recorded traffic
 process.env.PW_NET_MODE = 'playback';
 
-test('should add, edit and delete a movie', async ({ page, context, networkRecorder }) => {
+test('should add, edit and delete a movie', async ({
+  page,
+  context,
+  networkRecorder,
+}) => {
   // Setup network recorder - it will replay from HAR file
   await networkRecorder.setup(context);
 
@@ -75,7 +83,11 @@ import { test } from '@seontechnologies/playwright-utils/network-recorder/fixtur
 // Set mode in test file (recommended)
 process.env.PW_NET_MODE = 'playback'; // or 'record'
 
-test('CRUD operations work offline', async ({ page, context, networkRecorder }) => {
+test('CRUD operations work offline', async ({
+  page,
+  context,
+  networkRecorder,
+}) => {
   // Setup recorder (records or plays back based on PW_NET_MODE)
   await networkRecorder.setup(context);
 
@@ -114,7 +126,10 @@ test.describe('Movie CRUD - offline with network recorder', () => {
     await page.goto('/');
   });
 
-  test('should add, edit, delete movie browser-only', async ({ page, interceptNetworkCall }) => {
+  test('should add, edit, delete movie browser-only', async ({
+    page,
+    interceptNetworkCall,
+  }) => {
     // Create
     await page.fill('#movie-name', 'Inception');
     await page.fill('#year', '2010');
@@ -310,7 +325,10 @@ await networkRecorder.setup(context, {
       },
       patterns: [
         { match: /admin-\d+\.seondev\.space/, replace: 'admin.seondev.space' },
-        { match: /admin-staging-pr-\w+-\d\.seon\.io/, replace: 'admin.seondev.space' },
+        {
+          match: /admin-staging-pr-\w+-\d\.seon\.io/,
+          replace: 'admin.seondev.space',
+        },
       ],
     },
   },
@@ -445,7 +463,12 @@ If you see "HAR file not found" errors during playback:
 The network recorder works seamlessly with authentication:
 
 ```typescript
-test('Authenticated recording', async ({ page, context, authSession, networkRecorder }) => {
+test('Authenticated recording', async ({
+  page,
+  context,
+  authSession,
+  networkRecorder,
+}) => {
   // First authenticate
   await authSession.login('testuser', 'password');
 
@@ -466,7 +489,12 @@ The recorder includes built-in file locking for safe parallel execution. Each te
 **With interceptNetworkCall (deterministic waits):**
 
 ```typescript
-test('use both utilities', async ({ page, context, networkRecorder, interceptNetworkCall }) => {
+test('use both utilities', async ({
+  page,
+  context,
+  networkRecorder,
+  interceptNetworkCall,
+}) => {
   await networkRecorder.setup(context);
 
   const createCall = interceptNetworkCall({

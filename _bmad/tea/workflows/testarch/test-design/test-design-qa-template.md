@@ -330,7 +330,9 @@ import { test } from '@seontechnologies/playwright-utils/api-request/fixtures';
 import { expect } from '@playwright/test';
 
 // P0 critical test
-test('@P0 @API @Security unauthenticated request returns 401', async ({ apiRequest }) => {
+test('@P0 @API @Security unauthenticated request returns 401', async ({
+  apiRequest,
+}) => {
   const { status, body } = await apiRequest({
     method: 'POST',
     path: '/api/endpoint',

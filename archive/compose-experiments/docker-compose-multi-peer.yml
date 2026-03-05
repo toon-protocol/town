@@ -53,12 +53,16 @@ services:
     volumes:
       - ../connector/packages/contracts:/contracts
     ports:
-      - "8545:8545"
+      - '8545:8545'
     networks:
       - crosstown-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -75,14 +79,14 @@ services:
     environment:
       PORT: 3500
       RPC_URL: http://anvil:8545
-      ETH_PRIVATE_KEY: "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d"
-      TOKEN_PRIVATE_KEY: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      ETH_PRIVATE_KEY: '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
+      TOKEN_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
       TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
       ETH_AMOUNT: ${FAUCET_ETH_AMOUNT:-100}
       TOKEN_AMOUNT: ${FAUCET_TOKEN_AMOUNT:-10000}
       RATE_LIMIT_HOURS: ${FAUCET_RATE_LIMIT_HOURS:-1}
     ports:
-      - "3500:3500"
+      - '3500:3500'
     networks:
       - crosstown-network
     depends_on:
@@ -90,7 +94,11 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1"]
+      test:
+        [
+          'CMD-SHELL',
+          'wget --no-verbose --tries=1 --spider http://localhost:3500/health || exit 1',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -107,24 +115,24 @@ services:
       LOCAL_DELIVERY_URL: http://crosstown-peer1:3100
 
       # Settlement Infrastructure (correct env var names)
-      SETTLEMENT_ENABLED: "true"
+      SETTLEMENT_ENABLED: 'true'
       BASE_L2_RPC_URL: http://anvil:8545
       TOKEN_NETWORK_REGISTRY: ${BASE_REGISTRY_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}
       M2M_TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
-      TREASURY_EVM_PRIVATE_KEY: "0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a"
+      TREASURY_EVM_PRIVATE_KEY: '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
 
       # Peer EVM address mapping
-      PEER1_EVM_ADDRESS: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-      PEER2_EVM_ADDRESS: "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
-      PEER3_EVM_ADDRESS: "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65"
-      PEER4_EVM_ADDRESS: "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc"
+      PEER1_EVM_ADDRESS: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
+      PEER2_EVM_ADDRESS: '0x90F79bf6EB2c4f870365E785982E1f101E93b906'
+      PEER3_EVM_ADDRESS: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
+      PEER4_EVM_ADDRESS: '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc'
 
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
     ports:
-      - "3001:3000"   # BTP
-      - "8081:8080"   # Health
-      - "8091:8081"   # Admin
-      - "3011:3001"   # Explorer
+      - '3001:3000' # BTP
+      - '8081:8080' # Health
+      - '8091:8081' # Admin
+      - '3011:3001' # Explorer
     volumes:
       - connector-data-peer1:/data
       - ./config/connector-config-peer.yaml:/app/config.yaml:ro
@@ -135,7 +143,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -164,12 +180,12 @@ services:
       ASSET_SCALE: ${ASSET_SCALE:-6}
 
       # Genesis peer - no bootstrap needed
-      ARDRIVE_ENABLED: "false"
+      ARDRIVE_ENABLED: 'false'
 
       DATA_DIR: /data
     ports:
-      - "3101:3100"   # BLS
-      - "7101:7100"   # Nostr Relay
+      - '3101:3100' # BLS
+      - '7101:7100' # Nostr Relay
     volumes:
       - crosstown-data-peer1:/data
     networks:
@@ -179,7 +195,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -194,19 +210,19 @@ services:
     environment:
       ENVIRONMENT: development
       LOCAL_DELIVERY_URL: http://crosstown-peer2:3100
-      SETTLEMENT_ENABLED: "true"
+      SETTLEMENT_ENABLED: 'true'
       BASE_L2_RPC_URL: http://anvil:8545
-      BASE_CHAIN_ID: "31337"
+      BASE_CHAIN_ID: '31337'
       # Anvil account #3 for peer2
-      TREASURY_EVM_PRIVATE_KEY: "0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6"
+      TREASURY_EVM_PRIVATE_KEY: '0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6'
       M2M_TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
       TOKEN_NETWORK_REGISTRY: ${BASE_REGISTRY_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
     ports:
-      - "3002:3000"
-      - "8082:8080"
-      - "8092:8081"
-      - "3012:3001"
+      - '3002:3000'
+      - '8082:8080'
+      - '8092:8081'
+      - '3012:3001'
     volumes:
       - connector-data-peer2:/data
       - ./config/connector-config-peer.yaml:/app/config.yaml:ro
@@ -217,7 +233,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -246,12 +270,12 @@ services:
 
       # Bootstrap via peer1
       ADDITIONAL_PEERS: '[{"pubkey":"719705df863f0190e0c124bbb11dd84b6374d077f66c4912a039324c98dc25e3","relayUrl":"ws://crosstown-peer1:7100","ilpAddress":"g.crosstown.peer1","btpEndpoint":"ws://connector-peer1:3000"}]'
-      ARDRIVE_ENABLED: "false"
+      ARDRIVE_ENABLED: 'false'
 
       DATA_DIR: /data
     ports:
-      - "3102:3100"
-      - "7102:7100"
+      - '3102:3100'
+      - '7102:7100'
     volumes:
       - crosstown-data-peer2:/data
     networks:
@@ -263,7 +287,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -278,21 +302,21 @@ services:
     environment:
       ENVIRONMENT: development
       LOCAL_DELIVERY_URL: http://crosstown-peer3:3100
-      SETTLEMENT_ENABLED: "true"
+      SETTLEMENT_ENABLED: 'true'
       BASE_L2_RPC_URL: http://anvil:8545
       TOKEN_NETWORK_REGISTRY: ${BASE_REGISTRY_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}
       M2M_TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
-      TREASURY_EVM_PRIVATE_KEY: "0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a"
-      PEER1_EVM_ADDRESS: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-      PEER2_EVM_ADDRESS: "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
-      PEER3_EVM_ADDRESS: "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65"
-      PEER4_EVM_ADDRESS: "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc"
+      TREASURY_EVM_PRIVATE_KEY: '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a'
+      PEER1_EVM_ADDRESS: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
+      PEER2_EVM_ADDRESS: '0x90F79bf6EB2c4f870365E785982E1f101E93b906'
+      PEER3_EVM_ADDRESS: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
+      PEER4_EVM_ADDRESS: '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc'
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
     ports:
-      - "3003:3000"
-      - "8083:8080"
-      - "8093:8081"
-      - "3013:3001"
+      - '3003:3000'
+      - '8083:8080'
+      - '8093:8081'
+      - '3013:3001'
     volumes:
       - connector-data-peer3:/data
       - ./config/connector-config-peer.yaml:/app/config.yaml:ro
@@ -303,7 +327,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -331,14 +363,14 @@ services:
       ASSET_SCALE: ${ASSET_SCALE:-6}
 
       # Bootstrap via peer1 and peer2 relays
-      BOOTSTRAP_RELAYS: "ws://crosstown-peer1:7100,ws://crosstown-peer2:7100"
+      BOOTSTRAP_RELAYS: 'ws://crosstown-peer1:7100,ws://crosstown-peer2:7100'
       BOOTSTRAP_PEERS: ${PEER1_NOSTR_PUBKEY:-},${PEER2_NOSTR_PUBKEY:-}
-      ARDRIVE_ENABLED: "false"
+      ARDRIVE_ENABLED: 'false'
 
       DATA_DIR: /data
     ports:
-      - "3103:3100"
-      - "7103:7100"
+      - '3103:3100'
+      - '7103:7100'
     volumes:
       - crosstown-data-peer3:/data
     networks:
@@ -352,7 +384,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -367,21 +399,21 @@ services:
     environment:
       ENVIRONMENT: development
       LOCAL_DELIVERY_URL: http://crosstown-peer4:3100
-      SETTLEMENT_ENABLED: "true"
+      SETTLEMENT_ENABLED: 'true'
       BASE_L2_RPC_URL: http://anvil:8545
       TOKEN_NETWORK_REGISTRY: ${BASE_REGISTRY_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}
       M2M_TOKEN_ADDRESS: ${BASE_TOKEN_ADDRESS:-0x5FbDB2315678afecb367f032d93F642f64180aa3}
-      TREASURY_EVM_PRIVATE_KEY: "0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba"
-      PEER1_EVM_ADDRESS: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-      PEER2_EVM_ADDRESS: "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
-      PEER3_EVM_ADDRESS: "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65"
-      PEER4_EVM_ADDRESS: "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc"
+      TREASURY_EVM_PRIVATE_KEY: '0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
+      PEER1_EVM_ADDRESS: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
+      PEER2_EVM_ADDRESS: '0x90F79bf6EB2c4f870365E785982E1f101E93b906'
+      PEER3_EVM_ADDRESS: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
+      PEER4_EVM_ADDRESS: '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc'
       EXPLORER_ENABLED: ${EXPLORER_ENABLED:-true}
     ports:
-      - "3004:3000"
-      - "8084:8080"
-      - "8094:8081"
-      - "3014:3001"
+      - '3004:3000'
+      - '8084:8080'
+      - '8094:8081'
+      - '3014:3001'
     volumes:
       - connector-data-peer4:/data
       - ./config/connector-config-peer.yaml:/app/config.yaml:ro
@@ -392,7 +424,15 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:8080/health',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -420,14 +460,14 @@ services:
       ASSET_SCALE: ${ASSET_SCALE:-6}
 
       # Bootstrap via all peer relays
-      BOOTSTRAP_RELAYS: "ws://crosstown-peer1:7100,ws://crosstown-peer2:7100,ws://crosstown-peer3:7100"
+      BOOTSTRAP_RELAYS: 'ws://crosstown-peer1:7100,ws://crosstown-peer2:7100,ws://crosstown-peer3:7100'
       BOOTSTRAP_PEERS: ${PEER1_NOSTR_PUBKEY:-},${PEER2_NOSTR_PUBKEY:-},${PEER3_NOSTR_PUBKEY:-}
-      ARDRIVE_ENABLED: "false"
+      ARDRIVE_ENABLED: 'false'
 
       DATA_DIR: /data
     ports:
-      - "3104:3100"
-      - "7104:7100"
+      - '3104:3100'
+      - '7104:7100'
     volumes:
       - crosstown-data-peer4:/data
     networks:
@@ -443,7 +483,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3100/health"]
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
       interval: 30s
       timeout: 10s
       retries: 3

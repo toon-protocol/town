@@ -7,9 +7,9 @@ services:
     container_name: crosstown-node
     env_file: .env
     ports:
-      - "7100:7100"  # Nostr relay
-      - "3100:3100"  # BLS HTTP
-      - "3000:3000"  # BTP
+      - '7100:7100' # Nostr relay
+      - '3100:3100' # BLS HTTP
+      - '3000:3000' # BTP
     volumes:
       - crosstown-data:/data
     networks:
@@ -24,9 +24,9 @@ services:
     container_name: crosstown-peer2
     env_file: .env.peer2
     ports:
-      - "7101:7100"  # Nostr relay (different port)
-      - "3101:3100"  # BLS HTTP (different port)
-      - "3001:3000"  # BTP (different port)
+      - '7101:7100' # Nostr relay (different port)
+      - '3101:3100' # BLS HTTP (different port)
+      - '3001:3000' # BTP (different port)
     volumes:
       - crosstown-peer2-data:/data
     networks:
@@ -39,10 +39,10 @@ services:
   connector:
     image: crosstown/connector:latest
     container_name: crosstown-connector
-    command: ["node", "packages/backend/src/index.js"]
+    command: ['node', 'packages/backend/src/index.js']
     ports:
-      - "8080:8080"
-      - "3002:3002"
+      - '8080:8080'
+      - '3002:3002'
     volumes:
       - ./config/connector-config-with-base.yaml:/app/config/local.yaml
     environment:
@@ -51,7 +51,7 @@ services:
     networks:
       - crosstown-net
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:8080/health']
       interval: 5s
       timeout: 3s
       retries: 5
@@ -60,10 +60,10 @@ services:
   connector2:
     image: crosstown/connector:latest
     container_name: crosstown-connector2
-    command: ["node", "packages/backend/src/index.js"]
+    command: ['node', 'packages/backend/src/index.js']
     ports:
-      - "8081:8080"
-      - "3003:3002"
+      - '8081:8080'
+      - '3003:3002'
     volumes:
       - ./config/connector-peer2.yaml:/app/config/local.yaml
     environment:
@@ -72,7 +72,7 @@ services:
     networks:
       - crosstown-net
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:8080/health']
       interval: 5s
       timeout: 3s
       retries: 5
@@ -88,8 +88,8 @@ services:
       FORGEJO__database__PATH: /data/forgejo/forgejo.db
     restart: unless-stopped
     ports:
-      - "3004:3000"
-      - "2222:22"
+      - '3004:3000'
+      - '2222:22'
     volumes:
       - forgejo-data:/data
     networks:
@@ -99,9 +99,9 @@ services:
   anvil:
     image: ghcr.io/foundry-rs/foundry:latest
     container_name: crosstown-anvil
-    command: ["anvil", "--host", "0.0.0.0", "--chain-id", "31337"]
+    command: ['anvil', '--host', '0.0.0.0', '--chain-id', '31337']
     ports:
-      - "8545:8545"
+      - '8545:8545'
     networks:
       - crosstown-net
 

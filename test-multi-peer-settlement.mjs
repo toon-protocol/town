@@ -104,11 +104,18 @@ async function checkPeerHealth(peer) {
 
     return {
       connector: connectorRes.ok && connectorData?.status === 'healthy',
-      bls: blsRes.ok && (blsData?.status === 'healthy' || blsData?.status === 'ok'),
+      bls:
+        blsRes.ok &&
+        (blsData?.status === 'healthy' || blsData?.status === 'ok'),
       healthy: connectorRes.ok && blsRes.ok,
     };
   } catch (error) {
-    return { connector: false, bls: false, healthy: false, error: error.message };
+    return {
+      connector: false,
+      bls: false,
+      healthy: false,
+      error: error.message,
+    };
   }
 }
 
@@ -239,7 +246,9 @@ async function getSettlementState(adminUrl) {
  */
 async function getCurrentBlock() {
   try {
-    const { stdout } = await execAsync(`cast block-number --rpc-url ${ANVIL_RPC}`);
+    const { stdout } = await execAsync(
+      `cast block-number --rpc-url ${ANVIL_RPC}`
+    );
     return parseInt(stdout.trim());
   } catch (error) {
     return 0;
@@ -254,7 +263,10 @@ async function checkSettlementEvents(fromBlock) {
     const { stdout } = await execAsync(
       `cast logs --from-block ${fromBlock} --address ${REGISTRY_ADDRESS} --rpc-url ${ANVIL_RPC} 2>/dev/null || echo ""`
     );
-    return stdout.trim().split('\n').filter(line => line.length > 0);
+    return stdout
+      .trim()
+      .split('\n')
+      .filter((line) => line.length > 0);
   } catch (error) {
     return [];
   }
@@ -282,9 +294,14 @@ async function main() {
     const health = await checkPeerHealth(peer);
     healthResults[peer.id] = health;
 
-    const status = health.healthy ? `${c.green}✓ HEALTHY` : `${c.red}✗ UNHEALTHY`;
+    const status = health.healthy
+      ? `${c.green}✓ HEALTHY`
+      : `${c.red}✗ UNHEALTHY`;
     log(`  ${peer.id}: ${status}`, '');
-    log(`    Connector: ${health.connector ? '✓' : '✗'} | BLS: ${health.bls ? '✓' : '✗'}`, c.dim);
+    log(
+      `    Connector: ${health.connector ? '✓' : '✗'} | BLS: ${health.bls ? '✓' : '✗'}`,
+      c.dim
+    );
 
     if (!health.healthy) {
       allHealthy = false;
@@ -307,26 +324,56 @@ async function main() {
 
   // peer1 ← → peer2
   log('\n  Configuring peer1 ↔ peer2...', c.cyan);
-  await addPeer(PEERS[0].connectorAdmin, 'peer2', 'ws://connector-peer2:3000', PEERS[1].ilpAddress);
+  await addPeer(
+    PEERS[0].connectorAdmin,
+    'peer2',
+    'ws://connector-peer2:3000',
+    PEERS[1].ilpAddress
+  );
   await addRoute(PEERS[0].connectorAdmin, PEERS[1].ilpAddress, 'peer2');
 
-  await addPeer(PEERS[1].connectorAdmin, 'peer1', 'ws://connector-peer1:3000', PEERS[0].ilpAddress);
+  await addPeer(
+    PEERS[1].connectorAdmin,
+    'peer1',
+    'ws://connector-peer1:3000',
+    PEERS[0].ilpAddress
+  );
   await addRoute(PEERS[1].connectorAdmin, PEERS[0].ilpAddress, 'peer1');
 
   // peer2 ← → peer3
   log('  Configuring peer2 ↔ peer3...', c.cyan);
-  await addPeer(PEERS[1].connectorAdmin, 'peer3', 'ws://connector-peer3:3000', PEERS[2].ilpAddress);
+  await addPeer(
+    PEERS[1].connectorAdmin,
+    'peer3',
+    'ws://connector-peer3:3000',
+    PEERS[2].ilpAddress
+  );
   await addRoute(PEERS[1].connectorAdmin, PEERS[2].ilpAddress, 'peer3');
 
-  await addPeer(PEERS[2].connectorAdmin, 'peer2', 'ws://connector-peer2:3000', PEERS[1].ilpAddress);
+  await addPeer(
+    PEERS[2].connectorAdmin,
+    'peer2',
+    'ws://connector-peer2:3000',
+    PEERS[1].ilpAddress
+  );
   await addRoute(PEERS[2].connectorAdmin, PEERS[1].ilpAddress, 'peer2');
 
   // peer3 ← → peer4
   log('  Configuring peer3 ↔ peer4...', c.cyan);
-  await addPeer(PEERS[2].connectorAdmin, 'peer4', 'ws://connector-peer4:3000', PEERS[3].ilpAddress);
+  await addPeer(
+    PEERS[2].connectorAdmin,
+    'peer4',
+    'ws://connector-peer4:3000',
+    PEERS[3].ilpAddress
+  );
   await addRoute(PEERS[2].connectorAdmin, PEERS[3].ilpAddress, 'peer4');
 
-  await addPeer(PEERS[3].connectorAdmin, 'peer3', 'ws://connector-peer3:3000', PEERS[2].ilpAddress);
+  await addPeer(
+    PEERS[3].connectorAdmin,
+    'peer3',
+    'ws://connector-peer3:3000',
+    PEERS[2].ilpAddress
+  );
   await addRoute(PEERS[3].connectorAdmin, PEERS[2].ilpAddress, 'peer3');
 
   // Verify configuration
@@ -334,10 +381,13 @@ async function main() {
   for (const peer of PEERS) {
     const peers = await getConnectorPeers(peer.connectorAdmin);
     const routes = await getConnectorRoutes(peer.connectorAdmin);
-    log(`    ${peer.id}: ${peers.length} peers, ${routes.length} routes`, c.blue);
+    log(
+      `    ${peer.id}: ${peers.length} peers, ${routes.length} routes`,
+      c.blue
+    );
   }
 
-  await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for connections
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for connections
 
   // Step 3: Initial state
   section('3. INITIAL STATE');
@@ -388,11 +438,14 @@ async function main() {
         }
       }
 
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
     results[route.name] = { success, failed, total: PACKETS_PER_ROUTE };
-    log(`  ✓ ${success}/${PACKETS_PER_ROUTE} packets sent`, success === PACKETS_PER_ROUTE ? c.green : c.yellow);
+    log(
+      `  ✓ ${success}/${PACKETS_PER_ROUTE} packets sent`,
+      success === PACKETS_PER_ROUTE ? c.green : c.yellow
+    );
   }
 
   // Step 5: Check settlement
@@ -417,7 +470,7 @@ async function main() {
 
   if (events.length > 0) {
     log(`\n🎉 ${events.length} settlement events detected:`, c.green);
-    events.forEach(event => log(`  ${event}`, c.green));
+    events.forEach((event) => log(`  ${event}`, c.green));
   } else {
     log('⚠️  No settlement events detected yet', c.yellow);
     log('   Settlement may occur later when threshold is reached', c.dim);
@@ -430,20 +483,29 @@ async function main() {
   let totalPacketsFailed = 0;
 
   for (const [routeName, result] of Object.entries(results)) {
-    log(`${routeName}: ${result.success}/${result.total}`, result.success === result.total ? c.green : c.yellow);
+    log(
+      `${routeName}: ${result.success}/${result.total}`,
+      result.success === result.total ? c.green : c.yellow
+    );
     totalPacketsSent += result.success;
     totalPacketsFailed += result.failed;
   }
 
   log(`\n📊 Overall statistics:`, c.cyan);
   log(`  Total packets sent: ${totalPacketsSent}`, c.blue);
-  log(`  Total packets failed: ${totalPacketsFailed}`, totalPacketsFailed === 0 ? c.green : c.red);
+  log(
+    `  Total packets failed: ${totalPacketsFailed}`,
+    totalPacketsFailed === 0 ? c.green : c.red
+  );
   log(`  Total amount: ${totalPacketsSent * PACKET_AMOUNT}`, c.blue);
-  log(`  Settlement events: ${events.length}`, events.length > 0 ? c.green : c.yellow);
+  log(
+    `  Settlement events: ${events.length}`,
+    events.length > 0 ? c.green : c.yellow
+  );
   log(`  Blocks mined: ${endBlock - startBlock}`, c.blue);
 
   log(`\n📡 Explorer UIs:`, c.cyan);
-  PEERS.forEach(peer => {
+  PEERS.forEach((peer) => {
     log(`  ${peer.id}: ${peer.explorer}`, c.blue);
   });
 
@@ -457,8 +519,8 @@ async function main() {
 }
 
 main()
-  .then(code => process.exit(code))
-  .catch(error => {
+  .then((code) => process.exit(code))
+  .catch((error) => {
     log(`\n❌ Test failed: ${error.message}`, c.red);
     console.error(error);
     process.exit(1);

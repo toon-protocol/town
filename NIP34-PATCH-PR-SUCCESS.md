@@ -14,12 +14,15 @@ Successfully fixed and tested the complete NIP-34 patch→PR creation flow using
 ## The Fix
 
 ### Problem
+
 When submitting patches, the system failed with:
+
 ```
 Forgejo API error (422): {"message":"repository file already exists [path: README.md]"}
 ```
 
 ### Root Cause
+
 1. Auto-initialized repositories include a default README.md
 2. Code was using `POST` for all file operations (create only)
 3. No check for existing files before attempting to create them
@@ -27,6 +30,7 @@ Forgejo API error (422): {"message":"repository file already exists [path: READM
 ### Solution
 
 **1. Check if files exist before creating/updating** (`NIP34Handler.ts`)
+
 ```typescript
 const existingFile = await this.forgejo.getFileContent(
   owner,
@@ -42,6 +46,7 @@ await this.forgejo.createOrUpdateFile({
 ```
 
 **2. Use correct HTTP method** (`ForgejoClient.ts`)
+
 ```typescript
 const method = options.sha ? 'PUT' : 'POST';
 return this.request<ForgejoFileResponse>(method, path, body);
@@ -52,12 +57,15 @@ return this.request<ForgejoFileResponse>(method, path, body);
 ## Test Results
 
 ### Test Command
+
 ```bash
 node test-nip34-patch-pr.mjs
 ```
 
 ### Test Flow
+
 1. **Create Repository** (kind:30617)
+
    ```
    Event ID: 8250c934
    Repository: nip34-pr-test
@@ -73,16 +81,19 @@ node test-nip34-patch-pr.mjs
 ### Results
 
 **Repository Created:**
+
 ```
 http://localhost:3004/crosstownAdmin/nip34-pr-test
 ```
 
 **Branch Created:**
+
 ```
 patch-6df4a9c7
 ```
 
 **Pull Request Created:**
+
 ```
 PR #1: "Add README with project information"
 State: open
@@ -90,6 +101,7 @@ URL: http://localhost:3004/crosstownAdmin/nip34-pr-test/pulls/1
 ```
 
 **File Updated:**
+
 ```markdown
 # nip34-pr-test
 
@@ -120,6 +132,7 @@ This repository demonstrates the NIP-34 patch workflow.
 ## Verification
 
 ### API Verification
+
 ```bash
 # Check PR details
 curl http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/pulls/1
@@ -132,6 +145,7 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 ```
 
 ### Results
+
 - ✅ PR #1 exists and is `open`
 - ✅ Branch `patch-6df4a9c7` exists
 - ✅ README.md updated with patch content
@@ -141,9 +155,9 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 
 ## Files Modified
 
-| File | Change |
-|------|--------|
-| `packages/core/src/nip34/NIP34Handler.ts` | Added file existence check in `handlePatch()` |
+| File                                       | Change                                           |
+| ------------------------------------------ | ------------------------------------------------ |
+| `packages/core/src/nip34/NIP34Handler.ts`  | Added file existence check in `handlePatch()`    |
 | `packages/core/src/nip34/ForgejoClient.ts` | Changed to use PUT for updates, POST for creates |
 
 **Commit:** `165824d`
@@ -197,16 +211,19 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 ## What This Enables
 
 ### Payment-Gated Git Operations
+
 - Contributors pay micropayments to submit patches
 - Economic spam prevention for open source projects
 - Direct monetization for repository maintainers
 
 ### Nostr-Native Git Workflow
+
 - No GitHub/GitLab account required
 - Decentralized PR submission
 - Censorship-resistant code collaboration
 
 ### Interledger Integration
+
 - Real payments via ILP
 - Cross-currency support
 - Instant settlements
@@ -216,6 +233,7 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 ## Next Steps
 
 ### Feature Enhancements
+
 - [ ] Support multi-file patches (currently works!)
 - [ ] Add patch validation and safety checks
 - [ ] Implement automatic PR merging on approval events
@@ -223,6 +241,7 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 - [ ] Support for binary patches
 
 ### Testing
+
 - [x] Repository creation
 - [x] Patch submission
 - [x] Branch creation
@@ -233,6 +252,7 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 - [ ] Large patches (>100KB)
 
 ### Documentation
+
 - [x] Implementation guide
 - [x] Test results
 - [ ] User guide for submitting patches via Nostr
@@ -242,12 +262,12 @@ curl "http://localhost:3004/api/v1/repos/crosstownAdmin/nip34-pr-test/contents/R
 
 ## Performance Metrics
 
-| Metric | Value |
-|--------|-------|
-| Repository creation | < 500ms |
-| Branch creation | < 200ms |
-| File update | < 300ms |
-| PR creation | < 400ms |
+| Metric                  | Value           |
+| ----------------------- | --------------- |
+| Repository creation     | < 500ms         |
+| Branch creation         | < 200ms         |
+| File update             | < 300ms         |
+| PR creation             | < 400ms         |
 | **Total patch→PR time** | **< 2 seconds** |
 
 ---
@@ -273,6 +293,7 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ✅ **NIP-34 patch→PR flow is fully operational!**
 
 The complete payment-gated Git workflow now works end-to-end:
+
 1. ✅ Users submit NIP-34 events with ILP micropayments
 2. ✅ Events validated and stored in BLS
 3. ✅ NIP34Handler automatically processes patches
@@ -283,6 +304,6 @@ This enables a complete **Nostr-based Git workflow** with built-in monetization 
 
 ---
 
-*Generated: 2026-02-21 21:43 EST*
-*Test: Patch → PR Creation*
-*Result: SUCCESS*
+_Generated: 2026-02-21 21:43 EST_
+_Test: Patch → PR Creation_
+_Result: SUCCESS_

@@ -5,7 +5,11 @@
  * Simulates a second user submitting a PR to an existing repository
  */
 
-import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import {
+  generateSecretKey,
+  getPublicKey,
+  finalizeEvent,
+} from 'nostr-tools/pure';
 import { encode as encodeToon } from '@toon-format/toon';
 
 const BLS_URL = 'http://localhost:3100';
@@ -60,7 +64,6 @@ async function submitEvent(event, description) {
 
     console.log(`   ✅ Submitted successfully!\n`);
     return true;
-
   } catch (error) {
     console.log(`   ❌ Error: ${error.message}\n`);
     return false;
@@ -73,17 +76,18 @@ async function main() {
   console.log('============================================================\n');
 
   // Create a PR event (kind:1618)
-  const prEvent = finalizeEvent({
-    kind: 1618,
-    created_at: Math.floor(Date.now() / 1000),
-    tags: [
-      ['a', `30617:${contributorPk}:${OWNER}/${REPO_NAME}`],
-      ['p', contributorPk],
-      ['clone', 'https://github.com/contributor/nip34-test-repo.git'],
-      ['c', 'abc123def456'],  // commit hash
-      ['subject', 'Add new feature: User authentication'],
-    ],
-    content: `This PR adds user authentication to the application.
+  const prEvent = finalizeEvent(
+    {
+      kind: 1618,
+      created_at: Math.floor(Date.now() / 1000),
+      tags: [
+        ['a', `30617:${contributorPk}:${OWNER}/${REPO_NAME}`],
+        ['p', contributorPk],
+        ['clone', 'https://github.com/contributor/nip34-test-repo.git'],
+        ['c', 'abc123def456'], // commit hash
+        ['subject', 'Add new feature: User authentication'],
+      ],
+      content: `This PR adds user authentication to the application.
 
 ## Changes
 - Added JWT-based authentication
@@ -97,7 +101,9 @@ async function main() {
 - Manual testing completed
 
 Please review and merge!`,
-  }, contributorSk);
+    },
+    contributorSk
+  );
 
   await submitEvent(prEvent, 'Pull Request: Add authentication');
 
@@ -111,7 +117,9 @@ Please review and merge!`,
   console.log('  • NIP34Handler creates documentation issue in Forgejo\n');
 
   console.log('🔍 Next steps:');
-  console.log('  1. Check Forgejo issues: http://localhost:3004/crosstownAdmin/nip34-test-repo/issues');
+  console.log(
+    '  1. Check Forgejo issues: http://localhost:3004/crosstownAdmin/nip34-test-repo/issues'
+  );
   console.log('  2. View logs: docker logs crosstown-node | grep NIP34');
   console.log('  3. See PR documentation issue with clone instructions\n');
 }

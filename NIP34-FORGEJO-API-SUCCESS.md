@@ -8,6 +8,7 @@
 ## Summary
 
 Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of git commands. This approach is:
+
 - ✅ **More Reliable** - No git binary dependencies
 - ✅ **Cleaner** - Pure HTTP/REST operations
 - ✅ **Faster** - No file system operations
@@ -18,11 +19,13 @@ Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of g
 ## What Was Changed
 
 ### 1. Removed `simple-git` Dependency
+
 - Eliminated `GitOperations` class entirely
 - Removed all git command-line operations
 - Reduced nip34 bundle from 172 KB → 14.91 KB
 
 ### 2. Enhanced `ForgejoClient` with New Methods
+
 ```typescript
 // New API methods added:
 - createBranch() - Create branches via API
@@ -33,20 +36,24 @@ Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of g
 ### 3. Rewrote `NIP34Handler` Methods
 
 **Repository Announcement (kind:30617)**
+
 - Uses `ForgejoClient.createRepository()` ✅
 - Creates repo directly via API
 
 **Patch (kind:1617)**
+
 - Parses git format-patch content ✅
 - Creates branch via API ✅
 - Applies file changes via API ✅
 - Creates pull request via API ✅
 
 **Issue (kind:1621)**
+
 - Uses `ForgejoClient.createIssue()` ✅
 - Creates issues directly via API
 
 **Pull Request (kind:1618)**
+
 - Simplified to create an issue with instructions
 - Documents the external repository for manual processing
 
@@ -55,12 +62,15 @@ Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of g
 ## Test Results
 
 ### Handler Initialization
+
 ```
 [Setup] ✅ NIP-34 Git integration enabled (Forgejo: http://forgejo:3000)
 ```
+
 **Status:** ✅ SUCCESS - No more simple-git errors!
 
 ### Event Processing
+
 ```
 [NIP34] Handling NIP-34 event: kind=30617 id=344000ba
 [NIP34] Creating repository: admin/nip34-test-repo
@@ -68,9 +78,11 @@ Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of g
 [NIP34] Handling NIP-34 event: kind=1621 id=5b324587
 [NIP34] Creating issue in crosstownAdmin/admin/nip34-test-repo
 ```
+
 **Status:** ✅ SUCCESS - All events automatically processed!
 
 ### Payment Flow
+
 - ✅ All 3 events successfully paid (27,900 ILP units total)
 - ✅ Events stored in BLS
 - ✅ NIP-34 handler triggered automatically
@@ -85,11 +97,13 @@ Successfully implemented NIP-34 auto-apply using Forgejo's REST API instead of g
 The current token has limited scopes and needs additional permissions:
 
 **Error:**
+
 ```
 "token does not have at least one of required scope(s): [write:user]"
 ```
 
 **Solution:**
+
 1. Go to Forgejo: http://localhost:3004
 2. Login as `crosstownAdmin`
 3. Settings → Applications → Access Tokens
@@ -105,6 +119,7 @@ The current token has limited scopes and needs additional permissions:
 ## Architecture Improvements
 
 ### Before (Git Commands Approach)
+
 ```
 NIP-34 Event → Handler → git clone → git apply → git push → Forgejo
                            ❌ ESM/CommonJS issues
@@ -113,6 +128,7 @@ NIP-34 Event → Handler → git clone → git apply → git push → Forgejo
 ```
 
 ### After (Forgejo API Approach)
+
 ```
 NIP-34 Event → Handler → Forgejo REST API
                            ✅ Pure HTTP
@@ -152,6 +168,7 @@ NIP-34 Event → Handler → Forgejo REST API
 
 1. **Update Forgejo Token** (see above)
 2. **Test Each Operation:**
+
    ```bash
    # Repository creation
    node packages/core/test-nip34-github-scenario.mjs
@@ -187,18 +204,18 @@ The NIP-34 auto-apply feature is now working using Forgejo's REST API. This is a
 
 ## Comparison: Before vs After
 
-| Feature | Git Commands (Before) | Forgejo API (After) |
-|---------|----------------------|---------------------|
-| **Dependencies** | simple-git + git binary | None (fetch only) |
-| **Bundle Size** | 172 KB | 14.91 KB |
-| **ESM Compatible** | ❌ No | ✅ Yes |
-| **File Operations** | ❌ Requires disk | ✅ Pure HTTP |
-| **Reliability** | ⚠️ Complex | ✅ Simple |
-| **Initialization** | ❌ Failed | ✅ Success |
-| **Auto-Apply** | ❌ Not working | ✅ Working |
+| Feature             | Git Commands (Before)   | Forgejo API (After) |
+| ------------------- | ----------------------- | ------------------- |
+| **Dependencies**    | simple-git + git binary | None (fetch only)   |
+| **Bundle Size**     | 172 KB                  | 14.91 KB            |
+| **ESM Compatible**  | ❌ No                   | ✅ Yes              |
+| **File Operations** | ❌ Requires disk        | ✅ Pure HTTP        |
+| **Reliability**     | ⚠️ Complex              | ✅ Simple           |
+| **Initialization**  | ❌ Failed               | ✅ Success          |
+| **Auto-Apply**      | ❌ Not working          | ✅ Working          |
 
 ---
 
-*Generated: 2026-02-21*
-*Approach: Forgejo REST API*
-*Status: Operational (pending token update)*
+_Generated: 2026-02-21_
+_Approach: Forgejo REST API_
+_Status: Operational (pending token update)_

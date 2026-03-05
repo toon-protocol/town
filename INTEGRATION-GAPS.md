@@ -21,6 +21,7 @@ Epic 7 and Epic 8 are **60-75% complete**. The core infrastructure (types, event
 ### Current Implementation
 
 The BLS `/handle-packet` endpoint handles kind:23194 SPSP requests but:
+
 1. Parses the request (NIP-44 decrypt)
 2. Generates `destinationAccount` + `sharedSecret`
 3. Builds kind:23195 response with only those two fields
@@ -29,6 +30,7 @@ The BLS `/handle-packet` endpoint handles kind:23194 SPSP requests but:
 ### Missing Logic
 
 Per Epic 7 Story 7.3, the handler should:
+
 1. Extract `supportedChains`, `settlementAddresses`, `preferredTokens` from decrypted SPSP request
 2. Call `negotiateSettlementChain()` to find matching chain
 3. Extract peer's settlement address: `request.settlementAddresses[negotiatedChain]`
@@ -40,6 +42,7 @@ Per Epic 7 Story 7.3, the handler should:
 ### Why It Matters
 
 Without this, Phase 3 of bootstrap completes but:
+
 - No payment channels are opened
 - SPSP response lacks `channelId`
 - Peers cannot update their connector registration with settlement info
@@ -63,6 +66,7 @@ Add settlement negotiation to `createBlsServer()` in `entrypoint.ts` lines 331-3
 - `NostrSpspServer.negotiateSettlement()` calls `channelClient.openChannel()` and `channelClient.getChannelState()` (lines 197, 219)
 
 BUT:
+
 - `entrypoint.ts` line 536 creates `NostrSpspServer` with NO `channelClient` argument
 - No HTTP client implementation exists
 
@@ -94,10 +98,14 @@ const channelClient: ConnectorChannelClient = {
   },
 
   async getChannelState(channelId: string): Promise<ChannelState> {
-    const response = await fetch(`${config.connectorAdminUrl}/channels/${channelId}`);
+    const response = await fetch(
+      `${config.connectorAdminUrl}/channels/${channelId}`
+    );
     if (!response.ok) {
       const text = await response.text();
-      throw new Error(`Failed to get channel state: ${response.status} ${text}`);
+      throw new Error(
+        `Failed to get channel state: ${response.status} ${text}`
+      );
     }
     const data = await response.json();
     return {
@@ -135,6 +143,7 @@ const spspServer = new NostrSpspServer(
 ### Missing Configuration
 
 `NostrSpspServer` constructor accepts 5 arguments (NostrSpspServer.ts:39-50):
+
 1. `relayUrls` ✅ provided
 2. `secretKey` ✅ provided
 3. `pool` ❌ missing (defaults to new SimplePool)
@@ -142,6 +151,7 @@ const spspServer = new NostrSpspServer(
 5. `channelClient` ❌ missing
 
 Without `settlementConfig` and `channelClient`, `negotiateSettlement()` short-circuits at line 160:
+
 ```typescript
 if (!config || !channelClient || !supportedChains) {
   return; // Graceful degradation — no settlement
@@ -164,12 +174,14 @@ Even if `NostrSpspServer` was wired into the ILP code path, it wouldn't negotiat
 There are **two separate implementations** of SPSP handling:
 
 **Path 1: Direct Nostr SPSP** (NostrSpspServer)
+
 - Subscribes to kind:23194 on relay via Nostr WebSocket
 - Has full settlement negotiation logic
 - Calls connector Admin API for channel opening
 - Publishes kind:23195 response to relay
 
 **Path 2: ILP-Routed SPSP** (BLS `/handle-packet`)
+
 - Receives kind:23194 via ILP PREPARE → connector → agent-runtime → BLS HTTP
 - Has NO settlement negotiation logic
 - Just generates destinationAccount + sharedSecret
@@ -188,6 +200,7 @@ The ILP bootstrap flow (Phase 3) uses Path 2, which lacks settlement negotiation
 ### Fix Required
 
 Either:
+
 - **Option A:** Extract settlement logic from `NostrSpspServer.negotiateSettlement()` into a shared function, call it from both paths
 - **Option B:** Route ILP-received SPSP requests through `NostrSpspServer` instead of handling in `/handle-packet`
 - **Option C:** Duplicate the settlement logic in the BLS `/handle-packet` handler (code duplication, not ideal)
@@ -202,6 +215,7 @@ Either:
 ### The Circular Dependency
 
 **Bootstrap Flow:**
+
 1. Phase 1: Query relay for peer's kind:10032 → get ILP address and BTP endpoint
 2. Phase 2: Register peer via `POST /admin/peers` (no settlement)
 3. Phase 3: Send SPSP request to peer via ILP
@@ -218,6 +232,7 @@ Either:
 The connector's `POST /admin/channels` endpoint must accept `peerAddress` (and `peerTokenAddress`, `peerTokenNetwork` if needed) in the request body instead of relying on `settlementPeers` map.
 
 **Change to `admin-api.ts`** (lines 751-865):
+
 - Add `peerAddress?: string` to `OpenChannelRequest` interface
 - Use `body.peerAddress` directly instead of looking up from `settlementPeers`
 - Keep `settlementPeers` lookup as fallback for backward compatibility
@@ -229,18 +244,21 @@ This is an **agent-runtime change**, not crosstown.
 ## Gap 6: `IlpSendResult` Field Name Mismatch ❌
 
 **Files:**
+
 - Agent-society expects: `packages/core/src/bootstrap/types.ts` lines 108-114
 - Agent-runtime returns: `packages/agent-runtime/src/http/ilp-send-handler.ts` lines 199-221
 
 ### The Mismatch
 
 **Agent-runtime sends:**
+
 ```typescript
 { fulfilled: true, ... }   // FULFILL
 { fulfilled: false, ... }  // REJECT
 ```
 
 **Agent-society checks:**
+
 ```typescript
 if (!ilpResult.accepted) {  // ← "accepted" not "fulfilled"
   throw new BootstrapError(...);
@@ -254,6 +272,7 @@ BootstrapService Phase 2 (lines 410-414) will always throw because `ilpResult.ac
 ### Fix Required
 
 Either:
+
 - **Option A:** Change agent-runtime to return `accepted` instead of `fulfilled`
 - **Option B:** Change crosstown to check `fulfilled` instead of `accepted`
 - **Option C:** Add both fields for backward compatibility
@@ -342,6 +361,7 @@ But this only fixes the **direct Nostr SPSP path**, not the ILP-routed path (Gap
 ### Missing Test
 
 No test verifies:
+
 1. Build kind:23194 with NIP-44 encrypted settlement data
 2. TOON-encode the event
 3. Send as ILP PREPARE data
@@ -385,10 +405,12 @@ Add integration test: `packages/core/src/spsp/__tests__/ilp-spsp-roundtrip.test.
 ### The Inversion
 
 The bootstrap node initiates the reverse SPSP instead of responding to the peer's announcement. This works but doesn't match the plan's design where:
+
 - Peer announces (kind:10032 as ILP PREPARE)
 - Bootstrap responds with SPSP info (kind:23195 in FULFILL data)
 
 The current flow requires an extra round-trip:
+
 - Peer announces → Bootstrap reads relay → Bootstrap initiates SPSP → Peer responds
 
 ### Impact
@@ -427,6 +449,7 @@ The first call registers the peer for routing. The second call updates with sett
 ### Fix Required
 
 Either:
+
 - Make `POST /admin/peers` idempotent (update if exists, create if not)
 - Add `PUT /admin/peers/:peerId` for updates
 - Skip second call if settlement update fails (already gracefully degraded)
@@ -443,6 +466,7 @@ This is an **agent-runtime change**.
 ### Current Parsing
 
 The entrypoint parses:
+
 - `SUPPORTED_CHAINS` → array
 - `SETTLEMENT_ADDRESS_*` → settlementAddresses map
 - `PREFERRED_TOKEN_*` → preferredTokens map
@@ -496,6 +520,7 @@ app.get('/health', (c: Context) => {
 ### Issue
 
 The `bootstrapPhase` field is conditionally included but the deploy script (agent-runtime repo) doesn't check it. Phase verification (deploy-5-peer-multihop.sh lines 700-743) only checks:
+
 - BLS health returns 200
 - Admin API peers list includes peer1
 - Generic log parsing
@@ -503,6 +528,7 @@ The `bootstrapPhase` field is conditionally included but the deploy script (agen
 ### Missing Verification
 
 Should check:
+
 - `bootstrapPhase === 'ready'` before considering bootstrap complete
 - `peerCount` and `channelCount` from health endpoint
 - Explicit channel verification via `GET /admin/channels`
@@ -514,20 +540,24 @@ This is a **test/verification gap**, not a code gap.
 ## Priority Fix Order
 
 ### P0 - Critical (Bootstrap Broken)
+
 1. **Gap 1:** Add settlement negotiation to BLS `/handle-packet` handler for kind:23194
 2. **Gap 2:** Create `ConnectorChannelClient` HTTP implementation
 3. **Gap 6:** Fix `accepted` vs `fulfilled` field mismatch (coordinate with agent-runtime)
 
 ### P1 - High (Functionality Incomplete)
+
 4. **Gap 5:** Add `peerAddress` parameter to connector `POST /admin/channels` endpoint (agent-runtime change)
 5. **Gap 3:** Pass `settlementConfig` and `channelClient` to `NostrSpspServer`
 6. **Gap 12:** Parse `TOKEN_NETWORK_*` env vars
 
 ### P2 - Medium (Polish)
+
 7. **Gap 7:** Remove BLS fulfillment generation (cleanup per Epic 22)
 8. **Gap 11:** Make `POST /admin/peers` idempotent (agent-runtime change)
 
 ### P3 - Low (Documentation/Testing)
+
 9. **Gap 9:** Add TOON + NIP-44 round-trip integration test
 10. **Gap 4:** Decide on unified SPSP code path architecture
 11. **Gap 10:** Document Phase 4 inversion or fix RelayMonitor flow
@@ -538,6 +568,7 @@ This is a **test/verification gap**, not a code gap.
 ## Related Agent-Runtime Gaps
 
 See `INTEGRATION-GAPS.md` in the agent-runtime repository for connector-side gaps:
+
 - Missing `peerAddress` parameter in `POST /admin/channels`
 - `fulfilled` vs `accepted` response field
 - Idempotent peer registration
@@ -548,16 +579,19 @@ See `INTEGRATION-GAPS.md` in the agent-runtime repository for connector-side gap
 ## Testing Recommendations
 
 ### Unit Tests Needed
+
 - [ ] Settlement negotiation in BLS handler (mock connector Admin API)
 - [ ] TOON encoding preserves NIP-44 encrypted content
 - [ ] Channel client error handling (404, 503, timeouts)
 
 ### Integration Tests Needed
+
 - [ ] Full bootstrap with channel opening (requires local Anvil)
 - [ ] SPSP handshake via ILP with channel verification
 - [ ] 0-amount SPSP bypass for bootstrap node
 
 ### E2E Tests Needed
+
 - [ ] 5-peer unified deployment with channel verification
 - [ ] Cross-peer SPSP after bootstrap completes
 - [ ] Payment routing through opened channels

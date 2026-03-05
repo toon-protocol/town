@@ -154,6 +154,7 @@ node dist/${ENTRYPOINT}
 **Instant iteration - no Docker rebuilds!**
 
 ### Connector changes:
+
 ```bash
 cd /Users/jonathangreen/Documents/connector
 npm run build
@@ -161,6 +162,7 @@ npm run build
 ```
 
 ### Crosstown changes:
+
 ```bash
 cd /Users/jonathangreen/Documents/crosstown
 pnpm --filter @crosstown/core build  # Or whichever package changed
@@ -175,6 +177,7 @@ pnpm --filter @crosstown/bls build
 ## Verify Bootstrap Flow
 
 ### Check Genesis (Peer1):
+
 ```bash
 # Check health
 curl http://localhost:3101/health | jq .
@@ -184,6 +187,7 @@ curl -s http://localhost:8091/admin/peers | jq .
 ```
 
 ### Check Joiner (Peer2):
+
 ```bash
 # Check health
 curl http://localhost:3102/health | jq .
@@ -196,6 +200,7 @@ curl -s http://localhost:8092/admin/peers | jq '.peers[] | select(.connected == 
 ```
 
 ### Test SPSP via ILP:
+
 ```bash
 # Send test packet from peer2 to peer1
 curl -X POST http://localhost:8092/admin/ilp/send \
@@ -209,29 +214,32 @@ curl -X POST http://localhost:8092/admin/ilp/send \
 
 ## Benefits vs. Docker
 
-| Aspect | Docker | Local Node |
-|--------|--------|------------|
-| **Startup Time** | 10-20s | 1-2s |
-| **Rebuild Time** | 5-10min | 3-5s |
-| **Iteration Time** | 5-10min | 5s |
-| **Debugging** | Docker logs | Direct console.log |
-| **File Changes** | Volume mounts | Instant |
-| **Resource Usage** | High (4 containers) | Low (4 processes) |
+| Aspect             | Docker              | Local Node         |
+| ------------------ | ------------------- | ------------------ |
+| **Startup Time**   | 10-20s              | 1-2s               |
+| **Rebuild Time**   | 5-10min             | 3-5s               |
+| **Iteration Time** | 5-10min             | 5s                 |
+| **Debugging**      | Docker logs         | Direct console.log |
+| **File Changes**   | Volume mounts       | Instant            |
+| **Resource Usage** | High (4 containers) | Low (4 processes)  |
 
 ## Troubleshooting
 
 ### Port already in use:
+
 ```bash
 lsof -ti:3101 | xargs kill -9  # Kill process on port 3101
 ```
 
 ### BTP connection failing:
+
 - Check both connector and crosstown are running
 - Check CONNECTOR_ADMIN_URL points to correct port
 - Verify BTP_ENDPOINT uses correct port
 - Check BTP auth uses empty string (fixed!)
 
 ### SPSP not routing:
+
 - Verify peer registration: `curl http://localhost:8092/admin/peers`
 - Check BTP connected: `curl http://localhost:8092/admin/peers | jq '.peers[] | select(.connected == true)'`
 - Check routes exist: `curl http://localhost:8092/admin/routes`

@@ -65,14 +65,20 @@ This is an **isolated subprocess** running in parallel with other NFR domain ass
       "status": "CONCERN",
       "description": "No CDN for static assets",
       "evidence": ["Static files served from origin"],
-      "recommendations": ["Implement CDN (CloudFront/Cloudflare)", "Cache static assets for 1 year"]
+      "recommendations": [
+        "Implement CDN (CloudFront/Cloudflare)",
+        "Cache static assets for 1 year"
+      ]
     }
   ],
   "compliance": {
     "SLA_99.9": "PASS",
     "SLA_99.99": "CONCERN"
   },
-  "priority_actions": ["Implement CDN for static assets", "Add database query caching for frequent reads"],
+  "priority_actions": [
+    "Implement CDN for static assets",
+    "Add database query caching for frequent reads"
+  ],
   "summary": "Performance is acceptable with minor optimization opportunities"
 }
 ```

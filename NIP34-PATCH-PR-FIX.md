@@ -84,30 +84,37 @@ async createOrUpdateFile(
 ## Testing Flow
 
 ### 1. Create Repository
+
 ```javascript
-const repoEvent = finalizeEvent({
-  kind: 30617,
-  tags: [
-    ['d', `${OWNER}/${REPO_NAME}`],
-    ['name', REPO_NAME],
-    ['description', 'Test repository'],
-  ],
-  content: '',
-}, sk);
+const repoEvent = finalizeEvent(
+  {
+    kind: 30617,
+    tags: [
+      ['d', `${OWNER}/${REPO_NAME}`],
+      ['name', REPO_NAME],
+      ['description', 'Test repository'],
+    ],
+    content: '',
+  },
+  sk
+);
 ```
 
 ### 2. Submit Patch
+
 ```javascript
-const patchEvent = finalizeEvent({
-  kind: 1617,
-  tags: [
-    ['a', `30617:${pk}:${OWNER}/${REPO_NAME}`],
-  ],
-  content: gitFormatPatchContent,
-}, sk);
+const patchEvent = finalizeEvent(
+  {
+    kind: 1617,
+    tags: [['a', `30617:${pk}:${OWNER}/${REPO_NAME}`]],
+    content: gitFormatPatchContent,
+  },
+  sk
+);
 ```
 
 ### 3. Expected Result
+
 - ✅ New branch created (e.g., `patch-f41ddbc4`)
 - ✅ Files applied to branch (update if exists, create if new)
 - ✅ Pull request created automatically
@@ -119,6 +126,7 @@ const patchEvent = finalizeEvent({
 ### File Operations
 
 **Create File:** `POST /repos/{owner}/{repo}/contents/{filepath}`
+
 ```json
 {
   "content": "base64_encoded_content",
@@ -128,6 +136,7 @@ const patchEvent = finalizeEvent({
 ```
 
 **Update File:** `PUT /repos/{owner}/{repo}/contents/{filepath}`
+
 ```json
 {
   "content": "base64_encoded_content",
@@ -138,6 +147,7 @@ const patchEvent = finalizeEvent({
 ```
 
 **Get File:** `GET /repos/{owner}/{repo}/contents/{filepath}?ref={branch}`
+
 ```json
 {
   "content": "base64_encoded_content",
@@ -165,9 +175,9 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 
 ## Files Modified
 
-| File | Change |
-|------|--------|
-| `packages/core/src/nip34/NIP34Handler.ts` | Added file existence check in `handlePatch()` |
+| File                                       | Change                                                |
+| ------------------------------------------ | ----------------------------------------------------- |
+| `packages/core/src/nip34/NIP34Handler.ts`  | Added file existence check in `handlePatch()`         |
 | `packages/core/src/nip34/ForgejoClient.ts` | Changed `createOrUpdateFile()` to use PUT for updates |
 
 ---
@@ -183,5 +193,5 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 
 ---
 
-*Generated: 2026-02-21*
-*Status: Fix implemented, testing in progress*
+_Generated: 2026-02-21_
+_Status: Fix implemented, testing in progress_

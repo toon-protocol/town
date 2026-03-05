@@ -36,7 +36,8 @@ const PEERS = [
     ilpAddress: 'g.crosstown.peer1',
     evmAddress: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
     // Hardcoded for demo - in production, read from env or generate
-    nostrSecretHex: 'd5c4f02f7c0f9c8e7a6b5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a',
+    nostrSecretHex:
+      'd5c4f02f7c0f9c8e7a6b5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a',
   },
   {
     id: 'peer2',
@@ -49,7 +50,8 @@ const PEERS = [
     explorerUrl: 'http://localhost:3012',
     ilpAddress: 'g.crosstown.peer2',
     evmAddress: '0x90F79bf6EB2c4f870365E785982E1f101E93b906',
-    nostrSecretHex: 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2',
+    nostrSecretHex:
+      'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2',
   },
   {
     id: 'peer3',
@@ -62,7 +64,8 @@ const PEERS = [
     explorerUrl: 'http://localhost:3013',
     ilpAddress: 'g.crosstown.peer3',
     evmAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
-    nostrSecretHex: 'b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3',
+    nostrSecretHex:
+      'b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3',
   },
   {
     id: 'peer4',
@@ -75,7 +78,8 @@ const PEERS = [
     explorerUrl: 'http://localhost:3014',
     ilpAddress: 'g.crosstown.peer4',
     evmAddress: '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc',
-    nostrSecretHex: 'c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4',
+    nostrSecretHex:
+      'c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4',
   },
 ];
 
@@ -179,7 +183,10 @@ async function getTokenBalance(evmAddress) {
     const result = await response.json();
     return BigInt(result.result).toString();
   } catch (error) {
-    console.error(`Error getting token balance for ${evmAddress}:`, error.message);
+    console.error(
+      `Error getting token balance for ${evmAddress}:`,
+      error.message
+    );
     return '0';
   }
 }
@@ -208,7 +215,14 @@ async function getBlockNumber() {
 // Admin API Functions
 // ============================================================================
 
-async function registerPeer(adminUrl, peerId, btpUrl, ilpAddress, maxPacketAmount, settlementThreshold) {
+async function registerPeer(
+  adminUrl,
+  peerId,
+  btpUrl,
+  ilpAddress,
+  maxPacketAmount,
+  settlementThreshold
+) {
   console.log(`📝 Registering peer ${peerId} at ${adminUrl}...`);
   try {
     const response = await fetch(`${adminUrl}/admin/peers`, {
@@ -439,7 +453,9 @@ async function main() {
   // For now, this is a placeholder showing the intended flow
   console.log('⚠️  PLACEHOLDER: Actual ILP packet sending not yet implemented');
   console.log('    This requires:');
-  console.log('    1. Creating ILP PREPARE packets with Nostr events (TOON-encoded)');
+  console.log(
+    '    1. Creating ILP PREPARE packets with Nostr events (TOON-encoded)'
+  );
   console.log('    2. Sending through BTP WebSocket connections');
   console.log('    3. Collecting FULFILL/REJECT responses');
   console.log('    4. Verifying signed claims in packet data');
@@ -460,8 +476,10 @@ async function main() {
   for (const peer of PEERS) {
     const ethBalance = await getWalletBalance(peer.evmAddress);
     const tokenBalance = await getTokenBalance(peer.evmAddress);
-    const ethDelta = BigInt(ethBalance) - BigInt(initialBalances[peer.id].ethBalance);
-    const tokenDelta = BigInt(tokenBalance) - BigInt(initialBalances[peer.id].tokenBalance);
+    const ethDelta =
+      BigInt(ethBalance) - BigInt(initialBalances[peer.id].ethBalance);
+    const tokenDelta =
+      BigInt(tokenBalance) - BigInt(initialBalances[peer.id].tokenBalance);
 
     console.log(`  ${peer.name}:`);
     console.log(`    ETH:   ${ethBalance} wei (Δ ${ethDelta})`);

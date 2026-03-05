@@ -20,7 +20,7 @@ const PEERS = [
     name: 'Peer 1 (Genesis)',
     adminUrl: 'http://localhost:8091',
     connectorUrl: 'http://localhost:8081',
-    btpUrl: 'ws://connector-peer1:3000',  // Internal Docker network
+    btpUrl: 'ws://connector-peer1:3000', // Internal Docker network
     ilpAddress: 'g.crosstown.peer1',
     evmAddress: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
   },
@@ -233,7 +233,9 @@ async function main() {
   console.log('📊 Phase 1: Health Checks\n');
   for (const peer of PEERS) {
     const healthy = await checkHealth(peer);
-    console.log(`${healthy ? '✅' : '❌'} ${peer.name}: ${healthy ? 'healthy' : 'unhealthy'}`);
+    console.log(
+      `${healthy ? '✅' : '❌'} ${peer.name}: ${healthy ? 'healthy' : 'unhealthy'}`
+    );
   }
 
   await sleep(2000);
@@ -326,7 +328,9 @@ async function main() {
   // Phase 6: Send Packets (TO BE IMPLEMENTED)
   // -------------------------------------------------------------------------
   console.log('\n📊 Phase 6: Send Packets Through BTP Network\n');
-  console.log('⚠️  NOTE: Packet sending requires implementing BTP client or HTTP packet API');
+  console.log(
+    '⚠️  NOTE: Packet sending requires implementing BTP client or HTTP packet API'
+  );
   console.log('    The network is now configured with:');
   console.log('    - BTP peer connections (NOT local delivery)');
   console.log('    - Payment channels with initial deposits');
@@ -345,7 +349,9 @@ async function main() {
   console.log('\n📊 Phase 7: Final State\n');
 
   const finalBlock = await getBlockNumber();
-  console.log(`📦 Final Block: ${finalBlock} (Δ ${finalBlock - initialBlock})\n`);
+  console.log(
+    `📦 Final Block: ${finalBlock} (Δ ${finalBlock - initialBlock})\n`
+  );
 
   // -------------------------------------------------------------------------
   // Summary

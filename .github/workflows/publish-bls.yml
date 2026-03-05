@@ -11,13 +11,13 @@ on:
   push:
     branches: [main]
     paths:
-      - "packages/bls/**"
+      - 'packages/bls/**'
     tags:
-      - "bls-v*"
+      - 'bls-v*'
   workflow_dispatch:
     inputs:
       version:
-        description: "Version tag for the image (e.g., 1.0.0)"
+        description: 'Version tag for the image (e.g., 1.0.0)'
         required: false
         type: string
 
@@ -92,7 +92,7 @@ jobs:
         with:
           image-ref: ${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}
           severity: CRITICAL,HIGH
-          exit-code: "1"
+          exit-code: '1'
           format: table
 
       # Step 8: Generate SBOM with Trivy (supply chain transparency)

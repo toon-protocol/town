@@ -56,7 +56,10 @@ This is an **isolated subprocess** running in parallel with other quality dimens
 const totalChecks = testFiles.length * checksPerFile;
 const failedChecks = violations.length;
 const severityWeights = { HIGH: 10, MEDIUM: 5, LOW: 2 };
-const totalPenalty = violations.reduce((sum, v) => sum + severityWeights[v.severity], 0);
+const totalPenalty = violations.reduce(
+  (sum, v) => sum + severityWeights[v.severity],
+  0
+);
 const score = Math.max(0, 100 - totalPenalty);
 ```
 

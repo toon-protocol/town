@@ -43,19 +43,19 @@ settlement:
 settlementInfra:
   enabled: true
   # Registry address for payment channel contracts on Base Sepolia
-  registryAddress: "0xCbf6f43A17034e733744cBCc130FfcCA3CF3252C"
+  registryAddress: '0xCbf6f43A17034e733744cBCc130FfcCA3CF3252C'
   # M2M token address on Base Sepolia
-  tokenAddress: "0x39eaF99Cd4965A28DFe8B1455DD42aB49D0836B9"
+  tokenAddress: '0x39eaF99Cd4965A28DFe8B1455DD42aB49D0836B9'
   # RPC URL from environment: BASE_RPC_URL
-  rpcUrl: "https://sepolia.base.org"
+  rpcUrl: 'https://sepolia.base.org'
   # Private key from environment: BASE_PRIVATE_KEY
-  privateKey: "0x32e8ddaedf2f1a5372943579ab9e73aa39e1421fdfa0966a586cf8c66ab5ea2c"
+  privateKey: '0x32e8ddaedf2f1a5372943579ab9e73aa39e1421fdfa0966a586cf8c66ab5ea2c'
   # Settlement threshold (in wei)
-  threshold: "1000000000000000000"  # 1 token
+  threshold: '1000000000000000000' # 1 token
   # Polling interval for settlement monitoring
-  pollingIntervalMs: 60000  # 1 minute
+  pollingIntervalMs: 60000 # 1 minute
   # Settlement timeout
-  settlementTimeoutSecs: 86400  # 24 hours
+  settlementTimeoutSecs: 86400 # 24 hours
 
 # Security configuration
 security:
