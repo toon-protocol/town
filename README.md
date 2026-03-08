@@ -118,12 +118,10 @@ Developer                    Crosstown BLS                 Forgejo Git Server
    ```bash
    # Example: Submit a patch as a kind:1617 event
    # Payment is automatically required by BLS
-   # See NIP-34-INTEGRATION.md for detailed examples
+   # Payment is verified by BLS before event is stored
    ```
 
 3. **Repository owner receives payment** for each contribution accepted
-
-**Learn more:** See [NIP-34-INTEGRATION.md](NIP-34-INTEGRATION.md) for complete workflows and examples.
 
 ### Network Bootstrap: Joining the Network
 
@@ -628,7 +626,7 @@ Crosstown implements and extends several Nostr event kinds:
 
 **Integration:** Crosstown's BLS validates NIP-34 events and automatically applies them to Forgejo via API. This enables **payment-gated Git operations** — users pay micropayments to submit patches, and repository owners earn revenue from contributions.
 
-**Learn more:** [NIP-34 Specification](https://github.com/nostr-protocol/nips/blob/master/34.md) | [Integration Guide](NIP-34-INTEGRATION.md)
+**Learn more:** [NIP-34 Specification](https://github.com/nostr-protocol/nips/blob/master/34.md)
 
 ### Proposed: ILP Peering via Nostr Events
 
