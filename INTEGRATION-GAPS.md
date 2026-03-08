@@ -1,4 +1,4 @@
-# Agent-Society Integration Gaps
+# Crosstown Integration Gaps
 
 **Last Updated:** 2026-02-09
 **Context:** Epic 7 (Settlement Negotiation) and Epic 8 (ILP-First Bootstrap) implementation analysis
@@ -245,7 +245,7 @@ This is an **agent-runtime change**, not crosstown.
 
 **Files:**
 
-- Agent-society expects: `packages/core/src/bootstrap/types.ts` lines 108-114
+- Crosstown expects: `packages/core/src/bootstrap/types.ts` lines 108-114
 - Agent-runtime returns: `packages/agent-runtime/src/http/ilp-send-handler.ts` lines 199-221
 
 ### The Mismatch
@@ -257,7 +257,7 @@ This is an **agent-runtime change**, not crosstown.
 { fulfilled: false, ... }  // REJECT
 ```
 
-**Agent-society checks:**
+**Crosstown checks:**
 
 ```typescript
 if (!ilpResult.accepted) {  // ← "accepted" not "fulfilled"

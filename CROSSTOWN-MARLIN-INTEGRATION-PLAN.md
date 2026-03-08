@@ -333,7 +333,7 @@ services:
     ports: ['3000:3000']
 
   crosstown-connector:
-    image: agent-society/connector:latest
+    image: crosstown/connector:latest
     ports: ['8081:8081']
 
   crosstown-bls:
