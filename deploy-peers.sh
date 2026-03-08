@@ -309,7 +309,6 @@ services:
 
       # Pricing
       BASE_PRICE_PER_BYTE: 10
-      SPSP_MIN_PRICE: 5
       ASSET_CODE: USD
       ASSET_SCALE: 6
 
