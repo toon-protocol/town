@@ -1,0 +1,194 @@
+# SDK E2E Test Stack — Embedded Connector
+#
+# Minimal infrastructure for testing SDK createNode() with embedded ConnectorNode.
+# Each peer is a single container (no external connector needed).
+#
+# Usage:
+#   ./scripts/sdk-e2e-infra.sh up     # Start infrastructure
+#   ./scripts/sdk-e2e-infra.sh down   # Stop infrastructure
+#
+# Architecture:
+#   Anvil (contracts) → Peer1 (genesis-like) → Peer2 (bootstraps from Peer1)
+
+networks:
+  crosstown-sdk-e2e:
+    driver: bridge
+
+volumes:
+  peer1-data:
+  peer2-data:
+
+services:
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Anvil - Local Ethereum with auto-deployed contracts
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: sdk-e2e-anvil
+    entrypoint: []
+    command:
+      - sh
+      - -c
+      - |
+        echo "Starting Anvil..."
+        anvil --host 0.0.0.0 --port 8545 --chain-id 31337 --accounts 10 --balance 10000 &
+        ANVIL_PID=$$!
+
+        echo "Waiting for Anvil to be ready..."
+        until cast client --rpc-url http://localhost:8545 2>/dev/null | grep -q 'anvil'; do
+          sleep 1
+        done
+
+        echo "Deploying contracts..."
+        cd /contracts
+        forge script script/DeployLocal.s.sol:DeployLocalScript --rpc-url http://localhost:8545 --broadcast --skip-simulation || echo "Deployment failed (non-fatal)"
+
+        echo "Anvil ready with contracts deployed!"
+        wait $$ANVIL_PID
+    volumes:
+      - ../connector/packages/contracts:/contracts
+    ports:
+      - '18545:8545'
+    networks:
+      - crosstown-sdk-e2e
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "cast client --rpc-url http://localhost:8545 2>&1 | grep -q 'anvil' || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Peer 1 — Genesis-like node (no bootstrap peers)
+  # Anvil Account #0 for settlement
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  peer1:
+    image: crosstown:optimized
+    container_name: sdk-e2e-peer1
+    command: ['node', '/app/dist/entrypoint-sdk.js']
+    environment:
+      # Identity
+      NODE_ID: peer1
+      # Deterministic Nostr key for peer1 (sha256 of "sdk-e2e-peer1-secret")
+      NOSTR_SECRET_KEY: 'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2'
+      ILP_ADDRESS: g.crosstown.peer1
+
+      # Embedded connector
+      BTP_SERVER_PORT: '3000'
+      BTP_ENDPOINT: 'ws://peer1:3000'
+
+      # Settlement (Anvil Account #0 — deployer, has all tokens)
+      SETTLEMENT_RPC_URL: http://anvil:8545
+      SETTLEMENT_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
+      SETTLEMENT_REGISTRY_ADDRESS: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512'
+      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+
+      # Settlement info (published in kind:10032)
+      SUPPORTED_CHAINS: 'evm:base:31337'
+      SETTLEMENT_ADDRESS_EVM_BASE_31337: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
+
+      # Service ports
+      BLS_PORT: '3100'
+      WS_PORT: '7100'
+
+      # Pricing
+      BASE_PRICE_PER_BYTE: '10'
+      ASSET_CODE: USD
+      ASSET_SCALE: '6'
+
+      # No bootstrap peers (genesis)
+      ARDRIVE_ENABLED: 'false'
+
+      # Storage
+      DATA_DIR: /data
+    ports:
+      - '19000:3000'  # BTP
+      - '19100:3100'  # BLS
+      - '19700:7100'  # WS Relay
+    volumes:
+      - peer1-data:/data
+    networks:
+      - crosstown-sdk-e2e
+    depends_on:
+      anvil:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Peer 2 — Bootstraps from Peer 1
+  # Anvil Account #2 for settlement
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  peer2:
+    image: crosstown:optimized
+    container_name: sdk-e2e-peer2
+    command: ['node', '/app/dist/entrypoint-sdk.js']
+    environment:
+      # Identity
+      NODE_ID: peer2
+      # Deterministic Nostr key for peer2
+      NOSTR_SECRET_KEY: 'b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3'
+      ILP_ADDRESS: g.crosstown.peer2
+
+      # Embedded connector
+      BTP_SERVER_PORT: '3000'
+      BTP_ENDPOINT: 'ws://peer2:3000'
+
+      # Settlement (Anvil Account #2)
+      SETTLEMENT_RPC_URL: http://anvil:8545
+      SETTLEMENT_PRIVATE_KEY: '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
+      SETTLEMENT_REGISTRY_ADDRESS: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512'
+      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+
+      # Settlement info (published in kind:10032)
+      SUPPORTED_CHAINS: 'evm:base:31337'
+      SETTLEMENT_ADDRESS_EVM_BASE_31337: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
+      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
+
+      # Service ports
+      BLS_PORT: '3100'
+      WS_PORT: '7100'
+
+      # Pricing
+      BASE_PRICE_PER_BYTE: '10'
+      ASSET_CODE: USD
+      ASSET_SCALE: '6'
+
+      # Bootstrap from Peer 1 (pubkey derived from peer1's NOSTR_SECRET_KEY)
+      BOOTSTRAP_PEERS: ${PEER2_BOOTSTRAP_PEERS:-[]}
+
+      ARDRIVE_ENABLED: 'false'
+
+      # Storage
+      DATA_DIR: /data
+    ports:
+      - '19010:3000'  # BTP
+      - '19110:3100'  # BLS
+      - '19710:7100'  # WS Relay
+    volumes:
+      - peer2-data:/data
+    networks:
+      - crosstown-sdk-e2e
+    depends_on:
+      peer1:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s

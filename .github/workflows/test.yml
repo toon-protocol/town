@@ -4,7 +4,7 @@
 # Philosophy: No mocks — real crypto, real TOON codec, real local infra
 #
 # Triggers:
-#   PR / push to main  → lint, build, unit tests, integration tests
+#   PR / push to main  → lint, build, unit tests
 #   Nightly (2 AM UTC) → full suite including E2E (requires genesis node)
 #   Manual dispatch     → selectable test level
 
@@ -37,7 +37,6 @@ concurrency:
 
 env:
   NODE_VERSION: '20'
-  PNPM_VERSION: '8'
 
 jobs:
   # ─────────────────────────────────────────────
@@ -54,8 +53,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -100,8 +97,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -136,8 +131,9 @@ jobs:
           retention-days: 14
 
   # ─────────────────────────────────────────────
-  # Stage 3: Integration Tests (medium, every PR)
+  # Stage 3: Integration Tests (manual dispatch only)
   # Uses real crypto, real TOON codec — no mocks
+  # Requires local infrastructure not available in CI
   # ─────────────────────────────────────────────
   integration-tests:
     name: Integration Tests
@@ -145,9 +141,9 @@ jobs:
     timeout-minutes: 15
     needs: lint-and-build
     if: >-
-      github.event_name != 'workflow_dispatch' ||
-      github.event.inputs.test_level == 'integration' ||
-      github.event.inputs.test_level == 'all'
+      github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.test_level == 'integration' ||
+       github.event.inputs.test_level == 'all')
 
     steps:
       - name: Checkout
@@ -155,8 +151,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -223,8 +217,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -288,7 +280,7 @@ jobs:
   report:
     name: Test Report
     runs-on: ubuntu-latest
-    needs: [unit-tests, integration-tests]
+    needs: [unit-tests]
     if: always() && (github.event_name == 'pull_request')
 
     steps:
@@ -299,6 +291,5 @@ jobs:
           echo "| Stage | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| Unit Tests | ${{ needs.unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Integration Tests | ${{ needs.integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY

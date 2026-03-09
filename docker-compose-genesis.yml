@@ -189,7 +189,6 @@ services:
 
       # Pricing
       BASE_PRICE_PER_BYTE: ${BASE_PRICE_PER_BYTE:-10}
-      SPSP_MIN_PRICE: ${SPSP_MIN_PRICE:-5}
 
       # Asset
       ASSET_CODE: ${ASSET_CODE:-USD}

@@ -2,29 +2,19 @@
 
 ILP-gated Nostr relay. Pay to write, free to read.
 
-> **Detailed rules, patterns, and conventions are in `_bmad-output/project-context.md`** -- loaded automatically by BMAD workflows. This file covers setup, commands, and operational knowledge not found there.
+> **All coding rules, patterns, conventions, and architecture details are in `_bmad-output/project-context.md`** -- loaded automatically by BMAD workflows. This file covers only setup, deployment, and troubleshooting.
 
 ---
 
-## Commands
+## Quick Reference
 
 ```bash
-# Build & Test
-pnpm install                  # Install all dependencies
-pnpm build                    # Build all packages (pnpm -r run build)
-pnpm test                     # Run all tests (vitest)
-pnpm test:coverage            # Run tests with coverage
-pnpm lint                     # Lint codebase (ESLint flat config)
-pnpm format                   # Format code (Prettier, write mode)
-pnpm format:check             # Check formatting without writing
+pnpm install && pnpm build && pnpm test   # Build & test all packages
+pnpm lint && pnpm format                   # Lint & format
 
-# Package-level
-cd packages/sdk && pnpm test:integration   # SDK integration tests
-cd packages/client && pnpm test:e2e        # E2E tests (requires running genesis node)
-
-# Deployment
-./deploy-genesis-node.sh      # Deploy full genesis stack (Anvil + Faucet + Connector + Node)
-./deploy-peers.sh 3           # Deploy 3 peer nodes
+./deploy-genesis-node.sh          # Deploy genesis stack (Anvil + Faucet + Connector + Node)
+./deploy-genesis-node.sh --reset  # Reset and redeploy from scratch
+./deploy-peers.sh 3               # Deploy N peer nodes
 ```
 
 ---
@@ -32,38 +22,27 @@ cd packages/client && pnpm test:e2e        # E2E tests (requires running genesis
 ## Prerequisites
 
 - Docker & Docker Compose
-- Node.js >=20 (24.x recommended for local dev)
-- pnpm 8.15.0 (`corepack enable && corepack prepare pnpm@8.15.0 --activate`)
-- Connector contracts repo cloned to `../connector`
-
----
-
-## Genesis Node Endpoints
-
-| Service   | URL                     |
-|-----------|-------------------------|
-| Faucet    | http://localhost:3500    |
-| Relay     | ws://localhost:7100      |
-| BLS       | http://localhost:3100    |
-| Connector | http://localhost:8080    |
-| Anvil     | http://localhost:8545    |
-
-Peer N offsets: BLS `3100+N*10`, Relay `7100+N*10`, Connector `8080+N*10`.
+- Node.js >=20, pnpm 8.15.0 (`corepack enable && corepack prepare pnpm@8.15.0 --activate`)
+- Connector contracts repo cloned at `../connector` (required for genesis deployment)
 
 ---
 
 ## Deployment Verification
 
 ```bash
-# Health checks
+# Health checks (genesis node)
 curl http://localhost:3100/health   # BLS
-curl http://localhost:8545           # Anvil
+curl http://localhost:8545           # Anvil (JSON-RPC, returns error object = healthy)
+curl http://localhost:3500/health   # Faucet
+# Relay (port 7100) is WebSocket-only -- no HTTP health endpoint
 
-# Full E2E (bootstrap + channels + publish + on-chain validation)
-cd packages/client && pnpm test:e2e genesis-bootstrap-with-channels
+# E2E validation (requires running genesis node)
+cd packages/client && pnpm test:e2e    # Client E2E (payment channels, bootstrap)
+cd packages/town && pnpm test:e2e      # Town E2E (lifecycle, requires genesis infra)
 
-# Logs
-docker compose -p crosstown-genesis logs -f crosstown
+# View logs
+docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs -f
+docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs -f crosstown  # Node only
 ```
 
 ---
@@ -71,11 +50,15 @@ docker compose -p crosstown-genesis logs -f crosstown
 ## Troubleshooting
 
 **Genesis node won't start:**
-1. `docker ps` -- Docker running?
-2. `ls ../connector/packages/contracts` -- Contracts repo present?
-3. `docker logs crosstown-node` -- Check container logs
+1. `docker ps` -- Docker daemon running?
+2. `ls ../connector/packages/contracts` -- Contracts repo cloned at correct path?
+3. `docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs crosstown` -- Check container logs
 
 **Tests failing:**
 1. `curl http://localhost:3100/health` -- Genesis node up?
 2. `curl http://localhost:8545` -- Anvil healthy?
-3. `./deploy-genesis-node.sh --reset` -- Clear stale containers
+3. `./deploy-genesis-node.sh --reset` -- Clear stale containers and rebuild
+
+**Port conflicts:**
+- Genesis ports: BLS 3100, Relay 7100, Connector 8080/8081/3000, Faucet 3500, Anvil 8545
+- Peer N ports: BLS 3100+N*10, Relay 7100+N*10, Connector 8080+N*10
