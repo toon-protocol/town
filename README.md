@@ -2,25 +2,74 @@
 
 **Human networks are built on time. Agent networks are built on tokens.**
 
-Every message between humans costs attention — the minutes you spend reading, writing, responding. Every message between machines should cost money. Crosstown couples permissionless micropayments directly to the transport layer, so that sending a message and paying for it are the same action.
+Agents are already crypto-native. They hold wallets, sign transactions, and move value on-chain. But blockchains are slow — when Agent A wants to pay Agent B for data, an on-chain transaction takes seconds to minutes and costs gas. That's fine for settlement, but agents need to communicate _fast_.
 
-## What is Crosstown?
+Agents need a network where **sending a message and sending money are the same action**.
 
-Crosstown is an open protocol for paid messaging. You write messages, they get routed to where they need to go, and the network charges per byte. Reading is free.
+Crosstown is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
 
-It works by combining three things:
+## The Problem
 
-- **[Nostr](https://nostr.com/)** defines what a message is, stores it, and relays it to subscribers
-- **[ILP](https://interledger.org/)** (Interledger Protocol) routes messages between nodes — and routes the payment with them
-- **[TOON](https://toonformat.dev)** is the language messages are written in — a compact, human-readable format that machines and LLMs parse efficiently
+Autonomous agents face an impossible trilemma:
 
-Because payment happens at the transport layer, nodes earn by routing messages and providing services that are valuable to other peers. No ads, no subscriptions, no gatekeepers. Spam costs money. Useful services make money.
+1. **Decentralization** — Remove trusted intermediaries
+2. **Micropayments** — Enable sub-cent economic coordination
+3. **Autonomy** — Operate without human intervention
 
-And because the protocol is open and permissionless, new capabilities are just a [skill](https://docs.anthropic.com/en/docs/claude-code/skills) away — an agent with tokens and a handler is a new service on the network.
+Current solutions force agents to choose two:
+
+- Decentralized + Micropayments = Manual payment reconciliation (no autonomy)
+- Decentralized + Autonomy = No payment coordination (free-rider problem)
+- Micropayments + Autonomy = Centralized payment processor (no decentralization)
+
+Crosstown resolves all three by fusing payment routing with decentralized communication at the protocol layer.
 
 ## How It Works
 
-Three layers, each doing one thing:
+### Messages Carry Value
+
+Every message on Crosstown has tokens attached. An agent sends a request with payment included — no separate "pay then communicate" step.
+
+```
+┌─────────────────────────────────────────────────┐
+│  MESSAGE                                        │
+├─────────────────────────────────────────────────┤
+│  To:      Agent B                               │
+│  From:    Agent A                               │
+│  Tokens:  1000                                  │
+│  Data:    "What is the current price of ETH?"   │
+└─────────────────────────────────────────────────┘
+```
+
+### Peers Earn Routing Fees
+
+Messages pass through **peers** — other agents on the network that forward messages and take a small fee for the service.
+
+```
+Agent A                       Peer                      Agent B
+   │                          │                            │
+   │  REQUEST                 │                            │
+   │  "What's ETH?" + 1000    │                            │
+   │ ────────────────────────►│                            │
+   │                          │  "What's ETH?" + 999       │
+   │                          │ ──────────────────────────►│
+   │                          │                            │
+   │                          │  RESPONSE                  │
+   │                          │  "$3,421"                  │
+   │                          │◄────────────────────────── │
+   │  "$3,421"                │                            │
+   │◄──────────────────────── │                            │
+```
+
+**Peer earned:** 1 token for routing. **Agent B earned:** 999 tokens for the answer. Responses flow back free — only requests carry payment. More peers, more paths. More traffic, more revenue.
+
+### Settlement Happens Later
+
+All messages are tracked off-chain. Agents accumulate balances with each other. When they're ready, they **settle** the net balance on a real blockchain — EVM payment channels on Base L2, with sub-cent fees and instant finality.
+
+Thousands of messages. One on-chain transaction.
+
+### Three Layers
 
 | Layer | Responsibility | Key Package |
 |-------|---------------|-------------|
@@ -30,12 +79,36 @@ Three layers, each doing one thing:
 
 The key insight: **Nostr's social graph becomes the payment routing graph.** Follow someone, route payments through them, access their services.
 
-```
-Writer → TOON-encode event → ILP payment → Relay validates → Stores event
-Reader → WebSocket subscribe → Relay serves events → Free
-```
-
 For a deeper look at the architecture, data flow, and deployment modes, see the [Architecture Guide](docs/architecture.md).
+
+## Why Crosstown?
+
+| Solution | What's Missing |
+|----------|---------------|
+| **Lightning Network** | Bitcoin-only, high node capital requirements, no message routing |
+| **Traditional ILP (Rafiki)** | Designed for financial institutions, not agents; complex setup |
+| **Nostr Relays** | No native payment routing — separate payment rails required |
+| **HTTP + Stripe** | Centralized, high fees, no micropayments |
+
+Crosstown uses **proven protocols** instead of inventing new ones:
+
+| What ILP Does | Why Agents Need It |
+|---|---|
+| Messages carry value | No separate "pay then communicate" step |
+| Peers earn routing fees | Network grows because routing is profitable |
+| Microsecond latency | Agents transact at machine speed, not blockchain speed |
+| Settles to any chain | Use whichever blockchain your agents prefer |
+| Proven in production | Used by Coil, Rafiki, and Web Monetization |
+
+## Use Cases
+
+**Paid APIs.** Your agent has valuable data or compute? Other agents pay per-message to access it. No API keys, no invoicing — payment is the authentication.
+
+**Routing.** Run a peer node. Every message that passes through earns you a routing fee. More traffic, more revenue.
+
+**Agent Swarms.** A coordinator agent sends paid tasks to worker agents. Workers earn by completing them. Thousands of agents collaborating, each earning for their contribution.
+
+**Real-Time Data.** Agents publish prices, sentiment, predictions — and earn when others pay to write queries or compute requests against that data. Reads are always free.
 
 ## Quick Start
 
@@ -117,7 +190,7 @@ Because payment lives in the transport layer — not the application layer — C
 
 **Autonomous infrastructure.** AI agents that hold tokens can deploy services, discover peers, negotiate settlement, and earn revenue — without human intervention. The architecture doesn't design *for* agents specifically. It designs so well that agents can use it.
 
-**Economic discovery.** Nodes advertise their capabilities as Nostr events and price their services per byte. Other nodes — human-operated or autonomous — discover them, evaluate the economics, and peer when the math works. The network grows through aligned incentives, not coordination.
+**Economic discovery.** Nodes advertise their capabilities and price their services per byte. Other nodes discover them, evaluate the economics, and peer when the math works. The network grows through aligned incentives, not coordination.
 
 Crosstown doesn't build a platform. It provides three primitives — discovery via Nostr, payment via ILP, and trust via cryptographic verification — and gets out of the way.
 
