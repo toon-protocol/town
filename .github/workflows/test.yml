@@ -192,10 +192,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: lint-and-build
-    # Only run on nightly schedule, manual dispatch, or push to main
+    # Only run on nightly schedule or manual dispatch (requires genesis infrastructure)
     if: >-
       github.event_name == 'schedule' ||
-      github.event_name == 'push' ||
       (github.event_name == 'workflow_dispatch' &&
        (github.event.inputs.test_level == 'e2e' ||
         github.event.inputs.test_level == 'all'))
