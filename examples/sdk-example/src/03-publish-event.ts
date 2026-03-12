@@ -112,7 +112,7 @@ async function main() {
     const chainId = parseInt(json.result || '0', 16);
     if (chainId !== 31337) throw new Error(`Expected chain 31337, got ${chainId}`);
     console.log(`  Anvil running (chain ID: ${chainId})`);
-  } catch (err) {
+  } catch {
     console.error('  Anvil not running! Start it with: ./scripts/sdk-e2e-infra.sh up');
     process.exit(1);
   }

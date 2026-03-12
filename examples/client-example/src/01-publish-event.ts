@@ -31,7 +31,6 @@ import {
   createWalletClient,
   http,
   defineChain,
-  type Hex,
 } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 
@@ -160,14 +159,12 @@ function waitForEventOnRelay(
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(relayUrl);
     const subId = `verify-${Date.now()}`;
-    let timer: ReturnType<typeof setTimeout>;
-
     const cleanup = () => {
       clearTimeout(timer);
       try { ws.close(); } catch { /* ignore */ }
     };
 
-    timer = setTimeout(() => { cleanup(); resolve(null); }, timeoutMs);
+    const timer = setTimeout(() => { cleanup(); resolve(null); }, timeoutMs);
 
     ws.on('open', () => {
       ws.send(JSON.stringify(['REQ', subId, { ids: [eventId] }]));
