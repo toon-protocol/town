@@ -1,0 +1,28 @@
+{
+  "name": "crosstown-client-example",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Examples for @crosstown/client - standalone client connecting to Crosstown peer containers",
+  "scripts": {
+    "publish-event": "tsx src/01-publish-event.ts",
+    "payment-channel": "tsx src/02-payment-channel.ts"
+  },
+  "dependencies": {
+    "@crosstown/client": "workspace:*",
+    "@crosstown/core": "workspace:*",
+    "@crosstown/relay": "workspace:*",
+    "nostr-tools": "^2.20.0",
+    "viem": "^2.0.0",
+    "ws": "^8.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

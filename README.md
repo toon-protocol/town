@@ -112,6 +112,35 @@ Crosstown uses **proven protocols** instead of inventing new ones:
 
 ## Quick Start
 
+### Publish Events
+
+```bash
+npm install @crosstown/client @crosstown/core @crosstown/relay nostr-tools
+```
+
+```typescript
+import { CrosstownClient } from '@crosstown/client';
+import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
+import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
+
+const secretKey = generateSecretKey();
+const pubkey = getPublicKey(secretKey);
+
+const client = new CrosstownClient({
+  connectorUrl: 'http://localhost:8080',
+  secretKey,
+  ilpInfo: { pubkey, ilpAddress: `g.crosstown.${pubkey.slice(0, 8)}`, btpEndpoint: 'ws://localhost:3000' },
+  toonEncoder: encodeEventToToon,
+  toonDecoder: decodeEventFromToon,
+});
+
+await client.start();
+await client.publishEvent(finalizeEvent({ kind: 1, content: 'Hello from Crosstown!', tags: [], created_at: Math.floor(Date.now() / 1000) }, secretKey));
+await client.stop();
+```
+
+The client derives your EVM identity from your Nostr key automatically — one key, one identity. See the [Client README](packages/client) for payment channels, multi-hop routing, and error handling.
+
 ### Run a Relay Node
 
 ```bash
@@ -175,6 +204,7 @@ See the [Deployment Guide](docs/deployment.md) for genesis nodes, peer deploymen
 
 | Package | Description | |
 |---------|-------------|---|
+| [`@crosstown/client`](packages/client) | High-level client for publishing events | [![npm](https://img.shields.io/npm/v/@crosstown/client)](https://www.npmjs.com/package/@crosstown/client) |
 | [`@crosstown/sdk`](packages/sdk) | Building blocks for Crosstown services | [![npm](https://img.shields.io/npm/v/@crosstown/sdk)](https://www.npmjs.com/package/@crosstown/sdk) |
 | [`@crosstown/town`](packages/town) | Reference relay — one command to run | [![npm](https://img.shields.io/npm/v/@crosstown/town)](https://www.npmjs.com/package/@crosstown/town) |
 | [`@crosstown/core`](packages/core) | Discovery, peering, and bootstrap | Internal |
