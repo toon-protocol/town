@@ -74,6 +74,49 @@ npm run embedded-town
 - Zero-latency packet delivery via `connector.setPacketHandler()`
 - BLS HTTP server still runs for `/health` (unchanged)
 
+### 05 — x402 HTTP Publish (Epic 3)
+
+Demonstrates the x402 payment protocol for HTTP-native event publishing. Shows the full 402 pricing negotiation and EIP-3009 authorization signing.
+
+```bash
+npm run x402-publish
+```
+
+**Requires:** Anvil running (`./scripts/sdk-e2e-infra.sh up`)
+
+**What you'll learn:**
+- x402 protocol flow: POST without payment → 402 pricing → sign EIP-3009 → POST with X-PAYMENT
+- How to construct and sign an EIP-3009 `transferWithAuthorization` using viem
+- Pricing response format (amount, facilitatorAddress, chainId, usdcAddress)
+- The facilitator model: node operator receives USDC and pays gas
+
+### 06 — Service Discovery + Enriched Health (Epic 3)
+
+Demonstrates the enriched `/health` endpoint and kind:10035 service discovery events. Shows how clients and peers discover node capabilities.
+
+```bash
+npm run service-discovery
+```
+
+**What you'll learn:**
+- Enriched health response: chain, pricing, capabilities, x402 status, TEE info
+- kind:10035 service discovery events published at startup
+- Two discovery paths: HTTP `/health` (direct) and Nostr REQ (decentralized)
+
+### 07 — TEE Attestation Verification (Epic 4)
+
+Pure library demo of TEE attestation verification. No infrastructure required.
+
+```bash
+npm run attestation-verify
+```
+
+**What you'll learn:**
+- `AttestationVerifier`: verify PCR values against a known-good registry
+- `AttestationState` lifecycle: VALID → STALE → UNATTESTED
+- Peer ranking: attested peers preferred but non-attested remain connectable
+- How Marlin Oyster CVM attestations work in the Crosstown network
+
 ## Embedded Connector Configuration
 
 Each example uses `ConnectorNode` from `@crosstown/connector` in standalone mode with the Town's BLS HTTP server handling local ILP delivery.
