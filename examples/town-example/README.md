@@ -76,18 +76,22 @@ npm run embedded-town
 
 ### 05 — x402 HTTP Publish (Epic 3)
 
-Demonstrates the x402 payment protocol for HTTP-native event publishing. Shows the full 402 pricing negotiation and EIP-3009 authorization signing.
+Full end-to-end x402 payment flow: pricing negotiation, EIP-3009 authorization signing, and on-chain USDC settlement via `transferWithAuthorization`. Automatically upgrades the Anvil mock ERC-20 with EIP-3009 support and funds the client.
 
 ```bash
+# One-time: compile the EIP-3009 USDC contract
+forge build --root . --contracts contracts --out contracts/out
+
 npm run x402-publish
 ```
 
-**Requires:** Anvil running (`./scripts/sdk-e2e-infra.sh up`)
+**Requires:** Anvil + SDK E2E infra running (`./scripts/sdk-e2e-infra.sh up`), Foundry installed
 
 **What you'll learn:**
 - x402 protocol flow: POST without payment → 402 pricing → sign EIP-3009 → POST with X-PAYMENT
 - How to construct and sign an EIP-3009 `transferWithAuthorization` using viem
-- Pricing response format (amount, facilitatorAddress, chainId, usdcAddress)
+- On-chain settlement: facilitator submits signed authorization, client USDC balance decreases
+- Anvil cheat codes: `anvil_setCode` to upgrade contracts, `anvil_setBalance` for ETH funding
 - The facilitator model: node operator receives USDC and pays gas
 
 ### 06 — Service Discovery + Enriched Health (Epic 3)

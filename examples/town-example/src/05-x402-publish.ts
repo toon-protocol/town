@@ -1,23 +1,23 @@
 /**
  * Example 05: x402 HTTP Publish — Payment-Gated Event Publishing
  *
- * Demonstrates the x402 protocol flow for publishing Nostr events via HTTP
- * with USDC payment. This is the HTTP on-ramp that lets any HTTP client
- * (AI agents, browsers, CLI tools) publish to the network without
- * understanding ILP.
+ * Demonstrates the full x402 protocol flow for publishing Nostr events
+ * via HTTP with USDC payment, including on-chain EIP-3009 settlement.
  *
  * Flow:
  *   1. POST /publish (no X-PAYMENT header) -> 402 with pricing info
  *   2. Client constructs EIP-3009 signed authorization for the required amount
  *   3. POST /publish (with X-PAYMENT header) -> settlement + ILP delivery
  *
- * This example demonstrates steps 1 and 2 (pricing negotiation + EIP-3009
- * authorization signing). Full on-chain settlement requires the client to
- * hold USDC and the contract to support EIP-3009 (transferWithAuthorization).
- * The Anvil mock USDC does not yet implement this (retro A3: FiatTokenV2_2).
+ * Anvil setup (automated):
+ *   - Upgrades the mock ERC-20 at the USDC address with EIP-3009 support
+ *     (transferWithAuthorization, authorizationState) via anvil_setCode
+ *   - Mints USDC to the client account
+ *   - Funds the facilitator (town node) with ETH for gas
  *
- * Requires: Anvil running on localhost:18545 (for chain config resolution)
+ * Requires: Anvil + SDK E2E infra running on localhost:18545
  *   Start with: ./scripts/sdk-e2e-infra.sh up
+ *   Compile contract: cd examples/town-example && forge build --root . --contracts contracts --out contracts/out
  *
  * Run: npm run x402-publish
  */
@@ -27,14 +27,17 @@ import { ConnectorNode } from '@crosstown/connector';
 import { generateMnemonic, fromMnemonic } from '@crosstown/sdk';
 import { finalizeEvent } from 'nostr-tools/pure';
 import {
+  createPublicClient,
   createWalletClient,
   http,
   defineChain,
-  encodePacked,
-  keccak256,
+  parseEther,
 } from 'viem';
 import { privateKeyToAccount, signTypedData } from 'viem/accounts';
 import pino from 'pino';
+import { readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // ---------------------------------------------------------------------------
 // Anvil constants
@@ -42,6 +45,9 @@ import pino from 'pino';
 
 const ANVIL_RPC = 'http://localhost:18545';
 const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+
+// Anvil Account #0 — deployer (has ETH, can call mint)
+const DEPLOYER_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80' as const;
 
 // Anvil Account #7 — x402 client (the payer)
 const CLIENT_PRIVATE_KEY = '0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356' as const;
@@ -52,6 +58,27 @@ const anvilChain = defineChain({
   nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
   rpcUrls: { default: { http: [ANVIL_RPC] } },
 });
+
+// Minimal ABI for mint + balanceOf on the upgraded contract
+const MOCK_USDC_ABI = [
+  {
+    name: 'mint',
+    type: 'function',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'to', type: 'address' },
+      { name: 'amount', type: 'uint256' },
+    ],
+    outputs: [],
+  },
+  {
+    name: 'balanceOf',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ name: 'account', type: 'address' }],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+] as const;
 
 // EIP-3009 typed data types (must match USDC contract)
 const EIP_3009_TYPES = {
@@ -64,6 +91,51 @@ const EIP_3009_TYPES = {
     { name: 'nonce', type: 'bytes32' },
   ],
 } as const;
+
+// ---------------------------------------------------------------------------
+// Anvil RPC helpers
+// ---------------------------------------------------------------------------
+
+async function anvilRpc(method: string, params: unknown[]): Promise<unknown> {
+  const resp = await fetch(ANVIL_RPC, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 }),
+  });
+  const json = await resp.json() as { result?: unknown; error?: { message: string } };
+  if (json.error) throw new Error(`RPC ${method}: ${json.error.message}`);
+  return json.result;
+}
+
+/**
+ * Upgrade the USDC contract at TOKEN_ADDRESS with EIP-3009 support.
+ * Uses anvil_setCode to replace the runtime bytecode in-place.
+ */
+async function upgradeUsdcContract(): Promise<void> {
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const artifactPath = resolve(__dirname, '../contracts/out/MockUSDC_EIP3009.sol/MockUSDC_EIP3009.json');
+
+  let bytecode: string;
+  try {
+    const artifact = JSON.parse(readFileSync(artifactPath, 'utf-8'));
+    bytecode = artifact.deployedBytecode.object;
+  } catch {
+    throw new Error(
+      'Compiled contract not found. Run:\n' +
+      '  cd examples/town-example && forge build --root . --contracts contracts --out contracts/out'
+    );
+  }
+
+  await anvilRpc('anvil_setCode', [TOKEN_ADDRESS, bytecode]);
+}
+
+/**
+ * Fund an address with ETH using anvil_setBalance.
+ */
+async function fundEth(address: string, ethAmount: string): Promise<void> {
+  const wei = `0x${parseEther(ethAmount).toString(16)}`;
+  await anvilRpc('anvil_setBalance', [address, wei]);
+}
 
 async function main() {
   console.log('=== Crosstown Town: x402 HTTP Publish ===\n');
@@ -89,8 +161,44 @@ async function main() {
       process.exit(1);
     }
 
-    // --- 2. Start Town with x402 enabled ---
-    console.log('Step 2: Starting town node with x402 enabled...');
+    // --- 2. Upgrade USDC contract with EIP-3009 support ---
+    console.log('Step 2: Upgrading USDC contract with EIP-3009 support...');
+    await upgradeUsdcContract();
+    console.log('  anvil_setCode: replaced mock ERC-20 with EIP-3009 version');
+
+    // Mint USDC to the client (Account #7)
+    const clientAccount = privateKeyToAccount(CLIENT_PRIVATE_KEY);
+    const deployerAccount = privateKeyToAccount(DEPLOYER_PRIVATE_KEY);
+    const deployerWallet = createWalletClient({
+      account: deployerAccount,
+      chain: anvilChain,
+      transport: http(ANVIL_RPC),
+    });
+
+    const mintAmount = 1_000_000n * 10n ** 18n; // 1M USDC (18 decimals on Anvil)
+    await deployerWallet.writeContract({
+      address: TOKEN_ADDRESS,
+      abi: MOCK_USDC_ABI,
+      functionName: 'mint',
+      args: [clientAccount.address, mintAmount],
+    });
+
+    // Verify balance
+    const publicClient = createPublicClient({ chain: anvilChain, transport: http(ANVIL_RPC) });
+    const balance = await publicClient.readContract({
+      address: TOKEN_ADDRESS,
+      abi: MOCK_USDC_ABI,
+      functionName: 'balanceOf',
+      args: [clientAccount.address],
+    });
+    console.log(`  Minted ${(balance / 10n ** 18n).toLocaleString()} USDC to client ${clientAccount.address}`);
+    console.log('');
+
+    // --- 3. Start Town with x402 enabled ---
+    // Override RPC URL to point at SDK E2E Anvil (port 18545)
+    process.env['CROSSTOWN_RPC_URL'] = ANVIL_RPC;
+
+    console.log('Step 3: Starting town node with x402 enabled...');
     const mnemonic = generateMnemonic();
 
     connector = new ConnectorNode({
@@ -123,10 +231,14 @@ async function main() {
 
     console.log(`  Town started (BLS: 3600, Relay: 7600)`);
     console.log(`  x402 enabled: ${town.config.x402Enabled}`);
-    console.log(`  Facilitator:  ${town.evmAddress}\n`);
+    console.log(`  Facilitator:  ${town.evmAddress}`);
 
-    // --- 3. Pricing negotiation (402 response) ---
-    console.log('Step 3: x402 pricing negotiation...');
+    // Fund the facilitator with ETH for gas (needed for on-chain settlement tx)
+    await fundEth(town.evmAddress, '10');
+    console.log(`  Funded facilitator with 10 ETH for gas\n`);
+
+    // --- 4. Pricing negotiation (402 response) ---
+    console.log('Step 4: x402 pricing negotiation...');
     console.log('  POST /publish without X-PAYMENT header\n');
 
     // Create a signed Nostr event to publish
@@ -174,10 +286,9 @@ async function main() {
     console.log(`  Chain ID:     ${pricing.chainId}`);
     console.log(`  USDC address: ${pricing.usdcAddress}\n`);
 
-    // --- 4. Construct EIP-3009 authorization ---
-    console.log('Step 4: Constructing EIP-3009 signed authorization...');
+    // --- 5. Construct EIP-3009 authorization ---
+    console.log('Step 5: Constructing EIP-3009 signed authorization...');
 
-    const clientAccount = privateKeyToAccount(CLIENT_PRIVATE_KEY);
     console.log(`  Payer address: ${clientAccount.address}`);
     console.log(`  Recipient:     ${pricing.facilitatorAddress}`);
     console.log(`  Amount:        ${pricing.amount}\n`);
@@ -240,8 +351,8 @@ async function main() {
     console.log(`  Nonce:       ${nonce.slice(0, 18)}...`);
     console.log(`  Signature:   v=${v}, r=${r.slice(0, 18)}..., s=${s.slice(0, 18)}...\n`);
 
-    // --- 5. Submit with X-PAYMENT header ---
-    console.log('Step 5: Submitting with X-PAYMENT header...');
+    // --- 6. Submit with X-PAYMENT header ---
+    console.log('Step 6: Submitting with X-PAYMENT header...');
     console.log('  POST /publish with X-PAYMENT: <signed EIP-3009 authorization>\n');
 
     const publishResp = await fetch('http://localhost:3600/publish', {
@@ -262,29 +373,36 @@ async function main() {
       console.log(`  Event ID: ${(publishResult as { eventId?: string }).eventId}`);
       console.log(`  Tx hash:  ${(publishResult as { settlementTxHash?: string }).settlementTxHash}`);
     } else {
-      // Expected: pre-flight USDC balance check fails because the client
-      // account has no USDC on Anvil. Full settlement also requires
-      // FiatTokenV2_2 (transferWithAuthorization / EIP-3009) — retro A3.
-      console.log('  Note: Settlement failed as expected on Anvil.');
-      console.log('  The client account has no USDC balance (pre-flight check).');
-      console.log('  Full settlement also requires FiatTokenV2_2 deployment (retro A3).');
-      console.log('  The pricing negotiation and authorization signing are fully functional.');
+      console.log(`  Settlement returned HTTP ${publishResp.status}.`);
+      console.log(`  Check the error above for details.`);
     }
 
-    // --- 6. Summary ---
+    // Verify on-chain: check client balance decreased
+    const balanceAfter = await publicClient.readContract({
+      address: TOKEN_ADDRESS,
+      abi: MOCK_USDC_ABI,
+      functionName: 'balanceOf',
+      args: [clientAccount.address],
+    });
+    const spent = balance - balanceAfter;
+    if (spent > 0n) {
+      console.log(`\n  On-chain verification:`);
+      console.log(`    Client spent:    ${spent.toString()} micro-units`);
+      console.log(`    Client balance:  ${(balanceAfter / 10n ** 18n).toLocaleString()} USDC`);
+    }
+
+    // --- 7. Summary ---
     console.log('\n=== x402 Protocol Summary ===');
     console.log('');
     console.log('  The x402 flow allows any HTTP client to publish events:');
     console.log('');
     console.log('  1. POST /publish (no payment)    -> 402 with pricing');
     console.log('  2. Sign EIP-3009 authorization    -> off-chain ECDSA signature');
-    console.log('  3. POST /publish (with X-PAYMENT) -> settlement + ILP delivery');
+    console.log('  3. POST /publish (with X-PAYMENT) -> on-chain settlement + ILP delivery');
     console.log('');
     console.log('  The facilitator (node operator) submits the signed authorization');
-    console.log('  on-chain and pays gas. The client only pays the USDC amount.');
-    console.log('');
-    console.log('  This example demonstrated steps 1-2 with actual signing.');
-    console.log('  Full settlement requires FiatTokenV2_2 on Anvil (retro A3).');
+    console.log('  on-chain via transferWithAuthorization and pays gas.');
+    console.log('  The client only pays the USDC amount.');
 
   } catch (error) {
     console.error('Error:', error);
