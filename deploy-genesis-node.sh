@@ -57,16 +57,20 @@ RESET_MODE=false
 if [[ "${1:-}" == "--reset" ]]; then
     RESET_MODE=true
     log_warning "Reset mode enabled - will remove all existing data"
-    read -p "Are you sure you want to reset everything? (y/N): " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Cancelled"
-        exit 0
+    if [[ "${CI:-}" != "true" ]]; then
+        read -p "Are you sure you want to reset everything? (y/N): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            log_info "Cancelled"
+            exit 0
+        fi
     fi
 fi
 
-# Banner
-clear
+# Banner (skip clear in CI to preserve log context)
+if [[ "${CI:-}" != "true" ]]; then
+    clear
+fi
 echo -e "${CYAN}${BOLD}"
 cat << "EOF"
   ╔═══════════════════════════════════════════════════════════╗
@@ -101,15 +105,20 @@ if ! docker compose version &> /dev/null; then
 fi
 log_success "Docker Compose found: $(docker compose version | cut -d' ' -f4)"
 
-# Check for connector contracts
-if [ ! -d "/Users/jonathangreen/Documents/connector/packages/contracts" ]; then
-    log_error "Connector contracts not found at /Users/jonathangreen/Documents/connector"
-    log_info "Please clone the connector repository:"
-    log_info "  cd /Users/jonathangreen/Documents"
-    log_info "  git clone <connector-repo-url> connector"
-    exit 1
+# Check for connector contracts (resolve relative to script location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONNECTOR_CONTRACTS_DIR="${CONNECTOR_CONTRACTS_DIR:-$(dirname "$SCRIPT_DIR")/connector/packages/contracts}"
+if [ ! -d "$CONNECTOR_CONTRACTS_DIR" ]; then
+    log_error "Connector contracts not found at $CONNECTOR_CONTRACTS_DIR"
+    log_info "Set CONNECTOR_CONTRACTS_DIR env var or clone the connector repository as a sibling directory"
+    if [[ "${CI:-}" == "true" ]]; then
+        log_warning "CI mode: skipping connector contracts check (genesis compose will handle it)"
+    else
+        exit 1
+    fi
+else
+    log_success "Connector contracts found at $CONNECTOR_CONTRACTS_DIR"
 fi
-log_success "Connector contracts found"
 
 # Step 2: Clean up (if reset mode)
 if [ "$RESET_MODE" = true ]; then
@@ -124,14 +133,18 @@ else
 
     if [ -f "$ENV_FILE" ]; then
         log_warning "$ENV_FILE already exists"
-        read -p "Use existing configuration? (Y/n): " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Nn]$ ]]; then
-            log_info "Backing up existing $ENV_FILE to ${ENV_FILE}.backup"
-            cp "$ENV_FILE" "${ENV_FILE}.backup"
-            rm "$ENV_FILE"
+        if [[ "${CI:-}" == "true" ]]; then
+            log_info "CI mode: using existing configuration"
         else
-            log_info "Using existing configuration"
+            read -p "Use existing configuration? (Y/n): " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Nn]$ ]]; then
+                log_info "Backing up existing $ENV_FILE to ${ENV_FILE}.backup"
+                cp "$ENV_FILE" "${ENV_FILE}.backup"
+                rm "$ENV_FILE"
+            else
+                log_info "Using existing configuration"
+            fi
         fi
     fi
 fi

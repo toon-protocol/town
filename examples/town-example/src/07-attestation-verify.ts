@@ -14,7 +14,6 @@
 
 import {
   AttestationVerifier,
-  AttestationState,
   type TeeAttestation,
   type PeerDescriptor,
 } from '@crosstown/core';

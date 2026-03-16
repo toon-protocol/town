@@ -1,0 +1,26 @@
+# Semgrep ignore patterns for Crosstown
+#
+# CWE-319 (Cleartext Transmission) false positives:
+# The ws:// URLs in these files are for:
+#   - Docker-internal container-to-container networking (no TLS needed)
+#   - Validation checks (not actual connections)
+#   - Test fixtures and examples
+#   - Error message text and log output
+#
+# Production deployments use wss:// via Marlin Oyster CVM's
+# vsock proxy which terminates TLS at the enclave boundary.
+
+# Test files -- ws:// in test fixtures is never a real connection
+**/*.test.ts
+**/tests/**
+**/__integration__/**
+
+# Docker compose files -- container-internal networking
+docker-compose-*.yml
+
+# Deployment scripts -- internal network URLs
+deploy-*.sh
+
+# Examples -- developer reference code, not production
+examples/
+packages/examples/
