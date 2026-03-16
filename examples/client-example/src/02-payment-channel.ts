@@ -48,7 +48,7 @@ const PEER1_ILP_ADDRESS = 'g.crosstown.peer1';
 // Contracts (deterministic Anvil addresses)
 // ---------------------------------------------------------------------------
 
-const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const; // Mock USDC (Anvil)
 const TOKEN_NETWORK_ADDRESS = '0xCafac3dD18aC6c6e92c921884f9E4176737C052c' as const;
 
 const DEPLOYER_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80' as const;

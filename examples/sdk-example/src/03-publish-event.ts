@@ -33,7 +33,7 @@ import { privateKeyToAccount } from 'viem/accounts';
 // ---------------------------------------------------------------------------
 
 const ANVIL_RPC = 'http://localhost:18545';
-const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const; // Mock USDC (Anvil)
 const REGISTRY_ADDRESS = '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512' as const;
 const DEPLOYER_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80' as const;
 
@@ -44,7 +44,7 @@ const NODE_A_EVM_ADDRESS = '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc' as const
 const NODE_B_PRIVATE_KEY = '0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e' as const;
 const NODE_B_EVM_ADDRESS = '0x976EA74026E726554dB657fA54763abd0C3a0aa9' as const;
 
-const FUNDING_AMOUNT = 10n * 10n ** 18n; // 10 tokens (18 decimals) — enough for channel deposits
+const FUNDING_AMOUNT = 10n * 10n ** 18n; // 10 tokens (mock USDC on Anvil uses 18 decimals)
 
 const anvilChain = defineChain({
   id: 31337,

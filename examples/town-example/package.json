@@ -8,7 +8,10 @@
     "start-town": "tsx src/01-start-town.ts",
     "full-lifecycle": "tsx src/02-full-lifecycle.ts",
     "subscribe": "tsx src/03-subscribe.ts",
-    "embedded-town": "tsx src/04-embedded-town.ts"
+    "embedded-town": "tsx src/04-embedded-town.ts",
+    "x402-publish": "tsx src/05-x402-publish.ts",
+    "service-discovery": "tsx src/06-service-discovery.ts",
+    "attestation-verify": "tsx src/07-attestation-verify.ts"
   },
   "dependencies": {
     "@crosstown/connector": "^1.7.1",

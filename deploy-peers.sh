@@ -160,7 +160,7 @@ deploy_peer() {
     echo ""
 
     # Step 1: Fund wallet
-    log_info "Funding wallet with $FUNDING_AMOUNT AGENT tokens..."
+    log_info "Funding wallet with $FUNDING_AMOUNT USDC..."
     ./fund-peer-wallet.sh "$PEER_ADDRESS" "$FUNDING_AMOUNT" > /dev/null 2>&1
     log_success "Wallet funded"
 
@@ -298,10 +298,10 @@ services:
       NOSTR_SECRET_KEY: ${NOSTR_SECRET}
       ILP_ADDRESS: ${ILP_ADDRESS}
 
-      # Connector integration
+      # Connector integration (Docker-internal, TLS unnecessary)
       CONNECTOR_ADMIN_URL: http://connector-peer${PEER_NUM}:8081
       CONNECTOR_URL: http://connector-peer${PEER_NUM}:8080
-      BTP_ENDPOINT: ws://connector-peer${PEER_NUM}:3000
+      BTP_ENDPOINT: ws://connector-peer${PEER_NUM}:3000 # nosemgrep: detect-insecure-websocket
 
       # Service ports
       BLS_PORT: ${BLS_PORT}

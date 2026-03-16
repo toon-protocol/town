@@ -15,7 +15,7 @@ const TOKEN_PRIVATE_KEY =
   '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'; // Anvil Account 0 (deployer)
 const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS;
 const ETH_AMOUNT = process.env.ETH_AMOUNT || '100'; // 100 ETH
-const TOKEN_AMOUNT = process.env.TOKEN_AMOUNT || '10000'; // 10,000 AGENT tokens
+const TOKEN_AMOUNT = process.env.TOKEN_AMOUNT || '10000'; // 10,000 USDC
 const RATE_LIMIT_HOURS = parseInt(process.env.RATE_LIMIT_HOURS || '1');
 
 // ERC20 ABI (minimal)
@@ -41,8 +41,8 @@ const tokenWallet = new ethers.Wallet(TOKEN_PRIVATE_KEY, provider);
 
 // Token contract instance (will be set after deployment)
 let tokenContract = null;
-let tokenSymbol = 'AGENT';
-let tokenDecimals = 18;
+let tokenSymbol = 'USDC';
+let tokenDecimals = 6;
 
 // Initialize token contract
 async function initTokenContract() {

@@ -78,20 +78,20 @@ services:
       NOSTR_SECRET_KEY: 'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2'
       ILP_ADDRESS: g.crosstown.peer1
 
-      # Embedded connector
+      # Embedded connector (Docker-internal, TLS unnecessary)
       BTP_SERVER_PORT: '3000'
-      BTP_ENDPOINT: 'ws://peer1:3000'
+      BTP_ENDPOINT: 'ws://peer1:3000' # nosemgrep: detect-insecure-websocket
 
       # Settlement (Anvil Account #0 — deployer, has all tokens)
       SETTLEMENT_RPC_URL: http://anvil:8545
       SETTLEMENT_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
       SETTLEMENT_REGISTRY_ADDRESS: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512'
-      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
 
       # Settlement info (published in kind:10032)
       SUPPORTED_CHAINS: 'evm:base:31337'
       SETTLEMENT_ADDRESS_EVM_BASE_31337: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
       TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
 
       # Service ports
@@ -142,20 +142,20 @@ services:
       NOSTR_SECRET_KEY: 'b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3'
       ILP_ADDRESS: g.crosstown.peer2
 
-      # Embedded connector
+      # Embedded connector (Docker-internal, TLS unnecessary)
       BTP_SERVER_PORT: '3000'
-      BTP_ENDPOINT: 'ws://peer2:3000'
+      BTP_ENDPOINT: 'ws://peer2:3000' # nosemgrep: detect-insecure-websocket
 
       # Settlement (Anvil Account #2)
       SETTLEMENT_RPC_URL: http://anvil:8545
       SETTLEMENT_PRIVATE_KEY: '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
       SETTLEMENT_REGISTRY_ADDRESS: '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512'
-      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
 
       # Settlement info (published in kind:10032)
       SUPPORTED_CHAINS: 'evm:base:31337'
       SETTLEMENT_ADDRESS_EVM_BASE_31337: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
-      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
       TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
 
       # Service ports

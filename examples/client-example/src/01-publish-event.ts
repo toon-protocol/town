@@ -49,7 +49,7 @@ const PEER1_ILP_ADDRESS = 'g.crosstown.peer1';
 // Contracts (deterministic Anvil addresses)
 // ---------------------------------------------------------------------------
 
-const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const; // Mock USDC (Anvil)
 const TOKEN_NETWORK_ADDRESS = '0xCafac3dD18aC6c6e92c921884f9E4176737C052c' as const;
 
 // Anvil Account #0 — deployer (holds all USDC tokens, used to fund our wallet)
@@ -59,7 +59,7 @@ const DEPLOYER_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efc
 const CLIENT_PRIVATE_KEY = '0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6' as const;
 const CLIENT_EVM_ADDRESS = '0xa0Ee7A142d267C1f36714E4a8F75612F20a79720' as const;
 
-const FUNDING_AMOUNT = 10n * 10n ** 18n; // 10 USDC (18 decimals)
+const FUNDING_AMOUNT = 10n * 10n ** 18n; // 10 tokens (mock USDC on Anvil uses 18 decimals)
 
 // ---------------------------------------------------------------------------
 // Chain config

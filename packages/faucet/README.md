@@ -1,10 +1,10 @@
 # Crosstown Token Faucet
 
-A simple token faucet for local Crosstown development that provides both ETH and AGENT tokens.
+A simple token faucet for local Crosstown development that provides both ETH and USDC tokens.
 
 ## Features
 
-- 🚰 **Dual Token Distribution**: Sends both ETH and AGENT tokens in a single request
+- 🚰 **Dual Token Distribution**: Sends both ETH and USDC tokens in a single request
 - ⏱️ **Rate Limiting**: Prevents abuse with configurable time-based limits
 - 🎨 **Beautiful Web UI**: Clean, modern interface for requesting tokens
 - 🔍 **Auto-Discovery**: Automatically detects deployed token contract
@@ -12,11 +12,11 @@ A simple token faucet for local Crosstown development that provides both ETH and
 
 ## Quick Start
 
-The faucet is included in `docker-compose-with-local.yml`:
+The faucet is included in `docker-compose-genesis.yml`:
 
 ```bash
 # Start the full stack (includes faucet)
-docker compose -f docker-compose-with-local.yml up -d
+docker compose -p crosstown-genesis -f docker-compose-genesis.yml up -d
 
 # Access the faucet UI
 open http://localhost:3500
@@ -42,7 +42,7 @@ TOKEN_ADDRESS=0x...
 
 # Distribution amounts
 ETH_AMOUNT=100          # ETH per request
-TOKEN_AMOUNT=10000      # AGENT tokens per request
+TOKEN_AMOUNT=10000      # USDC per request
 
 # Rate limiting
 RATE_LIMIT_HOURS=1      # Hours between requests per address
@@ -74,7 +74,7 @@ Get faucet information.
 {
   "ethAmount": "100",
   "tokenAmount": "10000",
-  "tokenSymbol": "AGENT",
+  "tokenSymbol": "USDC",
   "tokenAddress": "0x...",
   "rateLimitHours": 1,
   "faucetBalances": {
@@ -110,7 +110,7 @@ Request tokens for an address.
     "token": {
       "hash": "0x...",
       "amount": "10000",
-      "symbol": "AGENT"
+      "symbol": "USDC"
     }
   }
 }

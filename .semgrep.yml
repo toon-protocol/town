@@ -1,0 +1,49 @@
+# Crosstown Semgrep Configuration
+#
+# Project-level rules and suppressions. This configuration addresses
+# recurring CWE-319 false positives where ws:// URLs are used for:
+#   - Docker-internal container-to-container networking (TLS unnecessary)
+#   - URL validation checks (not actual connections)
+#   - Log messages and error text (not connections)
+#
+# See .semgrepignore for file-level exclusions (tests, compose files, examples).
+
+rules:
+  # Override the default insecure-websocket rule with a more precise version
+  # that excludes common Docker/validation patterns.
+  - id: crosstown.detect-insecure-websocket
+    patterns:
+      - pattern: |
+          ws://...
+      # Exclude Docker-internal patterns (container names as hosts)
+      - pattern-not: |
+          ws://connector:...
+      - pattern-not: |
+          ws://crosstown:...
+      - pattern-not: |
+          ws://peer1:...
+      - pattern-not: |
+          ws://peer2:...
+      - pattern-not: |
+          ws://anvil:...
+      - pattern-not: |
+          ws://forgejo:...
+      # Exclude localhost (development only)
+      - pattern-not: |
+          ws://localhost:...
+      - pattern-not: |
+          ws://0.0.0.0:...
+      - pattern-not: |
+          ws://127.0.0.1:...
+    message: >
+      Insecure WebSocket connection (ws://) detected. Use wss:// for
+      production connections. Docker-internal and localhost connections
+      are excluded from this rule.
+    severity: WARNING
+    languages: [typescript, javascript]
+    metadata:
+      cwe:
+        - "CWE-319: Cleartext Transmission of Sensitive Information"
+      confidence: MEDIUM
+      technology:
+        - nodejs

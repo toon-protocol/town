@@ -3,7 +3,7 @@
 #
 # Includes:
 # - Anvil (local Ethereum blockchain with auto-deployed contracts)
-# - Token Faucet (ETH + AGENT token distribution)
+# - Token Faucet (ETH + USDC distribution)
 # - ILP Connector (packet routing + payment channels)
 # - Crosstown Node (Nostr relay + BLS + bootstrap service)
 # - Forgejo (read-only public Git)
@@ -63,7 +63,7 @@ services:
       start_period: 15s
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # Token Faucet - Provides ETH and AGENT tokens for testing
+  # Token Faucet - Provides ETH and USDC for testing
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   faucet:
     image: crosstown-genesis-faucet:latest
@@ -75,7 +75,7 @@ services:
       # Account 1 for ETH (has 10k ETH from Anvil)
       ETH_PRIVATE_KEY: '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
 
-      # Account 0 (deployer) for AGENT tokens
+      # Account 0 (deployer) for USDC
       TOKEN_PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
 
       # Token address (deterministic from Anvil deployment)
@@ -178,10 +178,10 @@ services:
       NOSTR_SECRET_KEY: ${NOSTR_SECRET_KEY}
       ILP_ADDRESS: ${ILP_ADDRESS:-g.crosstown.genesis}
 
-      # Connector Integration (External Mode via HTTP)
+      # Connector Integration (External Mode via HTTP, Docker-internal — TLS unnecessary)
       CONNECTOR_ADMIN_URL: http://connector:8081
       CONNECTOR_URL: http://connector:8080
-      BTP_ENDPOINT: ${BTP_ENDPOINT:-ws://connector:3000}
+      BTP_ENDPOINT: ${BTP_ENDPOINT:-ws://connector:3000} # nosemgrep: detect-insecure-websocket
 
       # Service Ports
       BLS_PORT: 3100

@@ -47,7 +47,7 @@ const ANVIL_RPC = 'http://localhost:18545';
 const CHAIN_ID = 31337;
 
 // Contracts (deployed by genesis node)
-const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+const TOKEN_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const; // Mock USDC (Anvil)
 const REGISTRY_ADDRESS = '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512' as const;
 
 // Anvil Account #0 — deployer, holds all USDC tokens
@@ -61,7 +61,7 @@ const NODE_A_EVM_ADDRESS = '0x90F79bf6EB2c4f870365E785982E1f101E93b906' as const
 const NODE_B_PRIVATE_KEY = '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a' as const;
 const NODE_B_EVM_ADDRESS = '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65' as const;
 
-// Funding amount: 10 tokens per node (18 decimals)
+// Funding amount: 10 tokens per node (mock USDC on Anvil uses 18 decimals)
 const FUNDING_AMOUNT = 10n * 10n ** 18n;
 
 // Settlement config: low threshold so a few events trigger auto-settlement
