@@ -224,6 +224,42 @@ Because payment lives in the transport layer — not the application layer — C
 
 Crosstown doesn't build a platform. It provides three primitives — discovery via Nostr, payment via ILP, and trust via cryptographic verification — and gets out of the way.
 
+## Trust Model
+
+Crosstown is a relay network, not a replicated state machine. There is no global consensus protocol. Each node is sovereign — it publishes its own events, maintains its own state, and connects bilaterally to peers via ILP. This is a deliberate architectural choice.
+
+### TEE: Verifiable Execution, Not Consensus
+
+Nodes can run inside [Marlin Oyster](https://www.marlin.org/oyster) TEE enclaves (AWS Nitro). When they do, hardware-measured Platform Configuration Registers (PCRs) prove exactly what code is running. The relay's Nostr identity is cryptographically derived from a KMS seed that is only accessible when PCR values match — so identity and code are bound together. Nix reproducible builds ensure anyone can independently verify the PCR values.
+
+This eliminates **code tampering** and **identity spoofing**, but it does not eliminate **censorship** or **unavailability**. A TEE-attested relay faithfully runs correct code, but its operator still controls the network layer. TEE guarantees code integrity, not operator intent.
+
+### Why Not Byzantine Fault Tolerance?
+
+BFT protocols (PBFT, Tendermint, HotStuff) require 3f+1 nodes to agree on a single ordered history despite f Byzantine faults. That's the right model for replicated state machines. It's the wrong model for a relay network where each node is independently operated and there is no shared state to replicate.
+
+TEE does provide a meaningful subset of BFT properties:
+
+| BFT Property | TEE Alone | Crosstown Mitigation |
+|---|---|---|
+| No equivocation (consistent behavior) | Yes — attested code is deterministic | PCR-bound identity |
+| No state corruption | Yes — enclave memory is isolated | Hardware attestation |
+| Censorship resistance | No — operator controls network | Multi-relay redundancy |
+| Availability | No — operator can power off | Client connects to many relays |
+| Collusion resistance | Partial — can't forge attestation | Economic incentives to stay honest |
+
+Research (CheapBFT, MinBFT) shows that TEE reduces BFT requirements from 3f+1 to 2f+1 nodes. If Crosstown ever needs ordered consensus for a specific use case, TEE makes it cheaper. But for relay operation, the right answer is redundancy at the client layer — the same model Nostr itself uses.
+
+### Three-Layer Security
+
+1. **Hardware** — Nitro hypervisor measures code at load, captures PCRs in a COSE attestation document
+2. **Cryptographic** — KMS seed derivation ties relay identity to PCR values; identity signs kind:10033 attestation events
+3. **Economic** — Payment channels settle on-chain via EVM smart contracts; trust degrades gracefully but money never does
+
+The critical asymmetry: attestation state changes **never** trigger payment channel closure. A peer can transition from attested to unattested without disrupting payments. Trust is a gradient, not a gate.
+
+For the full attestation flow and trust state machine, see the [Architecture Guide](docs/architecture.md).
+
 ## Documentation
 
 | Guide | Description |
