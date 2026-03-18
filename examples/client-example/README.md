@@ -1,6 +1,6 @@
 # Client Examples
 
-Standalone `@crosstown/client` examples that connect to external Crosstown peer containers.
+Standalone `@toon-protocol/client` examples that connect to external TOON peer containers.
 
 ## Key Difference from SDK/Town
 

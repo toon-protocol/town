@@ -1,7 +1,7 @@
 /**
  * Example 01: Start a Town Node with Embedded Connector
  *
- * Demonstrates starting a complete Crosstown relay node using startTown()
+ * Demonstrates starting a complete TOON relay node using startTown()
  * with an embedded ILP connector. A single setup spins up:
  *   - An embedded ILP connector (packet routing + admin API)
  *   - A WebSocket Nostr relay (NIP-01 compatible)
@@ -13,12 +13,12 @@
  * Run: npm run start-town
  */
 
-import { startTown } from '@crosstown/town';
-import { ConnectorNode } from '@crosstown/connector';
+import { startTown } from '@toon-protocol/town';
+import { ConnectorNode } from '@toon-protocol/connector';
 import pino from 'pino';
 
 async function main() {
-  console.log('=== Crosstown Town: Start a Relay Node ===\n');
+  console.log('=== TOON Town: Start a Relay Node ===\n');
 
   const logger = pino({ level: 'silent' });
 
@@ -52,7 +52,7 @@ async function main() {
     relayPort: 7200,
     blsPort: 3200,
     connectorUrl: 'http://localhost:4080',
-    dataDir: '/tmp/crosstown-example-town-01',
+    dataDir: '/tmp/toon-example-town-01',
   });
 
   console.log('\nTown node started!');

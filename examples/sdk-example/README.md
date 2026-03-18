@@ -1,6 +1,6 @@
-# @crosstown/sdk Examples
+# @toon-protocol/sdk Examples
 
-Learn the Crosstown SDK by running these self-contained examples. No external infrastructure required — everything runs in-process using embedded connectors.
+Learn the TOON SDK by running these self-contained examples. No external infrastructure required — everything runs in-process using embedded connectors.
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ npm run standalone-server
 
 ## Embedded Connector Configuration
 
-Each example uses `ConnectorNode` from `@crosstown/connector` in embedded mode. Key configuration patterns:
+Each example uses `ConnectorNode` from `@toon-protocol/connector` in embedded mode. Key configuration patterns:
 
 ### BTP Authentication
 
@@ -125,9 +125,9 @@ Every connector needs TWO types of routes:
 ```typescript
 routes: [
   // LOCAL route: deliver packets addressed to THIS node to the SDK handler
-  { prefix: 'g.crosstown.my-node', nextHop: 'local', priority: 0 },
+  { prefix: 'g.toon.my-node', nextHop: 'local', priority: 0 },
   // REMOTE route: forward packets for the other node via BTP
-  { prefix: 'g.crosstown.other-node', nextHop: 'other-node', priority: 0 },
+  { prefix: 'g.toon.other-node', nextHop: 'other-node', priority: 0 },
 ]
 ```
 
@@ -161,7 +161,7 @@ The peer `id` in the config must match the **remote** connector's `nodeId`. The 
 ## Key Concepts
 
 - **Pay to write, free to read**: Publishing events requires ILP payment (amount = `basePricePerByte * toonBytes`). Reading is free.
-- **TOON format**: Crosstown uses a compact binary encoding (not JSON) for Nostr events.
+- **TOON format**: TOON uses a compact binary encoding (not JSON) for Nostr events.
 - **Handler pipeline**: Incoming packets pass through signature verification → pricing validation → handler dispatch.
 - **Embedded connector**: Each node runs its own ILP connector in-process for direct packet routing.
 - **Standalone connector**: The connector runs externally. The SDK connects via HTTP and starts its own HTTP server for incoming packets.

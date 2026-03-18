@@ -19,11 +19,11 @@
  * Run: npm run embedded-town
  */
 
-import { startTown, type TownInstance } from '@crosstown/town';
-import { generateMnemonic, fromMnemonic } from '@crosstown/sdk';
-import { encodeEventToToon } from '@crosstown/core/toon';
+import { startTown, type TownInstance } from '@toon-protocol/town';
+import { generateMnemonic, fromMnemonic } from '@toon-protocol/sdk';
+import { encodeEventToToon } from '@toon-protocol/core/toon';
 import { finalizeEvent } from 'nostr-tools/pure';
-import { ConnectorNode } from '@crosstown/connector';
+import { ConnectorNode } from '@toon-protocol/connector';
 import WebSocket from 'ws';
 import pino from 'pino';
 import {
@@ -161,7 +161,7 @@ async function fundAccount(walletClient: ReturnType<typeof createWalletClient>, 
 }
 
 async function main() {
-  console.log('=== Crosstown Town: Embedded Mode (Two Towns) ===\n');
+  console.log('=== TOON Town: Embedded Mode (Two Towns) ===\n');
 
   const logger = pino({ level: 'silent' });
   let townA: TownInstance | null = null;
@@ -208,8 +208,8 @@ async function main() {
     // --- 4. Create embedded connectors ---
     console.log('Creating embedded connectors...');
 
-    const ilpAddressA = `g.crosstown.embedded.town-a`;
-    const ilpAddressB = `g.crosstown.embedded.town-b`;
+    const ilpAddressA = `g.toon.embedded.town-a`;
+    const ilpAddressB = `g.toon.embedded.town-b`;
 
     connectorA = new ConnectorNode({
       nodeId: 'embedded-town-a',
@@ -286,7 +286,7 @@ async function main() {
       relayPort: 7400,
       blsPort: 3400,
       ilpAddress: ilpAddressA,
-      dataDir: '/tmp/crosstown-example-embedded-townA',
+      dataDir: '/tmp/toon-example-embedded-townA',
     });
     console.log(`  Town A started: pubkey=${townA.pubkey.slice(0, 24)}...`);
     console.log(`  ILP address: ${townA.config.ilpAddress}\n`);
@@ -299,7 +299,7 @@ async function main() {
       relayPort: 7500,
       blsPort: 3500,
       ilpAddress: ilpAddressB,
-      dataDir: '/tmp/crosstown-example-embedded-townB',
+      dataDir: '/tmp/toon-example-embedded-townB',
     });
     console.log(`  Town B started: pubkey=${townB.pubkey.slice(0, 24)}...`);
     console.log(`  ILP address: ${townB.config.ilpAddress}\n`);

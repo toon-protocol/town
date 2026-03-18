@@ -6,7 +6,7 @@
  *   - AttestationState: track attestation lifecycle (valid -> stale -> unattested)
  *   - Peer ranking: prefer attested peers over non-attested ones
  *
- * No infrastructure required — this is a pure @crosstown/core library demo.
+ * No infrastructure required — this is a pure @toon-protocol/core library demo.
  * All data is mock/simulated to show the verification logic.
  *
  * Run: npm run attestation-verify
@@ -16,7 +16,7 @@ import {
   AttestationVerifier,
   type TeeAttestation,
   type PeerDescriptor,
-} from '@crosstown/core';
+} from '@toon-protocol/core';
 
 // ---------------------------------------------------------------------------
 // Mock Data
@@ -43,7 +43,7 @@ function createAttestation(overrides: Partial<TeeAttestation> = {}): TeeAttestat
 }
 
 async function main() {
-  console.log('=== Crosstown: TEE Attestation Verification ===\n');
+  console.log('=== TOON: TEE Attestation Verification ===\n');
 
   // --- 1. Create verifier with known-good PCR registry ---
   console.log('Step 1: Creating AttestationVerifier with known-good PCRs...\n');

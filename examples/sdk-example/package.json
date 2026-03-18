@@ -1,9 +1,9 @@
 {
-  "name": "crosstown-sdk-example",
+  "name": "toon-sdk-example",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Examples for @crosstown/sdk - building ILP-gated Nostr services",
+  "description": "Examples for @toon-protocol/sdk - building ILP-gated Nostr services",
   "scripts": {
     "identity": "tsx src/01-identity.ts",
     "create-node": "tsx src/02-create-node.ts",
@@ -12,9 +12,9 @@
     "standalone-server": "tsx src/05-standalone-server.ts"
   },
   "dependencies": {
-    "@crosstown/connector": "^1.7.1",
-    "@crosstown/core": "workspace:*",
-    "@crosstown/sdk": "workspace:*",
+    "@toon-protocol/connector": "^1.7.1",
+    "@toon-protocol/core": "workspace:*",
+    "@toon-protocol/sdk": "workspace:*",
     "nostr-tools": "^2.20.0",
     "pino": "^9.0.0",
     "viem": "^2.0.0"

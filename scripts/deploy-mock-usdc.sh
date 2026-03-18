@@ -201,8 +201,8 @@ echo "  cast call $CONTRACT_ADDR 'decimals()(uint8)' --rpc-url $RPC_URL"
 echo "  cast call $CONTRACT_ADDR 'name()(string)' --rpc-url $RPC_URL"
 echo "  cast call $CONTRACT_ADDR 'balanceOf(address)(uint256)' $DEPLOYER_ADDR --rpc-url $RPC_URL"
 echo ""
-echo "To use in Crosstown, set:"
-echo "  CROSSTOWN_USDC_ADDRESS=$CONTRACT_ADDR"
+echo "To use in TOON, set:"
+echo "  TOON_USDC_ADDRESS=$CONTRACT_ADDR"
 
 # Cleanup
 rm -rf "$TEMP_DIR"

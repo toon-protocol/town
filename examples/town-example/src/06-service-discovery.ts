@@ -15,10 +15,10 @@
  * Run: npm run service-discovery
  */
 
-import { startTown, type TownInstance } from '@crosstown/town';
-import { ConnectorNode } from '@crosstown/connector';
-import { SERVICE_DISCOVERY_KIND } from '@crosstown/core';
-import { shallowParseToon } from '@crosstown/core';
+import { startTown, type TownInstance } from '@toon-protocol/town';
+import { ConnectorNode } from '@toon-protocol/connector';
+import { SERVICE_DISCOVERY_KIND } from '@toon-protocol/core';
+import { shallowParseToon } from '@toon-protocol/core';
 import WebSocket from 'ws';
 import pino from 'pino';
 
@@ -73,7 +73,7 @@ async function queryRelay(
 }
 
 async function main() {
-  console.log('=== Crosstown Town: Service Discovery + Enriched Health ===\n');
+  console.log('=== TOON Town: Service Discovery + Enriched Health ===\n');
 
   const logger = pino({ level: 'silent' });
   let town: TownInstance | null = null;
@@ -105,7 +105,7 @@ async function main() {
       blsPort: 3700,
       connectorUrl: 'http://localhost:4780',
       connectorAdminUrl: 'http://localhost:4781',
-      dataDir: '/tmp/crosstown-example-discovery',
+      dataDir: '/tmp/toon-example-discovery',
       x402Enabled: true,
       chain: 'anvil',
     });

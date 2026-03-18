@@ -1,4 +1,4 @@
-# Crosstown Test Pipeline
+# TOON Test Pipeline
 # Stack: backend (Node.js monorepo) | Framework: Vitest
 # Philosophy: No mocks — real crypto, real TOON codec, real local infra
 #
@@ -160,7 +160,7 @@ jobs:
       - name: Run pnpm audit
         run: pnpm audit --prod || true
         # Non-blocking: transitive deps in @ardrive/turbo-sdk and
-        # @crosstown/connector have known vulnerabilities with no
+        # @toon-protocol/connector have known vulnerabilities with no
         # available patches. Logged for visibility; see .pnpmauditrc
         # for acknowledged vulnerabilities.
 
@@ -205,7 +205,7 @@ jobs:
         run: pnpm vitest run --config vitest.integration.config.ts --reporter=verbose
 
       - name: Run integration tests (core)
-        run: pnpm --filter @crosstown/core vitest run --config vitest.integration.config.ts --reporter=verbose
+        run: pnpm --filter @toon-protocol/core vitest run --config vitest.integration.config.ts --reporter=verbose
 
       - name: Upload failure artifacts
         if: failure()
@@ -278,7 +278,7 @@ jobs:
       - name: Collect service logs on failure
         if: failure()
         run: |
-          docker compose -p crosstown-sdk-e2e -f docker-compose-sdk-e2e.yml logs > sdk-e2e-logs.txt 2>&1 || true
+          docker compose -p toon-sdk-e2e -f docker-compose-sdk-e2e.yml logs > sdk-e2e-logs.txt 2>&1 || true
 
       - name: Upload service logs
         if: failure()

@@ -1,9 +1,9 @@
 {
-  "name": "crosstown-town-example",
+  "name": "toon-town-example",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Examples for @crosstown/town - running a full Crosstown relay node",
+  "description": "Examples for @toon-protocol/town - running a full TOON relay node",
   "scripts": {
     "start-town": "tsx src/01-start-town.ts",
     "full-lifecycle": "tsx src/02-full-lifecycle.ts",
@@ -14,10 +14,10 @@
     "attestation-verify": "tsx src/07-attestation-verify.ts"
   },
   "dependencies": {
-    "@crosstown/connector": "^1.7.1",
-    "@crosstown/core": "workspace:*",
-    "@crosstown/sdk": "workspace:*",
-    "@crosstown/town": "workspace:*",
+    "@toon-protocol/connector": "^1.7.1",
+    "@toon-protocol/core": "workspace:*",
+    "@toon-protocol/sdk": "workspace:*",
+    "@toon-protocol/town": "workspace:*",
     "nostr-tools": "^2.20.0",
     "pino": "^9.0.0",
     "viem": "^2.21.0",

@@ -1,6 +1,6 @@
-# @crosstown/town Examples
+# @toon-protocol/town Examples
 
-Learn how to run a full Crosstown relay node using the `startTown()` API. All examples are self-contained — they use embedded connectors and require no external infrastructure.
+Learn how to run a full TOON relay node using the `startTown()` API. All examples are self-contained — they use embedded connectors and require no external infrastructure.
 
 ## Prerequisites
 
@@ -119,11 +119,11 @@ npm run attestation-verify
 - `AttestationVerifier`: verify PCR values against a known-good registry
 - `AttestationState` lifecycle: VALID → STALE → UNATTESTED
 - Peer ranking: attested peers preferred but non-attested remain connectable
-- How Marlin Oyster CVM attestations work in the Crosstown network
+- How Marlin Oyster CVM attestations work in the TOON network
 
 ## Embedded Connector Configuration
 
-Each example uses `ConnectorNode` from `@crosstown/connector` in standalone mode with the Town's BLS HTTP server handling local ILP delivery.
+Each example uses `ConnectorNode` from `@toon-protocol/connector` in standalone mode with the Town's BLS HTTP server handling local ILP delivery.
 
 ### Startup Order
 

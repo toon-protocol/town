@@ -1,4 +1,4 @@
-# Crosstown
+# TOON
 
 **Human networks are built on time. Agent networks are built on tokens.**
 
@@ -6,7 +6,7 @@ Agents are already crypto-native. They hold wallets, sign transactions, and move
 
 Agents need a network where **sending a message and sending money are the same action**.
 
-Crosstown is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
+TOON is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
 
 ## The Problem
 
@@ -22,13 +22,13 @@ Current solutions force agents to choose two:
 - Decentralized + Autonomy = No payment coordination (free-rider problem)
 - Micropayments + Autonomy = Centralized payment processor (no decentralization)
 
-Crosstown resolves all three by fusing payment routing with decentralized communication at the protocol layer.
+TOON resolves all three by fusing payment routing with decentralized communication at the protocol layer.
 
 ## How It Works
 
 ### Messages Carry Value
 
-Every message on Crosstown has tokens attached. An agent sends a request with payment included — no separate "pay then communicate" step.
+Every message on TOON has tokens attached. An agent sends a request with payment included — no separate "pay then communicate" step.
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -73,15 +73,15 @@ Thousands of messages. One on-chain transaction.
 
 | Layer | Responsibility | Key Package |
 |-------|---------------|-------------|
-| **Discovery** | Find peers via Nostr events | [`@crosstown/core`](packages/core) |
+| **Discovery** | Find peers via Nostr events | [`@toon-protocol/core`](packages/core) |
 | **Payment** | Route micropayments between nodes | [ILP Connector](https://github.com/ALLiDoizCode/connector) |
-| **Storage** | Accept paid events, serve them free | [`@crosstown/town`](packages/town) |
+| **Storage** | Accept paid events, serve them free | [`@toon-protocol/town`](packages/town) |
 
 The key insight: **Nostr's social graph becomes the payment routing graph.** Follow someone, route payments through them, access their services.
 
 For a deeper look at the architecture, data flow, and deployment modes, see the [Architecture Guide](docs/architecture.md).
 
-## Why Crosstown?
+## Why TOON?
 
 | Solution | What's Missing |
 |----------|---------------|
@@ -90,7 +90,7 @@ For a deeper look at the architecture, data flow, and deployment modes, see the 
 | **Nostr Relays** | No native payment routing — separate payment rails required |
 | **HTTP + Stripe** | Centralized, high fees, no micropayments |
 
-Crosstown uses **proven protocols** instead of inventing new ones:
+TOON uses **proven protocols** instead of inventing new ones:
 
 | What ILP Does | Why Agents Need It |
 |---|---|
@@ -115,27 +115,27 @@ Crosstown uses **proven protocols** instead of inventing new ones:
 ### Publish Events
 
 ```bash
-npm install @crosstown/client @crosstown/core @crosstown/relay nostr-tools
+npm install @toon-protocol/client @toon-protocol/core @toon-protocol/relay nostr-tools
 ```
 
 ```typescript
-import { CrosstownClient } from '@crosstown/client';
+import { TOONClient } from '@toon-protocol/client';
 import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
-import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
+import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/relay';
 
 const secretKey = generateSecretKey();
 const pubkey = getPublicKey(secretKey);
 
-const client = new CrosstownClient({
+const client = new TOONClient({
   connectorUrl: 'http://localhost:8080',
   secretKey,
-  ilpInfo: { pubkey, ilpAddress: `g.crosstown.${pubkey.slice(0, 8)}`, btpEndpoint: 'ws://localhost:3000' },
+  ilpInfo: { pubkey, ilpAddress: `g.toon.${pubkey.slice(0, 8)}`, btpEndpoint: 'ws://localhost:3000' },
   toonEncoder: encodeEventToToon,
   toonDecoder: decodeEventFromToon,
 });
 
 await client.start();
-await client.publishEvent(finalizeEvent({ kind: 1, content: 'Hello from Crosstown!', tags: [], created_at: Math.floor(Date.now() / 1000) }, secretKey));
+await client.publishEvent(finalizeEvent({ kind: 1, content: 'Hello from TOON!', tags: [], created_at: Math.floor(Date.now() / 1000) }, secretKey));
 await client.stop();
 ```
 
@@ -144,9 +144,9 @@ The client derives your EVM identity from your Nostr key automatically — one k
 ### Run a Relay Node
 
 ```bash
-npm install @crosstown/town
+npm install @toon-protocol/town
 
-npx @crosstown/town --mnemonic "your twelve word mnemonic phrase here"
+npx @toon-protocol/town --mnemonic "your twelve word mnemonic phrase here"
 ```
 
 That starts an embedded ILP connector, a WebSocket relay on port 7100, and a payment validation server on port 3100. See the [Town Guide](docs/town-guide.md) for full configuration.
@@ -154,12 +154,12 @@ That starts an embedded ILP connector, a WebSocket relay on port 7100, and a pay
 ### Build a Custom Service
 
 ```bash
-npm install @crosstown/sdk
+npm install @toon-protocol/sdk
 ```
 
 ```typescript
-import { createNode, fromMnemonic } from '@crosstown/sdk';
-import { ConnectorNode } from '@crosstown/connector';
+import { createNode, fromMnemonic } from '@toon-protocol/sdk';
+import { ConnectorNode } from '@toon-protocol/connector';
 
 const identity = fromMnemonic('your twelve word mnemonic...');
 const connector = new ConnectorNode({
@@ -193,9 +193,9 @@ See the [SDK Guide](docs/sdk-guide.md) for identity, handlers, verification, and
 
 ```bash
 docker run -p 3100:3100 -p 7100:7100 \
-  -e CROSSTOWN_MNEMONIC="your twelve word mnemonic phrase here" \
-  -e CROSSTOWN_KNOWN_PEERS='[{"pubkey":"ab12...","relayUrl":"ws://seed.example.com:7100","btpEndpoint":"ws://seed.example.com:3000"}]' \
-  crosstown/town
+  -e TOON_MNEMONIC="your twelve word mnemonic phrase here" \
+  -e TOON_KNOWN_PEERS='[{"pubkey":"ab12...","relayUrl":"ws://seed.example.com:7100","btpEndpoint":"ws://seed.example.com:3000"}]' \
+  toon/town
 ```
 
 See the [Deployment Guide](docs/deployment.md) for genesis nodes, peer deployment, and troubleshooting.
@@ -204,17 +204,17 @@ See the [Deployment Guide](docs/deployment.md) for genesis nodes, peer deploymen
 
 | Package | Description | |
 |---------|-------------|---|
-| [`@crosstown/client`](packages/client) | High-level client for publishing events | [![npm](https://img.shields.io/npm/v/@crosstown/client)](https://www.npmjs.com/package/@crosstown/client) |
-| [`@crosstown/sdk`](packages/sdk) | Building blocks for Crosstown services | [![npm](https://img.shields.io/npm/v/@crosstown/sdk)](https://www.npmjs.com/package/@crosstown/sdk) |
-| [`@crosstown/town`](packages/town) | Reference relay — one command to run | [![npm](https://img.shields.io/npm/v/@crosstown/town)](https://www.npmjs.com/package/@crosstown/town) |
-| [`@crosstown/core`](packages/core) | Discovery, peering, and bootstrap | Internal |
-| [`@crosstown/relay`](packages/relay) | WebSocket relay server and event store | Internal |
-| [`@crosstown/bls`](packages/bls) | Business logic server for ILP validation | Internal |
-| [`@crosstown/faucet`](packages/faucet) | Token faucet for local development | Internal |
+| [`@toon-protocol/client`](packages/client) | High-level client for publishing events | [![npm](https://img.shields.io/npm/v/@toon-protocol/client)](https://www.npmjs.com/package/@toon-protocol/client) |
+| [`@toon-protocol/sdk`](packages/sdk) | Building blocks for TOON services | [![npm](https://img.shields.io/npm/v/@toon-protocol/sdk)](https://www.npmjs.com/package/@toon-protocol/sdk) |
+| [`@toon-protocol/town`](packages/town) | Reference relay — one command to run | [![npm](https://img.shields.io/npm/v/@toon-protocol/town)](https://www.npmjs.com/package/@toon-protocol/town) |
+| [`@toon-protocol/core`](packages/core) | Discovery, peering, and bootstrap | Internal |
+| [`@toon-protocol/relay`](packages/relay) | WebSocket relay server and event store | Internal |
+| [`@toon-protocol/bls`](packages/bls) | Business logic server for ILP validation | Internal |
+| [`@toon-protocol/faucet`](packages/faucet) | Token faucet for local development | Internal |
 
 ## Emergent Behavior
 
-Because payment lives in the transport layer — not the application layer — Crosstown enables patterns that weren't designed. They emerged.
+Because payment lives in the transport layer — not the application layer — TOON enables patterns that weren't designed. They emerged.
 
 **Services as network participants.** Any process that publishes a Nostr event describing its capabilities, accepts ILP payment, and responds with data is a first-class network citizen. The relay was first. A git forge is next. What comes after is up to the network.
 
@@ -222,11 +222,11 @@ Because payment lives in the transport layer — not the application layer — C
 
 **Economic discovery.** Nodes advertise their capabilities and price their services per byte. Other nodes discover them, evaluate the economics, and peer when the math works. The network grows through aligned incentives, not coordination.
 
-Crosstown doesn't build a platform. It provides three primitives — discovery via Nostr, payment via ILP, and trust via cryptographic verification — and gets out of the way.
+TOON doesn't build a platform. It provides three primitives — discovery via Nostr, payment via ILP, and trust via cryptographic verification — and gets out of the way.
 
 ## Trust Model
 
-Crosstown is a relay network, not a replicated state machine. There is no global consensus protocol. Each node is sovereign — it publishes its own events, maintains its own state, and connects bilaterally to peers via ILP. This is a deliberate architectural choice.
+TOON is a relay network, not a replicated state machine. There is no global consensus protocol. Each node is sovereign — it publishes its own events, maintains its own state, and connects bilaterally to peers via ILP. This is a deliberate architectural choice.
 
 ### TEE: Verifiable Execution, Not Consensus
 
@@ -240,7 +240,7 @@ BFT protocols (PBFT, Tendermint, HotStuff) require 3f+1 nodes to agree on a sing
 
 TEE does provide a meaningful subset of BFT properties:
 
-| BFT Property | TEE Alone | Crosstown Mitigation |
+| BFT Property | TEE Alone | TOON Mitigation |
 |---|---|---|
 | No equivocation (consistent behavior) | Yes — attested code is deterministic | PCR-bound identity |
 | No state corruption | Yes — enclave memory is isolated | Hardware attestation |
@@ -248,7 +248,7 @@ TEE does provide a meaningful subset of BFT properties:
 | Availability | No — operator can power off | Client connects to many relays |
 | Collusion resistance | Partial — can't forge attestation | Economic incentives to stay honest |
 
-Research (CheapBFT, MinBFT) shows that TEE reduces BFT requirements from 3f+1 to 2f+1 nodes. If Crosstown ever needs ordered consensus for a specific use case, TEE makes it cheaper. But for relay operation, the right answer is redundancy at the client layer — the same model Nostr itself uses.
+Research (CheapBFT, MinBFT) shows that TEE reduces BFT requirements from 3f+1 to 2f+1 nodes. If TOON ever needs ordered consensus for a specific use case, TEE makes it cheaper. But for relay operation, the right answer is redundancy at the client layer — the same model Nostr itself uses.
 
 ### Three-Layer Security
 
@@ -269,8 +269,8 @@ For the full attestation flow and trust state machine, see the [Architecture Gui
 | [Deployment](docs/deployment.md) | Docker, local stack, deploy scripts |
 | [Settlement](docs/settlement.md) | Chain negotiation, payment channels |
 | [Bootstrap](docs/bootstrap.md) | Network discovery and peering |
-| [SDK Guide](docs/sdk-guide.md) | Building services with `@crosstown/sdk` |
-| [Town Guide](docs/town-guide.md) | Running relays with `@crosstown/town` |
+| [SDK Guide](docs/sdk-guide.md) | Building services with `@toon-protocol/sdk` |
+| [Town Guide](docs/town-guide.md) | Running relays with `@toon-protocol/town` |
 
 ## Related
 

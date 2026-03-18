@@ -1,7 +1,7 @@
 /**
  * Example 01: Identity Generation
  *
- * Demonstrates how Crosstown derives a unified identity from a single
+ * Demonstrates how TOON derives a unified identity from a single
  * secp256k1 key — producing both a Nostr public key (Schnorr/BIP-340)
  * and an EVM address (Keccak-256) from the same secret.
  *
@@ -10,11 +10,11 @@
  * Run: npm run identity
  */
 
-import { generateMnemonic, fromMnemonic, fromSecretKey } from '@crosstown/sdk';
+import { generateMnemonic, fromMnemonic, fromSecretKey } from '@toon-protocol/sdk';
 import { generateSecretKey } from 'nostr-tools/pure';
 
 async function main() {
-  console.log('=== Crosstown SDK: Identity Generation ===\n');
+  console.log('=== TOON SDK: Identity Generation ===\n');
 
   // --- Option A: Generate from a BIP-39 mnemonic ---
   // Mnemonics are human-readable and can derive multiple accounts

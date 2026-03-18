@@ -1,4 +1,4 @@
-# Crosstown Semgrep Configuration
+# TOON Semgrep Configuration
 #
 # Project-level rules and suppressions. This configuration addresses
 # recurring CWE-319 false positives where ws:// URLs are used for:
@@ -11,7 +11,7 @@
 rules:
   # Override the default insecure-websocket rule with a more precise version
   # that excludes common Docker/validation patterns.
-  - id: crosstown.detect-insecure-websocket
+  - id: toon.detect-insecure-websocket
     patterns:
       - pattern: |
           ws://...
@@ -19,7 +19,7 @@ rules:
       - pattern-not: |
           ws://connector:...
       - pattern-not: |
-          ws://crosstown:...
+          ws://toon:...
       - pattern-not: |
           ws://peer1:...
       - pattern-not: |
