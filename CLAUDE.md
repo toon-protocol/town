@@ -10,7 +10,7 @@ ILP-gated Nostr relay. Pay to write, free to read.
 
 ```bash
 # Build & test
-pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,095 tests)
+pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,159 tests)
 pnpm lint && pnpm format                   # Lint & format
 
 # Genesis stack (Anvil + Faucet + Connector + Node)
