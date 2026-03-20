@@ -35,17 +35,32 @@ This starts:
 
 Demonstrates the complete standalone client lifecycle: fund wallet, bootstrap, open payment channel, sign a self-describing claim, publish a Nostr event, and verify it on the relay.
 
+**What you'll learn:**
+- Connecting to external TOON peers via BTP
+- Funding a wallet and opening a payment channel
+- Signing EIP-712 balance proofs with `signBalanceProof()`
+- Publishing a paid Nostr event and reading it back from the relay
+
 ```bash
 npm run publish-event
 ```
+
+**Expected output:** The client funds its wallet, opens a channel with Peer1, publishes a kind:1 event with payment, then queries the relay to confirm the event was stored.
 
 ### 02 - Payment Channel Lifecycle
 
 Publishes multiple events with incrementing balance proofs, showing cumulative nonces and amounts. Queries on-chain channel state to verify participants and deposits.
 
+**What you'll learn:**
+- Cumulative balance proofs (nonce increments with each payment)
+- Multi-event publishing within a single payment channel
+- Querying on-chain channel state (participants, deposits, status)
+
 ```bash
 npm run payment-channel
 ```
+
+**Expected output:** Multiple events published with increasing nonce values, followed by on-chain channel state showing both participants and the total deposited amount.
 
 ## Notes
 
