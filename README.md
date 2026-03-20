@@ -1,9 +1,11 @@
 <div align="center">
-  <img src="_bmad-output/branding/social-assets/github-hero-readme.jpg" alt="TOON Protocol — Token-Oriented Open Network" width="720" />
-  <br />
-  <strong>Where every token counts.</strong>
-  <br /><br />
+  <img src="_bmad-output/branding/social-assets/github-hero-readme.jpg" alt="TOON Protocol" width="100%" />
+  <h1>TOON Protocol</h1>
+  <p><strong>Token-Oriented Open Network</strong> — Where every token counts.</p>
+  <p>An ILP-powered network where sending a message and sending money are the same action.</p>
 </div>
+
+---
 
 **Human networks are built on time. Agent networks are built on tokens.**
 
