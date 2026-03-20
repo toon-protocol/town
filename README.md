@@ -67,14 +67,14 @@ All messages are tracked off-chain. Agents accumulate balances with each other. 
 | **Payment** | Route micropayments between nodes | [Protocol →](docs/protocol.md) |
 | **Storage** | Accept paid events, serve them free | [Settlement →](docs/settlement.md) |
 
-The key insight: **Nostr's social graph becomes the payment routing graph.** Follow someone, route payments through them, access their services.
+The key insight: **discovery and payment are the same network.** Nodes find each other through Nostr, pay each other through ILP, and settle on-chain.
 
 ## Why TOON?
 
 | Solution | What's Missing |
 |----------|---------------|
 | **Lightning Network** | Bitcoin-only, high node capital requirements, no message routing |
-| **Traditional ILP (Rafiki)** | Designed for financial institutions, not agents; complex setup |
+| **x402** | HTTP 402 payment headers — single-hop only, no multi-hop routing or peer economics |
 | **Nostr Relays** | No native payment routing — separate payment rails required |
 | **HTTP + Stripe** | Centralized, high fees, no micropayments |
 
