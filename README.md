@@ -74,7 +74,7 @@ The key insight: **discovery and payment are the same network.** Nodes find each
 | Solution | What's Missing |
 |----------|---------------|
 | **Lightning Network** | Bitcoin-only, high node capital requirements, no message routing |
-| **x402** | HTTP 402 payment headers — single-hop only, no multi-hop routing or peer economics |
+| **x402** | Single-hop HTTP payments — no multi-hop routing, no peer economics, no discovery layer |
 | **Nostr Relays** | No native payment routing — separate payment rails required |
 | **HTTP + Stripe** | Centralized, high fees, no micropayments |
 
