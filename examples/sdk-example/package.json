@@ -9,7 +9,8 @@
     "create-node": "tsx src/02-create-node.ts",
     "publish-event": "tsx src/03-publish-event.ts",
     "payment-channel": "tsx src/04-payment-channel.ts",
-    "standalone-server": "tsx src/05-standalone-server.ts"
+    "standalone-server": "tsx src/05-standalone-server.ts",
+    "kms-identity": "tsx src/06-kms-identity.ts"
   },
   "dependencies": {
     "@toon-protocol/connector": "^1.8.1",

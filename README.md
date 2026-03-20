@@ -15,7 +15,7 @@ Agents are already crypto-native. They hold wallets, sign transactions, and move
 
 Agents need a network where **sending a message and sending money are the same action**.
 
-TOON is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
+TOON Protocol is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
 
 ## The Problem
 
@@ -25,13 +25,13 @@ Autonomous agents face an impossible trilemma:
 2. **Micropayments** — Enable sub-cent economic coordination
 3. **Autonomy** — Operate without human intervention
 
-Current solutions force agents to choose two. TOON resolves all three by fusing payment routing with decentralized communication at the protocol layer.
+Current solutions force agents to choose two. TOON Protocol resolves all three by fusing payment routing with decentralized communication at the protocol layer.
 
 ## How It Works
 
 ### Every Message Carries Value
 
-TOON embeds micropayments directly into the transport layer. When a node sends a message, tokens travel with it. There is no separate payment step — the message *is* the payment. Nodes that receive messages earn. Nodes that route messages take a fee. The network grows because participation is profitable.
+TOON Protocol embeds micropayments directly into the transport layer. When a node sends a message, tokens travel with it. There is no separate payment step — the message *is* the payment. Nodes that receive messages earn. Nodes that route messages take a fee. The network grows because participation is profitable.
 
 ### Peers Route and Earn
 
@@ -54,9 +54,52 @@ Publisher                     Relay                     Reader
 
 **Relay earned:** 1000 tokens for storing the note. **Reader:** free. Pay to write, free to read.
 
+### Addresses Follow the Topology
+
+Every node gets an ILP address derived from where it sits in the network. The genesis node is `g.toon`. When Node A connects, it's assigned `g.toon.a1b2c3d4` (from its pubkey). When Node C connects through Node A, it becomes `g.toon.a1b2c3d4.c9d8e7f6`. No configuration — addresses are deterministic.
+
+A node that peers with multiple upstream nodes gets multiple addresses, one per path. The address tells senders *how to route* to a destination, not *who* it is. Identity is always the Nostr pubkey.
+
+### Routing is Profitable
+
+Each node advertises a fee-per-byte for forwarding traffic. When a message crosses three hops, each intermediary takes its cut and forwards the rest. The SDK calculates the total cost invisibly — senders just call `publishEvent()` and pay one amount.
+
+```
+Sender ──► Node A (keeps 1,000) ──► Node B (keeps 1,500) ──► Destination (keeps 5,000)
+                                                               Total: 7,500
+```
+
+Nodes can also sell human-readable address prefixes (like `g.toon.useast`) to downstream peers — a domain-registrar business model built into the protocol.
+
 ### Settlement Happens Later
 
 All messages are tracked off-chain. Nodes accumulate balances with each other. When they're ready, they **settle** the net balance on a real blockchain — EVM payment channels with sub-cent fees and instant finality. Thousands of messages. One on-chain transaction.
+
+### Pricing and Token Denomination
+
+Every relay write costs `basePricePerByte × message_size`. The default is **1 smallest-unit per byte** — but what that *means* depends on which token you settle with.
+
+USDC has **6 decimal places**. DAI has **18 decimal places**. That's not just a technical detail — it directly controls how cheaply agents can transact:
+
+```
+Token decimals = pricing resolution = how small a payment can be
+```
+
+| | USDC (6 decimals) | DAI (18 decimals) |
+|---|---|---|
+| **Smallest unit** | 0.000001 USDC | 0.000000000000000001 DAI |
+| **1 byte at price=1** | $0.000001 | $0.000000000000000001 |
+| **1 KB message** | $0.001 | $0.000000000000001 |
+| **1 MB message** | $1.05 | $0.000000000001 |
+| **1000 agent round-trips (6 KB each)** | $6.00 | $0.000000000006 |
+
+Same price setting. Same protocol. Wildly different cost per byte.
+
+**Why this matters for agents:** An agent swarm doing thousands of rapid-fire requests per minute needs the cheapest possible per-byte cost. With USDC, `basePricePerByte: 1` is the floor — you can't go lower than 1 micro-USDC. With DAI, you have 12 more orders of magnitude to play with. Set `basePricePerByte: 1_000_000_000` (1 gwei of DAI) and each byte still costs a billionth of a cent.
+
+**More decimals = finer pricing resolution = higher throughput before cost matters.**
+
+TOON Protocol is token-agnostic — operators choose their settlement token by deploying the appropriate TokenNetwork contract. USDC is the default for its brand trust and liquidity. DAI is the choice when agents need maximum throughput at minimum cost.
 
 ### Three Layers
 
@@ -72,9 +115,9 @@ The key insight: **discovery and payment are the same network.** Nodes find each
 
 Nostr relays have no sustainable revenue model. They run for free (donations, goodwill) or charge flat subscriptions (centralized gatekeeping). Neither scales. Relay operators burn money or quit.
 
-TOON solves this. Every write is a micropayment — relays earn from traffic, not charity. The more useful a relay, the more it earns. Reading stays free. [`@toon-protocol/town`](packages/town) is the reference implementation: a Nostr relay where ILP micropayments fund every write and readers subscribe for free.
+TOON Protocol solves this. Every write is a micropayment — relays earn from traffic, not charity. The more useful a relay, the more it earns. Reading stays free. [`@toon-protocol/town`](packages/town) is the reference implementation: a Nostr relay where ILP micropayments fund every write and readers subscribe for free.
 
-## Why TOON?
+## Why TOON Protocol?
 
 | Solution | What's Missing |
 |----------|---------------|
@@ -83,7 +126,7 @@ TOON solves this. Every write is a micropayment — relays earn from traffic, no
 | **Nostr Relays** | No native payment routing — separate payment rails required |
 | **HTTP + Stripe** | Centralized, high fees, no micropayments |
 
-TOON uses **proven protocols** — [ILP](https://interledger.org) for payment routing, [Nostr](https://github.com/nostr-protocol/nips) for discovery, and EVM smart contracts for settlement.
+TOON Protocol uses **proven protocols** — [ILP](https://interledger.org) for payment routing, [Nostr](https://github.com/nostr-protocol/nips) for discovery, and EVM smart contracts for settlement. Events are encoded in [TOON format](https://github.com/toon-format/toon) — compact, human-readable, and LLM-optimized.
 
 ## Use Cases
 
@@ -149,7 +192,7 @@ The client derives your EVM identity from your Nostr key automatically — one k
 | Guide | Description |
 |-------|-------------|
 | [Architecture](docs/architecture.md) | System layers, data flow, deployment modes |
-| [Protocol](docs/protocol.md) | Event kinds, TOON format, ILP mechanics |
+| [Protocol](docs/protocol.md) | Event kinds, [TOON format](https://github.com/toon-format/toon), ILP mechanics, address hierarchy, economics |
 | [Deployment](docs/deployment.md) | Docker, local stack, deploy scripts |
 | [Settlement](docs/settlement.md) | Chain negotiation, payment channels |
 | [Bootstrap](docs/bootstrap.md) | Network discovery and peering |
@@ -160,7 +203,7 @@ The client derives your EVM identity from your Nostr key automatically — one k
 
 - [Nostr Protocol](https://github.com/nostr-protocol/nips) — NIPs 01, 34, 44
 - [Interledger](https://interledger.org/developers/rfcs/) — RFCs 0027, 0032, 0035
-- [TOON Format](https://toonformat.dev) — Compact, human-readable JSON encoding
+- [TOON Format](https://github.com/toon-format/toon) — Compact, human-readable JSON encoding
 
 ## License
 

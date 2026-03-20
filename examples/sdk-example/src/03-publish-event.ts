@@ -200,13 +200,13 @@ async function main() {
   }, logger);
 
   // --- 5. SDK Nodes ---
-  // Both nodes use basePricePerByte: 10n. With connectorFeePercentage: 0,
+  // Both nodes use basePricePerByte: 1n. With connectorFeePercentage: 0,
   // no routing fee is deducted, so both sides validate at the same rate.
   const nodeA = createNode({
     secretKey: identityA.secretKey,
     connector: connectorA,
     ilpAddress: 'g.toon.lifecycle.node-a',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
   });
@@ -215,7 +215,7 @@ async function main() {
     secretKey: identityB.secretKey,
     connector: connectorB,
     ilpAddress: 'g.toon.lifecycle.node-b',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
   });
