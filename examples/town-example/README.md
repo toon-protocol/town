@@ -123,7 +123,7 @@ npm run attestation-verify
 
 ## Embedded Connector Configuration
 
-Each example uses `ConnectorNode` from `@toon-protocol/connector` in standalone mode with the Town's BLS HTTP server handling local ILP delivery.
+Most examples use `ConnectorNode` from `@toon-protocol/connector` in standalone mode with the Town's BLS HTTP server handling local ILP delivery. Example 04 demonstrates the embedded connector mode where the connector runs in-process.
 
 ### Startup Order
 
