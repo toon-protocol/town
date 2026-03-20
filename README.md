@@ -1,12 +1,12 @@
 <div align="center">
   <img src="_bmad-output/branding/social-assets/github-hero-readme.jpg" alt="TOON Protocol" width="100%" />
   <h1>TOON Protocol</h1>
-  <p><strong>Token-Oriented Open Network</strong> — Where every token counts.</p>
+  <p><strong>Token-Oriented Open Network</strong></p>
   <p>A network where sending a message and sending money are the same action.</p>
   <br />
   <a href="https://discord.gg/whPFHRTwBg"><img src="https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="https://x.com/toonprotocol"><img src="https://img.shields.io/badge/Follow-%40toonprotocol-000000?logo=x" alt="X (Twitter)" /></a>
-  <a href="https://github.com/toon-protocol/town/blob/main/LICENSE"><img src="https://img.shields.io/github/license/toon-protocol/town" alt="License" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue" alt="License" /></a>
 </div>
 
 ---
