@@ -225,7 +225,7 @@ app.post('/api/request', async (req, res) => {
 app.listen(PORT, async () => {
   console.log('');
   console.log('═══════════════════════════════════════════════');
-  console.log('   🚰 Crosstown Token Faucet');
+  console.log('   🚰 TOON Token Faucet');
   console.log('═══════════════════════════════════════════════');
   console.log(`   Port:          ${PORT}`);
   console.log(`   RPC URL:       ${RPC_URL}`);

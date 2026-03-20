@@ -6,7 +6,7 @@
  * stored in the local EventStore and become queryable through the
  * local WebSocket relay.
  *
- * This shows the "free to read" side of Crosstown — subscribing to
+ * This shows the "free to read" side of TOON — subscribing to
  * events doesn't require ILP payment.
  *
  * No external infrastructure required — everything runs in-process.
@@ -14,11 +14,11 @@
  * Run: npm run subscribe
  */
 
-import { startTown, type TownInstance } from '@crosstown/town';
-import { generateMnemonic, fromMnemonic } from '@crosstown/sdk';
-import { encodeEventToToon } from '@crosstown/core/toon';
+import { startTown, type TownInstance } from '@toon-protocol/town';
+import { generateMnemonic, fromMnemonic } from '@toon-protocol/sdk';
+import { encodeEventToToon } from '@toon-protocol/core/toon';
 import { finalizeEvent } from 'nostr-tools/pure';
-import { ConnectorNode } from '@crosstown/connector';
+import { ConnectorNode } from '@toon-protocol/connector';
 import WebSocket from 'ws';
 import pino from 'pino';
 
@@ -44,7 +44,7 @@ async function waitForRelay(url: string, timeoutMs = 15000): Promise<void> {
 }
 
 async function main() {
-  console.log('=== Crosstown Town: Subscribe Between Two Towns ===\n');
+  console.log('=== TOON Town: Subscribe Between Two Towns ===\n');
 
   const logger = pino({ level: 'silent' });
   let townA: TownInstance | null = null;
@@ -102,7 +102,7 @@ async function main() {
       relayPort: 7400,
       blsPort: 3400,
       connectorUrl: 'http://localhost:4380',
-      dataDir: '/tmp/crosstown-example-sub-townA',
+      dataDir: '/tmp/toon-example-sub-townA',
     });
     console.log(`  Town A pubkey: ${townA.pubkey.slice(0, 24)}...\n`);
 
@@ -115,7 +115,7 @@ async function main() {
       relayPort: 7500,
       blsPort: 3500,
       connectorUrl: 'http://localhost:4390',
-      dataDir: '/tmp/crosstown-example-sub-townB',
+      dataDir: '/tmp/toon-example-sub-townB',
     });
     console.log(`  Town B pubkey: ${townB.pubkey.slice(0, 24)}...\n`);
 

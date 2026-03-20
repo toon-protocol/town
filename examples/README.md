@@ -1,10 +1,10 @@
-# Crosstown Examples
+# TOON Examples
 
-Self-contained examples for building ILP-gated Nostr services with Crosstown.
+Self-contained examples for building ILP-gated Nostr services with TOON.
 
 ## Deployment Modes
 
-Both `@crosstown/sdk` and `@crosstown/town` support two deployment modes:
+Both `@toon-protocol/sdk` and `@toon-protocol/town` support two deployment modes:
 
 ### Embedded Mode
 
@@ -15,7 +15,7 @@ Pass a `ConnectorNode` directly to the SDK or Town. Packets are delivered via di
 const node = createNode({
   secretKey,
   connector: connectorNode,          // Direct reference
-  ilpAddress: 'g.crosstown.my-node',
+  ilpAddress: 'g.toon.my-node',
 });
 
 // Town
@@ -37,7 +37,7 @@ const node = createNode({
   secretKey,
   connectorUrl: 'http://localhost:8081',  // Connector admin URL
   handlerPort: 3600,                       // SDK's HTTP server port
-  ilpAddress: 'g.crosstown.my-node',
+  ilpAddress: 'g.toon.my-node',
 });
 
 // Town
@@ -51,7 +51,7 @@ const town = await startTown({
 
 ## Connector Routing Fee
 
-The connector charges a 0.1% routing fee (hardcoded in `@crosstown/connector@1.7.x`). This fee is only active when settlement is enabled (`SETTLEMENT_ENABLED=true`).
+The connector charges a 0.1% routing fee (hardcoded in `@toon-protocol/connector@1.7.x`). This fee is only active when settlement is enabled (`SETTLEMENT_ENABLED=true`).
 
 - **Without settlement:** Both sender and receiver use the same `basePricePerByte`. No fee is deducted.
 - **With settlement:** The sender sets a ~10% higher `basePricePerByte` (e.g., 11 vs 10) so the forwarded amount still meets the receiver's minimum after the connector deducts its fee.

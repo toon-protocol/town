@@ -1,7 +1,7 @@
 /**
  * Example 02: Create Two SDK Nodes with Embedded Connectors
  *
- * Demonstrates how to create two Crosstown SDK nodes, each with its own
+ * Demonstrates how to create two TOON SDK nodes, each with its own
  * embedded ILP connector. The nodes peer directly with each other via BTP
  * (no external infrastructure needed) and register custom event handlers.
  *
@@ -10,13 +10,13 @@
  * Run: npm run create-node
  */
 
-import { createNode, fromMnemonic, generateMnemonic } from '@crosstown/sdk';
-import type { ServiceNode } from '@crosstown/sdk';
-import { ConnectorNode } from '@crosstown/connector';
+import { createNode, fromMnemonic, generateMnemonic } from '@toon-protocol/sdk';
+import type { ServiceNode } from '@toon-protocol/sdk';
+import { ConnectorNode } from '@toon-protocol/connector';
 import pino from 'pino';
 
 async function main() {
-  console.log('=== Crosstown SDK: Create Two Nodes ===\n');
+  console.log('=== TOON SDK: Create Two Nodes ===\n');
 
   // --- Step 1: Generate identities for both nodes ---
   const mnemonicA = generateMnemonic();
@@ -49,9 +49,9 @@ async function main() {
     }],
     routes: [
       // Local route: deliver packets addressed to THIS node to the SDK handler
-      { prefix: 'g.crosstown.example.node-a', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.example.node-a', nextHop: 'local', priority: 0 },
       // Remote route: forward packets addressed to node-b via BTP
-      { prefix: 'g.crosstown.example.node-b', nextHop: 'example-node-b', priority: 0 },
+      { prefix: 'g.toon.example.node-b', nextHop: 'example-node-b', priority: 0 },
     ],
   }, logger);
 
@@ -68,9 +68,9 @@ async function main() {
     }],
     routes: [
       // Local route: deliver packets addressed to THIS node to the SDK handler
-      { prefix: 'g.crosstown.example.node-b', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.example.node-b', nextHop: 'local', priority: 0 },
       // Remote route: forward packets addressed to node-a via BTP
-      { prefix: 'g.crosstown.example.node-a', nextHop: 'example-node-a', priority: 0 },
+      { prefix: 'g.toon.example.node-a', nextHop: 'example-node-a', priority: 0 },
     ],
   }, logger);
 
@@ -83,14 +83,14 @@ async function main() {
   const nodeA: ServiceNode = createNode({
     secretKey: identityA.secretKey,
     connector: connectorA,
-    ilpAddress: 'g.crosstown.example.node-a',
+    ilpAddress: 'g.toon.example.node-a',
     basePricePerByte: 10n,
   });
 
   const nodeB: ServiceNode = createNode({
     secretKey: identityB.secretKey,
     connector: connectorB,
-    ilpAddress: 'g.crosstown.example.node-b',
+    ilpAddress: 'g.toon.example.node-b',
     basePricePerByte: 10n,
   });
 
@@ -139,9 +139,9 @@ async function main() {
 
   // --- Step 6: Show the topology ---
   console.log('\nTopology (direct peering, no external infra):');
-  console.log('  Node A (g.crosstown.example.node-a)');
+  console.log('  Node A (g.toon.example.node-a)');
   console.log('    |-- BTP (ws://localhost:6010) --> Node B');
-  console.log('  Node B (g.crosstown.example.node-b)');
+  console.log('  Node B (g.toon.example.node-b)');
   console.log('    |-- BTP (ws://localhost:6000) --> Node A');
   console.log('\n  Events route directly: A <-> B');
 

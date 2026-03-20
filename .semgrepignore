@@ -1,4 +1,4 @@
-# Semgrep ignore patterns for Crosstown
+# Semgrep ignore patterns for TOON
 #
 # CWE-319 (Cleartext Transmission) false positives:
 # The ws:// URLs in these files are for:

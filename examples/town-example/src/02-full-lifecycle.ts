@@ -1,7 +1,7 @@
 /**
  * Example 02: Full Lifecycle — Two Towns with Routing
  *
- * Demonstrates the complete Crosstown relay lifecycle:
+ * Demonstrates the complete TOON relay lifecycle:
  *   1. Start two standalone connectors and peer them
  *   2. Start two Town nodes (A and B), each with its own connector
  *   3. Publish a Nostr event from Town A, routed to Town B
@@ -16,11 +16,11 @@
  * Run: npm run full-lifecycle
  */
 
-import { startTown, type TownInstance } from '@crosstown/town';
-import { generateMnemonic, fromMnemonic } from '@crosstown/sdk';
-import { encodeEventToToon } from '@crosstown/core/toon';
+import { startTown, type TownInstance } from '@toon-protocol/town';
+import { generateMnemonic, fromMnemonic } from '@toon-protocol/sdk';
+import { encodeEventToToon } from '@toon-protocol/core/toon';
 import { finalizeEvent } from 'nostr-tools/pure';
-import { ConnectorNode } from '@crosstown/connector';
+import { ConnectorNode } from '@toon-protocol/connector';
 import WebSocket from 'ws';
 import pino from 'pino';
 import {
@@ -51,8 +51,8 @@ const NODE_B_EVM_ADDRESS = '0x976EA74026E726554dB657fA54763abd0C3a0aa9' as const
 const FUNDING_AMOUNT = 10n * 10n ** 18n; // 10 tokens (mock USDC on Anvil uses 18 decimals)
 
 // Fixed ILP addresses (must be known at connector construction time for routes)
-const ILP_ADDRESS_A = 'g.crosstown.lifecycle.town-a';
-const ILP_ADDRESS_B = 'g.crosstown.lifecycle.town-b';
+const ILP_ADDRESS_A = 'g.toon.lifecycle.town-a';
+const ILP_ADDRESS_B = 'g.toon.lifecycle.town-b';
 
 const anvilChain = defineChain({
   id: 31337,
@@ -162,7 +162,7 @@ async function fundAccount(walletClient: ReturnType<typeof createWalletClient>, 
 }
 
 async function main() {
-  console.log('=== Crosstown Town: Full Lifecycle (Two Towns) ===\n');
+  console.log('=== TOON Town: Full Lifecycle (Two Towns) ===\n');
 
   const logger = pino({ level: 'silent' });
   let townA: TownInstance | null = null;
@@ -304,7 +304,7 @@ async function main() {
       connectorUrl: 'http://localhost:4281',
       connectorAdminUrl: 'http://localhost:4281',
       ilpAddress: ILP_ADDRESS_A,
-      dataDir: '/tmp/crosstown-example-townA',
+      dataDir: '/tmp/toon-example-townA',
     });
     console.log(`  Town A started: pubkey=${townA.pubkey.slice(0, 24)}...`);
     console.log(`  ILP address: ${ILP_ADDRESS_A}\n`);
@@ -318,7 +318,7 @@ async function main() {
       connectorUrl: 'http://localhost:4291',
       connectorAdminUrl: 'http://localhost:4291',
       ilpAddress: ILP_ADDRESS_B,
-      dataDir: '/tmp/crosstown-example-townB',
+      dataDir: '/tmp/toon-example-townB',
     });
     console.log(`  Town B started: pubkey=${townB.pubkey.slice(0, 24)}...`);
     console.log(`  ILP address: ${ILP_ADDRESS_B}\n`);

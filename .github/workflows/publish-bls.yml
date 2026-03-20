@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: di3twater/crosstown-bls
+  IMAGE_NAME: di3twater/toon-bls
 
 jobs:
   build-and-push:

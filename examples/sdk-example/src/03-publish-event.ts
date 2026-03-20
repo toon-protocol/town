@@ -1,7 +1,7 @@
 /**
  * Example 03: Full Lifecycle — Publish Events Between Two Nodes
  *
- * Demonstrates the complete Crosstown SDK lifecycle:
+ * Demonstrates the complete TOON SDK lifecycle:
  *   1. Create two nodes (A and B) with embedded connectors
  *   2. Peer them directly via BTP
  *   3. Node A publishes a Nostr event routed to Node B
@@ -13,10 +13,10 @@
  * Run: npm run publish-event
  */
 
-import { createNode, fromMnemonic, generateMnemonic } from '@crosstown/sdk';
-import type { HandlerContext } from '@crosstown/sdk';
-import { ConnectorNode } from '@crosstown/connector';
-import { encodeEventToToon, decodeEventFromToon } from '@crosstown/core/toon';
+import { createNode, fromMnemonic, generateMnemonic } from '@toon-protocol/sdk';
+import type { HandlerContext } from '@toon-protocol/sdk';
+import { ConnectorNode } from '@toon-protocol/connector';
+import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/core/toon';
 import { finalizeEvent } from 'nostr-tools/pure';
 import pino from 'pino';
 import {
@@ -98,7 +98,7 @@ async function fundAccount(walletClient: ReturnType<typeof createWalletClient>, 
 }
 
 async function main() {
-  console.log('=== Crosstown SDK: Full Lifecycle (Publish Events) ===\n');
+  console.log('=== TOON SDK: Full Lifecycle (Publish Events) ===\n');
 
   // --- 1. Check Anvil ---
   console.log('Checking Anvil...');
@@ -156,8 +156,8 @@ async function main() {
       evmAddress: NODE_B_EVM_ADDRESS,
     }],
     routes: [
-      { prefix: 'g.crosstown.lifecycle.node-a', nextHop: 'local', priority: 0 },
-      { prefix: 'g.crosstown.lifecycle.node-b', nextHop: 'lifecycle-node-b', priority: 0 },
+      { prefix: 'g.toon.lifecycle.node-a', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.lifecycle.node-b', nextHop: 'lifecycle-node-b', priority: 0 },
     ],
     settlementInfra: {
       enabled: true,
@@ -185,8 +185,8 @@ async function main() {
       evmAddress: NODE_A_EVM_ADDRESS,
     }],
     routes: [
-      { prefix: 'g.crosstown.lifecycle.node-b', nextHop: 'local', priority: 0 },
-      { prefix: 'g.crosstown.lifecycle.node-a', nextHop: 'lifecycle-node-a', priority: 0 },
+      { prefix: 'g.toon.lifecycle.node-b', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.lifecycle.node-a', nextHop: 'lifecycle-node-a', priority: 0 },
     ],
     settlementInfra: {
       enabled: true,
@@ -205,7 +205,7 @@ async function main() {
   const nodeA = createNode({
     secretKey: identityA.secretKey,
     connector: connectorA,
-    ilpAddress: 'g.crosstown.lifecycle.node-a',
+    ilpAddress: 'g.toon.lifecycle.node-a',
     basePricePerByte: 10n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
@@ -214,7 +214,7 @@ async function main() {
   const nodeB = createNode({
     secretKey: identityB.secretKey,
     connector: connectorB,
-    ilpAddress: 'g.crosstown.lifecycle.node-b',
+    ilpAddress: 'g.toon.lifecycle.node-b',
     basePricePerByte: 10n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
@@ -263,7 +263,7 @@ async function main() {
   }, identityA.secretKey);
 
   const resultAtoB = await nodeA.publishEvent(eventAtoB, {
-    destination: 'g.crosstown.lifecycle.node-b',
+    destination: 'g.toon.lifecycle.node-b',
   });
 
   if (resultAtoB.success) {
@@ -287,7 +287,7 @@ async function main() {
   }, identityB.secretKey);
 
   const resultBtoA = await nodeB.publishEvent(eventBtoA, {
-    destination: 'g.crosstown.lifecycle.node-a',
+    destination: 'g.toon.lifecycle.node-a',
   });
 
   if (resultBtoA.success) {

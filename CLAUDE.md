@@ -1,4 +1,4 @@
-# Crosstown Protocol
+# TOON Protocol
 
 ILP-gated Nostr relay. Pay to write, free to read.
 
@@ -10,7 +10,7 @@ ILP-gated Nostr relay. Pay to write, free to read.
 
 ```bash
 # Build & test
-pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,095 tests)
+pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,159 tests)
 pnpm lint && pnpm format                   # Lint & format
 
 # Genesis stack (Anvil + Faucet + Connector + Node)
@@ -27,7 +27,7 @@ cd packages/sdk && pnpm test:e2e:docker    # Run SDK E2E tests against infra
 cd packages/sdk && pnpm test:integration   # Run SDK integration tests against infra
 
 # Oyster CVM (TEE) build
-docker build -f docker/Dockerfile.oyster -t crosstown:oyster .
+docker build -f docker/Dockerfile.oyster -t toon:oyster .
 
 # Nix reproducible Docker image (requires Nix)
 nix build .#docker-image && docker load < result
@@ -66,8 +66,8 @@ cd packages/town && pnpm test:e2e      # Town E2E (lifecycle, requires genesis i
 cd packages/sdk && pnpm test:e2e:docker    # SDK Docker E2E (DVM lifecycle, publish, settlement)
 
 # View logs
-docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs -f
-docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs -f crosstown  # Node only
+docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f
+docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Node only
 ```
 
 ---
@@ -78,7 +78,7 @@ docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs -f crosst
 
 1. `docker ps` -- Docker daemon running?
 2. `ls ../connector/packages/contracts` -- Contracts repo cloned at correct path?
-3. `docker compose -p crosstown-genesis -f docker-compose-genesis.yml logs crosstown` -- Check container logs
+3. `docker compose -p toon-genesis -f docker-compose-genesis.yml logs toon` -- Check container logs
 
 **Tests failing:**
 

@@ -19,7 +19,7 @@ The ILP-gated relay requires payment (via the Interledger Protocol) to store Nos
 
 - Node.js 20.x or later
 - pnpm 8.x or later
-- The `@crosstown/relay` package built
+- The `@toon-protocol/relay` package built
 
 ## Quick Start
 

@@ -24,10 +24,10 @@
  * Run: npm run payment-channel
  */
 
-import { createNode, fromMnemonic, generateMnemonic } from '@crosstown/sdk';
-import type { HandlerContext } from '@crosstown/sdk';
-import { ConnectorNode } from '@crosstown/connector';
-import { encodeEventToToon, decodeEventFromToon } from '@crosstown/core/toon';
+import { createNode, fromMnemonic, generateMnemonic } from '@toon-protocol/sdk';
+import type { HandlerContext } from '@toon-protocol/sdk';
+import { ConnectorNode } from '@toon-protocol/connector';
+import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/core/toon';
 import { finalizeEvent } from 'nostr-tools/pure';
 import pino from 'pino';
 import {
@@ -155,7 +155,7 @@ function assert(condition: boolean, message: string): void {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('=== Crosstown SDK: On-Chain Payment Channels ===\n');
+  console.log('=== TOON SDK: On-Chain Payment Channels ===\n');
 
   // --- Phase 1: Check Anvil ---
   console.log('Phase 1: Checking Anvil is running...');
@@ -241,8 +241,8 @@ async function main() {
       evmAddress: NODE_B_EVM_ADDRESS,
     }],
     routes: [
-      { prefix: 'g.crosstown.channel.node-a', nextHop: 'local', priority: 0 },
-      { prefix: 'g.crosstown.channel.node-b', nextHop: 'channel-node-b', priority: 0 },
+      { prefix: 'g.toon.channel.node-a', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.channel.node-b', nextHop: 'channel-node-b', priority: 0 },
     ],
     settlementInfra: {
       enabled: true,
@@ -269,8 +269,8 @@ async function main() {
       evmAddress: NODE_A_EVM_ADDRESS,
     }],
     routes: [
-      { prefix: 'g.crosstown.channel.node-b', nextHop: 'local', priority: 0 },
-      { prefix: 'g.crosstown.channel.node-a', nextHop: 'channel-node-a', priority: 0 },
+      { prefix: 'g.toon.channel.node-b', nextHop: 'local', priority: 0 },
+      { prefix: 'g.toon.channel.node-a', nextHop: 'channel-node-a', priority: 0 },
     ],
     settlementInfra: {
       enabled: true,
@@ -298,7 +298,7 @@ async function main() {
   const nodeA = createNode({
     secretKey: identityA.secretKey,
     connector: connectorA,
-    ilpAddress: 'g.crosstown.channel.node-a',
+    ilpAddress: 'g.toon.channel.node-a',
     basePricePerByte: SENDER_PRICE_PER_BYTE,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
@@ -307,7 +307,7 @@ async function main() {
   const nodeB = createNode({
     secretKey: identityB.secretKey,
     connector: connectorB,
-    ilpAddress: 'g.crosstown.channel.node-b',
+    ilpAddress: 'g.toon.channel.node-b',
     basePricePerByte: RECEIVER_PRICE_PER_BYTE,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
@@ -358,7 +358,7 @@ async function main() {
       }, identityA.secretKey);
 
       const result = await nodeA.publishEvent(event, {
-        destination: 'g.crosstown.channel.node-b',
+        destination: 'g.toon.channel.node-b',
       });
 
       if (result.success) {

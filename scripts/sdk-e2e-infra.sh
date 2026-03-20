@@ -9,7 +9,7 @@
 set -e
 
 COMPOSE_FILE="docker-compose-sdk-e2e.yml"
-PROJECT_NAME="crosstown-sdk-e2e"
+PROJECT_NAME="toon-sdk-e2e"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
@@ -70,8 +70,8 @@ cmd_up() {
   log_info "Starting SDK E2E infrastructure..."
 
   # Build the Docker image
-  log_info "Building crosstown:optimized image..."
-  docker build -f "$REPO_ROOT/docker/Dockerfile" -t crosstown:optimized "$REPO_ROOT"
+  log_info "Building toon:optimized image..."
+  docker build -f "$REPO_ROOT/docker/Dockerfile.oyster" -t toon:optimized "$REPO_ROOT"
   log_success "Docker image built"
 
   # Derive peer1 pubkey for bootstrap config

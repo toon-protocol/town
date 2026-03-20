@@ -1,6 +1,6 @@
-# Crosstown Token Faucet
+# TOON Token Faucet
 
-A simple token faucet for local Crosstown development that provides both ETH and USDC tokens.
+A simple token faucet for local TOON development that provides both ETH and USDC tokens.
 
 ## Features
 
@@ -16,7 +16,7 @@ The faucet is included in `docker-compose-genesis.yml`:
 
 ```bash
 # Start the full stack (includes faucet)
-docker compose -p crosstown-genesis -f docker-compose-genesis.yml up -d
+docker compose -p toon-genesis -f docker-compose-genesis.yml up -d
 
 # Access the faucet UI
 open http://localhost:3500

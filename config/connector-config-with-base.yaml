@@ -1,7 +1,7 @@
-# Crosstown Connector Configuration
+# TOON Connector Configuration
 # With BASE Blockchain for Payment Channels
 
-nodeId: crosstown-node
+nodeId: toon-node
 btpServerPort: 3000
 healthCheckPort: 8080
 logLevel: info
@@ -11,13 +11,13 @@ peers: []
 
 # Route to local BLS
 routes:
-  - prefix: g.crosstown
+  - prefix: g.toon
     nextHop: local
 
-# Local delivery to Crosstown BLS
+# Local delivery to TOON BLS
 localDelivery:
   enabled: true
-  url: http://crosstown:3100
+  url: http://toon:3100
   timeout: 30000
 
 # Admin API configuration

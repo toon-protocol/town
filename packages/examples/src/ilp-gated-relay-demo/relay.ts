@@ -15,7 +15,7 @@ import {
   BusinessLogicServer,
   NostrRelayServer,
   type EventStore,
-} from '@crosstown/relay';
+} from '@toon-protocol/relay';
 
 // Default ports for the servers
 const DEFAULT_BLS_PORT = 3100;

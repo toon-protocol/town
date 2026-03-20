@@ -22,9 +22,9 @@
  * Run: npm run x402-publish
  */
 
-import { startTown, type TownInstance } from '@crosstown/town';
-import { ConnectorNode } from '@crosstown/connector';
-import { generateMnemonic, fromMnemonic } from '@crosstown/sdk';
+import { startTown, type TownInstance } from '@toon-protocol/town';
+import { ConnectorNode } from '@toon-protocol/connector';
+import { generateMnemonic, fromMnemonic } from '@toon-protocol/sdk';
 import { finalizeEvent } from 'nostr-tools/pure';
 import {
   createPublicClient,
@@ -138,7 +138,7 @@ async function fundEth(address: string, ethAmount: string): Promise<void> {
 }
 
 async function main() {
-  console.log('=== Crosstown Town: x402 HTTP Publish ===\n');
+  console.log('=== TOON Town: x402 HTTP Publish ===\n');
 
   const logger = pino({ level: 'silent' });
   let town: TownInstance | null = null;
@@ -196,7 +196,7 @@ async function main() {
 
     // --- 3. Start Town with x402 enabled ---
     // Override RPC URL to point at SDK E2E Anvil (port 18545)
-    process.env['CROSSTOWN_RPC_URL'] = ANVIL_RPC;
+    process.env['TOON_RPC_URL'] = ANVIL_RPC;
 
     console.log('Step 3: Starting town node with x402 enabled...');
     const mnemonic = generateMnemonic();
@@ -223,7 +223,7 @@ async function main() {
       blsPort: 3600,
       connectorUrl: 'http://localhost:4680',
       connectorAdminUrl: 'http://localhost:4681',
-      dataDir: '/tmp/crosstown-example-x402',
+      dataDir: '/tmp/toon-example-x402',
       x402Enabled: true,
       chain: 'anvil',
       devMode: true,

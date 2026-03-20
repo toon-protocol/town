@@ -1,7 +1,7 @@
 {
-  "name": "@crosstown/faucet",
+  "name": "@toon-protocol/faucet",
   "version": "1.0.0",
-  "description": "Token faucet for local Crosstown development",
+  "description": "Token faucet for local TOON development",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -16,8 +16,8 @@
   "keywords": [
     "faucet",
     "ethereum",
-    "crosstown"
+    "toon"
   ],
-  "author": "Crosstown",
+  "author": "TOON",
   "license": "MIT"
 }

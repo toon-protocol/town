@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Deploy Genesis Crosstown Node
+# Deploy Genesis TOON Node
 #
-# This script deploys a complete Crosstown genesis node with:
+# This script deploys a complete TOON genesis node with:
 # - Anvil (local Ethereum blockchain with payment channel contracts)
 # - Token Faucet (ETH + USDC distribution)
 # - ILP Connector (packet routing + settlement)
-# - Crosstown Node (Nostr relay + BLS + bootstrap service)
+# - TOON Node (Nostr relay + BLS + bootstrap service)
 #
 # Usage:
 #   ./deploy-genesis-node.sh [--reset]
@@ -124,7 +124,7 @@ fi
 if [ "$RESET_MODE" = true ]; then
     log_header "Step 2: Cleaning Up Existing Deployment"
 
-    docker compose -p crosstown-genesis -f "$COMPOSE_FILE" down -v 2>/dev/null || true
+    docker compose -p toon-genesis -f "$COMPOSE_FILE" down -v 2>/dev/null || true
     rm -f "$ENV_FILE" "$GENESIS_ENV" 2>/dev/null || true
 
     log_success "Cleanup complete"
@@ -159,7 +159,7 @@ if [ ! -f "$ENV_FILE" ]; then
 
     # Create .env file
     cat > "$ENV_FILE" << EOF
-# Crosstown Genesis Node Configuration
+# TOON Genesis Node Configuration
 # Generated: $(date)
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -168,7 +168,7 @@ if [ ! -f "$ENV_FILE" ]; then
 
 NODE_ID=genesis-node
 NOSTR_SECRET_KEY=$NOSTR_SECRET
-ILP_ADDRESS=g.crosstown.genesis
+ILP_ADDRESS=g.toon.genesis
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Network Configuration
@@ -229,7 +229,7 @@ EOF
 # Other peers can use this to bootstrap into the network
 
 GENESIS_NODE_ID=genesis-node
-GENESIS_ILP_ADDRESS=g.crosstown.genesis
+GENESIS_ILP_ADDRESS=g.toon.genesis
 GENESIS_NOSTR_PUBKEY=$(node -e "const { getPublicKey } = require('nostr-tools/pure'); console.log(getPublicKey('$NOSTR_SECRET'))" 2>/dev/null || echo "<run after npm install>")
 GENESIS_BTP_ENDPOINT=ws://localhost:3000
 GENESIS_RELAY=ws://localhost:7100
@@ -246,11 +246,11 @@ fi
 # Step 4: Create Docker Network
 log_header "Step 4: Creating Docker Network"
 
-log_info "Creating crosstown-network..."
-if docker network inspect crosstown-network &>/dev/null; then
+log_info "Creating toon-network..."
+if docker network inspect toon-network &>/dev/null; then
     log_success "Network already exists"
 else
-    docker network create crosstown-network
+    docker network create toon-network
     log_success "Network created"
 fi
 
@@ -258,7 +258,7 @@ fi
 log_header "Step 5: Starting Genesis Node"
 
 log_info "Starting Docker Compose stack..."
-docker compose -p crosstown-genesis -f "$COMPOSE_FILE" up -d
+docker compose -p toon-genesis -f "$COMPOSE_FILE" up -d
 
 log_success "Services started"
 
@@ -315,17 +315,17 @@ while [ $elapsed -lt $timeout ]; do
     fi
 done
 
-log_info "Waiting for Crosstown Node..."
+log_info "Waiting for TOON Node..."
 elapsed=0
 while [ $elapsed -lt $timeout ]; do
     if curl -sf http://localhost:3100/health &>/dev/null; then
-        log_success "Crosstown Node is ready"
+        log_success "TOON Node is ready"
         break
     fi
     sleep 2
     elapsed=$((elapsed + 2))
     if [ $elapsed -ge $timeout ]; then
-        log_error "Crosstown Node failed to start within ${timeout}s"
+        log_error "TOON Node failed to start within ${timeout}s"
         exit 1
     fi
 done
@@ -358,13 +358,13 @@ else
     log_warning "Faucet not fully initialized yet"
 fi
 
-# Check Crosstown health
-log_info "Checking Crosstown node status..."
-CROSSTOWN_HEALTH=$(curl -s http://localhost:3100/health 2>/dev/null || echo '{}')
-BOOTSTRAP_PHASE=$(echo "$CROSSTOWN_HEALTH" | jq -r '.bootstrapPhase // "unknown"')
-PEER_COUNT=$(echo "$CROSSTOWN_HEALTH" | jq -r '.peerCount // 0')
+# Check TOON health
+log_info "Checking TOON node status..."
+TOON_HEALTH=$(curl -s http://localhost:3100/health 2>/dev/null || echo '{}')
+BOOTSTRAP_PHASE=$(echo "$TOON_HEALTH" | jq -r '.bootstrapPhase // "unknown"')
+PEER_COUNT=$(echo "$TOON_HEALTH" | jq -r '.peerCount // 0')
 
-log_success "Crosstown Node status: $BOOTSTRAP_PHASE | Peers: $PEER_COUNT"
+log_success "TOON Node status: $BOOTSTRAP_PHASE | Peers: $PEER_COUNT"
 
 # Step 8: Display Access Information
 log_header "Genesis Node Deployed Successfully! 🎉"
@@ -390,7 +390,7 @@ ${BOLD}Service Endpoints:${NC}
      Explorer UI:      ${CYAN}http://localhost:3001${NC}
      BTP Server:       ws://localhost:3000
 
-  ${GREEN}📡 Crosstown Node${NC}
+  ${GREEN}📡 TOON Node${NC}
      BLS API:          ${CYAN}http://localhost:3100${NC}
      Health:           ${CYAN}http://localhost:3100/health${NC}
      Nostr Relay:      ${CYAN}ws://localhost:7100${NC}
@@ -408,7 +408,7 @@ ${BOLD}Genesis Node Information (for peers):${NC}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Node ID:            ${CYAN}genesis-node${NC}
-  ILP Address:        ${CYAN}g.crosstown.genesis${NC}
+  ILP Address:        ${CYAN}g.toon.genesis${NC}
   BTP Endpoint:       ${CYAN}ws://localhost:3000${NC}
   Nostr Relay:        ${CYAN}ws://localhost:7100${NC}
   BLS URL:            ${CYAN}http://localhost:3100${NC}
@@ -445,7 +445,7 @@ ${BOLD}Quick Start Guide:${NC}
      → Receive 100 ETH + 10,000 USDC
 
   ${BOLD}2. Monitor the genesis node:${NC}
-     → docker compose -p crosstown-genesis -f $COMPOSE_FILE logs -f crosstown
+     → docker compose -p toon-genesis -f $COMPOSE_FILE logs -f toon
 
   ${BOLD}3. Check health status:${NC}
      → curl http://localhost:3100/health | jq
@@ -463,7 +463,7 @@ ${BOLD}Next Steps:${NC}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   • The genesis node is now ready to accept peer connections
-  • Other Crosstown nodes can bootstrap by following your genesis node
+  • Other TOON nodes can bootstrap by following your genesis node
   • Use the faucet to distribute tokens to peer wallets
   • Monitor logs to see peers joining the network
 
@@ -471,9 +471,9 @@ ${BOLD}Next Steps:${NC}
 ${BOLD}Useful Commands:${NC}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  View logs:          docker compose -p crosstown-genesis -f $COMPOSE_FILE logs -f
-  Stop services:      docker compose -p crosstown-genesis -f $COMPOSE_FILE down
-  Restart services:   docker compose -p crosstown-genesis -f $COMPOSE_FILE restart
+  View logs:          docker compose -p toon-genesis -f $COMPOSE_FILE logs -f
+  Stop services:      docker compose -p toon-genesis -f $COMPOSE_FILE down
+  Restart services:   docker compose -p toon-genesis -f $COMPOSE_FILE restart
   Reset everything:   ./deploy-genesis-node.sh --reset
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

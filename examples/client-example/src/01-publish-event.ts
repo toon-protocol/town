@@ -1,9 +1,9 @@
 /**
- * Example 01: Publish Event via CrosstownClient
+ * Example 01: Publish Event via ToonClient
  *
  * Demonstrates the complete standalone client lifecycle against running peer containers:
  *   1. Fund an EVM wallet on Anvil
- *   2. Create CrosstownClient pointing at peer1's BTP endpoint
+ *   2. Create ToonClient pointing at peer1's BTP endpoint
  *   3. Bootstrap (discover peers, open payment channel on-chain)
  *   4. Sign a self-describing EIP-712 balance proof claim
  *   5. Publish a Nostr event with the claim via BTP
@@ -22,8 +22,8 @@
  * Run: npm run publish-event
  */
 
-import { CrosstownClient } from '@crosstown/client';
-import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
+import { ToonClient } from '@toon-protocol/client';
+import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/relay';
 import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
 import WebSocket from 'ws';
 import {
@@ -43,7 +43,7 @@ const PEER1_BTP = 'ws://localhost:19000';
 const PEER1_BLS = 'http://localhost:19100';
 const PEER1_RELAY = 'ws://localhost:19700';
 const PEER1_PUBKEY = 'd6bfe100d1600c0d8f769501676fc74c3809500bd131c8a549f88cf616c21f35';
-const PEER1_ILP_ADDRESS = 'g.crosstown.peer1';
+const PEER1_ILP_ADDRESS = 'g.toon.peer1';
 
 // ---------------------------------------------------------------------------
 // Contracts (deterministic Anvil addresses)
@@ -196,7 +196,7 @@ function waitForEventOnRelay(
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('=== Crosstown Client: Publish Event ===\n');
+  console.log('=== TOON Client: Publish Event ===\n');
 
   // --- Phase 1: Preflight checks ---
   console.log('Phase 1: Checking infrastructure...');
@@ -216,15 +216,15 @@ async function main() {
   await fundWallet();
   console.log();
 
-  // --- Phase 3: Create CrosstownClient ---
-  console.log('Phase 3: Creating CrosstownClient...');
+  // --- Phase 3: Create ToonClient ---
+  console.log('Phase 3: Creating ToonClient...');
 
   const secretKey = generateSecretKey();
   const pubkey = getPublicKey(secretKey);
   console.log(`  Nostr pubkey: ${pubkey.slice(0, 24)}...`);
   console.log(`  EVM address:  ${CLIENT_EVM_ADDRESS}`);
 
-  const client = new CrosstownClient({
+  const client = new ToonClient({
     // HTTP connector URL — required by validation but not used for transport
     // when btpUrl is provided. Point at peer1's BLS for a reachable endpoint.
     connectorUrl: PEER1_BLS,
@@ -238,7 +238,7 @@ async function main() {
     secretKey,
     ilpInfo: {
       pubkey,
-      ilpAddress: `g.crosstown.client.${pubkey.slice(0, 8)}`,
+      ilpAddress: `g.toon.client.${pubkey.slice(0, 8)}`,
       btpEndpoint: PEER1_BTP,
       assetCode: 'USD',
       assetScale: 6,
@@ -287,7 +287,7 @@ async function main() {
 
   const event = finalizeEvent({
     kind: 1,
-    content: `Hello from CrosstownClient! Timestamp: ${new Date().toISOString()}`,
+    content: `Hello from ToonClient! Timestamp: ${new Date().toISOString()}`,
     tags: [['client', 'example-01']],
     created_at: Math.floor(Date.now() / 1000),
   }, secretKey);

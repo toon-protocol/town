@@ -11,7 +11,7 @@
 #   Anvil (contracts) → Peer1 (genesis-like) → Peer2 (bootstraps from Peer1)
 
 networks:
-  crosstown-sdk-e2e:
+  toon-sdk-e2e:
     driver: bridge
 
 volumes:
@@ -50,7 +50,7 @@ services:
     ports:
       - '18545:8545'
     networks:
-      - crosstown-sdk-e2e
+      - toon-sdk-e2e
     restart: unless-stopped
     healthcheck:
       test:
@@ -68,15 +68,15 @@ services:
   # Anvil Account #0 for settlement
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   peer1:
-    image: crosstown:optimized
+    image: toon:optimized
     container_name: sdk-e2e-peer1
-    command: ['node', '/app/dist/entrypoint-sdk.js']
+    command: ['node', '/app/entrypoint-sdk.js']
     environment:
       # Identity
       NODE_ID: peer1
       # Deterministic Nostr key for peer1 (sha256 of "sdk-e2e-peer1-secret")
       NOSTR_SECRET_KEY: 'a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2'
-      ILP_ADDRESS: g.crosstown.peer1
+      ILP_ADDRESS: g.toon.peer1
 
       # Embedded connector (Docker-internal, TLS unnecessary)
       BTP_SERVER_PORT: '3000'
@@ -115,7 +115,7 @@ services:
     volumes:
       - peer1-data:/data
     networks:
-      - crosstown-sdk-e2e
+      - toon-sdk-e2e
     depends_on:
       anvil:
         condition: service_healthy
@@ -132,15 +132,15 @@ services:
   # Anvil Account #2 for settlement
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   peer2:
-    image: crosstown:optimized
+    image: toon:optimized
     container_name: sdk-e2e-peer2
-    command: ['node', '/app/dist/entrypoint-sdk.js']
+    command: ['node', '/app/entrypoint-sdk.js']
     environment:
       # Identity
       NODE_ID: peer2
       # Deterministic Nostr key for peer2
       NOSTR_SECRET_KEY: 'b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3'
-      ILP_ADDRESS: g.crosstown.peer2
+      ILP_ADDRESS: g.toon.peer2
 
       # Embedded connector (Docker-internal, TLS unnecessary)
       BTP_SERVER_PORT: '3000'
@@ -181,7 +181,7 @@ services:
     volumes:
       - peer2-data:/data
     networks:
-      - crosstown-sdk-e2e
+      - toon-sdk-e2e
     depends_on:
       peer1:
         condition: service_healthy

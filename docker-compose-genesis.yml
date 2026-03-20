@@ -1,19 +1,19 @@
-# Crosstown Genesis Node - Full Local Stack
+# TOON Genesis Node - Full Local Stack
 # Used by deploy-genesis-node.sh
 #
 # Includes:
 # - Anvil (local Ethereum blockchain with auto-deployed contracts)
 # - Token Faucet (ETH + USDC distribution)
 # - ILP Connector (packet routing + payment channels)
-# - Crosstown Node (Nostr relay + BLS + bootstrap service)
+# - TOON Node (Nostr relay + BLS + bootstrap service)
 # - Forgejo (read-only public Git)
 
 networks:
-  crosstown-network:
+  toon-network:
     external: true
 
 volumes:
-  crosstown-data:
+  toon-data:
   connector-data:
   forgejo-data:
 
@@ -23,7 +23,7 @@ services:
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   anvil:
     image: ghcr.io/foundry-rs/foundry:latest
-    container_name: crosstown-anvil
+    container_name: toon-anvil
     entrypoint: []
     command:
       - sh
@@ -49,7 +49,7 @@ services:
     ports:
       - '8545:8545'
     networks:
-      - crosstown-network
+      - toon-network
     restart: unless-stopped
     healthcheck:
       test:
@@ -66,8 +66,8 @@ services:
   # Token Faucet - Provides ETH and USDC for testing
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   faucet:
-    image: crosstown-genesis-faucet:latest
-    container_name: crosstown-faucet
+    image: toon-genesis-faucet:latest
+    container_name: toon-faucet
     environment:
       PORT: 3500
       RPC_URL: http://anvil:8545
@@ -91,7 +91,7 @@ services:
     ports:
       - '3500:3500'
     networks:
-      - crosstown-network
+      - toon-network
     depends_on:
       anvil:
         condition: service_healthy
@@ -112,12 +112,12 @@ services:
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   connector:
     image: connector:patched
-    container_name: crosstown-connector
+    container_name: toon-connector
     environment:
       ENVIRONMENT: development
 
-      # Local delivery to Crosstown BLS
-      LOCAL_DELIVERY_URL: http://crosstown:3100
+      # Local delivery to TOON BLS
+      LOCAL_DELIVERY_URL: http://toon:3100
 
       # Enable BASE blockchain for payment channels
       BASE_ENABLED: 'true'
@@ -146,7 +146,7 @@ services:
       - connector-data:/data
       - ./config/connector-config-with-base.yaml:/app/config.yaml:ro
     networks:
-      - crosstown-network
+      - toon-network
     depends_on:
       anvil:
         condition: service_healthy
@@ -167,16 +167,16 @@ services:
       start_period: 40s
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # Crosstown Full Node - BLS + Nostr Relay + Bootstrap
+  # TOON Full Node - BLS + Nostr Relay + Bootstrap
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  crosstown:
-    image: crosstown:optimized
-    container_name: crosstown-node
+  toon:
+    image: toon:optimized
+    container_name: toon-node
     environment:
       # Required Configuration
       NODE_ID: ${NODE_ID:-genesis-node}
       NOSTR_SECRET_KEY: ${NOSTR_SECRET_KEY}
-      ILP_ADDRESS: ${ILP_ADDRESS:-g.crosstown.genesis}
+      ILP_ADDRESS: ${ILP_ADDRESS:-g.toon.genesis}
 
       # Connector Integration (External Mode via HTTP, Docker-internal — TLS unnecessary)
       CONNECTOR_ADMIN_URL: http://connector:8081
@@ -210,7 +210,7 @@ services:
       # NIP-34 Git Integration (Forgejo)
       FORGEJO_URL: ${FORGEJO_URL:-http://forgejo:3000}
       FORGEJO_TOKEN: ${FORGEJO_TOKEN:-}
-      FORGEJO_OWNER: ${FORGEJO_OWNER:-crosstown}
+      FORGEJO_OWNER: ${FORGEJO_OWNER:-toon}
 
       # Storage
       DATA_DIR: /data
@@ -219,9 +219,9 @@ services:
       - '3100:3100' # BLS HTTP API
       - '7100:7100' # Nostr Relay WebSocket
     volumes:
-      - crosstown-data:/data
+      - toon-data:/data
     networks:
-      - crosstown-network
+      - toon-network
     depends_on:
       connector:
         condition: service_healthy
@@ -238,7 +238,7 @@ services:
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   forgejo:
     image: codeberg.org/forgejo/forgejo:14
-    container_name: crosstown-forgejo
+    container_name: toon-forgejo
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -267,7 +267,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - crosstown-network
+      - toon-network
     restart: unless-stopped
     healthcheck:
       test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3000/']

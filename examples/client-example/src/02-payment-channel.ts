@@ -2,7 +2,7 @@
  * Example 02: Payment Channel Lifecycle
  *
  * Demonstrates the full payment channel lifecycle from the standalone client perspective:
- *   1. Fund wallet and create CrosstownClient
+ *   1. Fund wallet and create ToonClient
  *   2. Bootstrap — payment channel opened on-chain automatically
  *   3. Publish multiple events, each with a self-describing signed claim
  *   4. Show cumulative balance proofs (nonce increments, amount accumulates)
@@ -20,8 +20,8 @@
  * Run: npm run payment-channel
  */
 
-import { CrosstownClient } from '@crosstown/client';
-import { encodeEventToToon, decodeEventFromToon } from '@crosstown/relay';
+import { ToonClient } from '@toon-protocol/client';
+import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/relay';
 import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure';
 import WebSocket from 'ws';
 import {
@@ -42,7 +42,7 @@ const PEER1_BTP = 'ws://localhost:19000';
 const PEER1_BLS = 'http://localhost:19100';
 const PEER1_RELAY = 'ws://localhost:19700';
 const PEER1_PUBKEY = 'd6bfe100d1600c0d8f769501676fc74c3809500bd131c8a549f88cf616c21f35';
-const PEER1_ILP_ADDRESS = 'g.crosstown.peer1';
+const PEER1_ILP_ADDRESS = 'g.toon.peer1';
 
 // ---------------------------------------------------------------------------
 // Contracts (deterministic Anvil addresses)
@@ -226,7 +226,7 @@ function queryRelay(url: string, filter: Record<string, unknown>, timeoutMs = 10
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('=== Crosstown Client: Payment Channel Lifecycle ===\n');
+  console.log('=== TOON Client: Payment Channel Lifecycle ===\n');
 
   // --- Phase 1: Preflight ---
   console.log('Phase 1: Checking infrastructure...');
@@ -245,14 +245,14 @@ async function main() {
   console.log();
 
   // --- Phase 3: Create client ---
-  console.log('Phase 3: Creating CrosstownClient...');
+  console.log('Phase 3: Creating ToonClient...');
 
   const secretKey = generateSecretKey();
   const pubkey = getPublicKey(secretKey);
   console.log(`  Nostr pubkey: ${pubkey.slice(0, 24)}...`);
   console.log(`  EVM address:  ${CLIENT_EVM_ADDRESS}`);
 
-  const client = new CrosstownClient({
+  const client = new ToonClient({
     connectorUrl: PEER1_BLS,
     btpUrl: PEER1_BTP,
     btpAuthToken: '',
@@ -260,7 +260,7 @@ async function main() {
     secretKey,
     ilpInfo: {
       pubkey,
-      ilpAddress: `g.crosstown.client.${pubkey.slice(0, 8)}`,
+      ilpAddress: `g.toon.client.${pubkey.slice(0, 8)}`,
       btpEndpoint: PEER1_BTP,
       assetCode: 'USD',
       assetScale: 6,
