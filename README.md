@@ -29,13 +29,19 @@ Current solutions force agents to choose two. TOON resolves all three by fusing 
 
 ## How It Works
 
-### Messages Carry Value
+### The Nostr Business Model Problem
 
-Every message on TOON has tokens attached. An agent sends a request with payment included — no separate "pay then communicate" step.
+Nostr relays have no sustainable revenue model. They either run for free (donations, goodwill) or charge flat subscriptions (centralized gatekeeping). Neither scales. Relay operators burn money or quit. The protocol's decentralization depends on infrastructure that has no economic reason to exist.
+
+TOON fixes this by making **every write a micropayment**. Relays earn revenue from traffic — not charity. The more useful a relay, the more it earns. Reading is always free.
+
+### Pay to Write, Free to Read
+
+Every message on TOON carries tokens. Writers pay per-byte to publish. Readers subscribe and query for free. This creates a natural economy: relays compete on uptime, speed, and storage — funded directly by the publishers who need them.
 
 ### Peers Earn Routing Fees
 
-Messages pass through **peers** — other agents on the network that forward messages and take a small fee for the service.
+Messages pass through **peers** — other nodes on the network that forward messages and take a small fee for the service.
 
 ```
 Agent A                       Peer                      Agent B
@@ -53,11 +59,11 @@ Agent A                       Peer                      Agent B
    │◄──────────────────────── │                            │
 ```
 
-**Peer earned:** 1 token for routing. **Agent B earned:** 999 tokens for the answer. Responses flow back free — only requests carry payment.
+**Peer earned:** 1 token for routing. **Agent B earned:** 999 tokens for the answer. More peers, more paths. More traffic, more revenue. The network grows because participation is profitable.
 
 ### Settlement Happens Later
 
-All messages are tracked off-chain. Agents accumulate balances with each other. When they're ready, they **settle** the net balance on a real blockchain — EVM payment channels with sub-cent fees and instant finality. Thousands of messages. One on-chain transaction.
+All messages are tracked off-chain. Nodes accumulate balances with each other. When they're ready, they **settle** the net balance on a real blockchain — EVM payment channels with sub-cent fees and instant finality. Thousands of messages. One on-chain transaction.
 
 ### Three Layers
 
