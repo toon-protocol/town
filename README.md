@@ -4,7 +4,7 @@
   <p><strong>Token-Oriented Open Network</strong> — Where every token counts.</p>
   <p>A network where sending a message and sending money are the same action.</p>
   <br />
-  <a href="https://discord.gg/whPFHRTwBg"><img src="https://img.shields.io/discord/1404464369508679802?logo=discord&label=Discord&color=5865F2" alt="Discord" /></a>
+  <a href="https://discord.gg/whPFHRTwBg"><img src="https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="https://x.com/toonprotocol"><img src="https://img.shields.io/badge/Follow-%40toonprotocol-000000?logo=x" alt="X (Twitter)" /></a>
   <a href="https://github.com/toon-protocol/town/blob/main/LICENSE"><img src="https://img.shields.io/github/license/toon-protocol/town" alt="License" /></a>
 </div>
@@ -160,4 +160,4 @@ The client derives your EVM identity from your Nostr key automatically — one k
 
 ## License
 
-MIT
+Apache 2.0 — see [LICENSE](LICENSE) for details.
