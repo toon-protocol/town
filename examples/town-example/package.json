@@ -14,7 +14,7 @@
     "attestation-verify": "tsx src/07-attestation-verify.ts"
   },
   "dependencies": {
-    "@toon-protocol/connector": "^1.7.1",
+    "@toon-protocol/connector": "^1.8.1",
     "@toon-protocol/core": "workspace:*",
     "@toon-protocol/sdk": "workspace:*",
     "@toon-protocol/town": "workspace:*",

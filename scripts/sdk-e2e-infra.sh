@@ -71,7 +71,7 @@ cmd_up() {
 
   # Build the Docker image
   log_info "Building toon:optimized image..."
-  docker build -f "$REPO_ROOT/docker/Dockerfile" -t toon:optimized "$REPO_ROOT"
+  docker build -f "$REPO_ROOT/docker/Dockerfile.oyster" -t toon:optimized "$REPO_ROOT"
   log_success "Docker image built"
 
   # Derive peer1 pubkey for bootstrap config
