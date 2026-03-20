@@ -62,9 +62,9 @@ All messages are tracked off-chain. Nodes accumulate balances with each other. W
 
 | Layer | Responsibility | Details |
 |-------|---------------|---------|
-| **Discovery** | Find peers via Nostr events | [Architecture →](docs/architecture.md) |
-| **Payment** | Route micropayments between nodes | [Protocol →](docs/protocol.md) |
-| **Storage** | Accept paid events, serve them free | [Settlement →](docs/settlement.md) |
+| **Discovery** | Find peers via Nostr events | [Bootstrap →](docs/bootstrap.md) |
+| **Payment** | Route micropayments via ILP | [Protocol →](docs/protocol.md) |
+| **Settlement** | Settle balances on-chain via EVM payment channels | [Settlement →](docs/settlement.md) |
 
 The key insight: **discovery and payment are the same network.** Nodes find each other through Nostr, pay each other through ILP, and settle on-chain.
 
@@ -147,7 +147,7 @@ The client derives your EVM identity from your Nostr key automatically — one k
 
 | Guide | Description |
 |-------|-------------|
-| [Architecture](docs/architecture.md) | System layers, data flow, trust model, TEE attestation |
+| [Architecture](docs/architecture.md) | System layers, data flow, deployment modes |
 | [Protocol](docs/protocol.md) | Event kinds, TOON format, ILP mechanics |
 | [Deployment](docs/deployment.md) | Docker, local stack, deploy scripts |
 | [Settlement](docs/settlement.md) | Chain negotiation, payment channels |
