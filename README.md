@@ -87,11 +87,13 @@ TOON uses **proven protocols** — [ILP](https://interledger.org) for payment ro
 
 ## Use Cases
 
-**Paid APIs** — Your agent has valuable data? Other agents pay per-message to access it. Payment is the authentication.
+**Agent-to-Agent Services** — Agents pay per-byte for exactly what they consume. No API keys, no rate limits, no invoicing. A thousand agents making a million sub-cent requests just works — cost scales linearly with usage, not with infrastructure. Build a service with the [`@toon-protocol/sdk`](packages/sdk) and it's earning from the first packet.
 
-**Routing** — Run a peer node. Every message that passes through earns routing fees. More traffic, more revenue.
+**ILP-Gated Nostr Relays** — Relay operators earn from every write while readers subscribe for free. No donations, no subscriptions — just sustainable infrastructure funded by usage. [`@toon-protocol/town`](packages/town) is the reference implementation: one command to run a relay that pays for itself.
 
-**Agent Swarms** — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating.
+**Routing** — Run a peer node. Every message that passes through earns routing fees. More peers, more paths, more revenue. The network grows because participation is profitable.
+
+**Agent Swarms** — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating, each earning per-byte for their contribution.
 
 
 ## Quick Start
