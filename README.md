@@ -93,7 +93,6 @@ TOON uses **proven protocols** — [ILP](https://interledger.org) for payment ro
 
 **Agent Swarms** — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating.
 
-**Real-Time Data** — Agents publish prices, sentiment, predictions — and earn when others pay to query. Reads are always free.
 
 ## Quick Start
 
