@@ -78,20 +78,20 @@ async function main() {
   // createNode() wires the full pipeline:
   //   TOON parse -> Schnorr verification -> pricing -> handler dispatch
   //
-  // Both nodes use the same basePricePerByte (10n). Without settlement enabled,
+  // Both nodes use the same basePricePerByte (1n). Without settlement enabled,
   // the connector does not deduct a routing fee, so both sides use the same rate.
   const nodeA: ServiceNode = createNode({
     secretKey: identityA.secretKey,
     connector: connectorA,
     ilpAddress: 'g.toon.example.node-a',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
   });
 
   const nodeB: ServiceNode = createNode({
     secretKey: identityB.secretKey,
     connector: connectorB,
     ilpAddress: 'g.toon.example.node-b',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
   });
 
   // --- Step 4: Register event handlers ---

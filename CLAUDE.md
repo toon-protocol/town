@@ -10,7 +10,7 @@ ILP-gated Nostr relay. Pay to write, free to read.
 
 ```bash
 # Build & test
-pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,159 tests)
+pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,526 tests)
 pnpm lint && pnpm format                   # Lint & format
 
 # Genesis stack (Anvil + Faucet + Connector + Node)
@@ -106,9 +106,10 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Topic | Location |
 | --- | --- |
 | **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |
-| Epic roadmap & status (Epics 1-5 complete) | `_bmad-output/project-context.md` section "Epic Roadmap" |
-| Known action items (Epic 5 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
+| Epic roadmap & status (Epics 1-6 complete) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| Known action items (Epic 6 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
 | DVM compute marketplace architecture | `_bmad-output/project-context.md` section "DVM Compute Marketplace" |
+| Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section "Advanced DVM Coordination + TEE Integration" |
 | TEE architecture & attestation flow | `_bmad-output/project-context.md` section "TEE Integration" |
 | Chain config & env vars | `_bmad-output/project-context.md` section "Chain Configuration Rules" |
 | Oyster CVM Dockerfile & compose | `docker/Dockerfile.oyster`, `docker/docker-compose-oyster.yml` |

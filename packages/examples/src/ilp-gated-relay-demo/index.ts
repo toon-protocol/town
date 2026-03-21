@@ -257,7 +257,7 @@ async function main(): Promise<void> {
   console.log('[Setup] Starting relay servers...\n');
   const servers = await startRelay({
     ownerPubkey,
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
   });
 
   try {

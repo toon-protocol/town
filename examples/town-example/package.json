@@ -11,7 +11,8 @@
     "embedded-town": "tsx src/04-embedded-town.ts",
     "x402-publish": "tsx src/05-x402-publish.ts",
     "service-discovery": "tsx src/06-service-discovery.ts",
-    "attestation-verify": "tsx src/07-attestation-verify.ts"
+    "attestation-verify": "tsx src/07-attestation-verify.ts",
+    "attestation-bootstrap": "tsx src/08-attestation-bootstrap.ts"
   },
   "dependencies": {
     "@toon-protocol/connector": "^1.8.1",

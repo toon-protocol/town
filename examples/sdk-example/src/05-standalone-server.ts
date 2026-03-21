@@ -234,7 +234,7 @@ async function main() {
     connectorUrl: 'http://localhost:5181',
     handlerPort: 3600,
     ilpAddress: 'g.toon.standalone.node-a',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
   });
@@ -244,7 +244,7 @@ async function main() {
     connectorUrl: 'http://localhost:5191',
     handlerPort: 3700,
     ilpAddress: 'g.toon.standalone.node-b',
-    basePricePerByte: 10n,
+    basePricePerByte: 1n,
     toonEncoder: encodeEventToToon,
     toonDecoder: decodeEventFromToon,
   });
