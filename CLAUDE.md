@@ -10,7 +10,7 @@ ILP-gated Nostr relay. Pay to write, free to read.
 
 ```bash
 # Build & test
-pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,526 tests)
+pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,659 passed, ~79 skipped)
 pnpm lint && pnpm format                   # Lint & format
 
 # Genesis stack (Anvil + Faucet + Connector + Node)
@@ -106,8 +106,8 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Topic | Location |
 | --- | --- |
 | **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |
-| Epic roadmap & status (Epics 1-6 complete) | `_bmad-output/project-context.md` section "Epic Roadmap" |
-| Known action items (Epic 6 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
+| Epic roadmap & status (Epics 1-7 complete) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| Known action items (Epic 7 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
 | DVM compute marketplace architecture | `_bmad-output/project-context.md` section "DVM Compute Marketplace" |
 | Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section "Advanced DVM Coordination + TEE Integration" |
 | TEE architecture & attestation flow | `_bmad-output/project-context.md` section "TEE Integration" |
@@ -121,4 +121,6 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Content publishing workflow | `_bmad-output/planning-artifacts/content/publish-workflow.md` |
 | Character spec (brand voice) | `_bmad-output/planning-artifacts/content/character-spec.md` |
 | Article drafts | `_bmad-output/planning-artifacts/content/article-N/` |
+| ILP address hierarchy & protocol economics | `_bmad-output/project-context.md` section "ILP Address Hierarchy & Protocol Economics" |
+| Prepaid protocol decisions | `_bmad-output/planning-artifacts/research/party-mode-prepaid-protocol-decisions-2026-03-20.md` |
 | Mock USDC deployment script | `scripts/deploy-mock-usdc.sh` |
