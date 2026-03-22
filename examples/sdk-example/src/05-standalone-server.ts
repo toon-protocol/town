@@ -302,8 +302,7 @@ async function main() {
   });
 
   if (resultAtoB.success) {
-    console.log(`  Published! Event ID: ${resultAtoB.eventId.slice(0, 24)}...`);
-    console.log(`  Fulfillment: ${resultAtoB.fulfillment?.slice(0, 24)}...\n`);
+    console.log(`  Published! Event ID: ${resultAtoB.eventId.slice(0, 24)}...\n`);
   } else {
     console.log(`  Failed: [${resultAtoB.code}] ${resultAtoB.message}\n`);
   }
@@ -325,8 +324,7 @@ async function main() {
   });
 
   if (resultBtoA.success) {
-    console.log(`  Published! Event ID: ${resultBtoA.eventId.slice(0, 24)}...`);
-    console.log(`  Fulfillment: ${resultBtoA.fulfillment?.slice(0, 24)}...\n`);
+    console.log(`  Published! Event ID: ${resultBtoA.eventId.slice(0, 24)}...\n`);
   } else {
     console.log(`  Failed: [${resultBtoA.code}] ${resultBtoA.message}\n`);
   }

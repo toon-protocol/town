@@ -306,7 +306,7 @@ async function main() {
     const result = await client.publishEvent(event, { claim });
 
     if (result.success) {
-      console.log(`  Published! Fulfillment: ${result.fulfillment?.slice(0, 32)}...`);
+      console.log(`  Published!`);
     } else {
       console.log(`  Failed: ${result.error}`);
     }
@@ -315,7 +315,7 @@ async function main() {
     console.log('  No payment channel opened — publishing without claim...');
     const result = await client.publishEvent(event);
     if (result.success) {
-      console.log(`  Published! Fulfillment: ${result.fulfillment?.slice(0, 32)}...`);
+      console.log(`  Published!`);
     } else {
       console.log(`  Failed: ${result.error}`);
     }

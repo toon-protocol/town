@@ -329,15 +329,10 @@ async function main() {
     console.log(`  Destination:  ${ilpAddressB}\n`);
 
     // Send via connector A's sendPacket (direct, no HTTP)
-    const { createHash } = await import('node:crypto');
-    const fulfillmentPreimage = createHash('sha256').update(event.id).digest();
-    const executionCondition = createHash('sha256').update(fulfillmentPreimage).digest();
-
     const result = await connectorA.sendPacket({
       destination: ilpAddressB,
       amount: BigInt(amount),
       data: Buffer.from(base64Data, 'base64'),
-      executionCondition: Buffer.from(executionCondition),
       expiresAt: new Date(Date.now() + 30000),
     });
 
