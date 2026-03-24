@@ -106,7 +106,9 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Topic | Location |
 | --- | --- |
 | **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |
-| Epic roadmap & status (Epics 1-7 complete) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| Epic roadmap & status (Epics 1-7 complete, 8 in progress) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| TOON Agent Architecture (six-layer model, Loony, provider model) | `_bmad-output/project-context.md` section "TOON Agent Architecture" |
+| HyperBEAM integration strategy & R&D phases | `_bmad-output/planning-artifacts/research/toon-hyperbeam-integration-strategy.md` |
 | Known action items (Epic 7 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
 | DVM compute marketplace architecture | `_bmad-output/project-context.md` section "DVM Compute Marketplace" |
 | Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section "Advanced DVM Coordination + TEE Integration" |
