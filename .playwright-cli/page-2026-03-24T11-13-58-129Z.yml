@@ -1,0 +1,74 @@
+- generic [ref=e2]:
+  - banner [ref=e430]:
+    - generic [ref=e431]:
+      - link "⚒ Forge" [ref=e432] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e433]: ws://localhost:19700
+  - main [ref=e434]:
+    - navigation [ref=e435]:
+      - link "Code" [ref=e436] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Issues" [ref=e437] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e438] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - navigation [ref=e439]:
+      - generic [ref=e440]: refs/heads/epic-8
+      - link "toon-protocol" [ref=e441] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - text: /
+      - link "docs" [ref=e442] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs
+      - link "Commits" [ref=e443] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commits/refs%2Fheads%2Fepic-8
+    - table [ref=e445]:
+      - rowgroup [ref=e446]:
+        - row "📂 Narrative 40000" [ref=e447]:
+          - cell "📂" [ref=e448]
+          - cell "Narrative" [ref=e449]:
+            - link "Narrative" [ref=e450] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs/Narrative
+          - cell "40000" [ref=e451]
+        - row "📄 architecture.md 100644" [ref=e452]:
+          - cell "📄" [ref=e453]
+          - cell "architecture.md" [ref=e454]:
+            - link "architecture.md" [ref=e455] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/architecture.md
+          - cell "100644" [ref=e456]
+        - row "📄 bootstrap.md 100644" [ref=e457]:
+          - cell "📄" [ref=e458]
+          - cell "bootstrap.md" [ref=e459]:
+            - link "bootstrap.md" [ref=e460] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/bootstrap.md
+          - cell "100644" [ref=e461]
+        - row "📄 deployment.md 100644" [ref=e462]:
+          - cell "📄" [ref=e463]
+          - cell "deployment.md" [ref=e464]:
+            - link "deployment.md" [ref=e465] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/deployment.md
+          - cell "100644" [ref=e466]
+        - row "📄 protocol.md 100644" [ref=e467]:
+          - cell "📄" [ref=e468]
+          - cell "protocol.md" [ref=e469]:
+            - link "protocol.md" [ref=e470] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/protocol.md
+          - cell "100644" [ref=e471]
+        - row "📄 sdk-guide.md 100644" [ref=e472]:
+          - cell "📄" [ref=e473]
+          - cell "sdk-guide.md" [ref=e474]:
+            - link "sdk-guide.md" [ref=e475] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/sdk-guide.md
+          - cell "100644" [ref=e476]
+        - row "📄 settlement.md 100644" [ref=e477]:
+          - cell "📄" [ref=e478]
+          - cell "settlement.md" [ref=e479]:
+            - link "settlement.md" [ref=e480] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/settlement.md
+          - cell "100644" [ref=e481]
+        - row "📄 town-guide.md 100644" [ref=e482]:
+          - cell "📄" [ref=e483]
+          - cell "town-guide.md" [ref=e484]:
+            - link "town-guide.md" [ref=e485] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docs/town-guide.md
+          - cell "100644" [ref=e486]
+  - contentinfo [ref=e487]: Forge — Decentralized Git on Nostr & TOON Protocol

@@ -1,0 +1,752 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Navigation bar" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - link "Explore" [ref=e8] [cursor=pointer]:
+          - /url: /explore/repos
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/faq/
+        - link "Help" [ref=e11] [cursor=pointer]:
+          - /url: https://docs.codeberg.org
+        - link "Donate" [ref=e12] [cursor=pointer]:
+          - /url: https://donate.codeberg.org
+      - generic [ref=e13]:
+        - link "Register" [ref=e14] [cursor=pointer]:
+          - /url: /user/sign_up
+          - img [ref=e15]
+          - generic [ref=e17]: Register
+        - link "Sign in" [ref=e18] [cursor=pointer]:
+          - /url: /user/login?redirect_to=%2fmfenniak%2fforgejo-website
+          - img [ref=e19]
+          - generic [ref=e21]: Sign in
+    - 'main "mfenniak/forgejo-website: Forgejo website content" [ref=e22]':
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - img [ref=e28]
+              - generic [ref=e31]:
+                - link "mfenniak" [ref=e32] [cursor=pointer]:
+                  - /url: /mfenniak
+                - text: /
+                - link "forgejo-website" [ref=e33] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website
+            - generic [ref=e34]:
+              - link "RSS feed" [ref=e35] [cursor=pointer]:
+                - /url: /mfenniak/forgejo-website.rss
+                - img [ref=e36]
+              - generic "Sign in to watch this repository." [ref=e39] [cursor=pointer]:
+                - button "Watch" [disabled]:
+                  - img
+                  - generic: Watch
+                - link "1 watcher" [ref=e40]:
+                  - /url: /mfenniak/forgejo-website/watchers
+                  - text: "1"
+              - generic "Sign in to star this repository." [ref=e42] [cursor=pointer]:
+                - button "Star" [disabled]:
+                  - img
+                  - generic: Star
+                - link "0 stars" [ref=e43]:
+                  - /url: /mfenniak/forgejo-website/stars
+                  - text: "0"
+              - generic "Sign in to fork this repository." [ref=e44]:
+                - generic:
+                  - img
+                  - generic: Fork
+                - link "0 forks" [ref=e45] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/forks
+                  - text: "0"
+          - generic [ref=e46]:
+            - text: forked from
+            - link "forgejo/website" [ref=e47] [cursor=pointer]:
+              - /url: /forgejo/website
+        - navigation [ref=e48]:
+          - generic [ref=e49]:
+            - link "Code" [ref=e50] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website
+              - img [ref=e51]
+              - generic [ref=e53]: Code
+            - link "Pull requests" [ref=e54] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/pulls
+              - img [ref=e55]
+              - generic [ref=e57]: Pull requests
+            - link "Activity" [ref=e58] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/activity
+              - img [ref=e59]
+              - generic [ref=e61]: Activity
+      - generic [ref=e63]:
+        - generic [ref=e65]: Forgejo website content
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - link "2,383 commits" [ref=e68] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/commits/branch/main
+              - img [ref=e69]
+              - generic [ref=e71]: 2,383
+              - text: commits
+            - link "5 branches" [ref=e72] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/branches
+              - img [ref=e73]
+              - generic [ref=e75]: "5"
+              - text: branches
+            - link "0 tags" [ref=e76] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/tags
+              - img [ref=e77]
+              - generic [ref=e79]: "0"
+              - text: tags
+            - 'generic "git: 16 MiB, lfs: 0 B" [ref=e80]':
+              - img [ref=e81]
+              - generic [ref=e83]: "16"
+              - text: MiB
+          - group [ref=e84]:
+            - generic "Astro TypeScript CSS JavaScript" [ref=e85] [cursor=pointer]:
+              - generic [ref=e86]:
+                - generic "Astro" [ref=e87]
+                - generic "TypeScript" [ref=e88]
+                - generic "CSS" [ref=e89]
+                - generic "JavaScript" [ref=e90]
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - button "main" [ref=e95] [cursor=pointer]:
+              - generic [ref=e96]:
+                - img [ref=e97]
+                - strong [ref=e99]: main
+              - img [ref=e100]
+            - button "Compare" [ref=e102] [cursor=pointer]:
+              - img [ref=e103]
+            - link "Find a file" [ref=e105] [cursor=pointer]:
+              - /url: /mfenniak/forgejo-website/find/branch/main
+          - generic [ref=e107]:
+            - button "HTTPS" [ref=e108] [cursor=pointer]
+            - textbox [ref=e109]: https://codeberg.org/mfenniak/forgejo-website.git
+            - button "Copy URL" [ref=e110] [cursor=pointer]:
+              - img [ref=e111]
+            - menu "More operations" [ref=e114] [cursor=pointer]:
+              - img [ref=e115]
+        - table [ref=e117]:
+          - rowgroup [ref=e118]:
+            - row "forgejo-mirror forgejo-website 241bdc1276 publish Sep 13, 2025, 11:57 AM EDT" [ref=e119]:
+              - columnheader "forgejo-mirror forgejo-website 241bdc1276 publish" [ref=e120]:
+                - generic [ref=e122]:
+                  - img "forgejo-mirror" [ref=e123]
+                  - link "forgejo-website" [ref=e124] [cursor=pointer]:
+                    - /url: /forgejo-mirror
+                    - strong [ref=e125]: forgejo-website
+                  - link "241bdc1276" [ref=e126] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/241bdc1276bb45b9d932addcd0b62c7527cb333e
+                    - generic [ref=e127]: 241bdc1276
+                  - generic "publish" [ref=e128]:
+                    - link "publish" [ref=e130] [cursor=pointer]:
+                      - /url: /mfenniak/forgejo-website/commit/241bdc1276bb45b9d932addcd0b62c7527cb333e
+              - columnheader "Sep 13, 2025, 11:57 AM EDT" [ref=e131]: 2025-09-13 15:57:41 +00:006 months ago
+          - rowgroup [ref=e132]:
+            - 'row ".forgejo/workflows chore: fix CI for PRs when from private repos Sep 3, 2025, 01:09 PM EDT" [ref=e133]':
+              - cell ".forgejo/workflows" [ref=e134]:
+                - link ".forgejo/workflows" [ref=e136] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.forgejo/workflows
+                  - img [ref=e137]
+                  - text: .forgejo/workflows
+              - 'cell "chore: fix CI for PRs when from private repos" [ref=e139]':
+                - 'link "chore: fix CI for PRs when from private repos" [ref=e141] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/333b352834a06bc15a139f6bea488e2f0e52df01
+              - cell "Sep 3, 2025, 01:09 PM EDT" [ref=e142]: 2025-09-03 19:09:43 +02:006 months ago
+            - row ".husky fix husky deprecation warning in pre-commit hook Jan 17, 2025, 08:23 AM EST" [ref=e143]:
+              - cell ".husky" [ref=e144]:
+                - link ".husky" [ref=e146] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.husky
+                  - img [ref=e147]
+                  - text: .husky
+              - cell "fix husky deprecation warning in pre-commit hook" [ref=e149]:
+                - link "fix husky deprecation warning in pre-commit hook" [ref=e151] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/b280ad49522f2f4897ffe144b0b2d4f2512921e3
+              - cell "Jan 17, 2025, 08:23 AM EST" [ref=e152]: 2025-01-17 14:23:46 +01:00last year
+            - 'row ".vscode refactor: fix typescript errors Aug 21, 2023, 06:09 PM EDT" [ref=e153]':
+              - cell ".vscode" [ref=e154]:
+                - link ".vscode" [ref=e156] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.vscode
+                  - img [ref=e157]
+                  - text: .vscode
+              - 'cell "refactor: fix typescript errors" [ref=e159]':
+                - 'link "refactor: fix typescript errors" [ref=e161] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/849190f8a784bf80ac2bd8a8412bf30c1f55174c
+              - cell "Aug 21, 2023, 06:09 PM EDT" [ref=e162]: 2023-08-21 23:09:22 +01:00two years ago
+            - row "forgejo-docs publish Sep 13, 2025, 11:57 AM EDT" [ref=e163]:
+              - cell "forgejo-docs" [ref=e164]:
+                - link "forgejo-docs" [ref=e166] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/forgejo-docs
+                  - img [ref=e167]
+                  - text: forgejo-docs
+              - cell "publish" [ref=e169]:
+                - link "publish" [ref=e171] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/241bdc1276bb45b9d932addcd0b62c7527cb333e
+              - cell "Sep 13, 2025, 11:57 AM EDT" [ref=e172]: 2025-09-13 15:57:41 +00:006 months ago
+            - row "public Correct redirects for installation guides Jul 19, 2025, 02:55 PM EDT" [ref=e173]:
+              - cell "public" [ref=e174]:
+                - link "public" [ref=e176] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/public
+                  - img [ref=e177]
+                  - text: public
+              - cell "Correct redirects for installation guides" [ref=e179]:
+                - link "Correct redirects for installation guides" [ref=e181] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/aec22851ae3f7cc51234f6e2167107b495bd5559
+              - cell "Jul 19, 2025, 02:55 PM EDT" [ref=e182]: 2025-07-19 20:55:39 +02:008 months ago
+            - row "src Merge pull request 'Forgejo monthly report - August 2025' (#640) from beowulf/monthly-update-august-2025 into main Sep 5, 2025, 12:02 PM EDT" [ref=e183]:
+              - cell "src" [ref=e184]:
+                - link "src" [ref=e186] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/src
+                  - img [ref=e187]
+                  - text: src
+              - cell "Merge pull request 'Forgejo monthly report - August 2025' (#640) from beowulf/monthly-update-august-2025 into main" [ref=e189]:
+                - generic [ref=e190]:
+                  - link "Merge pull request 'Forgejo monthly report - August 2025' (" [ref=e191] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/f4604815ac7a5a9486b8c0da5189e0d2d88979ce
+                  - link "#640" [ref=e192] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/640
+                  - link ") from beowulf/monthly-update-august-2025 into main" [ref=e193] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/f4604815ac7a5a9486b8c0da5189e0d2d88979ce
+              - cell "Sep 5, 2025, 12:02 PM EDT" [ref=e194]: 2025-09-05 18:02:25 +02:006 months ago
+            - row ".editorconfig reset theme to https://github.com/onwidget/astrowind Dec 1, 2022, 12:04 PM EST" [ref=e195]:
+              - cell ".editorconfig" [ref=e196]:
+                - link ".editorconfig" [ref=e198] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.editorconfig
+                  - img [ref=e199]
+                  - text: .editorconfig
+              - cell "reset theme to https://github.com/onwidget/astrowind" [ref=e201]:
+                - generic [ref=e202]:
+                  - link "reset theme to" [ref=e203] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/67ea7add83ccaac9b873f7e2e99b675e1d1ab3c5
+                  - link "https://github.com/onwidget/astrowind" [ref=e204] [cursor=pointer]:
+                    - /url: https://github.com/onwidget/astrowind
+              - cell "Dec 1, 2022, 12:04 PM EST" [ref=e205]: 2022-12-01 18:04:49 +01:003 years ago
+            - row ".gitignore [CI] do not try to lint .pnpm-store Dec 26, 2023, 06:45 AM EST" [ref=e206]:
+              - cell ".gitignore" [ref=e207]:
+                - link ".gitignore" [ref=e209] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.gitignore
+                  - img [ref=e210]
+                  - text: .gitignore
+              - cell "[CI] do not try to lint .pnpm-store" [ref=e212]:
+                - link "[CI] do not try to lint .pnpm-store" [ref=e214] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/da7b226cf33aa7ff95d38a937264e3239dc290aa
+              - cell "Dec 26, 2023, 06:45 AM EST" [ref=e215]: 2023-12-26 12:45:25 +01:00two years ago
+            - 'row ".gitmodules docs: add v12.0 Jun 26, 2025, 06:20 AM EDT" [ref=e216]':
+              - cell ".gitmodules" [ref=e217]:
+                - link ".gitmodules" [ref=e219] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.gitmodules
+                  - img [ref=e220]
+                  - text: .gitmodules
+              - 'cell "docs: add v12.0" [ref=e222]':
+                - 'link "docs: add v12.0" [ref=e224] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/81e5438e598b2ea9caa58f14c10b2655f49ad10f
+              - cell "Jun 26, 2025, 06:20 AM EDT" [ref=e225]: 2025-06-26 12:20:22 +02:008 months ago
+            - 'row ".lychee.toml fix: replace/ignore some broken links Jun 29, 2025, 09:04 AM EDT" [ref=e226]':
+              - cell ".lychee.toml" [ref=e227]:
+                - link ".lychee.toml" [ref=e229] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.lychee.toml
+                  - img [ref=e230]
+                  - text: .lychee.toml
+              - 'cell "fix: replace/ignore some broken links" [ref=e232]':
+                - 'link "fix: replace/ignore some broken links" [ref=e234] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/28fab281b9436094922c22ade5ed929aa0420aad
+              - cell "Jun 29, 2025, 09:04 AM EDT" [ref=e235]: 2025-06-29 15:04:43 +02:008 months ago
+            - row ".npmrc reset theme to https://github.com/onwidget/astrowind Dec 1, 2022, 12:04 PM EST" [ref=e236]:
+              - cell ".npmrc" [ref=e237]:
+                - link ".npmrc" [ref=e239] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.npmrc
+                  - img [ref=e240]
+                  - text: .npmrc
+              - cell "reset theme to https://github.com/onwidget/astrowind" [ref=e242]:
+                - generic [ref=e243]:
+                  - link "reset theme to" [ref=e244] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/67ea7add83ccaac9b873f7e2e99b675e1d1ab3c5
+                  - link "https://github.com/onwidget/astrowind" [ref=e245] [cursor=pointer]:
+                    - /url: https://github.com/onwidget/astrowind
+              - cell "Dec 1, 2022, 12:04 PM EST" [ref=e246]: 2022-12-01 18:04:49 +01:003 years ago
+            - row ".prettierignore add docs to .prettierignore Aug 17, 2023, 01:52 AM EDT" [ref=e247]:
+              - cell ".prettierignore" [ref=e248]:
+                - link ".prettierignore" [ref=e250] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.prettierignore
+                  - img [ref=e251]
+                  - text: .prettierignore
+              - cell "add docs to .prettierignore" [ref=e253]:
+                - link "add docs to .prettierignore" [ref=e255] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/887c45aa4dfd386c339af777c77888f6416afd38
+              - cell "Aug 17, 2023, 01:52 AM EDT" [ref=e256]: 2023-08-17 07:52:32 +02:00two years ago
+            - row ".prettierrc add pre-commit hook to automatically format staged files (#80) Feb 2, 2023, 04:26 AM EST" [ref=e257]:
+              - cell ".prettierrc" [ref=e258]:
+                - link ".prettierrc" [ref=e260] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.prettierrc
+                  - img [ref=e261]
+                  - text: .prettierrc
+              - cell "add pre-commit hook to automatically format staged files (#80)" [ref=e263]:
+                - generic [ref=e264]:
+                  - link "add pre-commit hook to automatically format staged files (" [ref=e265] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/31f0b7cae1f917374f7207547ad7ad59c705ce88
+                  - link "#80" [ref=e266] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/80
+                  - link ")" [ref=e267] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/31f0b7cae1f917374f7207547ad7ad59c705ce88
+              - cell "Feb 2, 2023, 04:26 AM EST" [ref=e268]: 2023-02-02 09:26:59 +00:003 years ago
+            - row ".typos.toml Forgejo monthly update - January 2025 (#555) Feb 11, 2025, 01:10 PM EST" [ref=e269]:
+              - cell ".typos.toml" [ref=e270]:
+                - link ".typos.toml" [ref=e272] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/.typos.toml
+                  - img [ref=e273]
+                  - text: .typos.toml
+              - cell "Forgejo monthly update - January 2025 (#555)" [ref=e275]:
+                - generic [ref=e276]:
+                  - link "Forgejo monthly update - January 2025 (" [ref=e277] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/59631292ea7171249d582212bffd4a4352c5a50c
+                  - link "#555" [ref=e278] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/555
+                  - link ")" [ref=e279] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/59631292ea7171249d582212bffd4a4352c5a50c
+              - cell "Feb 11, 2025, 01:10 PM EST" [ref=e280]: 2025-02-11 18:10:31 +00:00last year
+            - 'row "astro.config.ts chore: update dependencies (#625) Jul 28, 2025, 07:08 AM EDT" [ref=e281]':
+              - cell "astro.config.ts" [ref=e282]:
+                - link "astro.config.ts" [ref=e284] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/astro.config.ts
+                  - img [ref=e285]
+                  - text: astro.config.ts
+              - 'cell "chore: update dependencies (#625)" [ref=e287]':
+                - generic [ref=e288]:
+                  - 'link "chore: update dependencies (" [ref=e289] [cursor=pointer]':
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+                  - link "#625" [ref=e290] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/625
+                  - link ")" [ref=e291] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+              - cell "Jul 28, 2025, 07:08 AM EDT" [ref=e292]: 2025-07-28 13:08:16 +02:007 months ago
+            - row "caddyfile.tmLanguage.json add caddyfile syntax highlighting May 13, 2024, 12:11 PM EDT" [ref=e293]:
+              - cell "caddyfile.tmLanguage.json" [ref=e294]:
+                - link "caddyfile.tmLanguage.json" [ref=e296] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/caddyfile.tmLanguage.json
+                  - img [ref=e297]
+                  - text: caddyfile.tmLanguage.json
+              - cell "add caddyfile syntax highlighting" [ref=e299]:
+                - link "add caddyfile syntax highlighting" [ref=e301] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/60d2deebd22f6bf95587c6b565ce798adbdb9619
+              - cell "May 13, 2024, 12:11 PM EDT" [ref=e302]: 2024-05-13 18:11:54 +02:00last year
+            - row "eslint.config.mjs update eslint to v9.x Aug 4, 2024, 05:57 PM EDT" [ref=e303]:
+              - cell "eslint.config.mjs" [ref=e304]:
+                - link "eslint.config.mjs" [ref=e306] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/eslint.config.mjs
+                  - img [ref=e307]
+                  - text: eslint.config.mjs
+              - cell "update eslint to v9.x" [ref=e309]:
+                - link "update eslint to v9.x" [ref=e311] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/07915b8804ede804bcf8b344c79c98b599339d4f
+              - cell "Aug 4, 2024, 05:57 PM EDT" [ref=e312]: 2024-08-04 22:57:34 +01:00last year
+            - row "LICENSE Fix licensing problems Mar 3, 2023, 01:44 AM EST" [ref=e313]:
+              - cell "LICENSE" [ref=e314]:
+                - link "LICENSE" [ref=e316] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/LICENSE
+                  - img [ref=e317]
+                  - text: LICENSE
+              - cell "Fix licensing problems" [ref=e319]:
+                - link "Fix licensing problems" [ref=e321] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/ee593e40d07c2578a24ff880b8f5757be9e29980
+              - cell "Mar 3, 2023, 01:44 AM EST" [ref=e322]: 2023-03-02 23:44:11 -07:003 years ago
+            - 'row "package.json chore: update dependencies (#625) Jul 28, 2025, 07:08 AM EDT" [ref=e323]':
+              - cell "package.json" [ref=e324]:
+                - link "package.json" [ref=e326] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/package.json
+                  - img [ref=e327]
+                  - text: package.json
+              - 'cell "chore: update dependencies (#625)" [ref=e329]':
+                - generic [ref=e330]:
+                  - 'link "chore: update dependencies (" [ref=e331] [cursor=pointer]':
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+                  - link "#625" [ref=e332] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/625
+                  - link ")" [ref=e333] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+              - cell "Jul 28, 2025, 07:08 AM EDT" [ref=e334]: 2025-07-28 13:08:16 +02:007 months ago
+            - 'row "pnpm-lock.yaml chore: update dependencies (#625) Jul 28, 2025, 07:08 AM EDT" [ref=e335]':
+              - cell "pnpm-lock.yaml" [ref=e336]:
+                - link "pnpm-lock.yaml" [ref=e338] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/pnpm-lock.yaml
+                  - img [ref=e339]
+                  - text: pnpm-lock.yaml
+              - 'cell "chore: update dependencies (#625)" [ref=e341]':
+                - generic [ref=e342]:
+                  - 'link "chore: update dependencies (" [ref=e343] [cursor=pointer]':
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+                  - link "#625" [ref=e344] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/issues/625
+                  - link ")" [ref=e345] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/0a4024b25576fb39ac7554223f875f4e4a435020
+              - cell "Jul 28, 2025, 07:08 AM EDT" [ref=e346]: 2025-07-28 13:08:16 +02:007 months ago
+            - 'row "README.md chore: update LTS version in README Sep 4, 2025, 02:26 AM EDT" [ref=e347]':
+              - cell "README.md" [ref=e348]:
+                - link "README.md" [ref=e350] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/README.md
+                  - img [ref=e351]
+                  - text: README.md
+              - 'cell "chore: update LTS version in README" [ref=e353]':
+                - 'link "chore: update LTS version in README" [ref=e355] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/022c265d725b222fd73d09784299646e5c113f66
+              - cell "Sep 4, 2025, 02:26 AM EDT" [ref=e356]: 2025-09-04 08:26:49 +02:006 months ago
+            - row "sandbox.config.json reset theme to https://github.com/onwidget/astrowind Dec 1, 2022, 12:04 PM EST" [ref=e357]:
+              - cell "sandbox.config.json" [ref=e358]:
+                - link "sandbox.config.json" [ref=e360] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/sandbox.config.json
+                  - img [ref=e361]
+                  - text: sandbox.config.json
+              - cell "reset theme to https://github.com/onwidget/astrowind" [ref=e363]:
+                - generic [ref=e364]:
+                  - link "reset theme to" [ref=e365] [cursor=pointer]:
+                    - /url: /mfenniak/forgejo-website/commit/67ea7add83ccaac9b873f7e2e99b675e1d1ab3c5
+                  - link "https://github.com/onwidget/astrowind" [ref=e366] [cursor=pointer]:
+                    - /url: https://github.com/onwidget/astrowind
+              - cell "Dec 1, 2022, 12:04 PM EST" [ref=e367]: 2022-12-01 18:04:49 +01:003 years ago
+            - 'row "tailwind.config.ts feat: use system fonts Sep 2, 2023, 07:07 PM EDT" [ref=e368]':
+              - cell "tailwind.config.ts" [ref=e369]:
+                - link "tailwind.config.ts" [ref=e371] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/tailwind.config.ts
+                  - img [ref=e372]
+                  - text: tailwind.config.ts
+              - 'cell "feat: use system fonts" [ref=e374]':
+                - 'link "feat: use system fonts" [ref=e376] [cursor=pointer]':
+                  - /url: /mfenniak/forgejo-website/commit/03798cf7fe058114815972ccb454e4c6ec1528f0
+              - cell "Sep 2, 2023, 07:07 PM EDT" [ref=e377]: 2023-09-03 00:07:37 +01:00two years ago
+            - row "tsconfig.json bump all dependancies May 12, 2024, 04:13 PM EDT" [ref=e378]:
+              - cell "tsconfig.json" [ref=e379]:
+                - link "tsconfig.json" [ref=e381] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/src/branch/main/tsconfig.json
+                  - img [ref=e382]
+                  - text: tsconfig.json
+              - cell "bump all dependancies" [ref=e384]:
+                - link "bump all dependancies" [ref=e386] [cursor=pointer]:
+                  - /url: /mfenniak/forgejo-website/commit/97681d6f13cd27f9739e0002725d6fdc91645a96
+              - cell "May 12, 2024, 04:13 PM EDT" [ref=e387]: 2024-05-12 22:13:14 +02:00last year
+        - generic [ref=e388]:
+          - heading "README.md" [level=4] [ref=e389]:
+            - generic [ref=e390]:
+              - img [ref=e391]
+              - strong [ref=e393]:
+                - link "README.md" [ref=e394] [cursor=pointer]:
+                  - /url: "#readme"
+          - generic [ref=e396]:
+            - heading "Website for Forgejo" [level=1] [ref=e397]:
+              - link [ref=e398] [cursor=pointer]:
+                - /url: "#website-for-forgejo"
+              - text: Website for Forgejo
+            - paragraph [ref=e399]:
+              - text: This website is built with
+              - link "Astro" [ref=e400] [cursor=pointer]:
+                - /url: https://astro.build
+              - text: and
+              - link "Tailwind CSS" [ref=e401] [cursor=pointer]:
+                - /url: https://tailwindcss.com/
+              - text: ", and is based on the"
+              - link "AstroWind" [ref=e402] [cursor=pointer]:
+                - /url: https://github.com/onwidget/astrowind
+              - text: template.
+            - paragraph [ref=e403]:
+              - text: When a branch
+              - code [ref=e404]: foobar
+              - text: is pushed to the repository, the content is rendered for preview at
+              - code [ref=e405]: https://forgejo.codeberg.page/@foobar/
+              - text: .
+            - paragraph [ref=e406]:
+              - text: When a PR is created, its content is rendered for preview at
+              - code [ref=e407]: https://forgejo.codeberg.page/@pull_1234/
+              - text: where
+              - code [ref=e408]: "1234"
+              - text: is the number of the PR.
+            - paragraph [ref=e409]:
+              - text: The
+              - code [ref=e410]: forgejo-website
+              - text: user is dedicated to providing an application token set to
+              - code [ref=e411]: websitetoken
+              - text: and allows for publishing the branch and CI previews in
+              - link "https://codeberg.org/forgejo/pages" [ref=e412] [cursor=pointer]:
+                - /url: https://codeberg.org/forgejo/pages
+              - text: .
+            - heading "Hosting" [level=3] [ref=e413]:
+              - link [ref=e414] [cursor=pointer]:
+                - /url: "#hosting"
+              - text: Hosting
+            - paragraph [ref=e415]:
+              - text: The website is hosted at
+              - link "https://uberspace.de" [ref=e416] [cursor=pointer]:
+                - /url: https://uberspace.de
+              - text: and the technical details on how this is done can be found in the CI configuration at
+              - code [ref=e417]: .forgejo/workflows
+            - paragraph [ref=e418]:
+              - text: The
+              - code [ref=e419]: sshpass
+              - text: password is not stored anywhere. It is set via
+              - link "https://dashboard.uberspace.de/dashboard/authentication" [ref=e420] [cursor=pointer]:
+                - /url: https://dashboard.uberspace.de/dashboard/authentication
+              - text: and copied over to the secrets of the CI where it will never be displayed again. It can be verified to work with
+            - code [ref=e422]: SSHPASS=xyz rsync --rsh='sshpass -e ssh -oStrictHostKeyChecking=no -o PubkeyAuthentication=no' -av forgejo@atria.uberspace.de:html/ /tmp/html/
+            - paragraph [ref=e423]:
+              - text: Google
+              - link "topics are disabled" [ref=e424] [cursor=pointer]:
+                - /url: https://manual.uberspace.de/web-headers/#disable-google-topics
+            - code [ref=e426]: "[forgejo@atria ~]$ uberspace web header set / Permissions-Policy \"browsing-topics=()\" Set header \"Permissions-Policy: browsing-topics=()\" for /"
+            - heading "Contributing" [level=2] [ref=e427]:
+              - link [ref=e428] [cursor=pointer]:
+                - /url: "#contributing"
+              - text: Contributing
+            - heading "Format locally" [level=3] [ref=e429]:
+              - link [ref=e430] [cursor=pointer]:
+                - /url: "#format-locally"
+              - text: Format locally
+            - paragraph [ref=e431]:
+              - code [ref=e432]: docker run --rm -ti -v $(pwd):$(pwd) -w $(pwd) node:20 bash -c 'corepack enable ; pnpm install --frozen-lockfile ; pnpm run format'
+            - heading "Commands" [level=3] [ref=e433]:
+              - link [ref=e434] [cursor=pointer]:
+                - /url: "#commands"
+              - text: Commands
+            - paragraph [ref=e435]: "All commands are run from the root of the project, from a terminal:"
+            - table [ref=e436]:
+              - rowgroup [ref=e437]:
+                - row "Command Action" [ref=e438]:
+                  - columnheader "Command" [ref=e439]
+                  - columnheader "Action" [ref=e440]
+              - rowgroup [ref=e441]:
+                - row "pnpm install Installs dependencies" [ref=e442]:
+                  - cell "pnpm install" [ref=e443]:
+                    - code [ref=e444]: pnpm install
+                  - cell "Installs dependencies" [ref=e445]
+                - row "pnpm run prepare Install git pre-commit hook" [ref=e446]:
+                  - cell "pnpm run prepare" [ref=e447]:
+                    - code [ref=e448]: pnpm run prepare
+                  - cell "Install git pre-commit hook" [ref=e449]
+                - row "pnpm run dev Starts local dev server at localhost:3000" [ref=e450]:
+                  - cell "pnpm run dev" [ref=e451]:
+                    - code [ref=e452]: pnpm run dev
+                  - cell "Starts local dev server at localhost:3000" [ref=e453]:
+                    - text: Starts local dev server at
+                    - code [ref=e454]: localhost:3000
+                - row "pnpm run build Build your production site to ./dist/" [ref=e455]:
+                  - cell "pnpm run build" [ref=e456]:
+                    - code [ref=e457]: pnpm run build
+                  - cell "Build your production site to ./dist/" [ref=e458]:
+                    - text: Build your production site to
+                    - code [ref=e459]: ./dist/
+                - row "pnpm run preview Preview your build locally, before deploying" [ref=e460]:
+                  - cell "pnpm run preview" [ref=e461]:
+                    - code [ref=e462]: pnpm run preview
+                  - cell "Preview your build locally, before deploying" [ref=e463]
+                - row "pnpm run format Format codes with Prettier" [ref=e464]:
+                  - cell "pnpm run format" [ref=e465]:
+                    - code [ref=e466]: pnpm run format
+                  - cell "Format codes with Prettier" [ref=e467]
+                - row "pnpm run format-staged Format staged files with Prettier" [ref=e468]:
+                  - cell "pnpm run format-staged" [ref=e469]:
+                    - code [ref=e470]: pnpm run format-staged
+                  - cell "Format staged files with Prettier" [ref=e471]
+                - row "pnpm run lint:eslint Run Eslint" [ref=e472]:
+                  - cell "pnpm run lint:eslint" [ref=e473]:
+                    - code [ref=e474]: pnpm run lint:eslint
+                  - cell "Run Eslint" [ref=e475]
+                - row "pnpm run astro ... Run CLI commands like astro add, astro preview" [ref=e476]:
+                  - cell "pnpm run astro ..." [ref=e477]:
+                    - code [ref=e478]: pnpm run astro ...
+                  - cell "Run CLI commands like astro add, astro preview" [ref=e479]:
+                    - text: Run CLI commands like
+                    - code [ref=e480]: astro add
+                    - text: ","
+                    - code [ref=e481]: astro preview
+            - paragraph [ref=e482]:
+              - text: See the
+              - link "AstroWind docs" [ref=e483] [cursor=pointer]:
+                - /url: https://github.com/onwidget/astrowind
+              - text: for more information.
+            - heading "Project structure" [level=3] [ref=e484]:
+              - link [ref=e485] [cursor=pointer]:
+                - /url: "#project-structure"
+              - text: Project structure
+            - paragraph [ref=e486]: "The following is the default structure of the AstroWind template:"
+            - code [ref=e488]: / ├── data/ | └── blog/ | ├── post-slug-1.md | ├── post-slug-2.mdx | └── ... ├── public/ │ ├── robots.txt │ └── favicon.ico ├── src/ │ ├── assets/ │ │ ├── images/ | | └── styles/ | | └── base.css │ ├── components/ │ │ ├── atoms/ │ │ ├── blog/ │ │ ├── core/ | | └── widgets/ | | ├── Header.astro | | ├── Footer.astro | | └── ... │ ├── layouts/ │ | |── BaseLayout.astro │ | └── ... │ ├── pages/ │ | ├── [...blog]/ | | | ├── [...page].astro | | | └── [slug].astro │ | ├── [...categories]/ | | | └── [category]/ | | | └── [...page].astro │ | ├── [...tags]/ | | | └── [tag]/ | | | └── [...page].astro │ | ├── index.astro | | ├── 404.astro | | └-- rss.xml.js │ ├── utils/ │ └── config.ts ├── package.json └── ...
+            - paragraph [ref=e489]:
+              - text: Astro looks for
+              - code [ref=e490]: .astro
+              - text: or
+              - code [ref=e491]: .md
+              - text: files in the
+              - code [ref=e492]: src/pages/
+              - text: directory. Each page is exposed as a route based on its file name.
+            - paragraph [ref=e493]:
+              - text: There's nothing special about
+              - code [ref=e494]: src/components/
+              - text: ", but that's where we like to put any Astro/React/Vue/Svelte/Preact components."
+            - paragraph [ref=e495]:
+              - text: Any static assets, like images, can be placed in the
+              - code [ref=e496]: public/
+              - text: directory if they do not require any transformation or in the
+              - code [ref=e497]: assets/
+              - text: directory if they are imported directly.
+            - heading "Manual testing" [level=3] [ref=e498]:
+              - link [ref=e499] [cursor=pointer]:
+                - /url: "#manual-testing"
+              - text: Manual testing
+            - paragraph [ref=e500]:
+              - text: When doing some dependency upgrade (e.g. using
+              - code [ref=e501]: pnpm update
+              - text: "), the following should be manually tested:"
+            - paragraph [ref=e502]:
+              - emphasis [ref=e503]: Note that ideally both the mobile (narrow) and desktop (wide) versions should be tested
+            - list [ref=e504]:
+              - listitem [ref=e505]:
+                - checkbox [disabled] [ref=e506]
+                - text: visit the homepage
+              - listitem [ref=e507]:
+                - checkbox [disabled] [ref=e508]
+                - text: visit the
+                - code [ref=e509]: rss.xml
+                - text: feed (⚠️ the menu button points to the
+                - code [ref=e510]: main
+                - text: "version: put the URL manually in case of a pull request with"
+                - code [ref=e511]: /@pull_XX
+                - text: prefix)
+              - listitem [ref=e512]:
+                - checkbox [disabled] [ref=e513]
+                - text: switch the theme (light/dark)
+              - listitem [ref=e514]:
+                - checkbox [disabled] [ref=e515]
+                - text: visit the FAQ
+              - listitem [ref=e516]:
+                - checkbox [disabled] [ref=e517]
+                - text: visit the Releases page (there should be one
+                - code [ref=e518]: Stable
+                - text: and one
+                - code [ref=e519]: LTS
+                - text: tag)
+              - listitem [ref=e520]:
+                - checkbox [disabled] [ref=e521]
+                - text: visit the News page
+              - listitem [ref=e522]:
+                - checkbox [disabled] [ref=e523]
+                - text: visit the News page for a given tag (
+                - code [ref=e524]: report
+                - text: for instance)
+              - listitem [ref=e525]:
+                - checkbox [disabled] [ref=e526]
+                - text: visit the first News
+              - listitem [ref=e527]:
+                - checkbox [disabled] [ref=e528]
+                - text: visit the docs
+                - code [ref=e529]: /latest
+              - listitem [ref=e530]:
+                - checkbox [disabled] [ref=e531]
+                - text: visit the docs
+                - code [ref=e532]: /next
+              - listitem [ref=e533]:
+                - checkbox [disabled] [ref=e534]
+                - text: visit the docs
+                - code [ref=e535]: /v11.0
+              - listitem [ref=e536]:
+                - checkbox [disabled] [ref=e537]
+                - text: visit the docs > Admin > Reverse proxy and check that all code blocks have syntax coloring
+              - listitem [ref=e538]:
+                - checkbox [disabled] [ref=e539]
+                - text: visit the docs > Admin > Configuration Cheat Sheet and check that the internal page navigation (on the right) behaves correctly (independently scrollable / click on item goes to the right place)
+                - emphasis [ref=e540]: only available on desktop for now
+              - listitem [ref=e541]:
+                - checkbox [disabled] [ref=e542]
+                - text: check the menu toggling
+                - emphasis [ref=e543]: only for mobile
+  - group "Footer" [ref=e544]:
+    - generic "Links" [ref=e545]:
+      - generic [ref=e546]:
+        - img [ref=e548]
+        - generic [ref=e549]:
+          - generic [ref=e550]: Powered by
+          - link "Forgejo" [ref=e551] [cursor=pointer]:
+            - /url: https://forgejo.org
+            - img [ref=e553]
+          - text: with
+          - link "modifications" [ref=e554] [cursor=pointer]:
+            - /url: /Codeberg-Infrastructure/forgejo
+      - generic [ref=e555]:
+        - text: Codeberg
+        - list [ref=e556]:
+          - listitem [ref=e557]:
+            - link "Blog" [ref=e558] [cursor=pointer]:
+              - /url: https://blog.codeberg.org
+          - listitem [ref=e559]:
+            - link "Documentation" [ref=e560] [cursor=pointer]:
+              - /url: https://docs.codeberg.org
+          - listitem [ref=e561]:
+            - link "Community Issues" [ref=e562] [cursor=pointer]:
+              - /url: /Codeberg/Community/issues
+          - listitem [ref=e563]:
+            - link "Contributing" [ref=e564] [cursor=pointer]:
+              - /url: /Codeberg/Contributing
+          - listitem [ref=e565]:
+            - link "Report Abuse" [ref=e566] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/#abuse
+      - generic [ref=e567]:
+        - text: Association
+        - list [ref=e568]:
+          - listitem [ref=e569]:
+            - link "Who are we?" [ref=e570] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+          - listitem [ref=e571]:
+            - link "Bylaws / Satzung" [ref=e572] [cursor=pointer]:
+              - /url: /codeberg/org/src/en/bylaws.md
+          - listitem [ref=e573]:
+            - link "Donate" [ref=e574] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/improving-codeberg/donate/
+          - listitem [ref=e575]:
+            - link "Join / Support" [ref=e576] [cursor=pointer]:
+              - /url: https://join.codeberg.org
+          - listitem [ref=e577]:
+            - link "Contact" [ref=e578] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/
+      - generic [ref=e579]:
+        - text: Services
+        - list [ref=e580]:
+          - listitem [ref=e581]:
+            - link "Codeberg Pages" [ref=e582] [cursor=pointer]:
+              - /url: https://codeberg.page
+          - listitem [ref=e583]:
+            - link "Codeberg Translate" [ref=e584] [cursor=pointer]:
+              - /url: https://translate.codeberg.org
+          - listitem [ref=e585]:
+            - link "Woodpecker CI" [ref=e586] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci
+          - listitem [ref=e587]:
+            - link "Forgejo API" [ref=e588] [cursor=pointer]:
+              - /url: /api/swagger
+          - listitem [ref=e589]:
+            - link "Status Page" [ref=e590] [cursor=pointer]:
+              - /url: https://status.codeberg.eu
+      - generic [ref=e591]:
+        - text: Legal
+        - list [ref=e592]:
+          - listitem [ref=e593]:
+            - link "Imprint / Impressum" [ref=e594] [cursor=pointer]:
+              - /url: /codeberg/org/src/Imprint.md
+          - listitem [ref=e595]:
+            - link "Privacy Policy" [ref=e596] [cursor=pointer]:
+              - /url: /codeberg/org/src/PrivacyPolicy.md
+          - listitem [ref=e597]:
+            - link "Licenses" [ref=e598] [cursor=pointer]:
+              - /url: /assets/licenses.txt
+          - listitem [ref=e599]:
+            - link "Terms of Use" [ref=e600] [cursor=pointer]:
+              - /url: /codeberg/org/src/TermsOfUse.md
+    - generic [ref=e601]:
+      - generic [ref=e602]:
+        - link "Mastodon" [ref=e603] [cursor=pointer]:
+          - /url: https://social.anoxinon.de/@Codeberg
+        - text: "|"
+        - link "Matrix Space" [ref=e604] [cursor=pointer]:
+          - /url: matrix:r/codeberg-space:matrix.org?action=join
+        - link "(Web link)" [ref=e605] [cursor=pointer]:
+          - /url: https://matrix.to/#/#codeberg-space:matrix.org
+        - button "Copy to clipboard" [ref=e606] [cursor=pointer]:
+          - img [ref=e607]
+      - menu [ref=e611] [cursor=pointer]:
+        - img [ref=e612]
+        - generic [ref=e614]: English
+    - img [ref=e615]

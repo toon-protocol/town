@@ -1,0 +1,35 @@
+- generic [ref=e2]:
+  - banner [ref=e554]:
+    - generic [ref=e555]:
+      - link "⚒ Forge" [ref=e556] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e557]: ws://localhost:19700
+  - main [ref=e558]:
+    - navigation [ref=e559]:
+      - link "Code" [ref=e560] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/
+      - link "Issues" [ref=e561] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e562] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - generic [ref=e563]: ℹ Forge-UI is read-only. To create issues or submit patches, use a TOON agent with the NIP-34 skill.
+    - generic [ref=e564]:
+      - generic [ref=e565]:
+        - generic [ref=e566]:
+          - generic [ref=e567]: applied
+          - 'link "fix: ensure token allowance before cooperative close" [ref=e568] [cursor=pointer]':
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls/7611ae93a7d2ae126daf1378bf2b67f4bbf98c2c1f8fe4aff5f9528d9ea568e9
+          - generic [ref=e569]: epic-8
+        - generic [ref=e570]:
+          - generic [ref=e571]: npub166l7zqx3...7xqy
+          - generic [ref=e572]: 32 minutes ago
+      - generic [ref=e573]:
+        - generic [ref=e574]:
+          - generic [ref=e575]: applied
+          - 'link "fix: ensure token allowance before cooperative close" [ref=e576] [cursor=pointer]':
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls/a1d11c7cc54336dcfcd57a322f29f112a14f1b815571efa2c587392f4645f596
+          - generic [ref=e577]: main
+        - generic [ref=e578]:
+          - generic [ref=e579]: npub166l7zqx3...7xqy
+          - generic [ref=e580]: 11 hours ago
+  - contentinfo [ref=e581]: Forge — Decentralized Git on Nostr & TOON Protocol

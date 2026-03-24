@@ -1,0 +1,15 @@
+- generic [ref=e2]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - link "⚒ Forge" [ref=e12] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e13]: ws://localhost:19700
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - link "TOON Protocol" [ref=e18] [cursor=pointer]:
+          - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/
+        - generic [ref=e19]: epic-8
+      - generic [ref=e20]: ILP-gated Nostr relay. Pay to write, free to read.
+      - generic [ref=e21]: npub166l7zqx3...7xqy
+  - contentinfo [ref=e22]: Forge — Decentralized Git on Nostr & TOON Protocol

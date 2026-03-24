@@ -1,0 +1,227 @@
+- generic [ref=e2]:
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - link "⚒ Forge" [ref=e25] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e26]: ws://localhost:19700
+  - main [ref=e27]:
+    - navigation [ref=e28]:
+      - link "Code" [ref=e29] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Issues" [ref=e30] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e31] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - navigation [ref=e32]:
+      - generic [ref=e33]: refs/heads/epic-8
+      - link "toon-protocol" [ref=e34] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Commits" [ref=e35] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commits/refs%2Fheads%2Fepic-8
+    - table [ref=e37]:
+      - rowgroup [ref=e38]:
+        - row "📂 _bmad 40000" [ref=e39]:
+          - cell "📂" [ref=e40]
+          - cell "_bmad" [ref=e41]:
+            - link "_bmad" [ref=e42] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad
+          - cell "40000" [ref=e43]
+        - row "📂 _bmad-output 40000" [ref=e44]:
+          - cell "📂" [ref=e45]
+          - cell "_bmad-output" [ref=e46]:
+            - link "_bmad-output" [ref=e47] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad-output
+          - cell "40000" [ref=e48]
+        - row "📂 .github 40000" [ref=e49]:
+          - cell "📂" [ref=e50]
+          - cell ".github" [ref=e51]:
+            - link ".github" [ref=e52] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/.github
+          - cell "40000" [ref=e53]
+        - row "📂 config 40000" [ref=e54]:
+          - cell "📂" [ref=e55]
+          - cell "config" [ref=e56]:
+            - link "config" [ref=e57] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/config
+          - cell "40000" [ref=e58]
+        - row "📂 docker 40000" [ref=e59]:
+          - cell "📂" [ref=e60]
+          - cell "docker" [ref=e61]:
+            - link "docker" [ref=e62] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docker
+          - cell "40000" [ref=e63]
+        - row "📂 docs 40000" [ref=e64]:
+          - cell "📂" [ref=e65]
+          - cell "docs" [ref=e66]:
+            - link "docs" [ref=e67] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs
+          - cell "40000" [ref=e68]
+        - row "📂 examples 40000" [ref=e69]:
+          - cell "📂" [ref=e70]
+          - cell "examples" [ref=e71]:
+            - link "examples" [ref=e72] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/examples
+          - cell "40000" [ref=e73]
+        - row "📂 packages 40000" [ref=e74]:
+          - cell "📂" [ref=e75]
+          - cell "packages" [ref=e76]:
+            - link "packages" [ref=e77] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/packages
+          - cell "40000" [ref=e78]
+        - row "📂 scripts 40000" [ref=e79]:
+          - cell "📂" [ref=e80]
+          - cell "scripts" [ref=e81]:
+            - link "scripts" [ref=e82] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/scripts
+          - cell "40000" [ref=e83]
+        - row "📄 .dockerignore 100644" [ref=e84]:
+          - cell "📄" [ref=e85]
+          - cell ".dockerignore" [ref=e86]:
+            - link ".dockerignore" [ref=e87] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.dockerignore
+          - cell "100644" [ref=e88]
+        - row "📄 .env.example 100644" [ref=e89]:
+          - cell "📄" [ref=e90]
+          - cell ".env.example" [ref=e91]:
+            - link ".env.example" [ref=e92] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.env.example
+          - cell "100644" [ref=e93]
+        - row "📄 .gitignore 100644" [ref=e94]:
+          - cell "📄" [ref=e95]
+          - cell ".gitignore" [ref=e96]:
+            - link ".gitignore" [ref=e97] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.gitignore
+          - cell "100644" [ref=e98]
+        - row "📄 .npmrc 100644" [ref=e99]:
+          - cell "📄" [ref=e100]
+          - cell ".npmrc" [ref=e101]:
+            - link ".npmrc" [ref=e102] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.npmrc
+          - cell "100644" [ref=e103]
+        - row "📄 .pnpmauditrc 100644" [ref=e104]:
+          - cell "📄" [ref=e105]
+          - cell ".pnpmauditrc" [ref=e106]:
+            - link ".pnpmauditrc" [ref=e107] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.pnpmauditrc
+          - cell "100644" [ref=e108]
+        - row "📄 .semgrep.yml 100644" [ref=e109]:
+          - cell "📄" [ref=e110]
+          - cell ".semgrep.yml" [ref=e111]:
+            - link ".semgrep.yml" [ref=e112] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrep.yml
+          - cell "100644" [ref=e113]
+        - row "📄 .semgrepignore 100644" [ref=e114]:
+          - cell "📄" [ref=e115]
+          - cell ".semgrepignore" [ref=e116]:
+            - link ".semgrepignore" [ref=e117] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrepignore
+          - cell "100644" [ref=e118]
+        - row "📄 CLAUDE.md 100644" [ref=e119]:
+          - cell "📄" [ref=e120]
+          - cell "CLAUDE.md" [ref=e121]:
+            - link "CLAUDE.md" [ref=e122] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/CLAUDE.md
+          - cell "100644" [ref=e123]
+        - row "📄 deploy-genesis-node.sh 100755" [ref=e124]:
+          - cell "📄" [ref=e125]
+          - cell "deploy-genesis-node.sh" [ref=e126]:
+            - link "deploy-genesis-node.sh" [ref=e127] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-genesis-node.sh
+          - cell "100755" [ref=e128]
+        - row "📄 deploy-peers.sh 100755" [ref=e129]:
+          - cell "📄" [ref=e130]
+          - cell "deploy-peers.sh" [ref=e131]:
+            - link "deploy-peers.sh" [ref=e132] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-peers.sh
+          - cell "100755" [ref=e133]
+        - row "📄 docker-compose-genesis.yml 100644" [ref=e134]:
+          - cell "📄" [ref=e135]
+          - cell "docker-compose-genesis.yml" [ref=e136]:
+            - link "docker-compose-genesis.yml" [ref=e137] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-genesis.yml
+          - cell "100644" [ref=e138]
+        - row "📄 docker-compose-sdk-e2e.yml 100644" [ref=e139]:
+          - cell "📄" [ref=e140]
+          - cell "docker-compose-sdk-e2e.yml" [ref=e141]:
+            - link "docker-compose-sdk-e2e.yml" [ref=e142] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-sdk-e2e.yml
+          - cell "100644" [ref=e143]
+        - row "📄 eslint.config.js 100644" [ref=e144]:
+          - cell "📄" [ref=e145]
+          - cell "eslint.config.js" [ref=e146]:
+            - link "eslint.config.js" [ref=e147] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/eslint.config.js
+          - cell "100644" [ref=e148]
+        - row "📄 flake.nix 100644" [ref=e149]:
+          - cell "📄" [ref=e150]
+          - cell "flake.nix" [ref=e151]:
+            - link "flake.nix" [ref=e152] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/flake.nix
+          - cell "100644" [ref=e153]
+        - row "📄 fund-peer-wallet.sh 100755" [ref=e154]:
+          - cell "📄" [ref=e155]
+          - cell "fund-peer-wallet.sh" [ref=e156]:
+            - link "fund-peer-wallet.sh" [ref=e157] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/fund-peer-wallet.sh
+          - cell "100755" [ref=e158]
+        - row "📄 genesis.env 100644" [ref=e159]:
+          - cell "📄" [ref=e160]
+          - cell "genesis.env" [ref=e161]:
+            - link "genesis.env" [ref=e162] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/genesis.env
+          - cell "100644" [ref=e163]
+        - row "📄 LICENSE 100644" [ref=e164]:
+          - cell "📄" [ref=e165]
+          - cell "LICENSE" [ref=e166]:
+            - link "LICENSE" [ref=e167] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/LICENSE
+          - cell "100644" [ref=e168]
+        - row "📄 package.json 100644" [ref=e169]:
+          - cell "📄" [ref=e170]
+          - cell "package.json" [ref=e171]:
+            - link "package.json" [ref=e172] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/package.json
+          - cell "100644" [ref=e173]
+        - row "📄 pnpm-lock.yaml 100644" [ref=e174]:
+          - cell "📄" [ref=e175]
+          - cell "pnpm-lock.yaml" [ref=e176]:
+            - link "pnpm-lock.yaml" [ref=e177] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-lock.yaml
+          - cell "100644" [ref=e178]
+        - row "📄 pnpm-workspace.yaml 100644" [ref=e179]:
+          - cell "📄" [ref=e180]
+          - cell "pnpm-workspace.yaml" [ref=e181]:
+            - link "pnpm-workspace.yaml" [ref=e182] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-workspace.yaml
+          - cell "100644" [ref=e183]
+        - row "📄 prettier.config.js 100644" [ref=e184]:
+          - cell "📄" [ref=e185]
+          - cell "prettier.config.js" [ref=e186]:
+            - link "prettier.config.js" [ref=e187] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/prettier.config.js
+          - cell "100644" [ref=e188]
+        - row "📄 README.md 100644" [ref=e189]:
+          - cell "📄" [ref=e190]
+          - cell "README.md" [ref=e191]:
+            - link "README.md" [ref=e192] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/README.md
+          - cell "100644" [ref=e193]
+        - row "📄 tsconfig.json 100644" [ref=e194]:
+          - cell "📄" [ref=e195]
+          - cell "tsconfig.json" [ref=e196]:
+            - link "tsconfig.json" [ref=e197] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/tsconfig.json
+          - cell "100644" [ref=e198]
+        - row "📄 vitest.config.ts 100644" [ref=e199]:
+          - cell "📄" [ref=e200]
+          - cell "vitest.config.ts" [ref=e201]:
+            - link "vitest.config.ts" [ref=e202] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.config.ts
+          - cell "100644" [ref=e203]
+        - row "📄 vitest.integration.config.ts 100644" [ref=e204]:
+          - cell "📄" [ref=e205]
+          - cell "vitest.integration.config.ts" [ref=e206]:
+            - link "vitest.integration.config.ts" [ref=e207] [cursor=pointer]:
+              - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.integration.config.ts
+          - cell "100644" [ref=e208]
+  - contentinfo [ref=e209]: Forge — Decentralized Git on Nostr & TOON Protocol
