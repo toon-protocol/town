@@ -1,0 +1,33 @@
+- generic [ref=e2]:
+  - banner [ref=e46]:
+    - generic [ref=e47]:
+      - link "⚒ Forge" [ref=e48] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e49]: ws://localhost:19700
+  - main [ref=e50]:
+    - navigation [ref=e51]:
+      - link "Code" [ref=e52] [cursor=pointer]:
+        - /url: /toon-protocol/
+      - link "Issues" [ref=e53] [cursor=pointer]:
+        - /url: /toon-protocol/issues
+      - link "Pull Requests" [ref=e54] [cursor=pointer]:
+        - /url: /toon-protocol/pulls
+    - generic [ref=e55]: ℹ Forge-UI is read-only. To create issues or submit patches, use a TOON agent with the NIP-34 skill.
+    - generic [ref=e56]:
+      - generic [ref=e57]:
+        - 'heading "fix: ensure token allowance before cooperative close" [level=2] [ref=e58]'
+        - generic [ref=e59]:
+          - generic [ref=e60]: applied
+          - generic [ref=e61]: npub166l7zqx3...7xqy
+          - generic [ref=e62]: 1 hour ago
+          - generic [ref=e63]: epic-8
+        - generic [ref=e64]:
+          - text: "Commits:"
+          - link "7fd32e3" [ref=e65] [cursor=pointer]:
+            - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+      - generic [ref=e66]:
+        - text: "From 7fd32e3868f43ffbc6a412cac6b2ec28859efa56 Mon Sep 17 00:00:00 2001 From: Test Developer <dev@toon-protocol.org> Date: Tue, 24 Mar 2026 12:01:11 GMT Subject: [PATCH] fix: ensure token allowance before cooperative close"
+        - text: Check and approve token allowance in the settlement flow before attempting cooperative channel close.
+        - text: "--- packages/sdk/src/settlement/close.ts | 12 ++++++++++-- 1 file changed, 10 insertions(+), 2 deletions(-)"
+        - text: "diff --git a/packages/sdk/src/settlement/close.ts b/packages/sdk/src/settlement/close.ts index abc1234..def5678 100644 --- a/packages/sdk/src/settlement/close.ts +++ b/packages/sdk/src/settlement/close.ts @@ -42,6 +42,14 @@ export async function cooperativeClose( channel: PaymentChannel, finalBalance: bigint, ): Promise<void> { + // Ensure sufficient token allowance before close + const currentAllowance = await channel.token.allowance( + channel.address, + channel.tokenNetwork, + ); + if (currentAllowance < finalBalance) { + await channel.token.approve(channel.tokenNetwork, finalBalance); + } + const closeSignature = await signCooperativeClose( channel, finalBalance, -- 2.43.0"
+  - contentinfo [ref=e67]: Forge — Decentralized Git on Nostr & TOON Protocol

@@ -1,0 +1,165 @@
+- generic [ref=e2]:
+  - banner [ref=e268]:
+    - generic [ref=e269]:
+      - link "⚒ Forge" [ref=e270] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e271]: ws://localhost:19700
+  - main [ref=e272]:
+    - navigation [ref=e273]:
+      - link "Code" [ref=e274] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Issues" [ref=e275] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e276] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - navigation [ref=e277]:
+      - generic [ref=e278]: refs/heads/epic-8
+      - link "toon-protocol" [ref=e279] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - text: /
+      - link "docs" [ref=e280] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs
+      - text: /
+      - link "architecture.md" [ref=e281] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs/architecture.md
+      - link "Commits" [ref=e282] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commits/refs%2Fheads%2Fepic-8
+    - generic [ref=e283]:
+      - generic [ref=e284]:
+        - generic [ref=e285]: architecture.md · 6564 bytes
+        - link "Blame" [ref=e286] [cursor=pointer]:
+          - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blame/refs%2Fheads%2Fepic-8/docs/architecture.md
+      - generic [ref=e287]:
+        - code [ref=e289]:
+          - generic [ref=e290]: "1"
+          - generic [ref=e291]: "2"
+          - generic [ref=e292]: "3"
+          - generic [ref=e293]: "4"
+          - generic [ref=e294]: "5"
+          - generic [ref=e295]: "6"
+          - generic [ref=e296]: "7"
+          - generic [ref=e297]: "8"
+          - generic [ref=e298]: "9"
+          - generic [ref=e299]: "10"
+          - generic [ref=e300]: "11"
+          - generic [ref=e301]: "12"
+          - generic [ref=e302]: "13"
+          - generic [ref=e303]: "14"
+          - generic [ref=e304]: "15"
+          - generic [ref=e305]: "16"
+          - generic [ref=e306]: "17"
+          - generic [ref=e307]: "18"
+          - generic [ref=e308]: "19"
+          - generic [ref=e309]: "20"
+          - generic [ref=e310]: "21"
+          - generic [ref=e311]: "22"
+          - generic [ref=e312]: "23"
+          - generic [ref=e313]: "24"
+          - generic [ref=e314]: "25"
+          - generic [ref=e315]: "26"
+          - generic [ref=e316]: "27"
+          - generic [ref=e317]: "28"
+          - generic [ref=e318]: "29"
+          - generic [ref=e319]: "30"
+          - generic [ref=e320]: "31"
+          - generic [ref=e321]: "32"
+          - generic [ref=e322]: "33"
+          - generic [ref=e323]: "34"
+          - generic [ref=e324]: "35"
+          - generic [ref=e325]: "36"
+          - generic [ref=e326]: "37"
+          - generic [ref=e327]: "38"
+          - generic [ref=e328]: "39"
+          - generic [ref=e329]: "40"
+          - generic [ref=e330]: "41"
+          - generic [ref=e331]: "42"
+          - generic [ref=e332]: "43"
+          - generic [ref=e333]: "44"
+          - generic [ref=e334]: "45"
+          - generic [ref=e335]: "46"
+          - generic [ref=e336]: "47"
+          - generic [ref=e337]: "48"
+          - generic [ref=e338]: "49"
+          - generic [ref=e339]: "50"
+          - generic [ref=e340]: "51"
+          - generic [ref=e341]: "52"
+          - generic [ref=e342]: "53"
+          - generic [ref=e343]: "54"
+          - generic [ref=e344]: "55"
+          - generic [ref=e345]: "56"
+          - generic [ref=e346]: "57"
+          - generic [ref=e347]: "58"
+          - generic [ref=e348]: "59"
+          - generic [ref=e349]: "60"
+          - generic [ref=e350]: "61"
+          - generic [ref=e351]: "62"
+          - generic [ref=e352]: "63"
+          - generic [ref=e353]: "64"
+          - generic [ref=e354]: "65"
+          - generic [ref=e355]: "66"
+          - generic [ref=e356]: "67"
+          - generic [ref=e357]: "68"
+          - generic [ref=e358]: "69"
+          - generic [ref=e359]: "70"
+          - generic [ref=e360]: "71"
+          - generic [ref=e361]: "72"
+          - generic [ref=e362]: "73"
+          - generic [ref=e363]: "74"
+          - generic [ref=e364]: "75"
+          - generic [ref=e365]: "76"
+          - generic [ref=e366]: "77"
+          - generic [ref=e367]: "78"
+          - generic [ref=e368]: "79"
+          - generic [ref=e369]: "80"
+          - generic [ref=e370]: "81"
+          - generic [ref=e371]: "82"
+          - generic [ref=e372]: "83"
+          - generic [ref=e373]: "84"
+          - generic [ref=e374]: "85"
+          - generic [ref=e375]: "86"
+          - generic [ref=e376]: "87"
+          - generic [ref=e377]: "88"
+          - generic [ref=e378]: "89"
+          - generic [ref=e379]: "90"
+          - generic [ref=e380]: "91"
+          - generic [ref=e381]: "92"
+          - generic [ref=e382]: "93"
+          - generic [ref=e383]: "94"
+          - generic [ref=e384]: "95"
+          - generic [ref=e385]: "96"
+          - generic [ref=e386]: "97"
+          - generic [ref=e387]: "98"
+          - generic [ref=e388]: "99"
+          - generic [ref=e389]: "100"
+          - generic [ref=e390]: "101"
+          - generic [ref=e391]: "102"
+          - generic [ref=e392]: "103"
+          - generic [ref=e393]: "104"
+          - generic [ref=e394]: "105"
+          - generic [ref=e395]: "106"
+          - generic [ref=e396]: "107"
+          - generic [ref=e397]: "108"
+          - generic [ref=e398]: "109"
+          - generic [ref=e399]: "110"
+          - generic [ref=e400]: "111"
+          - generic [ref=e401]: "112"
+          - generic [ref=e402]: "113"
+          - generic [ref=e403]: "114"
+          - generic [ref=e404]: "115"
+          - generic [ref=e405]: "116"
+          - generic [ref=e406]: "117"
+          - generic [ref=e407]: "118"
+          - generic [ref=e408]: "119"
+          - generic [ref=e409]: "120"
+          - generic [ref=e410]: "121"
+          - generic [ref=e411]: "122"
+          - generic [ref=e412]: "123"
+          - generic [ref=e413]: "124"
+          - generic [ref=e414]: "125"
+          - generic [ref=e415]: "126"
+          - generic [ref=e416]: "127"
+          - generic [ref=e417]: "128"
+          - generic [ref=e418]: "129"
+          - generic [ref=e419]: "130"
+        - code [ref=e421]: "# Architecture TOON Protocol is a monorepo with packages organized into four layers. Each layer has a single responsibility. ## System Layers ``` ┌─────────────────────────────────────────────────────┐ │ Discovery Layer │ │ @toon-protocol/core │ │ Find peers via Nostr events (kind:10032) │ │ Bootstrap into the network │ ├─────────────────────────────────────────────────────┤ │ Addressing Layer │ │ Hierarchical ILP addresses from peering topology │ │ g.toon → g.toon.{peer} → g.toon.{peer}.{child} │ │ Fee-per-byte advertisement for routing economics │ ├─────────────────────────────────────────────────────┤ │ Payment Layer │ │ ILP Connector (@toon-protocol/connector) │ │ Route micropayments between peers │ │ Each hop deducts its fee and forwards the rest │ ├─────────────────────────────────────────────────────┤ │ Storage Layer │ │ @toon-protocol/relay + @toon-protocol/bls │ │ Accept paid events, store them, serve for free │ └─────────────────────────────────────────────────────┘ ``` **Key distinction:** Identity (Nostr pubkey) is permanent. ILP addresses are ephemeral — derived from peering topology, one per upstream connection. A node with two upstream peers has two ILP addresses. See [Protocol — ILP Address Hierarchy](protocol.md#ilp-address-hierarchy) for details. ## Package Dependency Graph ``` @toon-protocol/town ├── @toon-protocol/sdk │ └── @toon-protocol/core ├── @toon-protocol/relay │ └── @toon-protocol/core └── @toon-protocol/connector (peer dependency) @toon-protocol/bls └── @toon-protocol/core ``` - **`@toon-protocol/core`** — Foundation with no TOON dependencies. Provides bootstrap, discovery, settlement negotiation, [TOON](https://github.com/toon-format/toon) codec, and [NIP-34](https://github.com/nostr-protocol/nips/blob/master/34.md) handling. - **`@toon-protocol/sdk`** — Framework layer. Adds identity derivation, handler registry, verification pipeline, pricing validation, and node composition on top of core. - **`@toon-protocol/relay`** — [Nostr](https://github.com/nostr-protocol/nips) relay server with WebSocket ([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), SQLite event store, and upstream relay propagation. - **`@toon-protocol/town`** — Production relay. Composes SDK + relay + BLS + storage into a single `startTown()` call. - **`@toon-protocol/bls`** — Standalone business logic server. HTTP endpoint that validates ILP packets and stores events. - **`@toon-protocol/faucet`** — Development tool. Distributes test ETH and tokens for local development. ## Data Flow ### Writing (Paid) ``` Client Connector BLS EventStore │ │ │ │ │ ILP Prepare │ │ │ │ (TOON event) │ │ │ │ ──────────────────> │ Route packet │ │ │ │ ──────────────────>│ │ │ │ │ 1. Decode TOON │ │ │ │ 2. Verify signature │ │ │ │ 3. Check payment │ │ │ │ 4. Store event ────────>│ │ │ │ 5. Generate proof │ │ ILP Fulfill │ Return fulfillment│ │ │ <────────────────── │ <──────────────────│ │ ``` Validation order matters — TOON format is checked **before** payment. Malformed events are rejected immediately, even if payment is correct. This prevents paying to store garbage data. ### Reading (Free) ``` Client Relay │ │ │ REQ (filter) │ │ ───────────────> │ │ │ Query EventStore │ EVENT (TOON) │ │ <─────────────── │ │ EOSE │ │ <─────────────── │ ``` Reads use the standard [Nostr](https://github.com/nostr-protocol/nips) WebSocket protocol ([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)). Events are served in [TOON format](https://github.com/toon-format/toon). ## Deployment Modes ### Embedded (Library) Import SDK packages directly. The connector runs in-process — zero network overhead. ```typescript import { createNode, fromMnemonic } from '@toon-protocol/sdk'; const node = createNode({ secretKey, connector, ...config }); await node.start(); ``` Best for: AI agents, custom services, applications that need ILP payment capabilities. ### Standalone (Docker) Run as a microservice alongside an external ILP connector. ```bash docker compose -f docker-compose-genesis.yml up -d ``` | Port | Service | Protocol | |------|---------|----------| | 3100 | BLS — ILP packet validation | HTTP | | 7100 | Nostr relay — event reads | WebSocket | Best for: Relay operators, infrastructure providers. ### One-Call API (Town) Use `startTown()` or the CLI for a complete relay with minimal configuration. ```bash npx @toon-protocol/town --mnemonic \"...\" --connector-url http://localhost:8080 ``` Best for: Quick relay deployment, testing, development."
+  - contentinfo [ref=e422]: Forge — Decentralized Git on Nostr & TOON Protocol

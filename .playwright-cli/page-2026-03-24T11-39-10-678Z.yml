@@ -1,0 +1,393 @@
+- generic [ref=e2]:
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - link "⚒ Forge" [ref=e25] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e26]: ws://localhost:19700
+  - main [ref=e27]:
+    - navigation [ref=e28]:
+      - link "Code" [ref=e29] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Issues" [ref=e30] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e31] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - generic [ref=e32]:
+      - combobox [ref=e34] [cursor=pointer]:
+        - option "epic-8" [selected]
+        - option "main"
+      - generic [ref=e35]:
+        - generic [ref=e36]: Clone
+        - textbox [ref=e37]: https://github.com/toon-protocol/town.git
+    - navigation [ref=e38]:
+      - generic [ref=e39]: refs/heads/epic-8
+      - link "toon-protocol" [ref=e40] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Commits" [ref=e41] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commits/refs%2Fheads%2Fepic-8
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: Jonathan Green
+        - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, seed script, Playwright ..." [ref=e45] [cursor=pointer]':
+          - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+        - generic [ref=e46]:
+          - link "7fd32e3" [ref=e47] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+          - generic [ref=e48]: 7 hours ago
+      - table [ref=e49]:
+        - rowgroup [ref=e50]:
+          - row "_bmad" [ref=e51]:
+            - cell [ref=e52]:
+              - img [ref=e53]
+            - cell "_bmad" [ref=e55]:
+              - link "_bmad" [ref=e56] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad
+          - row "_bmad-output" [ref=e57]:
+            - cell [ref=e58]:
+              - img [ref=e59]
+            - cell "_bmad-output" [ref=e61]:
+              - link "_bmad-output" [ref=e62] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad-output
+          - row ".github" [ref=e63]:
+            - cell [ref=e64]:
+              - img [ref=e65]
+            - cell ".github" [ref=e67]:
+              - link ".github" [ref=e68] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/.github
+          - row "config" [ref=e69]:
+            - cell [ref=e70]:
+              - img [ref=e71]
+            - cell "config" [ref=e73]:
+              - link "config" [ref=e74] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/config
+          - row "docker" [ref=e75]:
+            - cell [ref=e76]:
+              - img [ref=e77]
+            - cell "docker" [ref=e79]:
+              - link "docker" [ref=e80] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docker
+          - row "docs" [ref=e81]:
+            - cell [ref=e82]:
+              - img [ref=e83]
+            - cell "docs" [ref=e85]:
+              - link "docs" [ref=e86] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/docs
+          - row "examples" [ref=e87]:
+            - cell [ref=e88]:
+              - img [ref=e89]
+            - cell "examples" [ref=e91]:
+              - link "examples" [ref=e92] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/examples
+          - row "packages" [ref=e93]:
+            - cell [ref=e94]:
+              - img [ref=e95]
+            - cell "packages" [ref=e97]:
+              - link "packages" [ref=e98] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/packages
+          - row "scripts" [ref=e99]:
+            - cell [ref=e100]:
+              - img [ref=e101]
+            - cell "scripts" [ref=e103]:
+              - link "scripts" [ref=e104] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/tree/refs%2Fheads%2Fepic-8/scripts
+          - row ".dockerignore" [ref=e105]:
+            - cell [ref=e106]:
+              - img [ref=e107]
+            - cell ".dockerignore" [ref=e109]:
+              - link ".dockerignore" [ref=e110] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.dockerignore
+          - row ".env.example" [ref=e111]:
+            - cell [ref=e112]:
+              - img [ref=e113]
+            - cell ".env.example" [ref=e115]:
+              - link ".env.example" [ref=e116] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.env.example
+          - row ".gitignore" [ref=e117]:
+            - cell [ref=e118]:
+              - img [ref=e119]
+            - cell ".gitignore" [ref=e121]:
+              - link ".gitignore" [ref=e122] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.gitignore
+          - row ".npmrc" [ref=e123]:
+            - cell [ref=e124]:
+              - img [ref=e125]
+            - cell ".npmrc" [ref=e127]:
+              - link ".npmrc" [ref=e128] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.npmrc
+          - row ".pnpmauditrc" [ref=e129]:
+            - cell [ref=e130]:
+              - img [ref=e131]
+            - cell ".pnpmauditrc" [ref=e133]:
+              - link ".pnpmauditrc" [ref=e134] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.pnpmauditrc
+          - row ".semgrep.yml" [ref=e135]:
+            - cell [ref=e136]:
+              - img [ref=e137]
+            - cell ".semgrep.yml" [ref=e139]:
+              - link ".semgrep.yml" [ref=e140] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrep.yml
+          - row ".semgrepignore" [ref=e141]:
+            - cell [ref=e142]:
+              - img [ref=e143]
+            - cell ".semgrepignore" [ref=e145]:
+              - link ".semgrepignore" [ref=e146] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrepignore
+          - row "CLAUDE.md" [ref=e147]:
+            - cell [ref=e148]:
+              - img [ref=e149]
+            - cell "CLAUDE.md" [ref=e151]:
+              - link "CLAUDE.md" [ref=e152] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/CLAUDE.md
+          - row "deploy-genesis-node.sh" [ref=e153]:
+            - cell [ref=e154]:
+              - img [ref=e155]
+            - cell "deploy-genesis-node.sh" [ref=e157]:
+              - link "deploy-genesis-node.sh" [ref=e158] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-genesis-node.sh
+          - row "deploy-peers.sh" [ref=e159]:
+            - cell [ref=e160]:
+              - img [ref=e161]
+            - cell "deploy-peers.sh" [ref=e163]:
+              - link "deploy-peers.sh" [ref=e164] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-peers.sh
+          - row "docker-compose-genesis.yml" [ref=e165]:
+            - cell [ref=e166]:
+              - img [ref=e167]
+            - cell "docker-compose-genesis.yml" [ref=e169]:
+              - link "docker-compose-genesis.yml" [ref=e170] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-genesis.yml
+          - row "docker-compose-sdk-e2e.yml" [ref=e171]:
+            - cell [ref=e172]:
+              - img [ref=e173]
+            - cell "docker-compose-sdk-e2e.yml" [ref=e175]:
+              - link "docker-compose-sdk-e2e.yml" [ref=e176] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-sdk-e2e.yml
+          - row "eslint.config.js" [ref=e177]:
+            - cell [ref=e178]:
+              - img [ref=e179]
+            - cell "eslint.config.js" [ref=e181]:
+              - link "eslint.config.js" [ref=e182] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/eslint.config.js
+          - row "flake.nix" [ref=e183]:
+            - cell [ref=e184]:
+              - img [ref=e185]
+            - cell "flake.nix" [ref=e187]:
+              - link "flake.nix" [ref=e188] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/flake.nix
+          - row "fund-peer-wallet.sh" [ref=e189]:
+            - cell [ref=e190]:
+              - img [ref=e191]
+            - cell "fund-peer-wallet.sh" [ref=e193]:
+              - link "fund-peer-wallet.sh" [ref=e194] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/fund-peer-wallet.sh
+          - row "genesis.env" [ref=e195]:
+            - cell [ref=e196]:
+              - img [ref=e197]
+            - cell "genesis.env" [ref=e199]:
+              - link "genesis.env" [ref=e200] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/genesis.env
+          - row "LICENSE" [ref=e201]:
+            - cell [ref=e202]:
+              - img [ref=e203]
+            - cell "LICENSE" [ref=e205]:
+              - link "LICENSE" [ref=e206] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/LICENSE
+          - row "package.json" [ref=e207]:
+            - cell [ref=e208]:
+              - img [ref=e209]
+            - cell "package.json" [ref=e211]:
+              - link "package.json" [ref=e212] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/package.json
+          - row "pnpm-lock.yaml" [ref=e213]:
+            - cell [ref=e214]:
+              - img [ref=e215]
+            - cell "pnpm-lock.yaml" [ref=e217]:
+              - link "pnpm-lock.yaml" [ref=e218] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-lock.yaml
+          - row "pnpm-workspace.yaml" [ref=e219]:
+            - cell [ref=e220]:
+              - img [ref=e221]
+            - cell "pnpm-workspace.yaml" [ref=e223]:
+              - link "pnpm-workspace.yaml" [ref=e224] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-workspace.yaml
+          - row "prettier.config.js" [ref=e225]:
+            - cell [ref=e226]:
+              - img [ref=e227]
+            - cell "prettier.config.js" [ref=e229]:
+              - link "prettier.config.js" [ref=e230] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/prettier.config.js
+          - row "README.md" [ref=e231]:
+            - cell [ref=e232]:
+              - img [ref=e233]
+            - cell "README.md" [ref=e235]:
+              - link "README.md" [ref=e236] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/README.md
+          - row "tsconfig.json" [ref=e237]:
+            - cell [ref=e238]:
+              - img [ref=e239]
+            - cell "tsconfig.json" [ref=e241]:
+              - link "tsconfig.json" [ref=e242] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/tsconfig.json
+          - row "vitest.config.ts" [ref=e243]:
+            - cell [ref=e244]:
+              - img [ref=e245]
+            - cell "vitest.config.ts" [ref=e247]:
+              - link "vitest.config.ts" [ref=e248] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.config.ts
+          - row "vitest.integration.config.ts" [ref=e249]:
+            - cell [ref=e250]:
+              - img [ref=e251]
+            - cell "vitest.integration.config.ts" [ref=e253]:
+              - link "vitest.integration.config.ts" [ref=e254] [cursor=pointer]:
+                - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.integration.config.ts
+    - generic [ref=e255]:
+      - generic [ref=e256]: 📖 README.md
+      - generic [ref=e257]:
+        - text: <div align="center"> <img src="_bmad-output/branding/social-assets/github-hero-readme.jpg" alt="TOON Protocol — Token-Oriented Open Network" width="100%" /> <br /> <p>A network where sending a message and sending money are the same action.</p> <a href="
+        - link "https://discord.gg/whPFHRTwBg\"><img" [ref=e258] [cursor=pointer]:
+          - /url: https://discord.gg/whPFHRTwBg%22%3E%3Cimg
+        - text: src="
+        - link "https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white\"" [ref=e259] [cursor=pointer]:
+          - /url: https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white"
+        - text: ; alt="Discord" /></a> <a href="
+        - link "https://x.com/toonprotocol\"><img" [ref=e260] [cursor=pointer]:
+          - /url: https://x.com/toonprotocol%22%3E%3Cimg
+        - text: src="
+        - link "https://img.shields.io/badge/Follow-%40toonprotocol-000000?logo=x\"" [ref=e261] [cursor=pointer]:
+          - /url: https://img.shields.io/badge/Follow-%2540toonprotocol-000000?logo=x"
+        - text: ; alt="X (Twitter)" /></a> <a href="LICENSE"><img src="
+        - link "https://img.shields.io/badge/License-Apache_2.0-blue\"" [ref=e262] [cursor=pointer]:
+          - /url: https://img.shields.io/badge/License-Apache_2.0-blue"
+        - text: ; alt="License" /></a> </div>
+        - text: "---"
+        - text: "**Human networks are built on time. Agent networks are built on tokens.**"
+        - text: Agents are already crypto-native. They hold wallets, sign transactions, and move value on-chain. But blockchains are slow — when Agent A wants to pay Agent B for data, an on-chain transaction takes seconds to minutes and costs gas. That's fine for settlement, but agents need to communicate _fast_.
+        - text: Agents need a network where **sending a message and sending money are the same action**.
+        - text: TOON Protocol is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
+        - text: "## The Problem"
+        - text: "Autonomous agents face an impossible trilemma:"
+        - text: 1. **Decentralization** — Remove trusted intermediaries 2. **Micropayments** — Enable sub-cent economic coordination 3. **Autonomy** — Operate without human intervention
+        - text: Current solutions force agents to choose two. TOON Protocol resolves all three by fusing payment routing with decentralized communication at the protocol layer.
+        - text: "## How It Works"
+        - text: "### Every Message Carries Value"
+        - text: TOON Protocol embeds micropayments directly into the transport layer. When a node sends a message, tokens travel with it. There is no separate payment step — the message *is* the payment. Nodes that receive messages earn. Nodes that route messages take a fee. The network grows because participation is profitable.
+        - text: "### Peers Route and Earn"
+        - text: Any node can forward messages for other nodes and collect a routing fee. More peers means more paths. More traffic means more revenue.
+        - code [ref=e264]: "Publisher Relay Reader │ │ │ │ PUBLISH │ │ │ kind:1 note + 1000 │ │ │ ────────────────────────►│ │ │ │ stored ✓ │ │ │ │ │ │ SUBSCRIBE (free) │ │ │◄────────────────────────── │ │ │ │ │ │ EVENT: kind:1 note │ │ │ ──────────────────────────►│"
+        - text: "**Relay earned:** 1000 tokens for storing the note. **Reader:** free. Pay to write, free to read."
+        - text: "### Addresses Follow the Topology"
+        - text: Every node gets an ILP address derived from where it sits in the network. The genesis node is
+        - code [ref=e265]: g.toon
+        - text: . When Node A connects, it's assigned
+        - code [ref=e266]: g.toon.a1b2c3d4
+        - text: (from its pubkey). When Node C connects through Node A, it becomes
+        - code [ref=e267]: g.toon.a1b2c3d4.c9d8e7f6
+        - text: . No configuration — addresses are deterministic.
+        - text: A node that peers with multiple upstream nodes gets multiple addresses, one per path. The address tells senders *how to route* to a destination, not *who* it is. Identity is always the Nostr pubkey.
+        - text: "### Routing is Profitable"
+        - text: Each node advertises a fee-per-byte for forwarding traffic. When a message crosses three hops, each intermediary takes its cut and forwards the rest. The SDK calculates the total cost invisibly — senders just call
+        - code [ref=e268]: publishEvent()
+        - text: and pay one amount.
+        - code [ref=e270]: "Sender ──► Node A (keeps 1,000) ──► Node B (keeps 1,500) ──► Destination (keeps 5,000) Total: 7,500"
+        - text: Nodes can also sell human-readable address prefixes (like
+        - code [ref=e271]: g.toon.useast
+        - text: ) to downstream peers — a domain-registrar business model built into the protocol.
+        - text: "### Settlement Happens Later"
+        - text: All messages are tracked off-chain. Nodes accumulate balances with each other. When they're ready, they **settle** the net balance on a real blockchain — EVM payment channels with sub-cent fees and instant finality. Thousands of messages. One on-chain transaction.
+        - text: "### Pricing and Token Denomination"
+        - text: Every relay write costs
+        - code [ref=e272]: basePricePerByte × message_size
+        - text: . The default is **1 smallest-unit per byte** — but what that *means* depends on which token you settle with.
+        - text: "USDC has **6 decimal places**. DAI has **18 decimal places**. That's not just a technical detail — it directly controls how cheaply agents can transact:"
+        - code [ref=e274]: Token decimals = pricing resolution = how small a payment can be
+        - text: "| | USDC (6 decimals) | DAI (18 decimals) | |---|---|---| | **Smallest unit** | 0.000001 USDC | 0.000000000000000001 DAI | | **1 byte at price=1** | $0.000001 | $0.000000000000000001 | | **1 KB message** | $0.001 | $0.000000000000001 | | **1 MB message** | $1.05 | $0.000000000001 | | **1000 agent round-trips (6 KB each)** | $6.00 | $0.000000000006 |"
+        - text: Same price setting. Same protocol. Wildly different cost per byte.
+        - text: "**Why this matters for agents:** An agent swarm doing thousands of rapid-fire requests per minute needs the cheapest possible per-byte cost. With USDC,"
+        - code [ref=e275]: "basePricePerByte: 1"
+        - text: is the floor — you can't go lower than 1 micro-USDC. With DAI, you have 12 more orders of magnitude to play with. Set
+        - code [ref=e276]: "basePricePerByte: 1_000_000_000"
+        - text: (1 gwei of DAI) and each byte still costs a billionth of a cent.
+        - text: "**More decimals = finer pricing resolution = higher throughput before cost matters.**"
+        - text: TOON Protocol is token-agnostic — operators choose their settlement token by deploying the appropriate TokenNetwork contract. USDC is the default for its brand trust and liquidity. DAI is the choice when agents need maximum throughput at minimum cost.
+        - text: "### Three Layers"
+        - text: "| Layer | Responsibility | Details | |-------|---------------|---------| | **Discovery** | Find peers via Nostr events | [Bootstrap →](docs/bootstrap.md) | | **Payment** | Route micropayments via ILP | [Protocol →](docs/protocol.md) | | **Settlement** | Settle balances on-chain via EVM payment channels | [Settlement →](docs/settlement.md) |"
+        - text: "The key insight: **discovery and payment are the same network.** Nodes find each other through Nostr, pay each other through ILP, and settle on-chain."
+        - text: "### Solving the Nostr Business Model"
+        - text: Nostr relays have no sustainable revenue model. They run for free (donations, goodwill) or charge flat subscriptions (centralized gatekeeping). Neither scales. Relay operators burn money or quit.
+        - text: TOON Protocol solves this. Every write is a micropayment — relays earn from traffic, not charity. The more useful a relay, the more it earns. Reading stays free. [
+        - code [ref=e277]: "@toon-protocol/town"
+        - text: "](packages/town) is the reference implementation: a Nostr relay where ILP micropayments fund every write and readers subscribe for free."
+        - text: "## Why TOON Protocol?"
+        - text: "| Solution | What's Missing | |----------|---------------| | **Lightning Network** | Bitcoin-only, high node capital requirements, no message routing | | **x402** | Single-hop HTTP payments — no multi-hop routing, no peer economics, no discovery layer | | **Nostr Relays** | No native payment routing — separate payment rails required | | **HTTP + Stripe** | Centralized, high fees, no micropayments |"
+        - text: TOON Protocol uses **proven protocols** — [ILP](
+        - link "https://interledger.org" [ref=e278] [cursor=pointer]:
+          - /url: https://interledger.org
+        - text: ) for payment routing, [Nostr](
+        - link "https://github.com/nostr-protocol/nips" [ref=e279] [cursor=pointer]:
+          - /url: https://github.com/nostr-protocol/nips
+        - text: ) for discovery, and EVM smart contracts for settlement. Events are encoded in [TOON format](
+        - link "https://github.com/toon-format/toon" [ref=e280] [cursor=pointer]:
+          - /url: https://github.com/toon-format/toon
+        - text: ) — compact, human-readable, and LLM-optimized.
+        - text: "## Use Cases"
+        - text: "**Agent-to-Agent Services** — Agents pay per-byte for exactly what they consume. No API keys, no rate limits, no invoicing. A thousand agents making a million sub-cent requests just works — cost scales linearly with usage, not with infrastructure. Build a service with the ["
+        - code [ref=e281]: "@toon-protocol/sdk"
+        - text: "](packages/sdk) and it's earning from the first packet."
+        - text: "**ILP-Gated Nostr Relays** — Relay operators earn from every write while readers subscribe for free. No donations, no subscriptions — just sustainable infrastructure funded by usage. ["
+        - code [ref=e282]: "@toon-protocol/town"
+        - text: "](packages/town) is the reference implementation: one command to run a relay that pays for itself."
+        - text: "**Routing** — Run a peer node. Every message that passes through earns routing fees. More peers, more paths, more revenue. The network grows because participation is profitable."
+        - text: "**Agent Swarms** — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating, each earning per-byte for their contribution."
+        - text: "## Quick Start"
+        - code [ref=e284]: npm install @toon-protocol/client @toon-protocol/core @toon-protocol/relay nostr-tools
+        - code [ref=e286]: "import { TOONClient } from '@toon-protocol/client'; import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure'; import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/relay'; const secretKey = generateSecretKey(); const pubkey = getPublicKey(secretKey); const client = new TOONClient({ connectorUrl: 'http://localhost:8080', secretKey, ilpInfo: { pubkey, ilpAddress: `g.toon.${pubkey.slice(0, 8)}`, btpEndpoint: 'ws://localhost:3000' }, toonEncoder: encodeEventToToon, toonDecoder: decodeEventFromToon, }); await client.start(); await client.publishEvent(finalizeEvent({ kind: 1, content: 'Hello from TOON!', tags: [], created_at: Math.floor(Date.now() / 1000), }, secretKey)); await client.stop();"
+        - text: The client derives your EVM identity from your Nostr key automatically — one key, one identity.
+        - text: "**Want to go deeper?** See the [SDK Guide](docs/sdk-guide.md) for building custom services, the [Town Guide](docs/town-guide.md) for running relay nodes, or the [Deployment Guide](docs/deployment.md) for Docker and production setup."
+        - text: "## Packages"
+        - text: "| Package | Description | | |---------|-------------|---| | ["
+        - code [ref=e287]: "@toon-protocol/client"
+        - text: "](packages/client) | High-level client for publishing events | [![npm]("
+        - link "https://img.shields.io/npm/v/@toon-protocol/client)](https://www.npmjs.com/package/@toon-protocol/client" [ref=e288] [cursor=pointer]:
+          - /url: https://img.shields.io/npm/v/@toon-protocol/client)%5D(https://www.npmjs.com/package/@toon-protocol/client
+        - text: ) | | [
+        - code [ref=e289]: "@toon-protocol/sdk"
+        - text: "](packages/sdk) | Building blocks for TOON services | [![npm]("
+        - link "https://img.shields.io/npm/v/@toon-protocol/sdk)](https://www.npmjs.com/package/@toon-protocol/sdk" [ref=e290] [cursor=pointer]:
+          - /url: https://img.shields.io/npm/v/@toon-protocol/sdk)%5D(https://www.npmjs.com/package/@toon-protocol/sdk
+        - text: ) | | [
+        - code [ref=e291]: "@toon-protocol/town"
+        - text: "](packages/town) | Reference relay — one command to run | [![npm]("
+        - link "https://img.shields.io/npm/v/@toon-protocol/town)](https://www.npmjs.com/package/@toon-protocol/town" [ref=e292] [cursor=pointer]:
+          - /url: https://img.shields.io/npm/v/@toon-protocol/town)%5D(https://www.npmjs.com/package/@toon-protocol/town
+        - text: ) | | [
+        - code [ref=e293]: "@toon-protocol/core"
+        - text: "](packages/core) | Discovery, peering, and bootstrap | Internal | | ["
+        - code [ref=e294]: "@toon-protocol/relay"
+        - text: "](packages/relay) | WebSocket relay server and event store | Internal | | ["
+        - code [ref=e295]: "@toon-protocol/bls"
+        - text: "](packages/bls) | Business logic server for ILP validation | Internal | | ["
+        - code [ref=e296]: "@toon-protocol/faucet"
+        - text: "](packages/faucet) | Token faucet for local development | Internal |"
+        - text: "## Documentation"
+        - text: "| Guide | Description | |-------|-------------| | [Architecture](docs/architecture.md) | System layers, data flow, deployment modes | | [Protocol](docs/protocol.md) | Event kinds, [TOON format]("
+        - link "https://github.com/toon-format/toon" [ref=e297] [cursor=pointer]:
+          - /url: https://github.com/toon-format/toon
+        - text: ), ILP mechanics, address hierarchy, economics | | [Deployment](docs/deployment.md) | Docker, local stack, deploy scripts | | [Settlement](docs/settlement.md) | Chain negotiation, payment channels | | [Bootstrap](docs/bootstrap.md) | Network discovery and peering | | [SDK Guide](docs/sdk-guide.md) | Building services with
+        - code [ref=e298]: "@toon-protocol/sdk"
+        - text: "| | [Town Guide](docs/town-guide.md) | Running relays with"
+        - code [ref=e299]: "@toon-protocol/town"
+        - text: "|"
+        - text: "## Related"
+        - text: "- [Nostr Protocol]("
+        - link "https://github.com/nostr-protocol/nips" [ref=e300] [cursor=pointer]:
+          - /url: https://github.com/nostr-protocol/nips
+        - text: ) — NIPs 01, 34, 44 - [Interledger](
+        - link "https://interledger.org/developers/rfcs/" [ref=e301] [cursor=pointer]:
+          - /url: https://interledger.org/developers/rfcs/
+        - text: ) — RFCs 0027, 0032, 0035 - [TOON Format](
+        - link "https://github.com/toon-format/toon" [ref=e302] [cursor=pointer]:
+          - /url: https://github.com/toon-format/toon
+        - text: ) — Compact, human-readable JSON encoding
+        - text: "## License"
+        - text: Apache 2.0 — see [LICENSE](LICENSE) for details.
+  - contentinfo [ref=e303]: Forge — Decentralized Git on Nostr & TOON Protocol

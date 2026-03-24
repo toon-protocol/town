@@ -1,0 +1,77 @@
+- generic [ref=e2]:
+  - banner [ref=e488]:
+    - generic [ref=e489]:
+      - link "⚒ Forge" [ref=e490] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e491]: ws://localhost:19700
+  - main [ref=e492]:
+    - navigation [ref=e493]:
+      - link "Code" [ref=e494] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/
+      - link "Issues" [ref=e495] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues
+      - link "Pull Requests" [ref=e496] [cursor=pointer]:
+        - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/pulls
+    - generic [ref=e497]: ℹ Forge-UI is read-only. To create issues or submit patches, use a TOON agent with the NIP-34 skill.
+    - generic [ref=e498]:
+      - generic [ref=e499]:
+        - generic [ref=e500]:
+          - generic [ref=e501]: open
+          - link "Add DVM compute marketplace pricing docs" [ref=e502] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/f29a5cf4122c8ba6cdaa2645802882219f7bef7b409bea215afa6f217ef4cfd3
+          - generic [ref=e503]: docs
+          - generic [ref=e504]: dvm
+        - generic [ref=e505]:
+          - generic [ref=e506]: npub166l7zqx3...7xqy
+          - generic [ref=e507]: 11 hours ago
+      - generic [ref=e508]:
+        - generic [ref=e509]:
+          - generic [ref=e510]: closed
+          - link "Payment channel settlement fails on Arbitrum Sepolia" [ref=e511] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/4d0da12527a00f34790cf9efb2431a8dde7bec08708d42fe20f0ae2dfead4182
+          - generic [ref=e512]: bug
+          - generic [ref=e513]: settlement
+        - generic [ref=e514]:
+          - generic [ref=e515]: npub166l7zqx3...7xqy
+          - generic [ref=e516]: 13 hours ago
+      - generic [ref=e517]:
+        - generic [ref=e518]:
+          - generic [ref=e519]: open
+          - link "WebSocket relay should support NIP-42 authentication" [ref=e520] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/1d038d242314ff6fa14d0a5490a402ae99fb1a937d6a631a498bd1313f631184
+          - generic [ref=e521]: enhancement
+          - generic [ref=e522]: relay
+        - generic [ref=e523]:
+          - generic [ref=e524]: npub166l7zqx3...7xqy
+          - generic [ref=e525]: 17 hours ago
+      - generic [ref=e526]:
+        - generic [ref=e527]:
+          - generic [ref=e528]: open
+          - link "WebSocket relay should support NIP-42 authentication" [ref=e529] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/7d65652c3822b7906a12b4a5c67f6ca380258307407d54684d716b815825b8d1
+          - generic [ref=e530]: enhancement
+          - generic [ref=e531]: relay
+        - generic [ref=e532]:
+          - generic [ref=e533]: npub166l7zqx3...7xqy
+          - generic [ref=e534]: 19 hours ago
+      - generic [ref=e535]:
+        - generic [ref=e536]:
+          - generic [ref=e537]: closed
+          - link "Payment channel settlement fails on Arbitrum Sepolia" [ref=e538] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/1a7dded4f75fb565fb6c91c9167058cd66c7da320f92889c52354ec934fd7834
+          - generic [ref=e539]: bug
+          - generic [ref=e540]: settlement
+        - generic [ref=e541]:
+          - generic [ref=e542]: npub166l7zqx3...7xqy
+          - generic [ref=e543]: 19 hours ago
+      - generic [ref=e544]:
+        - generic [ref=e545]:
+          - generic [ref=e546]: open
+          - link "Add DVM compute marketplace pricing docs" [ref=e547] [cursor=pointer]:
+            - /url: /npub166l7zqx3vqxqmrmkj5qkwm78fsuqj5qt6ycu3f2flzx0v9kzru6sfe7xqy/toon-protocol/issues/745383ac48c11e48aefe54cf287ca5408442cb75cab5ab888d91598a7980985d
+          - generic [ref=e548]: docs
+          - generic [ref=e549]: dvm
+        - generic [ref=e550]:
+          - generic [ref=e551]: npub166l7zqx3...7xqy
+          - generic [ref=e552]: 23 hours ago
+  - contentinfo [ref=e553]: Forge — Decentralized Git on Nostr & TOON Protocol

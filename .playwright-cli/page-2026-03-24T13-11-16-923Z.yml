@@ -1,0 +1,774 @@
+- generic [ref=e2]:
+  - banner [ref=e30]:
+    - generic [ref=e31]:
+      - link "⚒ Forge" [ref=e32] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e33]: ws://localhost:19700
+  - main [ref=e34]:
+    - navigation [ref=e35]:
+      - link "Code" [ref=e36] [cursor=pointer]:
+        - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Issues" [ref=e37] [cursor=pointer]:
+        - /url: /toon-protocol/issues
+      - link "Pull Requests" [ref=e38] [cursor=pointer]:
+        - /url: /toon-protocol/pulls
+    - generic [ref=e39]:
+      - combobox [ref=e41] [cursor=pointer]:
+        - option "epic-8" [selected]
+        - option "main"
+      - generic [ref=e42]:
+        - generic [ref=e43]: Nostr
+        - textbox [ref=e44]: ws://localhost:19700
+        - button "Copy URL" [ref=e45] [cursor=pointer]:
+          - img [ref=e46]
+    - navigation [ref=e48]:
+      - generic [ref=e49]: refs/heads/epic-8
+      - link "toon-protocol" [ref=e50] [cursor=pointer]:
+        - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/
+      - link "Commits" [ref=e51] [cursor=pointer]:
+        - /url: /toon-protocol/commits/refs%2Fheads%2Fepic-8
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: Jonathan Green
+        - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, seed script, Playwright ..." [ref=e55] [cursor=pointer]':
+          - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+        - generic [ref=e56]:
+          - link "7fd32e3" [ref=e57] [cursor=pointer]:
+            - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+          - generic [ref=e58]: 8 hours ago
+      - table [ref=e59]:
+        - rowgroup [ref=e60]:
+          - 'row "_bmad feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e61]':
+            - cell [ref=e62]:
+              - img [ref=e63]
+            - cell "_bmad" [ref=e65]:
+              - link "_bmad" [ref=e66] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e67]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e68] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e69]
+          - 'row "_bmad-output feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e70]':
+            - cell [ref=e71]:
+              - img [ref=e72]
+            - cell "_bmad-output" [ref=e74]:
+              - link "_bmad-output" [ref=e75] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/_bmad-output
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e76]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e77] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e78]
+          - 'row ".github feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e79]':
+            - cell [ref=e80]:
+              - img [ref=e81]
+            - cell ".github" [ref=e83]:
+              - link ".github" [ref=e84] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/.github
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e85]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e86] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e87]
+          - 'row "config feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e88]':
+            - cell [ref=e89]:
+              - img [ref=e90]
+            - cell "config" [ref=e92]:
+              - link "config" [ref=e93] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/config
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e94]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e95] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e96]
+          - 'row "docker feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e97]':
+            - cell [ref=e98]:
+              - img [ref=e99]
+            - cell "docker" [ref=e101]:
+              - link "docker" [ref=e102] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/docker
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e103]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e104] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e105]
+          - 'row "docs feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e106]':
+            - cell [ref=e107]:
+              - img [ref=e108]
+            - cell "docs" [ref=e110]:
+              - link "docs" [ref=e111] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/docs
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e112]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e113] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e114]
+          - 'row "examples feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e115]':
+            - cell [ref=e116]:
+              - img [ref=e117]
+            - cell "examples" [ref=e119]:
+              - link "examples" [ref=e120] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/examples
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e121]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e122] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e123]
+          - 'row "packages feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e124]':
+            - cell [ref=e125]:
+              - img [ref=e126]
+            - cell "packages" [ref=e128]:
+              - link "packages" [ref=e129] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/packages
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e130]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e131] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e132]
+          - 'row "scripts feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e133]':
+            - cell [ref=e134]:
+              - img [ref=e135]
+            - cell "scripts" [ref=e137]:
+              - link "scripts" [ref=e138] [cursor=pointer]:
+                - /url: /toon-protocol/tree/refs%2Fheads%2Fepic-8/scripts
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e139]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e140] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e141]
+          - 'row ".dockerignore feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e142]':
+            - cell [ref=e143]:
+              - img [ref=e144]
+            - cell ".dockerignore" [ref=e146]:
+              - link ".dockerignore" [ref=e147] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.dockerignore
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e148]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e149] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e150]
+          - 'row ".env.example feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e151]':
+            - cell [ref=e152]:
+              - img [ref=e153]
+            - cell ".env.example" [ref=e155]:
+              - link ".env.example" [ref=e156] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.env.example
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e157]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e158] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e159]
+          - 'row ".gitignore feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e160]':
+            - cell [ref=e161]:
+              - img [ref=e162]
+            - cell ".gitignore" [ref=e164]:
+              - link ".gitignore" [ref=e165] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.gitignore
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e166]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e167] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e168]
+          - 'row ".npmrc feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e169]':
+            - cell [ref=e170]:
+              - img [ref=e171]
+            - cell ".npmrc" [ref=e173]:
+              - link ".npmrc" [ref=e174] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.npmrc
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e175]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e176] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e177]
+          - 'row ".pnpmauditrc feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e178]':
+            - cell [ref=e179]:
+              - img [ref=e180]
+            - cell ".pnpmauditrc" [ref=e182]:
+              - link ".pnpmauditrc" [ref=e183] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.pnpmauditrc
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e184]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e185] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e186]
+          - 'row ".semgrep.yml feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e187]':
+            - cell [ref=e188]:
+              - img [ref=e189]
+            - cell ".semgrep.yml" [ref=e191]:
+              - link ".semgrep.yml" [ref=e192] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrep.yml
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e193]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e194] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e195]
+          - 'row ".semgrepignore feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e196]':
+            - cell [ref=e197]:
+              - img [ref=e198]
+            - cell ".semgrepignore" [ref=e200]:
+              - link ".semgrepignore" [ref=e201] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/.semgrepignore
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e202]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e203] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e204]
+          - 'row "CLAUDE.md feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e205]':
+            - cell [ref=e206]:
+              - img [ref=e207]
+            - cell "CLAUDE.md" [ref=e209]:
+              - link "CLAUDE.md" [ref=e210] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/CLAUDE.md
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e211]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e212] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e213]
+          - 'row "deploy-genesis-node.sh feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e214]':
+            - cell [ref=e215]:
+              - img [ref=e216]
+            - cell "deploy-genesis-node.sh" [ref=e218]:
+              - link "deploy-genesis-node.sh" [ref=e219] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-genesis-node.sh
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e220]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e221] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e222]
+          - 'row "deploy-peers.sh feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e223]':
+            - cell [ref=e224]:
+              - img [ref=e225]
+            - cell "deploy-peers.sh" [ref=e227]:
+              - link "deploy-peers.sh" [ref=e228] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/deploy-peers.sh
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e229]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e230] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e231]
+          - 'row "docker-compose-genesis.yml feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e232]':
+            - cell [ref=e233]:
+              - img [ref=e234]
+            - cell "docker-compose-genesis.yml" [ref=e236]:
+              - link "docker-compose-genesis.yml" [ref=e237] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-genesis.yml
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e238]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e239] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e240]
+          - 'row "docker-compose-sdk-e2e.yml feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e241]':
+            - cell [ref=e242]:
+              - img [ref=e243]
+            - cell "docker-compose-sdk-e2e.yml" [ref=e245]:
+              - link "docker-compose-sdk-e2e.yml" [ref=e246] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/docker-compose-sdk-e2e.yml
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e247]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e248] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e249]
+          - 'row "eslint.config.js feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e250]':
+            - cell [ref=e251]:
+              - img [ref=e252]
+            - cell "eslint.config.js" [ref=e254]:
+              - link "eslint.config.js" [ref=e255] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/eslint.config.js
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e256]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e257] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e258]
+          - 'row "flake.nix feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e259]':
+            - cell [ref=e260]:
+              - img [ref=e261]
+            - cell "flake.nix" [ref=e263]:
+              - link "flake.nix" [ref=e264] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/flake.nix
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e265]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e266] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e267]
+          - 'row "fund-peer-wallet.sh feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e268]':
+            - cell [ref=e269]:
+              - img [ref=e270]
+            - cell "fund-peer-wallet.sh" [ref=e272]:
+              - link "fund-peer-wallet.sh" [ref=e273] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/fund-peer-wallet.sh
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e274]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e275] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e276]
+          - 'row "genesis.env feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e277]':
+            - cell [ref=e278]:
+              - img [ref=e279]
+            - cell "genesis.env" [ref=e281]:
+              - link "genesis.env" [ref=e282] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/genesis.env
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e283]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e284] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e285]
+          - 'row "LICENSE feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e286]':
+            - cell [ref=e287]:
+              - img [ref=e288]
+            - cell "LICENSE" [ref=e290]:
+              - link "LICENSE" [ref=e291] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/LICENSE
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e292]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e293] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e294]
+          - 'row "package.json feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e295]':
+            - cell [ref=e296]:
+              - img [ref=e297]
+            - cell "package.json" [ref=e299]:
+              - link "package.json" [ref=e300] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/package.json
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e301]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e302] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e303]
+          - 'row "pnpm-lock.yaml feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e304]':
+            - cell [ref=e305]:
+              - img [ref=e306]
+            - cell "pnpm-lock.yaml" [ref=e308]:
+              - link "pnpm-lock.yaml" [ref=e309] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-lock.yaml
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e310]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e311] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e312]
+          - 'row "pnpm-workspace.yaml feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e313]':
+            - cell [ref=e314]:
+              - img [ref=e315]
+            - cell "pnpm-workspace.yaml" [ref=e317]:
+              - link "pnpm-workspace.yaml" [ref=e318] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/pnpm-workspace.yaml
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e319]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e320] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e321]
+          - 'row "prettier.config.js feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e322]':
+            - cell [ref=e323]:
+              - img [ref=e324]
+            - cell "prettier.config.js" [ref=e326]:
+              - link "prettier.config.js" [ref=e327] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/prettier.config.js
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e328]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e329] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e330]
+          - 'row "README.md feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e331]':
+            - cell [ref=e332]:
+              - img [ref=e333]
+            - cell "README.md" [ref=e335]:
+              - link "README.md" [ref=e336] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/README.md
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e337]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e338] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e339]
+          - 'row "tsconfig.json feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e340]':
+            - cell [ref=e341]:
+              - img [ref=e342]
+            - cell "tsconfig.json" [ref=e344]:
+              - link "tsconfig.json" [ref=e345] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/tsconfig.json
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e346]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e347] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e348]
+          - 'row "vitest.config.ts feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e349]':
+            - cell [ref=e350]:
+              - img [ref=e351]
+            - cell "vitest.config.ts" [ref=e353]:
+              - link "vitest.config.ts" [ref=e354] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.config.ts
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e355]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e356] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e357]
+          - 'row "vitest.integration.config.ts feat(8-6): Forge-UI E2E validation — bug fixes, se... 8 hours ago" [ref=e358]':
+            - cell [ref=e359]:
+              - img [ref=e360]
+            - cell "vitest.integration.config.ts" [ref=e362]:
+              - link "vitest.integration.config.ts" [ref=e363] [cursor=pointer]:
+                - /url: /toon-protocol/blob/refs%2Fheads%2Fepic-8/vitest.integration.config.ts
+            - 'cell "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e364]':
+              - 'link "feat(8-6): Forge-UI E2E validation — bug fixes, se..." [ref=e365] [cursor=pointer]':
+                - /url: /toon-protocol/commit/7fd32e3868f43ffbc6a412cac6b2ec28859efa56
+            - cell "8 hours ago" [ref=e366]
+    - generic [ref=e367]:
+      - generic [ref=e368]: 📖 README.md
+      - generic [ref=e369]:
+        - generic [ref=e370]:
+          - img "TOON Protocol — Token-Oriented Open Network" [ref=e371]
+          - paragraph [ref=e372]: A network where sending a message and sending money are the same action.
+          - link "Discord" [ref=e373] [cursor=pointer]:
+            - /url: https://discord.gg/whPFHRTwBg
+            - img "Discord" [ref=e374]
+          - link "X (Twitter)" [ref=e375] [cursor=pointer]:
+            - /url: https://x.com/toonprotocol
+            - img "X (Twitter)" [ref=e376]
+          - link "License" [ref=e377] [cursor=pointer]:
+            - /url: LICENSE
+            - img "License" [ref=e378]
+        - separator [ref=e379]
+        - paragraph [ref=e380]:
+          - strong [ref=e381]: Human networks are built on time. Agent networks are built on tokens.
+        - paragraph [ref=e382]:
+          - text: Agents are already crypto-native. They hold wallets, sign transactions, and move value on-chain. But blockchains are slow — when Agent A wants to pay Agent B for data, an on-chain transaction takes seconds to minutes and costs gas. That's fine for settlement, but agents need to communicate
+          - emphasis [ref=e383]: fast
+          - text: .
+        - paragraph [ref=e384]:
+          - text: Agents need a network where
+          - strong [ref=e385]: sending a message and sending money are the same action
+          - text: .
+        - paragraph [ref=e386]: TOON Protocol is that network. Every message is an envelope with tokens inside. Agents pay to send. Agents earn by receiving. The network grows because routing messages is profitable. Settlement happens later, in bulk, on-chain.
+        - heading "The Problem" [level=2] [ref=e387]
+        - paragraph [ref=e388]: "Autonomous agents face an impossible trilemma:"
+        - list [ref=e389]:
+          - listitem [ref=e390]:
+            - strong [ref=e391]: Decentralization
+            - text: — Remove trusted intermediaries
+          - listitem [ref=e392]:
+            - strong [ref=e393]: Micropayments
+            - text: — Enable sub-cent economic coordination
+          - listitem [ref=e394]:
+            - strong [ref=e395]: Autonomy
+            - text: — Operate without human intervention
+        - paragraph [ref=e396]: Current solutions force agents to choose two. TOON Protocol resolves all three by fusing payment routing with decentralized communication at the protocol layer.
+        - heading "How It Works" [level=2] [ref=e397]
+        - heading "Every Message Carries Value" [level=3] [ref=e398]
+        - paragraph [ref=e399]:
+          - text: TOON Protocol embeds micropayments directly into the transport layer. When a node sends a message, tokens travel with it. There is no separate payment step — the message
+          - emphasis [ref=e400]: is
+          - text: the payment. Nodes that receive messages earn. Nodes that route messages take a fee. The network grows because participation is profitable.
+        - heading "Peers Route and Earn" [level=3] [ref=e401]
+        - paragraph [ref=e402]: Any node can forward messages for other nodes and collect a routing fee. More peers means more paths. More traffic means more revenue.
+        - code [ref=e404]: "Publisher Relay Reader │ │ │ │ PUBLISH │ │ │ kind:1 note + 1000 │ │ │ ────────────────────────►│ │ │ │ stored ✓ │ │ │ │ │ │ SUBSCRIBE (free) │ │ │◄────────────────────────── │ │ │ │ │ │ EVENT: kind:1 note │ │ │ ──────────────────────────►│"
+        - paragraph [ref=e405]:
+          - strong [ref=e406]: "Relay earned:"
+          - text: 1000 tokens for storing the note.
+          - strong [ref=e407]: "Reader:"
+          - text: free. Pay to write, free to read.
+        - heading "Addresses Follow the Topology" [level=3] [ref=e408]
+        - paragraph [ref=e409]:
+          - text: Every node gets an ILP address derived from where it sits in the network. The genesis node is
+          - code [ref=e410]: g.toon
+          - text: . When Node A connects, it's assigned
+          - code [ref=e411]: g.toon.a1b2c3d4
+          - text: (from its pubkey). When Node C connects through Node A, it becomes
+          - code [ref=e412]: g.toon.a1b2c3d4.c9d8e7f6
+          - text: . No configuration — addresses are deterministic.
+        - paragraph [ref=e413]:
+          - text: A node that peers with multiple upstream nodes gets multiple addresses, one per path. The address tells senders
+          - emphasis [ref=e414]: how to route
+          - text: to a destination, not
+          - emphasis [ref=e415]: who
+          - text: it is. Identity is always the Nostr pubkey.
+        - heading "Routing is Profitable" [level=3] [ref=e416]
+        - paragraph [ref=e417]:
+          - text: Each node advertises a fee-per-byte for forwarding traffic. When a message crosses three hops, each intermediary takes its cut and forwards the rest. The SDK calculates the total cost invisibly — senders just call
+          - code [ref=e418]: publishEvent()
+          - text: and pay one amount.
+        - code [ref=e420]: "Sender ──► Node A (keeps 1,000) ──► Node B (keeps 1,500) ──► Destination (keeps 5,000) Total: 7,500"
+        - paragraph [ref=e421]:
+          - text: Nodes can also sell human-readable address prefixes (like
+          - code [ref=e422]: g.toon.useast
+          - text: ) to downstream peers — a domain-registrar business model built into the protocol.
+        - heading "Settlement Happens Later" [level=3] [ref=e423]
+        - paragraph [ref=e424]:
+          - text: All messages are tracked off-chain. Nodes accumulate balances with each other. When they're ready, they
+          - strong [ref=e425]: settle
+          - text: the net balance on a real blockchain — EVM payment channels with sub-cent fees and instant finality. Thousands of messages. One on-chain transaction.
+        - heading "Pricing and Token Denomination" [level=3] [ref=e426]
+        - paragraph [ref=e427]:
+          - text: Every relay write costs
+          - code [ref=e428]: basePricePerByte × message_size
+          - text: . The default is
+          - strong [ref=e429]: 1 smallest-unit per byte
+          - text: — but what that
+          - emphasis [ref=e430]: means
+          - text: depends on which token you settle with.
+        - paragraph [ref=e431]:
+          - text: USDC has
+          - strong [ref=e432]: 6 decimal places
+          - text: . DAI has
+          - strong [ref=e433]: 18 decimal places
+          - text: ". That's not just a technical detail — it directly controls how cheaply agents can transact:"
+        - code [ref=e435]: Token decimals = pricing resolution = how small a payment can be
+        - table [ref=e436]:
+          - rowgroup [ref=e437]:
+            - row "USDC (6 decimals) DAI (18 decimals)" [ref=e438]:
+              - columnheader [ref=e439]
+              - columnheader "USDC (6 decimals)" [ref=e440]
+              - columnheader "DAI (18 decimals)" [ref=e441]
+          - rowgroup [ref=e442]:
+            - row "Smallest unit 0.000001 USDC 0.000000000000000001 DAI" [ref=e443]:
+              - cell "Smallest unit" [ref=e444]:
+                - strong [ref=e445]: Smallest unit
+              - cell "0.000001 USDC" [ref=e446]
+              - cell "0.000000000000000001 DAI" [ref=e447]
+            - row "1 byte at price=1 $0.000001 $0.000000000000000001" [ref=e448]:
+              - cell "1 byte at price=1" [ref=e449]:
+                - strong [ref=e450]: 1 byte at price=1
+              - cell "$0.000001" [ref=e451]
+              - cell "$0.000000000000000001" [ref=e452]
+            - row "1 KB message $0.001 $0.000000000000001" [ref=e453]:
+              - cell "1 KB message" [ref=e454]:
+                - strong [ref=e455]: 1 KB message
+              - cell "$0.001" [ref=e456]
+              - cell "$0.000000000000001" [ref=e457]
+            - row "1 MB message $1.05 $0.000000000001" [ref=e458]:
+              - cell "1 MB message" [ref=e459]:
+                - strong [ref=e460]: 1 MB message
+              - cell "$1.05" [ref=e461]
+              - cell "$0.000000000001" [ref=e462]
+            - row "1000 agent round-trips (6 KB each) $6.00 $0.000000000006" [ref=e463]:
+              - cell "1000 agent round-trips (6 KB each)" [ref=e464]:
+                - strong [ref=e465]: 1000 agent round-trips (6 KB each)
+              - cell "$6.00" [ref=e466]
+              - cell "$0.000000000006" [ref=e467]
+        - paragraph [ref=e468]: Same price setting. Same protocol. Wildly different cost per byte.
+        - paragraph [ref=e469]:
+          - strong [ref=e470]: "Why this matters for agents:"
+          - text: An agent swarm doing thousands of rapid-fire requests per minute needs the cheapest possible per-byte cost. With USDC,
+          - code [ref=e471]: "basePricePerByte: 1"
+          - text: is the floor — you can't go lower than 1 micro-USDC. With DAI, you have 12 more orders of magnitude to play with. Set
+          - code [ref=e472]: "basePricePerByte: 1_000_000_000"
+          - text: (1 gwei of DAI) and each byte still costs a billionth of a cent.
+        - paragraph [ref=e473]:
+          - strong [ref=e474]: More decimals = finer pricing resolution = higher throughput before cost matters.
+        - paragraph [ref=e475]: TOON Protocol is token-agnostic — operators choose their settlement token by deploying the appropriate TokenNetwork contract. USDC is the default for its brand trust and liquidity. DAI is the choice when agents need maximum throughput at minimum cost.
+        - heading "Three Layers" [level=3] [ref=e476]
+        - table [ref=e477]:
+          - rowgroup [ref=e478]:
+            - row "Layer Responsibility Details" [ref=e479]:
+              - columnheader "Layer" [ref=e480]
+              - columnheader "Responsibility" [ref=e481]
+              - columnheader "Details" [ref=e482]
+          - rowgroup [ref=e483]:
+            - row "Discovery Find peers via Nostr events Bootstrap →" [ref=e484]:
+              - cell "Discovery" [ref=e485]:
+                - strong [ref=e486]: Discovery
+              - cell "Find peers via Nostr events" [ref=e487]
+              - cell "Bootstrap →" [ref=e488]:
+                - link "Bootstrap →" [ref=e489] [cursor=pointer]:
+                  - /url: docs/bootstrap.md
+            - row "Payment Route micropayments via ILP Protocol →" [ref=e490]:
+              - cell "Payment" [ref=e491]:
+                - strong [ref=e492]: Payment
+              - cell "Route micropayments via ILP" [ref=e493]
+              - cell "Protocol →" [ref=e494]:
+                - link "Protocol →" [ref=e495] [cursor=pointer]:
+                  - /url: docs/protocol.md
+            - row "Settlement Settle balances on-chain via EVM payment channels Settlement →" [ref=e496]:
+              - cell "Settlement" [ref=e497]:
+                - strong [ref=e498]: Settlement
+              - cell "Settle balances on-chain via EVM payment channels" [ref=e499]
+              - cell "Settlement →" [ref=e500]:
+                - link "Settlement →" [ref=e501] [cursor=pointer]:
+                  - /url: docs/settlement.md
+        - paragraph [ref=e502]:
+          - text: "The key insight:"
+          - strong [ref=e503]: discovery and payment are the same network.
+          - text: Nodes find each other through Nostr, pay each other through ILP, and settle on-chain.
+        - heading "Solving the Nostr Business Model" [level=3] [ref=e504]
+        - paragraph [ref=e505]: Nostr relays have no sustainable revenue model. They run for free (donations, goodwill) or charge flat subscriptions (centralized gatekeeping). Neither scales. Relay operators burn money or quit.
+        - paragraph [ref=e506]:
+          - text: TOON Protocol solves this. Every write is a micropayment — relays earn from traffic, not charity. The more useful a relay, the more it earns. Reading stays free.
+          - link "@toon-protocol/town" [ref=e507] [cursor=pointer]:
+            - /url: packages/town
+            - code [ref=e508]: "@toon-protocol/town"
+          - text: "is the reference implementation: a Nostr relay where ILP micropayments fund every write and readers subscribe for free."
+        - heading "Why TOON Protocol?" [level=2] [ref=e509]
+        - table [ref=e510]:
+          - rowgroup [ref=e511]:
+            - row "Solution What's Missing" [ref=e512]:
+              - columnheader "Solution" [ref=e513]
+              - columnheader "What's Missing" [ref=e514]
+          - rowgroup [ref=e515]:
+            - row "Lightning Network Bitcoin-only, high node capital requirements, no message routing" [ref=e516]:
+              - cell "Lightning Network" [ref=e517]:
+                - strong [ref=e518]: Lightning Network
+              - cell "Bitcoin-only, high node capital requirements, no message routing" [ref=e519]
+            - row "x402 Single-hop HTTP payments — no multi-hop routing, no peer economics, no discovery layer" [ref=e520]:
+              - cell "x402" [ref=e521]:
+                - strong [ref=e522]: x402
+              - cell "Single-hop HTTP payments — no multi-hop routing, no peer economics, no discovery layer" [ref=e523]
+            - row "Nostr Relays No native payment routing — separate payment rails required" [ref=e524]:
+              - cell "Nostr Relays" [ref=e525]:
+                - strong [ref=e526]: Nostr Relays
+              - cell "No native payment routing — separate payment rails required" [ref=e527]
+            - row "HTTP + Stripe Centralized, high fees, no micropayments" [ref=e528]:
+              - cell "HTTP + Stripe" [ref=e529]:
+                - strong [ref=e530]: HTTP + Stripe
+              - cell "Centralized, high fees, no micropayments" [ref=e531]
+        - paragraph [ref=e532]:
+          - text: TOON Protocol uses
+          - strong [ref=e533]: proven protocols
+          - text: —
+          - link "ILP" [ref=e534] [cursor=pointer]:
+            - /url: https://interledger.org
+          - text: for payment routing,
+          - link "Nostr" [ref=e535] [cursor=pointer]:
+            - /url: https://github.com/nostr-protocol/nips
+          - text: for discovery, and EVM smart contracts for settlement. Events are encoded in
+          - link "TOON format" [ref=e536] [cursor=pointer]:
+            - /url: https://github.com/toon-format/toon
+          - text: — compact, human-readable, and LLM-optimized.
+        - heading "Use Cases" [level=2] [ref=e537]
+        - paragraph [ref=e538]:
+          - strong [ref=e539]: Agent-to-Agent Services
+          - text: — Agents pay per-byte for exactly what they consume. No API keys, no rate limits, no invoicing. A thousand agents making a million sub-cent requests just works — cost scales linearly with usage, not with infrastructure. Build a service with the
+          - link "@toon-protocol/sdk" [ref=e540] [cursor=pointer]:
+            - /url: packages/sdk
+            - code [ref=e541]: "@toon-protocol/sdk"
+          - text: and it's earning from the first packet.
+        - paragraph [ref=e542]:
+          - strong [ref=e543]: ILP-Gated Nostr Relays
+          - text: — Relay operators earn from every write while readers subscribe for free. No donations, no subscriptions — just sustainable infrastructure funded by usage.
+          - link "@toon-protocol/town" [ref=e544] [cursor=pointer]:
+            - /url: packages/town
+            - code [ref=e545]: "@toon-protocol/town"
+          - text: "is the reference implementation: one command to run a relay that pays for itself."
+        - paragraph [ref=e546]:
+          - strong [ref=e547]: Routing
+          - text: — Run a peer node. Every message that passes through earns routing fees. More peers, more paths, more revenue. The network grows because participation is profitable.
+        - paragraph [ref=e548]:
+          - strong [ref=e549]: Agent Swarms
+          - text: — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating, each earning per-byte for their contribution.
+        - heading "Quick Start" [level=2] [ref=e550]
+        - code [ref=e552]: npm install @toon-protocol/client @toon-protocol/core @toon-protocol/relay nostr-tools
+        - code [ref=e554]: "import { TOONClient } from '@toon-protocol/client'; import { generateSecretKey, getPublicKey, finalizeEvent } from 'nostr-tools/pure'; import { encodeEventToToon, decodeEventFromToon } from '@toon-protocol/relay'; const secretKey = generateSecretKey(); const pubkey = getPublicKey(secretKey); const client = new TOONClient({ connectorUrl: 'http://localhost:8080', secretKey, ilpInfo: { pubkey, ilpAddress: `g.toon.${pubkey.slice(0, 8)}`, btpEndpoint: 'ws://localhost:3000' }, toonEncoder: encodeEventToToon, toonDecoder: decodeEventFromToon, }); await client.start(); await client.publishEvent(finalizeEvent({ kind: 1, content: 'Hello from TOON!', tags: [], created_at: Math.floor(Date.now() / 1000), }, secretKey)); await client.stop();"
+        - paragraph [ref=e555]: The client derives your EVM identity from your Nostr key automatically — one key, one identity.
+        - paragraph [ref=e556]:
+          - strong [ref=e557]: Want to go deeper?
+          - text: See the
+          - link "SDK Guide" [ref=e558] [cursor=pointer]:
+            - /url: docs/sdk-guide.md
+          - text: for building custom services, the
+          - link "Town Guide" [ref=e559] [cursor=pointer]:
+            - /url: docs/town-guide.md
+          - text: for running relay nodes, or the
+          - link "Deployment Guide" [ref=e560] [cursor=pointer]:
+            - /url: docs/deployment.md
+          - text: for Docker and production setup.
+        - heading "Packages" [level=2] [ref=e561]
+        - table [ref=e562]:
+          - rowgroup [ref=e563]:
+            - row "Package Description" [ref=e564]:
+              - columnheader "Package" [ref=e565]
+              - columnheader "Description" [ref=e566]
+              - columnheader [ref=e567]
+          - rowgroup [ref=e568]:
+            - row "@toon-protocol/client High-level client for publishing events npm" [ref=e569]:
+              - cell "@toon-protocol/client" [ref=e570]:
+                - link "@toon-protocol/client" [ref=e571] [cursor=pointer]:
+                  - /url: packages/client
+                  - code [ref=e572]: "@toon-protocol/client"
+              - cell "High-level client for publishing events" [ref=e573]
+              - cell "npm" [ref=e574]:
+                - link "npm":
+                  - /url: https://www.npmjs.com/package/@toon-protocol/client
+                  - img "npm"
+            - row "@toon-protocol/sdk Building blocks for TOON services npm" [ref=e575]:
+              - cell "@toon-protocol/sdk" [ref=e576]:
+                - link "@toon-protocol/sdk" [ref=e577] [cursor=pointer]:
+                  - /url: packages/sdk
+                  - code [ref=e578]: "@toon-protocol/sdk"
+              - cell "Building blocks for TOON services" [ref=e579]
+              - cell "npm" [ref=e580]:
+                - link "npm":
+                  - /url: https://www.npmjs.com/package/@toon-protocol/sdk
+                  - img "npm"
+            - row "@toon-protocol/town Reference relay — one command to run npm" [ref=e581]:
+              - cell "@toon-protocol/town" [ref=e582]:
+                - link "@toon-protocol/town" [ref=e583] [cursor=pointer]:
+                  - /url: packages/town
+                  - code [ref=e584]: "@toon-protocol/town"
+              - cell "Reference relay — one command to run" [ref=e585]
+              - cell "npm" [ref=e586]:
+                - link "npm":
+                  - /url: https://www.npmjs.com/package/@toon-protocol/town
+                  - img "npm"
+            - row "@toon-protocol/core Discovery, peering, and bootstrap Internal" [ref=e587]:
+              - cell "@toon-protocol/core" [ref=e588]:
+                - link "@toon-protocol/core" [ref=e589] [cursor=pointer]:
+                  - /url: packages/core
+                  - code [ref=e590]: "@toon-protocol/core"
+              - cell "Discovery, peering, and bootstrap" [ref=e591]
+              - cell "Internal" [ref=e592]
+            - row "@toon-protocol/relay WebSocket relay server and event store Internal" [ref=e593]:
+              - cell "@toon-protocol/relay" [ref=e594]:
+                - link "@toon-protocol/relay" [ref=e595] [cursor=pointer]:
+                  - /url: packages/relay
+                  - code [ref=e596]: "@toon-protocol/relay"
+              - cell "WebSocket relay server and event store" [ref=e597]
+              - cell "Internal" [ref=e598]
+            - row "@toon-protocol/bls Business logic server for ILP validation Internal" [ref=e599]:
+              - cell "@toon-protocol/bls" [ref=e600]:
+                - link "@toon-protocol/bls" [ref=e601] [cursor=pointer]:
+                  - /url: packages/bls
+                  - code [ref=e602]: "@toon-protocol/bls"
+              - cell "Business logic server for ILP validation" [ref=e603]
+              - cell "Internal" [ref=e604]
+            - row "@toon-protocol/faucet Token faucet for local development Internal" [ref=e605]:
+              - cell "@toon-protocol/faucet" [ref=e606]:
+                - link "@toon-protocol/faucet" [ref=e607] [cursor=pointer]:
+                  - /url: packages/faucet
+                  - code [ref=e608]: "@toon-protocol/faucet"
+              - cell "Token faucet for local development" [ref=e609]
+              - cell "Internal" [ref=e610]
+        - heading "Documentation" [level=2] [ref=e611]
+        - table [ref=e612]:
+          - rowgroup [ref=e613]:
+            - row "Guide Description" [ref=e614]:
+              - columnheader "Guide" [ref=e615]
+              - columnheader "Description" [ref=e616]
+          - rowgroup [ref=e617]:
+            - row "Architecture System layers, data flow, deployment modes" [ref=e618]:
+              - cell "Architecture" [ref=e619]:
+                - link "Architecture" [ref=e620] [cursor=pointer]:
+                  - /url: docs/architecture.md
+              - cell "System layers, data flow, deployment modes" [ref=e621]
+            - row "Protocol Event kinds, TOON format, ILP mechanics, address hierarchy, economics" [ref=e622]:
+              - cell "Protocol" [ref=e623]:
+                - link "Protocol" [ref=e624] [cursor=pointer]:
+                  - /url: docs/protocol.md
+              - cell "Event kinds, TOON format, ILP mechanics, address hierarchy, economics" [ref=e625]:
+                - text: Event kinds,
+                - link "TOON format" [ref=e626] [cursor=pointer]:
+                  - /url: https://github.com/toon-format/toon
+                - text: ", ILP mechanics, address hierarchy, economics"
+            - row "Deployment Docker, local stack, deploy scripts" [ref=e627]:
+              - cell "Deployment" [ref=e628]:
+                - link "Deployment" [ref=e629] [cursor=pointer]:
+                  - /url: docs/deployment.md
+              - cell "Docker, local stack, deploy scripts" [ref=e630]
+            - row "Settlement Chain negotiation, payment channels" [ref=e631]:
+              - cell "Settlement" [ref=e632]:
+                - link "Settlement" [ref=e633] [cursor=pointer]:
+                  - /url: docs/settlement.md
+              - cell "Chain negotiation, payment channels" [ref=e634]
+            - row "Bootstrap Network discovery and peering" [ref=e635]:
+              - cell "Bootstrap" [ref=e636]:
+                - link "Bootstrap" [ref=e637] [cursor=pointer]:
+                  - /url: docs/bootstrap.md
+              - cell "Network discovery and peering" [ref=e638]
+            - row "SDK Guide Building services with @toon-protocol/sdk" [ref=e639]:
+              - cell "SDK Guide" [ref=e640]:
+                - link "SDK Guide" [ref=e641] [cursor=pointer]:
+                  - /url: docs/sdk-guide.md
+              - cell "Building services with @toon-protocol/sdk" [ref=e642]:
+                - text: Building services with
+                - code [ref=e643]: "@toon-protocol/sdk"
+            - row "Town Guide Running relays with @toon-protocol/town" [ref=e644]:
+              - cell "Town Guide" [ref=e645]:
+                - link "Town Guide" [ref=e646] [cursor=pointer]:
+                  - /url: docs/town-guide.md
+              - cell "Running relays with @toon-protocol/town" [ref=e647]:
+                - text: Running relays with
+                - code [ref=e648]: "@toon-protocol/town"
+        - heading "Related" [level=2] [ref=e649]
+        - list [ref=e650]:
+          - listitem [ref=e651]:
+            - link "Nostr Protocol" [ref=e652] [cursor=pointer]:
+              - /url: https://github.com/nostr-protocol/nips
+            - text: — NIPs 01, 34, 44
+          - listitem [ref=e653]:
+            - link "Interledger" [ref=e654] [cursor=pointer]:
+              - /url: https://interledger.org/developers/rfcs/
+            - text: — RFCs 0027, 0032, 0035
+          - listitem [ref=e655]:
+            - link "TOON Format" [ref=e656] [cursor=pointer]:
+              - /url: https://github.com/toon-format/toon
+            - text: — Compact, human-readable JSON encoding
+        - heading "License" [level=2] [ref=e657]
+        - paragraph [ref=e658]:
+          - text: Apache 2.0 — see
+          - link "LICENSE" [ref=e659] [cursor=pointer]:
+            - /url: LICENSE
+          - text: for details.
+  - contentinfo [ref=e660]: Forge — Decentralized Git on Nostr & TOON Protocol

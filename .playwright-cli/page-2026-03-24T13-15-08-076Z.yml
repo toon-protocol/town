@@ -1,0 +1,9 @@
+- generic [ref=e2]:
+  - banner [ref=e68]:
+    - generic [ref=e69]:
+      - link "⚒ Forge" [ref=e70] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e71]: ws://localhost:19700
+  - main [ref=e72]:
+    - generic [ref=e73]: Loading commit...
+  - contentinfo [ref=e74]: Forge — Decentralized Git on Nostr & TOON Protocol

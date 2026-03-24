@@ -1,0 +1,11 @@
+- generic [ref=e2]:
+  - banner [ref=e409]:
+    - generic [ref=e410]:
+      - link "⚒ Forge" [ref=e411] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e412]: ws://localhost:19700
+  - main [ref=e413]:
+    - generic [ref=e414]:
+      - generic [ref=e415]: Content unavailable
+      - generic [ref=e416]: Could not resolve commit on Arweave.
+  - contentinfo [ref=e417]: Forge — Decentralized Git on Nostr & TOON Protocol

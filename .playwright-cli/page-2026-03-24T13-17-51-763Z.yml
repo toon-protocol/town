@@ -1,0 +1,80 @@
+- generic [ref=e2]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - link "⚒ Forge" [ref=e12] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e13]: ws://localhost:19700
+  - main [ref=e14]:
+    - navigation [ref=e15]:
+      - link "Code" [ref=e16] [cursor=pointer]:
+        - /url: /toon-protocol/
+      - link "Issues" [ref=e17] [cursor=pointer]:
+        - /url: /toon-protocol/issues
+      - link "Pull Requests" [ref=e18] [cursor=pointer]:
+        - /url: /toon-protocol/pulls
+    - navigation [ref=e19]:
+      - link "toon-protocol" [ref=e20] [cursor=pointer]:
+        - /url: /toon-protocol/tree/main/
+      - text: /
+      - generic [ref=e21]: Commit
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]: "feat(8-6): Forge-UI E2E validation — bug fixes, seed script, Playwright tests Commits 6 bug fixes from integration testing (repoId routing, CSP headers, AR.IO gateway priority, URL-encoded ref decoding, SHA→txId cache seeding, binary tree format), adds security-hardened seed script, Playwright E2E test suite (7 specs), and 82+ new unit tests achieving 17/17 AC coverage. Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
+        - generic [ref=e25]:
+          - generic [ref=e26]: Jonathan Green
+          - generic [ref=e27]: <dev.jonathan.green@gmail.com>
+          - generic [ref=e28]: 8 hours ago
+        - generic [ref=e29]: "Commit: 7fd32e3868f43ffbc6a412cac6b2ec28859efa56"
+        - generic [ref=e30]:
+          - text: "Parent:"
+          - link "006c0b5" [ref=e31] [cursor=pointer]:
+            - /url: /toon-protocol/commit/006c0b5067e968fecf0eb91c1294b3cb7cc53554
+      - generic [ref=e32]:
+        - generic [ref=e33]: 0 added
+        - generic [ref=e34]: 0 deleted
+        - generic [ref=e35]: 6 modified
+      - generic [ref=e36]:
+        - generic [ref=e38]:
+          - generic [ref=e39]: M
+          - generic [ref=e40]: _bmad-output
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]: M
+            - generic [ref=e44]: CLAUDE.md
+          - generic [ref=e46]:
+            - generic [ref=e47]: "@@ -106,7 +106,9 @@"
+            - generic [ref=e48]: "| Topic | Location |"
+            - generic [ref=e49]: "| --- | --- |"
+            - generic [ref=e50]: "| **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |"
+            - generic [ref=e51]: "-| Epic roadmap & status (Epics 1-7 complete) | `_bmad-output/project-context.md` section \"Epic Roadmap\" |"
+            - generic [ref=e52]: "+| Epic roadmap & status (Epics 1-7 complete, 8 in progress) | `_bmad-output/project-context.md` section \"Epic Roadmap\" |"
+            - generic [ref=e53]: "+| TOON Agent Architecture (six-layer model, Loony, provider model) | `_bmad-output/project-context.md` section \"TOON Agent Architecture\" |"
+            - generic [ref=e54]: "+| HyperBEAM integration strategy & R&D phases | `_bmad-output/planning-artifacts/research/toon-hyperbeam-integration-strategy.md` |"
+            - generic [ref=e55]: "| Known action items (Epic 7 retro) | `_bmad-output/project-context.md` section \"Known Action Items\" |"
+            - generic [ref=e56]: "| DVM compute marketplace architecture | `_bmad-output/project-context.md` section \"DVM Compute Marketplace\" |"
+            - generic [ref=e57]: "| Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section \"Advanced DVM Coordination + TEE Integration\" |"
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: M
+            - generic [ref=e61]: package.json
+          - generic [ref=e63]:
+            - generic [ref=e64]: "@@ -69,6 +69,10 @@"
+            - generic [ref=e65]: "\"typescript-eslint\": \"^8.0.0\","
+            - generic [ref=e66]: "\"vitest\": \"^1.0.0\","
+            - generic [ref=e67]: "\"ws\": \"^8.19.0\""
+            - generic [ref=e68]: "+ },"
+            - generic [ref=e69]: "+ \"dependencies\": {"
+            - generic [ref=e70]: "+ \"@ardrive/turbo-sdk\": \"^1.41.0\","
+            - generic [ref=e71]: "+ \"arweave\": \"^1.15.5\""
+            - generic [ref=e72]: "}"
+            - generic [ref=e73]: "}"
+        - generic [ref=e76]:
+          - generic [ref=e77]: M
+          - generic [ref=e78]: packages
+        - generic [ref=e80]:
+          - generic [ref=e81]: M
+          - generic [ref=e82]: pnpm-lock.yaml
+        - generic [ref=e84]:
+          - generic [ref=e85]: M
+          - generic [ref=e86]: scripts
+  - contentinfo [ref=e87]: Forge — Decentralized Git on Nostr & TOON Protocol

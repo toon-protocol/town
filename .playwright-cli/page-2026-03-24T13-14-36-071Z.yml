@@ -1,0 +1,44 @@
+- generic [ref=e2]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - link "⚒ Forge" [ref=e12] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e13]: ws://localhost:19700
+  - main [ref=e14]:
+    - navigation [ref=e15]:
+      - link "Code" [ref=e16] [cursor=pointer]:
+        - /url: /toon-protocol/
+      - link "Issues" [ref=e17] [cursor=pointer]:
+        - /url: /toon-protocol/issues
+      - link "Pull Requests" [ref=e18] [cursor=pointer]:
+        - /url: /toon-protocol/pulls
+    - generic [ref=e19]: ℹ Forge-UI is read-only. To create issues or submit patches, use a TOON agent with the NIP-34 skill.
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: applied
+          - 'link "fix: ensure token allowance before cooperative close" [ref=e24] [cursor=pointer]':
+            - /url: /toon-protocol/pulls/7e9969669d4fb65a68b43da1178d3d04b77db741ccae63f6b2e0ba9feb708e24
+          - generic [ref=e25]: epic-8
+        - generic [ref=e26]:
+          - generic [ref=e27]: npub166l7zqx3...7xqy
+          - generic [ref=e28]: 1 hour ago
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: applied
+          - 'link "fix: ensure token allowance before cooperative close" [ref=e32] [cursor=pointer]':
+            - /url: /toon-protocol/pulls/7611ae93a7d2ae126daf1378bf2b67f4bbf98c2c1f8fe4aff5f9528d9ea568e9
+          - generic [ref=e33]: epic-8
+        - generic [ref=e34]:
+          - generic [ref=e35]: npub166l7zqx3...7xqy
+          - generic [ref=e36]: 2 hours ago
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]: applied
+          - 'link "fix: ensure token allowance before cooperative close" [ref=e40] [cursor=pointer]':
+            - /url: /toon-protocol/pulls/a1d11c7cc54336dcfcd57a322f29f112a14f1b815571efa2c587392f4645f596
+          - generic [ref=e41]: main
+        - generic [ref=e42]:
+          - generic [ref=e43]: npub166l7zqx3...7xqy
+          - generic [ref=e44]: 13 hours ago
+  - contentinfo [ref=e45]: Forge — Decentralized Git on Nostr & TOON Protocol
