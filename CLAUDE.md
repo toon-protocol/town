@@ -10,7 +10,7 @@ ILP-gated Nostr relay. Pay to write, free to read.
 
 ```bash
 # Build & test
-pnpm install && pnpm build && pnpm test   # Build & test all packages (~2,659 passed, ~79 skipped)
+pnpm install && pnpm build && pnpm test   # Build & test all packages
 pnpm lint && pnpm format                   # Lint & format
 
 # Genesis stack (Anvil + Faucet + Connector + Node)
@@ -25,6 +25,12 @@ pnpm lint && pnpm format                   # Lint & format
 ./scripts/sdk-e2e-infra.sh down            # Stop containers
 cd packages/sdk && pnpm test:e2e:docker    # Run SDK E2E tests against infra
 cd packages/sdk && pnpm test:integration   # Run SDK integration tests against infra
+
+# Forge-UI (decentralized git forge SPA)
+cd packages/rig && pnpm dev                # Vite dev server
+cd packages/rig && pnpm build              # Production build
+node scripts/deploy-forge-ui.mjs --dev     # Deploy to Arweave (free tier)
+node scripts/deploy-forge-ui.mjs --wallet <path> # Deploy to Arweave (paid)
 
 # Oyster CVM (TEE) build
 docker build -f docker/Dockerfile.oyster -t toon:oyster .
@@ -106,10 +112,10 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Topic | Location |
 | --- | --- |
 | **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |
-| Epic roadmap & status (Epics 1-7 complete, 8 in progress) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| Epic roadmap & status (Epics 1-8 complete, 9+ planned) | `_bmad-output/project-context.md` section "Epic Roadmap" |
 | TOON Agent Architecture (six-layer model, Loony, provider model) | `_bmad-output/project-context.md` section "TOON Agent Architecture" |
 | HyperBEAM integration strategy & R&D phases | `_bmad-output/planning-artifacts/research/toon-hyperbeam-integration-strategy.md` |
-| Known action items (Epic 7 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
+| Known action items (Epic 8 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
 | DVM compute marketplace architecture | `_bmad-output/project-context.md` section "DVM Compute Marketplace" |
 | Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section "Advanced DVM Coordination + TEE Integration" |
 | TEE architecture & attestation flow | `_bmad-output/project-context.md` section "TEE Integration" |
@@ -125,4 +131,11 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Article drafts | `_bmad-output/planning-artifacts/content/article-N/` |
 | ILP address hierarchy & protocol economics | `_bmad-output/project-context.md` section "ILP Address Hierarchy & Protocol Economics" |
 | Prepaid protocol decisions | `_bmad-output/planning-artifacts/research/party-mode-prepaid-protocol-decisions-2026-03-20.md` |
+| Network primitives strategy (four primitives) | `_bmad-output/planning-artifacts/research/party-mode-network-primitives-strategy-2026-03-22.md` |
+| Overmind Protocol decisions (Epics 13-17) | `_bmad-output/planning-artifacts/research/party-mode-overmind-protocol-decisions-2026-03-24.md` |
+| Overmind epics & stories | `_bmad-output/overmind-epics-and-stories.md` |
+| Arweave integration research | `_bmad-output/planning-artifacts/research/technical-arweave-integration-research-2026-03-24.md` |
+| The Rig -- Arweave DVM + Forge-UI (Epic 8) | `_bmad-output/project-context.md` section "The Rig" |
+| Forge-UI source (Vite SPA) | `packages/rig/src/web/` |
+| Forge-UI Arweave deploy script | `scripts/deploy-forge-ui.mjs` |
 | Mock USDC deployment script | `scripts/deploy-mock-usdc.sh` |

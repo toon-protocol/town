@@ -275,7 +275,7 @@ describe('OvermindRegistry zkApp', () => {
     // Register executor
     const entry1 = makeEntry(executor1Key, true, 0);
     const { index: idx1, witness: w1 } = offchain.addExecutor(entry1);
-    let tx = await Mina.transaction(sender, async () => {
+    const tx = await Mina.transaction(sender, async () => {
       await zkapp.registerExecutor(entry1, w1);
     });
     await tx.prove();
