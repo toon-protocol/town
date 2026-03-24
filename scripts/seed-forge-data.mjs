@@ -172,19 +172,22 @@ try {
 
 async function uploadGitObject(sha, type) {
   if (!turbo) return null;
+  if (arweaveMap.has(sha)) return arweaveMap.get(sha);
   // Validate SHA is hex-only (defense in depth against injection)
   if (!/^[0-9a-f]{40}$/.test(sha)) {
     console.log(`  ⚠️  Invalid SHA: ${sha}, skipping`);
     return null;
   }
+  // Check object size BEFORE reading content to avoid ENOBUFS on large blobs
+  const objectSize = parseInt(execFileSync('git', ['cat-file', '-s', sha], { encoding: 'utf-8' }).trim(), 10);
+  if (objectSize > 100 * 1024) {
+    console.log(`  ⚠️  ${type} ${sha.slice(0, 8)} too large (${objectSize} bytes), skipping`);
+    return null;
+  }
   // Use raw format for tree objects (parseGitTree expects binary), pretty-print for commits/blobs
   // Use execFileSync with argument array to avoid shell injection
   const catArgs = type === 'tree' ? ['cat-file', 'tree', sha] : ['cat-file', '-p', sha];
-  const objectData = execFileSync('git', catArgs, { encoding: 'buffer' });
-  if (objectData.length > 100 * 1024) {
-    console.log(`  ⚠️  ${type} ${sha.slice(0, 8)} too large (${objectData.length} bytes), skipping`);
-    return null;
-  }
+  const objectData = execFileSync('git', catArgs, { encoding: 'buffer', maxBuffer: 200 * 1024 });
   try {
     const contentType = type === 'blob' ? 'application/octet-stream' : `application/x-git-${type}`;
     const result = await turbo.uploadFile({
@@ -223,18 +226,37 @@ for (const file of keyFiles) {
   }
 }
 
-// Upload packages/ subtrees
-const packagesEntry = treeEntries.find(e => e.name === 'packages');
-if (packagesEntry) {
-  await uploadGitObject(packagesEntry.sha, 'tree');
-  const pkgTree = gitCmd('ls-tree', 'HEAD', '--', 'packages/').split('\n').map(line => {
+// Recursively upload all tree objects so every directory is browsable.
+// Trees are tiny (<1KB) so this is safe for Turbo free tier.
+// Blobs are only uploaded for leaf files at max depth to keep upload count reasonable.
+const uploadedShas = new Set();
+const MAX_BLOBS_PER_DIR = 5;
+
+async function uploadTreeRecursive(treeSha, treePath) {
+  if (uploadedShas.has(treeSha)) return;
+  uploadedShas.add(treeSha);
+
+  const children = gitCmd('ls-tree', treeSha).split('\n').map(line => {
     const match = line.match(/^(\d+)\s+(\w+)\s+([0-9a-f]+)\t(.+)$/);
     return match ? { mode: match[1], type: match[2], sha: match[3], name: match[4] } : null;
   }).filter(Boolean);
-  for (const pkg of pkgTree.slice(0, 5)) {
-    if (pkg.type === 'tree') {
-      await uploadGitObject(pkg.sha, 'tree');
+
+  let blobCount = 0;
+  for (const child of children) {
+    if (child.type === 'tree') {
+      await uploadGitObject(child.sha, 'tree');
+      await uploadTreeRecursive(child.sha, `${treePath}${child.name}/`);
+    } else if (child.type === 'blob' && blobCount < MAX_BLOBS_PER_DIR) {
+      await uploadGitObject(child.sha, 'blob');
+      blobCount++;
     }
+  }
+}
+
+for (const entry of treeEntries) {
+  if (entry.type === 'tree') {
+    await uploadGitObject(entry.sha, 'tree');
+    await uploadTreeRecursive(entry.sha, `${entry.name}/`);
   }
 }
 
@@ -258,7 +280,7 @@ const repoAnnouncement = signEvent({
     ['name', REPO_NAME],
     ['description', REPO_DESCRIPTION],
     ['web', `http://localhost:5173/${pubkey}/${REPO_ID}`],
-    ['clone', 'https://github.com/toon-protocol/town.git'],
+    ['clone', `ws://localhost:19700`],
     ['r', headSha, 'euc'],
     ['r', 'HEAD', 'epic-8'],
     ['relays', 'ws://localhost:19700'],
