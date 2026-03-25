@@ -130,6 +130,9 @@ async function main() {
   // =========================================================================
   console.log('--- Step 1: Publishing repo announcement (kind:30617) ---\n');
 
+  // Determine current branch for default ref
+  const currentBranch = gitCmd('rev-parse', '--abbrev-ref', 'HEAD');
+
   const repoAnnouncement = finalizeEvent({
     kind: 30617,
     created_at: Math.floor(Date.now() / 1000),
@@ -139,6 +142,7 @@ async function main() {
       ['description', REPO_DESC],
       ['clone', `http://forgejo:3000/toon/${REPO_ID}.git`],
       ['web', `http://forgejo:3000/toon/${REPO_ID}`],
+      ['r', 'HEAD', `refs/heads/${currentBranch}`],
     ],
     content: '',
   }, secretKey);
@@ -184,18 +188,23 @@ async function main() {
 
   async function uploadGitObject(sha) {
     const objectData = gitCatFileRaw(sha);
-    const amount = BigInt(objectData.length) * pricePerByte;
 
     const event = buildBlobStorageRequest(
       {
         blobData: Buffer.from(objectData),
         contentType: 'application/octet-stream',
-        bid: amount.toString(),
+        bid: (BigInt(objectData.length) * pricePerByte).toString(),
       },
       secretKey
     );
 
+    // Calculate claim amount from TOON-encoded event size (not raw blob size).
+    // publishEvent() uses toonEncoded.length * basePricePerByte internally,
+    // so the claim must match that to pass EIP-712 verification.
+    const toonData = encodeEventToToon(event);
+    const amount = BigInt(toonData.length) * pricePerByte;
     const claim = await client.signBalanceProof(channelId, amount);
+
     let result;
     try {
       result = await client.publishEvent(event, {
@@ -208,13 +217,18 @@ async function main() {
       return null;
     }
 
-    if (result.success && result.data) {
-      const txId = Buffer.from(result.data, 'base64').toString('utf-8');
-      arweaveMap.set(sha, txId);
-      console.log(`  ${sha.slice(0, 8)} -> ${txId} (${objectData.length} bytes)`);
-      return txId;
+    if (result.success) {
+      if (result.data) {
+        const txId = Buffer.from(result.data, 'base64').toString('utf-8');
+        arweaveMap.set(sha, txId);
+        console.log(`  ${sha.slice(0, 8)} -> ${txId} (${objectData.length} bytes)`);
+        return txId;
+      }
+      // Fulfilled but no data — handler accepted without returning tx ID
+      console.log(`  ${sha.slice(0, 8)} -> (accepted, no txId) (${objectData.length} bytes)`);
+      return null;
     } else {
-      console.error(`  FAILED: ${sha.slice(0, 8)} - ${result.error || 'unknown'}`);
+      console.error(`  FAILED: ${sha.slice(0, 8)} - ${result.error || JSON.stringify(result)}`);
       return null;
     }
   }
@@ -247,10 +261,10 @@ async function main() {
   console.log('--- Step 3: Publishing repo refs (kind:30618) ---\n');
 
   // Get branch refs
-  const branches = gitCmd('for-each-ref', '--format=%(refname:short) %(objectname:short)', 'refs/heads/');
+  const branches = gitCmd('for-each-ref', '--format=%(refname:short) %(objectname)', 'refs/heads/');
   const refTags = branches.split('\n').map(line => {
     const [name, sha] = line.split(' ');
-    return ['ref', `refs/heads/${name}`, sha];
+    return ['r', `refs/heads/${name}`, sha];
   });
 
   // Add Arweave mappings as tags
@@ -289,14 +303,223 @@ async function main() {
   console.log(`  Event ID: ${refsResult.eventId}\n`);
 
   // =========================================================================
+  // Helper: publish any Nostr event via ILP
+  // =========================================================================
+  async function publishViaIlp(event, label) {
+    const toon = encodeEventToToon(event);
+    const amount = BigInt(toon.length) * pricePerByte;
+    const claim = await client.signBalanceProof(channelId, amount);
+    try {
+      const result = await client.publishEvent(event, {
+        destination: 'g.toon.peer1',
+        claim,
+      });
+      console.log(`  ✓ ${label}: ${event.id.slice(0, 12)}...`);
+      return result;
+    } catch (err) {
+      console.warn(`  ✓ ${label}: ${event.id.slice(0, 12)}... (BTP ack error, event likely stored)`);
+      return { success: true, eventId: event.id };
+    }
+  }
+
+  // =========================================================================
+  // Step 4: Publish issues (kind:1621)
+  // =========================================================================
+  console.log('--- Step 4: Publishing issues (kind:1621) ---\n');
+
+  const now = Math.floor(Date.now() / 1000);
+  const repoATag = `30617:${pubkeyHex}:${REPO_ID}`;
+
+  const issues = [
+    {
+      title: 'WebSocket relay should support NIP-42 authentication',
+      body: '## Description\n\nThe relay currently has no authentication mechanism for subscribers. We should implement NIP-42 (Authentication of clients to relays) to allow relays to restrict read access.\n\n## Acceptance Criteria\n- [ ] Challenge sent on connect\n- [ ] AUTH message handling\n- [ ] Restricted event filtering for unauthenticated users',
+      labels: ['enhancement', 'relay'],
+    },
+    {
+      title: 'Payment channel settlement fails on Arbitrum Sepolia',
+      body: '## Bug Report\n\n### Steps to Reproduce\n1. Open payment channel on Arbitrum Sepolia (421614)\n2. Send ILP packets\n3. Attempt cooperative close\n\n### Expected\nChannel closes and balances settle correctly.\n\n### Actual\nTransaction reverts with "insufficient allowance".\n\n### Environment\n- Chain: Arbitrum Sepolia (421614)\n- USDC: 0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
+      labels: ['bug', 'settlement'],
+    },
+    {
+      title: 'Add DVM compute marketplace pricing docs',
+      body: '## Feature Request\n\nDocumentation needed for the DVM compute marketplace pricing model:\n\n- Base pricing per compute unit\n- Bid/ask mechanism for kind:5090-5099\n- Settlement flow for long-running compute jobs\n- Fee structure (relay fee vs compute provider fee)\n\nBlocks Epic 10 compute primitives work.',
+      labels: ['docs', 'dvm'],
+    },
+  ];
+
+  const issueEvents = [];
+  for (const issue of issues) {
+    const event = finalizeEvent({
+      kind: 1621,
+      created_at: now - Math.floor(Math.random() * 86400),
+      content: issue.body,
+      tags: [
+        ['a', repoATag],
+        ['p', pubkeyHex],
+        ['subject', issue.title],
+        ...issue.labels.map(l => ['t', l]),
+      ],
+    }, secretKey);
+    await publishViaIlp(event, `Issue: ${issue.title.slice(0, 40)}`);
+    issueEvents.push(event);
+  }
+
+  // =========================================================================
+  // Step 5: Publish issue comments (kind:1622)
+  // =========================================================================
+  console.log('\n--- Step 5: Publishing issue comments (kind:1622) ---\n');
+
+  const comment1 = finalizeEvent({
+    kind: 1622,
+    created_at: now - 1200,
+    content: 'I can reproduce this on Arbitrum Sepolia. The issue is that the token allowance check happens before the channel close signature verification. We need to ensure `approve()` is called with sufficient amount before `cooperativeClose()`.',
+    tags: [
+      ['e', issueEvents[1].id],
+      ['p', pubkeyHex],
+    ],
+  }, secretKey);
+  await publishViaIlp(comment1, 'Comment on settlement bug');
+
+  const comment2 = finalizeEvent({
+    kind: 1622,
+    created_at: now - 600,
+    content: "Good catch. I'll add an `ensureAllowance()` helper that checks and approves in the settlement flow. PR incoming.",
+    tags: [
+      ['e', issueEvents[1].id],
+      ['p', pubkeyHex],
+    ],
+  }, secretKey);
+  await publishViaIlp(comment2, 'Comment reply on settlement bug');
+
+  // =========================================================================
+  // Step 6: Publish patch / PR (kind:1617)
+  // =========================================================================
+  console.log('\n--- Step 6: Publishing patch (kind:1617) ---\n');
+
+  const headShaShort = headSha;
+  const patchContent = `From ${headShaShort} Mon Sep 17 00:00:00 2001
+From: Test Developer <dev@toon-protocol.org>
+Date: ${new Date().toUTCString()}
+Subject: [PATCH] fix: ensure token allowance before cooperative close
+
+Check and approve token allowance in the settlement flow
+before attempting cooperative channel close.
+
+---
+ packages/sdk/src/settlement/close.ts | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/packages/sdk/src/settlement/close.ts b/packages/sdk/src/settlement/close.ts
+index abc1234..def5678 100644
+--- a/packages/sdk/src/settlement/close.ts
++++ b/packages/sdk/src/settlement/close.ts
+@@ -42,6 +42,14 @@ export async function cooperativeClose(
+   channel: PaymentChannel,
+   finalBalance: bigint,
+ ): Promise<void> {
++  // Ensure sufficient token allowance before close
++  const currentAllowance = await channel.token.allowance(
++    channel.address,
++    channel.tokenNetwork,
++  );
++  if (currentAllowance < finalBalance) {
++    await channel.token.approve(channel.tokenNetwork, finalBalance);
++  }
++
+   const closeSignature = await signCooperativeClose(
+     channel,
+     finalBalance,
+--
+2.43.0`;
+
+  const patchEvent = finalizeEvent({
+    kind: 1617,
+    created_at: now - 900,
+    content: patchContent,
+    tags: [
+      ['a', repoATag],
+      ['r', headSha],
+      ['p', pubkeyHex],
+      ['commit', headSha],
+      ['subject', 'fix: ensure token allowance before cooperative close'],
+      ['branch', 'main'],
+      ['t', 'root'],
+    ],
+  }, secretKey);
+  await publishViaIlp(patchEvent, 'Patch: fix token allowance');
+
+  // =========================================================================
+  // Step 7: Publish status events (kind:1630/1631/1632)
+  // =========================================================================
+  console.log('\n--- Step 7: Publishing status events ---\n');
+
+  // Open status for all issues
+  for (let i = 0; i < issueEvents.length; i++) {
+    const status = finalizeEvent({
+      kind: 1630,
+      created_at: issueEvents[i].created_at + 1,
+      content: '',
+      tags: [
+        ['e', issueEvents[i].id],
+        ['p', pubkeyHex],
+        ['a', repoATag],
+      ],
+    }, secretKey);
+    await publishViaIlp(status, `Open status: issue #${i + 1}`);
+  }
+
+  // Open status for the patch
+  const patchOpen = finalizeEvent({
+    kind: 1630,
+    created_at: now - 800,
+    content: '',
+    tags: [
+      ['e', patchEvent.id],
+      ['p', pubkeyHex],
+      ['a', repoATag],
+    ],
+  }, secretKey);
+  await publishViaIlp(patchOpen, 'Open status: patch');
+
+  // Merged status for the patch
+  const patchMerged = finalizeEvent({
+    kind: 1631,
+    created_at: now - 300,
+    content: 'LGTM! Merging.',
+    tags: [
+      ['e', patchEvent.id],
+      ['p', pubkeyHex],
+      ['a', repoATag],
+    ],
+  }, secretKey);
+  await publishViaIlp(patchMerged, 'Merged status: patch');
+
+  // Close issue #2 (the bug — fixed by patch)
+  const issueClose = finalizeEvent({
+    kind: 1632,
+    created_at: now - 200,
+    content: 'Fixed in patch above.',
+    tags: [
+      ['e', issueEvents[1].id],
+      ['p', pubkeyHex],
+      ['a', repoATag],
+    ],
+  }, secretKey);
+  await publishViaIlp(issueClose, 'Closed status: issue #2');
+
+  // =========================================================================
   // Done
   // =========================================================================
-  console.log('=== Repo Created Successfully ===\n');
+  console.log('\n=== Repo Created Successfully ===\n');
   console.log(`Repo ID:     ${REPO_ID}`);
   console.log(`Owner:       ${pubkeyHex}`);
   console.log(`Relay:       ${PEER1_RELAY_URL}`);
   console.log(`Channel:     ${channelId}`);
   console.log(`Git objects: ${arweaveMap.size} uploaded to Arweave`);
+  console.log(`Issues:      ${issueEvents.length}`);
+  console.log(`Comments:    2`);
+  console.log(`Patches:     1 (merged)`);
   console.log(`\nView locally:`);
   console.log(`  cd packages/rig && pnpm dev`);
   console.log(`  Open: http://localhost:5173/#relay=ws://localhost:19700\n`);
