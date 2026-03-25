@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Deploy Forge-UI to Arweave.
+ * Deploy Rig-UI to Arweave.
+ * Historically named 'Forge-UI', now deploys Rig-UI. Filename kept for backwards compat.
  *
- * Builds the Forge-UI static web app and uploads it to Arweave via
+ * Builds the Rig-UI static web app and uploads it to Arweave via
  * @ardrive/turbo-sdk, creating an Arweave path manifest that serves
  * the entire SPA from a single transaction ID.
  *
@@ -47,7 +48,7 @@ const DIST_DIR = resolve(RIG_DIR, 'dist');
 
 function printHelp() {
   console.log(`
-Forge-UI Arweave Deployment Script
+Rig-UI Arweave Deployment Script
 
 Usage:
   node scripts/deploy-forge-ui.mjs [options]
@@ -63,7 +64,7 @@ Options:
   --confirm       Required with --wallet to proceed with paid upload.
                   Without this flag, only a cost estimate is printed.
 
-  --dry-run       Build the Forge-UI but do not upload to Arweave.
+  --dry-run       Build the Rig-UI but do not upload to Arweave.
                   Useful for verifying the build output.
 
   --help          Show this help message.
@@ -96,7 +97,7 @@ Dogfooding:
   1. Seed data into a relay:
      node scripts/seed-forge-data.mjs --container <container-name>
 
-  2. Access the deployed Forge-UI with your relay:
+  2. Access the deployed Rig-UI with your relay:
      https://ar-io.dev/<manifest-tx-id>/#relay=wss://your-relay
 `);
 }
@@ -117,10 +118,10 @@ if (cli.error) {
 const { isDev, isDryRun, isConfirm, walletPath } = cli;
 
 // ---------------------------------------------------------------------------
-// Step 1: Build Forge-UI
+// Step 1: Build Rig-UI
 // ---------------------------------------------------------------------------
 
-console.log('\n--- Step 1: Building Forge-UI ---\n');
+console.log('\n--- Step 1: Building Rig-UI ---\n');
 execFileSync('pnpm', ['build'], { cwd: RIG_DIR, stdio: 'inherit' });
 console.log('\nBuild complete.\n');
 
@@ -191,8 +192,10 @@ try {
 
 let turbo;
 if (isDev) {
-  console.log('Using Turbo free tier (unauthenticated).\n');
-  turbo = TurboFactory.unauthenticated();
+  console.log('Using Turbo free tier (ephemeral JWK, <=100KB per file).\n');
+  const Arweave = (await import('arweave')).default;
+  const jwk = await Arweave.init({}).crypto.generateJWK();
+  turbo = TurboFactory.authenticated({ privateKey: jwk });
 } else {
   const resolvedWalletPath = resolve(walletPath);
   let jwkContent;
@@ -230,7 +233,7 @@ for (const file of files) {
       dataItemOpts: {
         tags: [
           { name: 'Content-Type', value: mime },
-          { name: 'App-Name', value: 'Forge-UI' },
+          { name: 'App-Name', value: 'Rig-UI' },
         ],
       },
     });
@@ -267,7 +270,7 @@ try {
       tags: [
         { name: 'Content-Type', value: 'application/x.arweave-manifest+json' },
         { name: 'Type', value: 'manifest' },
-        { name: 'App-Name', value: 'Forge-UI' },
+        { name: 'App-Name', value: 'Rig-UI' },
       ],
     },
   });

@@ -1,0 +1,42 @@
+diff --git a/dist/encoding/oer.js b/dist/encoding/oer.js
+index 17cc4d5c6dc29b72429d29ecf668adb6c4d89aac..f0f52dc00040c3e71e7233cf56cb66aec0a37d8a 100644
+--- a/dist/encoding/oer.js
++++ b/dist/encoding/oer.js
+@@ -126,24 +126,30 @@ function decodeGeneralizedTime(buffer, offset) {
+     return { value: date, bytesRead: TIME_STRING_LENGTH };
+ }
+ function serializePrepare(packet) {
+-    if (packet.executionCondition.length !== 32) {
+-        throw new InvalidPacketError(`executionCondition must be 32 bytes, got ${packet.executionCondition.length}`);
++    // Conditions removed from TOON protocol (connector v2.0.0).
++    // Default to 32 zero bytes for ILP wire format compatibility.
++    const conditionBytes = packet.executionCondition ?? Buffer.alloc(32);
++    if (conditionBytes.length !== 32) {
++        throw new InvalidPacketError(`executionCondition must be 32 bytes, got ${conditionBytes.length}`);
+     }
+     const type = Buffer.from([ilp_1.PacketType.PREPARE]);
+     const amount = encodeVarUInt(packet.amount);
+     const expiresAt = encodeGeneralizedTime(packet.expiresAt);
+-    const executionCondition = encodeFixedOctetString(packet.executionCondition, 32);
++    const executionCondition = encodeFixedOctetString(conditionBytes, 32);
+     const destination = encodeVarOctetString(Buffer.from(packet.destination, 'utf8'));
+     const data = encodeVarOctetString(packet.data);
+     return Buffer.concat([type, amount, expiresAt, executionCondition, destination, data]);
+ }
+ function serializeFulfill(packet) {
+-    if (packet.fulfillment.length !== 32) {
+-        throw new InvalidPacketError(`fulfillment must be 32 bytes, got ${packet.fulfillment.length}`);
++    // Fulfillments removed from TOON protocol (connector v2.0.0).
++    // Default to 32 zero bytes for ILP wire format compatibility.
++    const fulfillmentBytes = packet.fulfillment ?? Buffer.alloc(32);
++    if (fulfillmentBytes.length !== 32) {
++        throw new InvalidPacketError(`fulfillment must be 32 bytes, got ${fulfillmentBytes.length}`);
+     }
+     const type = Buffer.from([ilp_1.PacketType.FULFILL]);
+-    const fulfillment = encodeFixedOctetString(packet.fulfillment, 32);
+-    const data = encodeVarOctetString(packet.data);
++    const fulfillment = encodeFixedOctetString(fulfillmentBytes, 32);
++    const data = encodeVarOctetString(packet.data ?? Buffer.alloc(0));
+     return Buffer.concat([type, fulfillment, data]);
+ }
+ function serializeReject(packet) {
