@@ -136,7 +136,7 @@ TOON Protocol uses **proven protocols** — [ILP](https://interledger.org) for p
 
 **Permanent Storage via Arweave DVM** — Clients send `kind:5094` blob storage requests through the network. A provider node uploads the blob to [Arweave](https://arweave.org) via [ArDrive Turbo](https://ardrive.io) and returns the transaction ID in the ILP FULFILL. Payment is prepaid per-byte — no API keys, no accounts, just ILP micropayments for permanent decentralized storage. Single-packet and chunked uploads are both supported. See the [`@toon-protocol/sdk` Arweave module](packages/sdk/src/arweave) for provider and client helpers.
 
-**Decentralized Git Forge** — [`@toon-protocol/rig`](packages/rig) is a fully decentralized git forge web interface. Repository data is stored on Arweave via the blob storage DVM, and the UI is a Vite SPA deployable to Arweave itself. Browse repos, issues, and pull requests without any centralized server — git collaboration funded by the same ILP micropayments that power the rest of the network.
+**Decentralized Git Forge** — [`@toon-protocol/rig`](packages/rig) is a fully decentralized, read-only git forge web interface. A static Vite SPA deployable to Arweave — browse repositories, file trees, commit history, diffs, blame, issues, and pull requests entirely in the browser. Repository metadata lives on ILP-gated TOON relays (NIP-34 events), git objects are fetched directly from Arweave, and there is no backend server.
 
 **Routing** — Run a peer node. Every message that passes through earns routing fees. More peers, more paths, more revenue. The network grows because participation is profitable.
 
