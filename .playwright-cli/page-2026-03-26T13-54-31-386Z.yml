@@ -1,0 +1,15 @@
+- generic [active] [ref=e1]:
+  - img [ref=e2]
+  - generic [ref=e4]: DVM MARKETPLACE
+  - generic [ref=e6]: BLOB STORAGE
+  - generic [ref=e8]: kind:5094
+  - generic [ref=e9]: Upload data permanently
+  - generic [ref=e10]: "Result: Arweave TX ID"
+  - generic [ref=e11]: "Price: per KB uploaded"
+  - generic [ref=e13]: COMPUTE
+  - generic [ref=e15]: kind:5250
+  - generic [ref=e16]: Run WASM, LLM inference
+  - generic [ref=e17]: "Price: per job"
+  - generic [ref=e19]: CHAIN BRIDGE
+  - generic [ref=e21]: kind:5260
+  - generic [ref=e23]: Each vendor publishes a SkillDescriptor (kind:10035) â€” a menu of capabilities and pricing
