@@ -13,13 +13,6 @@ ILP-gated Nostr relay. Pay to write, free to read.
 pnpm install && pnpm build && pnpm test   # Build & test all packages
 pnpm lint && pnpm format                   # Lint & format
 
-# Genesis stack (Anvil + Faucet + Connector + Node)
-./deploy-genesis-node.sh
-./deploy-genesis-node.sh --reset           # Reset and redeploy from scratch
-
-# Peer nodes
-./deploy-peers.sh 3                        # Deploy N peer nodes
-
 # SDK E2E infrastructure (multi-hop routing, payment channels, DVM lifecycle)
 ./scripts/sdk-e2e-infra.sh up              # Build, start Anvil + 2 Docker peers, wait for health
 ./scripts/sdk-e2e-infra.sh down            # Stop containers
@@ -45,7 +38,7 @@ nix build .#docker-image && docker load < result
 
 - Docker & Docker Compose
 - Node.js >=20, pnpm 8.15.0 (`corepack enable && corepack prepare pnpm@8.15.0 --activate`)
-- Connector contracts repo cloned at `../connector` (required for genesis deployment)
+- Connector contracts repo cloned at `../connector` (required for Anvil contract deployment in SDK E2E)
 - (Optional) Nix package manager for reproducible builds
 
 See `_bmad-output/project-context.md` section "Technology Stack & Versions" for exact version constraints and compiler options.
@@ -55,42 +48,24 @@ See `_bmad-output/project-context.md` section "Technology Stack & Versions" for 
 ## Deployment Verification
 
 ```bash
-# Health checks (genesis node)
-curl http://localhost:3100/health   # BLS (enriched: pricing, capabilities, chain, x402, TEE status)
-curl http://localhost:8545           # Anvil (JSON-RPC, returns error object = healthy)
-curl http://localhost:3500/health   # Faucet
-# Relay (port 7100) is WebSocket-only -- no HTTP health endpoint
-
-# x402 endpoint (when enabled)
-curl http://localhost:3100/publish  # Returns 402 with pricing info (no X-PAYMENT header)
-
-# E2E validation (requires running genesis node)
-cd packages/client && pnpm test:e2e    # Client E2E (payment channels, bootstrap)
-cd packages/town && pnpm test:e2e      # Town E2E (lifecycle, requires genesis infra)
+# Health checks (SDK E2E infra)
+curl http://localhost:19100/health   # Peer1 BLS
+curl http://localhost:19110/health   # Peer2 BLS
+curl http://localhost:18545           # Anvil (JSON-RPC, returns error object = healthy)
 
 # E2E validation (requires SDK E2E infra: ./scripts/sdk-e2e-infra.sh up)
 cd packages/sdk && pnpm test:e2e:docker    # SDK Docker E2E (DVM lifecycle, publish, settlement)
+cd packages/sdk && pnpm test:integration   # SDK integration tests
+cd packages/town && pnpm test:e2e          # Town E2E (lifecycle)
 
 # View logs
-docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f
-docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Node only
+docker compose -p toon-sdk-e2e -f docker-compose-sdk-e2e.yml logs -f
+docker compose -p toon-sdk-e2e -f docker-compose-sdk-e2e.yml logs -f peer1  # Peer1 only
 ```
 
 ---
 
 ## Troubleshooting
-
-**Genesis node won't start:**
-
-1. `docker ps` -- Docker daemon running?
-2. `ls ../connector/packages/contracts` -- Contracts repo cloned at correct path?
-3. `docker compose -p toon-genesis -f docker-compose-genesis.yml logs toon` -- Check container logs
-
-**Tests failing:**
-
-1. `curl http://localhost:3100/health` -- Genesis node up?
-2. `curl http://localhost:8545` -- Anvil healthy?
-3. `./deploy-genesis-node.sh --reset` -- Clear stale containers and rebuild
 
 **SDK E2E tests failing:**
 
@@ -101,7 +76,6 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 
 **Port conflicts:** See `_bmad-output/project-context.md` section "Deployment" for full port allocation table. Key ranges:
 
-- Genesis: BLS 3100, Relay 7100, Anvil 8545, Faucet 3500
 - SDK E2E: Anvil 18545, Peer1 19000/19100/19700, Peer2 19010/19110/19710
 - Oyster CVM attestation server: 1300
 
@@ -129,7 +103,7 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | SDK E2E Docker compose | `docker-compose-sdk-e2e.yml` |
 | Nix reproducible build flake | `flake.nix` (root) |
 | Attestation server source | `docker/src/attestation-server.ts` |
-| Docker entrypoints (SDK & Town) | `docker/src/entrypoint-sdk.ts`, `docker/src/entrypoint-town.ts` |
+| Docker entrypoint (embedded connector) | `docker/src/entrypoint-sdk.ts` |
 | Content publishing pipeline | `_bmad-output/planning-artifacts/content-strategy-2026-q1.md` |
 | Content publishing workflow | `_bmad-output/planning-artifacts/content/publish-workflow.md` |
 | Character spec (brand voice) | `_bmad-output/planning-artifacts/content/character-spec.md` |
