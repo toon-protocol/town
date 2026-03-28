@@ -1,0 +1,709 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Navigation bar" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - link "Explore" [ref=e8] [cursor=pointer]:
+          - /url: /explore/repos
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/faq/
+        - link "Help" [ref=e11] [cursor=pointer]:
+          - /url: https://docs.codeberg.org
+        - link "Donate" [ref=e12] [cursor=pointer]:
+          - /url: https://donate.codeberg.org
+      - generic [ref=e13]:
+        - link "Register" [ref=e14] [cursor=pointer]:
+          - /url: /user/sign_up
+          - img [ref=e15]
+          - generic [ref=e17]: Register
+        - link "Sign in" [ref=e18] [cursor=pointer]:
+          - /url: /user/login?redirect_to=%2fforgejo
+          - img [ref=e19]
+          - generic [ref=e21]: Sign in
+    - main "Forgejo" [ref=e22]:
+      - generic [ref=e23]:
+        - img "Forgejo" [ref=e24]
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - heading "Forgejo" [level=1] [ref=e28]
+            - group [ref=e30]:
+              - generic "More actions" [ref=e31] [cursor=pointer]:
+                - img [ref=e32]
+          - paragraph [ref=e35]: Beyond coding. We forge.
+          - generic [ref=e37]:
+            - img [ref=e38]
+            - link "https://forgejo.org" [ref=e40] [cursor=pointer]:
+              - /url: https://forgejo.org
+      - navigation [ref=e42]:
+        - generic [ref=e43]:
+          - link "Repositories 20" [ref=e44] [cursor=pointer]:
+            - /url: /forgejo
+            - img [ref=e45]
+            - generic [ref=e47]: Repositories
+            - generic [ref=e48]: "20"
+          - link "Projects" [ref=e49] [cursor=pointer]:
+            - /url: /forgejo/-/projects
+            - img [ref=e50]
+            - generic [ref=e53]: Projects
+          - link "Packages 1" [ref=e54] [cursor=pointer]:
+            - /url: /forgejo/-/packages
+            - img [ref=e55]
+            - generic [ref=e57]: Packages
+            - generic [ref=e58]: "1"
+          - link "Members 29" [ref=e59] [cursor=pointer]:
+            - /url: /org/forgejo/members
+            - img [ref=e60]
+            - generic [ref=e62]: Members
+            - generic [ref=e63]: "29"
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - paragraph [ref=e68]:
+              - link "Forgejo" [ref=e69] [cursor=pointer]:
+                - /url: https://forgejo.org
+              - text: is a self-hosted lightweight software forge.
+            - paragraph [ref=e70]:
+              - text: Forgejo's many
+              - link "teams" [ref=e71] [cursor=pointer]:
+                - /url: https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md
+              - text: work on and coordinate over many different repositories hosted on
+              - link "Codeberg" [ref=e72] [cursor=pointer]:
+                - /url: https://codeberg.org
+              - text: and
+              - link "code.forgejo.org" [ref=e73] [cursor=pointer]:
+                - /url: https://code.forgejo.org
+              - text: . This document contains a selected list of such repositories.
+            - heading "Software" [level=2] [ref=e74]:
+              - link [ref=e75] [cursor=pointer]:
+                - /url: "#software"
+              - text: Software
+            - list [ref=e76]:
+              - listitem [ref=e77]:
+                - link "forgejo/forgejo" [ref=e78] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/forgejo
+              - listitem [ref=e79]:
+                - link "forgejo/website" [ref=e80] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/website
+              - listitem [ref=e81]:
+                - link "forgejo/docs" [ref=e82] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/docs
+              - listitem [ref=e83]:
+                - link "code.forgejo.org/forgejo/runner" [ref=e84] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/forgejo/runner
+              - listitem [ref=e85]:
+                - link "code.forgejo.org/f3/gof3" [ref=e86] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/f3/gof3
+              - listitem [ref=e87]:
+                - link "code.forgejo.org/forgejo-helm/forgejo-helm" [ref=e88] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/forgejo-helm/forgejo-helm
+            - heading "Infrastructure" [level=2] [ref=e89]:
+              - link [ref=e90] [cursor=pointer]:
+                - /url: "#infrastructure"
+              - text: Infrastructure
+            - list [ref=e91]:
+              - listitem [ref=e92]:
+                - link "forgejo/k8s-cluster" [ref=e93] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/k8s-cluster
+              - listitem [ref=e94]:
+                - link "code.forgejo.org/forgejo/end-to-end" [ref=e95] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/forgejo/end-to-end
+              - listitem [ref=e96]:
+                - link "code.forgejo.org/forgejo/lxc-helpers" [ref=e97] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/forgejo/lxc-helpers
+              - listitem [ref=e98]:
+                - link "code.forgejo.org/forgejo/forgejo-container-image" [ref=e99] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/forgejo/forgejo-container-image
+              - listitem [ref=e100]:
+                - link "code.forgejo.org/renovate/renovate" [ref=e101] [cursor=pointer]:
+                  - /url: https://code.forgejo.org/renovate/renovate
+            - heading "Meta" [level=2] [ref=e102]:
+              - link [ref=e103] [cursor=pointer]:
+                - /url: "#meta"
+              - text: Meta
+            - list [ref=e104]:
+              - listitem [ref=e105]:
+                - link "forgejo/governance" [ref=e106] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/governance
+              - listitem [ref=e107]:
+                - link "forgejo/sustainability" [ref=e108] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/sustainability
+              - listitem [ref=e109]:
+                - link "forgejo/code-of-conduct" [ref=e110] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/code-of-conduct
+              - listitem [ref=e111]:
+                - link "forgejo/design" [ref=e112] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/design
+              - listitem [ref=e113]:
+                - link "forgejo/user-research" [ref=e114] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/user-research
+              - listitem [ref=e115]:
+                - link "forgejo/discussions" [ref=e116] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/discussions
+              - listitem [ref=e117]:
+                - link "forgejo/professional-services" [ref=e118] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo/professional-services
+              - listitem [ref=e119]:
+                - link "forgejo-contrib/federation" [ref=e120] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo-contrib/federation
+              - listitem [ref=e121]:
+                - link "forgejo-contrib/moving-to-forgejo" [ref=e122] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo-contrib/moving-to-forgejo
+              - listitem [ref=e123]:
+                - link "forgejo-contrib/delightful-forgejo" [ref=e124] [cursor=pointer]:
+                  - /url: https://codeberg.org/forgejo-contrib/delightful-forgejo
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - searchbox "Search repos…" [ref=e128]
+              - button "Search…" [ref=e129] [cursor=pointer]:
+                - img [ref=e130]
+            - combobox [ref=e132] [cursor=pointer]:
+              - generic [ref=e133]: Filter
+              - img [ref=e134]
+            - combobox [ref=e136] [cursor=pointer]:
+              - generic [ref=e137]: Sort
+              - img [ref=e138]
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - img "forgejo/forgejo" [ref=e144]
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - link "forgejo" [ref=e148] [cursor=pointer]:
+                    - /url: /forgejo/forgejo
+                  - generic [ref=e149]:
+                    - link "Go" [ref=e150] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Go"
+                      - text: Go
+                    - link "3984 stars" [ref=e152] [cursor=pointer]:
+                      - /url: /forgejo/forgejo/stars
+                      - img [ref=e153]
+                      - text: 4.0k
+                    - link "699 forks" [ref=e155] [cursor=pointer]:
+                      - /url: /forgejo/forgejo/forks
+                      - img [ref=e156]
+                      - text: "699"
+                - generic [ref=e158]: Beyond coding. We forge.
+                - generic [ref=e159]:
+                  - link "forge" [ref=e160] [cursor=pointer]:
+                    - /url: /explore/repos?q=forge&topic=1
+                  - link "forgejo" [ref=e161] [cursor=pointer]:
+                    - /url: /explore/repos?q=forgejo&topic=1
+                  - link "git" [ref=e162] [cursor=pointer]:
+                    - /url: /explore/repos?q=git&topic=1
+                  - link "self-hosted" [ref=e163] [cursor=pointer]:
+                    - /url: /explore/repos?q=self-hosted&topic=1
+                - generic [ref=e164]:
+                  - text: Updated
+                  - generic "Mar 28, 2026, 06:05 AM EDT" [ref=e165]: 2026-03-28 11:05:30 +01:008 hours ago
+            - generic [ref=e166]:
+              - img [ref=e168]
+              - generic [ref=e170]:
+                - generic [ref=e171]:
+                  - link "k8s-cluster" [ref=e173] [cursor=pointer]:
+                    - /url: /forgejo/k8s-cluster
+                  - generic [ref=e174]:
+                    - link "Shell" [ref=e175] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Shell"
+                      - text: Shell
+                    - link "3 stars" [ref=e177] [cursor=pointer]:
+                      - /url: /forgejo/k8s-cluster/stars
+                      - img [ref=e178]
+                      - text: "3"
+                    - link "0 forks" [ref=e180] [cursor=pointer]:
+                      - /url: /forgejo/k8s-cluster/forks
+                      - img [ref=e181]
+                      - text: "0"
+                - generic [ref=e183]:
+                  - text: Read-only mirror pushed from
+                  - link "https://invisible.forgejo.org/infrastructure/k8s-cluster/" [ref=e184] [cursor=pointer]:
+                    - /url: https://invisible.forgejo.org/infrastructure/k8s-cluster/
+                  - text: "- for disaster recovery"
+                - generic [ref=e185]:
+                  - text: Updated
+                  - generic "Mar 28, 2026, 04:04 AM EDT" [ref=e186]: 2026-03-28 09:04:31 +01:0010 hours ago
+            - generic [ref=e187]:
+              - img [ref=e189]
+              - generic [ref=e191]:
+                - generic [ref=e192]:
+                  - link "pages" [ref=e194] [cursor=pointer]:
+                    - /url: /forgejo/pages
+                  - generic [ref=e195]:
+                    - link "HTML" [ref=e196] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=HTML"
+                      - text: HTML
+                    - link "6 stars" [ref=e198] [cursor=pointer]:
+                      - /url: /forgejo/pages/stars
+                      - img [ref=e199]
+                      - text: "6"
+                    - link "2 forks" [ref=e201] [cursor=pointer]:
+                      - /url: /forgejo/pages/forks
+                      - img [ref=e202]
+                      - text: "2"
+                - generic [ref=e204]:
+                  - text: Repo for Forgejo website preview/staging builds. Automatically built with CI from
+                  - link "https://codeberg.org/forgejo/website" [ref=e205] [cursor=pointer]:
+                    - /url: https://codeberg.org/forgejo/website
+                - generic [ref=e206]:
+                  - text: Updated
+                  - generic "Mar 28, 2026, 04:03 AM EDT" [ref=e207]: 2026-03-28 09:03:52 +01:0010 hours ago
+            - generic [ref=e208]:
+              - img [ref=e210]
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - link "website" [ref=e215] [cursor=pointer]:
+                    - /url: /forgejo/website
+                  - generic [ref=e216]:
+                    - link "Astro" [ref=e217] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Astro"
+                      - text: Astro
+                    - link "36 stars" [ref=e219] [cursor=pointer]:
+                      - /url: /forgejo/website/stars
+                      - img [ref=e220]
+                      - text: "36"
+                    - link "47 forks" [ref=e222] [cursor=pointer]:
+                      - /url: /forgejo/website/forks
+                      - img [ref=e223]
+                      - text: "47"
+                - generic [ref=e225]: Forgejo website content
+                - generic [ref=e226]:
+                  - text: Updated
+                  - generic "Mar 28, 2026, 04:01 AM EDT" [ref=e227]: 2026-03-28 09:01:55 +01:0010 hours ago
+            - generic [ref=e228]:
+              - img "forgejo/docs" [ref=e230]
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - link "docs" [ref=e234] [cursor=pointer]:
+                    - /url: /forgejo/docs
+                  - generic [ref=e235]:
+                    - link "Shell" [ref=e236] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Shell"
+                      - text: Shell
+                    - link "47 stars" [ref=e238] [cursor=pointer]:
+                      - /url: /forgejo/docs/stars
+                      - img [ref=e239]
+                      - text: "47"
+                    - link "221 forks" [ref=e241] [cursor=pointer]:
+                      - /url: /forgejo/docs/forks
+                      - img [ref=e242]
+                      - text: "221"
+                - generic [ref=e244]: Forgejo Documentation
+                - generic [ref=e245]:
+                  - text: Updated
+                  - generic "Mar 28, 2026, 03:57 AM EDT" [ref=e246]: 2026-03-28 08:57:19 +01:0010 hours ago
+            - generic [ref=e247]:
+              - img [ref=e249]
+              - generic [ref=e251]:
+                - generic [ref=e252]:
+                  - link "renovate-config" [ref=e254] [cursor=pointer]:
+                    - /url: /forgejo/renovate-config
+                  - generic [ref=e255]:
+                    - link "Shell" [ref=e256] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Shell"
+                      - text: Shell
+                    - link "3 stars" [ref=e258] [cursor=pointer]:
+                      - /url: /forgejo/renovate-config/stars
+                      - img [ref=e259]
+                      - text: "3"
+                    - link "0 forks" [ref=e261] [cursor=pointer]:
+                      - /url: /forgejo/renovate-config/forks
+                      - img [ref=e262]
+                      - text: "0"
+                - generic [ref=e264]: Configurations for Renovate read only mirror
+                - link "renovate" [ref=e266] [cursor=pointer]:
+                  - /url: /explore/repos?q=renovate&topic=1
+                - generic [ref=e267]:
+                  - text: Updated
+                  - generic "Mar 22, 2026, 08:02 PM EDT" [ref=e268]: 2026-03-23 01:02:20 +01:005 days ago
+            - generic [ref=e269]:
+              - img "forgejo/governance" [ref=e271]
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - link "governance" [ref=e275] [cursor=pointer]:
+                    - /url: /forgejo/governance
+                  - generic [ref=e276]:
+                    - link "27 stars" [ref=e277] [cursor=pointer]:
+                      - /url: /forgejo/governance/stars
+                      - img [ref=e278]
+                      - text: "27"
+                    - link "32 forks" [ref=e280] [cursor=pointer]:
+                      - /url: /forgejo/governance/forks
+                      - img [ref=e281]
+                      - text: "32"
+                - generic [ref=e283]: The Governance of Forgejo
+                - generic [ref=e284]:
+                  - text: Updated
+                  - generic "Mar 22, 2026, 04:04 PM EDT" [ref=e285]: 2026-03-22 21:04:30 +01:005 days ago
+            - generic [ref=e286]:
+              - img [ref=e288]
+              - generic [ref=e290]:
+                - generic [ref=e291]:
+                  - link "user-research" [ref=e293] [cursor=pointer]:
+                    - /url: /forgejo/user-research
+                  - generic [ref=e294]:
+                    - link "13 stars" [ref=e295] [cursor=pointer]:
+                      - /url: /forgejo/user-research/stars
+                      - img [ref=e296]
+                      - text: "13"
+                    - link "6 forks" [ref=e298] [cursor=pointer]:
+                      - /url: /forgejo/user-research/forks
+                      - img [ref=e299]
+                      - text: "6"
+                - generic [ref=e301]: User Research
+                - generic [ref=e302]:
+                  - text: Updated
+                  - generic "Mar 12, 2026, 06:27 AM EDT" [ref=e303]: 2026-03-12 11:27:06 +01:00two weeks ago
+            - generic [ref=e304]:
+              - img [ref=e306]
+              - generic [ref=e308]:
+                - generic [ref=e309]:
+                  - link "sustainability" [ref=e311] [cursor=pointer]:
+                    - /url: /forgejo/sustainability
+                  - generic [ref=e312]:
+                    - link "Typst" [ref=e313] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Typst"
+                      - text: Typst
+                    - link "20 stars" [ref=e315] [cursor=pointer]:
+                      - /url: /forgejo/sustainability/stars
+                      - img [ref=e316]
+                      - text: "20"
+                    - link "9 forks" [ref=e318] [cursor=pointer]:
+                      - /url: /forgejo/sustainability/forks
+                      - img [ref=e319]
+                      - text: "9"
+                - generic [ref=e321]: "All things related to sustainability: volunteers, donations, grant applications and employee delegation"
+                - generic [ref=e322]:
+                  - text: Updated
+                  - generic "Jan 30, 2026, 10:34 PM EST" [ref=e323]: 2026-01-31 04:34:48 +01:00last month
+            - generic [ref=e324]:
+              - img [ref=e326]
+              - generic [ref=e328]:
+                - generic [ref=e329]:
+                  - generic [ref=e330]:
+                    - link "cherry-pick-tools" [ref=e331] [cursor=pointer]:
+                      - /url: /forgejo/cherry-pick-tools
+                    - generic [ref=e333]: Archived
+                  - generic [ref=e334]:
+                    - link "Shell" [ref=e335] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Shell"
+                      - text: Shell
+                    - link "4 stars" [ref=e337] [cursor=pointer]:
+                      - /url: /forgejo/cherry-pick-tools/stars
+                      - img [ref=e338]
+                      - text: "4"
+                    - link "2 forks" [ref=e340] [cursor=pointer]:
+                      - /url: /forgejo/cherry-pick-tools/forks
+                      - img [ref=e341]
+                      - text: "2"
+                - generic [ref=e343]: Helpers and tools for keeping a diverging Git history in sync.
+                - generic [ref=e344]:
+                  - text: Updated
+                  - generic "Jan 29, 2026, 11:59 PM EST" [ref=e345]: 2026-01-30 05:59:14 +01:00last month
+            - generic [ref=e346]:
+              - img [ref=e348]
+              - generic [ref=e350]:
+                - generic [ref=e351]:
+                  - link "code-of-conduct" [ref=e353] [cursor=pointer]:
+                    - /url: /forgejo/code-of-conduct
+                  - generic [ref=e354]:
+                    - link "7 stars" [ref=e355] [cursor=pointer]:
+                      - /url: /forgejo/code-of-conduct/stars
+                      - img [ref=e356]
+                      - text: "7"
+                    - link "1 fork" [ref=e358] [cursor=pointer]:
+                      - /url: /forgejo/code-of-conduct/forks
+                      - img [ref=e359]
+                      - text: "1"
+                - generic [ref=e361]:
+                  - text: Updated
+                  - generic "Jan 23, 2026, 10:38 AM EST" [ref=e362]: 2026-01-23 16:38:30 +01:00two months ago
+            - generic [ref=e363]:
+              - img [ref=e365]
+              - generic [ref=e367]:
+                - generic [ref=e368]:
+                  - generic [ref=e369]:
+                    - link ".profile" [ref=e370] [cursor=pointer]:
+                      - /url: /forgejo/.profile
+                    - generic [ref=e372]: SHA256
+                  - generic [ref=e373]:
+                    - link "0 stars" [ref=e374] [cursor=pointer]:
+                      - /url: /forgejo/.profile/stars
+                      - img [ref=e375]
+                      - text: "0"
+                    - link "0 forks" [ref=e377] [cursor=pointer]:
+                      - /url: /forgejo/.profile/forks
+                      - img [ref=e378]
+                      - text: "0"
+                - generic [ref=e380]:
+                  - text: Updated
+                  - generic "May 30, 2025, 12:57 AM EDT" [ref=e381]: 2025-05-30 06:57:49 +02:009 months ago
+            - generic [ref=e382]:
+              - img [ref=e384]
+              - generic [ref=e386]:
+                - generic [ref=e387]:
+                  - generic [ref=e388]:
+                    - link "gitea-open-letter" [ref=e389] [cursor=pointer]:
+                      - /url: /forgejo/gitea-open-letter
+                    - generic [ref=e391]: Archived
+                  - generic [ref=e392]:
+                    - link "Shell" [ref=e393] [cursor=pointer]:
+                      - /url: "?q=&sort=recentupdate&language=Shell"
+                      - text: Shell
+                    - link "15 stars" [ref=e395] [cursor=pointer]:
+                      - /url: /forgejo/gitea-open-letter/stars
+                      - img [ref=e396]
+                      - text: "15"
+                    - link "28 forks" [ref=e398] [cursor=pointer]:
+                      - /url: /forgejo/gitea-open-letter/forks
+                      - img [ref=e399]
+                      - text: "28"
+                - generic [ref=e401]: An Open Letter from the Gitea Community to the Project Owners.
+                - generic [ref=e402]:
+                  - link "gitea" [ref=e403] [cursor=pointer]:
+                    - /url: /explore/repos?q=gitea&topic=1
+                  - link "community" [ref=e404] [cursor=pointer]:
+                    - /url: /explore/repos?q=community&topic=1
+                  - link "open-letter" [ref=e405] [cursor=pointer]:
+                    - /url: /explore/repos?q=open-letter&topic=1
+                - generic [ref=e406]:
+                  - text: Updated
+                  - generic "Apr 17, 2025, 06:08 PM EDT" [ref=e407]: 2025-04-18 00:08:20 +02:0011 months ago
+            - generic [ref=e408]:
+              - img [ref=e410]
+              - generic [ref=e412]:
+                - generic [ref=e413]:
+                  - link "design" [ref=e415] [cursor=pointer]:
+                    - /url: /forgejo/design
+                  - generic [ref=e416]:
+                    - link "7 stars" [ref=e417] [cursor=pointer]:
+                      - /url: /forgejo/design/stars
+                      - img [ref=e418]
+                      - text: "7"
+                    - link "4 forks" [ref=e420] [cursor=pointer]:
+                      - /url: /forgejo/design/forks
+                      - img [ref=e421]
+                      - text: "4"
+                - generic [ref=e423]: "Designing Forgejo's future: User Experience, User Interface and technical details. Please read README carefully."
+                - generic [ref=e424]:
+                  - text: Updated
+                  - generic "Feb 26, 2025, 01:37 PM EST" [ref=e425]: 2025-02-26 19:37:24 +01:00last year
+            - generic [ref=e426]:
+              - img [ref=e428]
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e432]:
+                    - link "forgejo-manual-testing" [ref=e433] [cursor=pointer]:
+                      - /url: /forgejo/forgejo-manual-testing
+                    - generic [ref=e435]: Archived
+                  - generic [ref=e436]:
+                    - link "0 stars" [ref=e437] [cursor=pointer]:
+                      - /url: /forgejo/forgejo-manual-testing/stars
+                      - img [ref=e438]
+                      - text: "0"
+                    - link "1 fork" [ref=e440] [cursor=pointer]:
+                      - /url: /forgejo/forgejo-manual-testing/forks
+                      - img [ref=e441]
+                      - text: "1"
+                - generic [ref=e443]: OBSOLETE A collection of manual testing instructions for when automated tests are not implemented yet in the forgejo codebase.
+                - generic [ref=e444]:
+                  - text: Updated
+                  - generic "Dec 2, 2024, 11:45 PM EST" [ref=e445]: 2024-12-03 05:45:37 +01:00last year
+          - generic [ref=e447]:
+            - generic:
+              - img
+              - generic: First
+            - generic:
+              - img
+              - generic: Previous
+            - generic [ref=e448] [cursor=pointer]: "1"
+            - link "2" [ref=e449] [cursor=pointer]:
+              - /url: /forgejo?page=2&sort=recentupdate&q=&language=
+            - link "Next" [ref=e450] [cursor=pointer]:
+              - /url: /forgejo?page=2&sort=recentupdate&q=&language=
+              - generic [ref=e451]: Next
+              - img [ref=e452]
+            - link "Last" [ref=e454] [cursor=pointer]:
+              - /url: /forgejo?page=2&sort=recentupdate&q=&language=
+              - generic [ref=e455]: Last
+              - img [ref=e456]
+        - generic [ref=e460]:
+          - heading "Members 29" [level=4] [ref=e461]:
+            - strong [ref=e462]: Members
+            - link "29" [ref=e463] [cursor=pointer]:
+              - /url: /org/forgejo/members
+              - generic [ref=e464]: "29"
+              - img [ref=e465]
+          - generic [ref=e467]:
+            - link "0ko" [ref=e468] [cursor=pointer]:
+              - /url: /0ko
+              - img "0ko" [ref=e469]
+            - link "Gergely Nagy" [ref=e470] [cursor=pointer]:
+              - /url: /algernon
+              - img "Gergely Nagy" [ref=e471]
+            - link "Beowulf" [ref=e472] [cursor=pointer]:
+              - /url: /Beowulf
+              - img "Beowulf" [ref=e473]
+            - link "Christoph Heiss" [ref=e474] [cursor=pointer]:
+              - /url: /c8h4
+              - img "Christoph Heiss" [ref=e475]
+            - link "Caesar Schinas" [ref=e476] [cursor=pointer]:
+              - /url: /caesar
+              - img "Caesar Schinas" [ref=e477]
+            - link "crystal" [ref=e478] [cursor=pointer]:
+              - /url: /crystal
+              - img "crystal" [ref=e479]
+            - link "Victoria" [ref=e480] [cursor=pointer]:
+              - /url: /efertone
+              - img "Victoria" [ref=e481]
+            - link "floss4good" [ref=e482] [cursor=pointer]:
+              - /url: /floss4good
+              - img "floss4good" [ref=e483]
+            - link "Otto" [ref=e484] [cursor=pointer]:
+              - /url: /fnetX
+              - img "Otto" [ref=e485]
+            - link "Forgejo Moderation Team" [ref=e486] [cursor=pointer]:
+              - /url: /forgejo-moderation
+              - img "Forgejo Moderation Team" [ref=e487]
+            - link "Gusted" [ref=e488] [cursor=pointer]:
+              - /url: /Gusted
+              - img "Gusted" [ref=e489]
+            - link "JakobDev" [ref=e490] [cursor=pointer]:
+              - /url: /JakobDev
+              - img "JakobDev" [ref=e491]
+            - link "KaKi87" [ref=e492] [cursor=pointer]:
+              - /url: /KaKi87
+              - img "KaKi87" [ref=e493]
+            - link "Vyxie" [ref=e494] [cursor=pointer]:
+              - /url: /kita
+              - img "Vyxie" [ref=e495]
+            - link "Kwonunn" [ref=e496] [cursor=pointer]:
+              - /url: /Kwonunn
+              - img "Kwonunn" [ref=e497]
+            - link "Robert Wolff" [ref=e498] [cursor=pointer]:
+              - /url: /mahlzahn
+              - img "Robert Wolff" [ref=e499]
+            - link "Mai-Lapyst" [ref=e500] [cursor=pointer]:
+              - /url: /Mai-Lapyst
+              - img "Mai-Lapyst" [ref=e501]
+            - link "Maxim Slipenko" [ref=e502] [cursor=pointer]:
+              - /url: /Maks1mS
+              - img "Maxim Slipenko" [ref=e503]
+            - link "Malte Jürgens" [ref=e504] [cursor=pointer]:
+              - /url: /maltejur
+              - img "Malte Jürgens" [ref=e505]
+            - link "marcellmars" [ref=e506] [cursor=pointer]:
+              - /url: /marcellmars
+              - img "marcellmars" [ref=e507]
+            - link "Panagiotis \"Ivory\" Vasilopoulos" [ref=e508] [cursor=pointer]:
+              - /url: /n0toose
+              - img "Panagiotis \"Ivory\" Vasilopoulos" [ref=e509]
+            - link "patdyn" [ref=e510] [cursor=pointer]:
+              - /url: /patdyn
+              - img "patdyn" [ref=e511]
+            - link "Lucas" [ref=e512] [cursor=pointer]:
+              - /url: /sclu1034
+              - img "Lucas" [ref=e513]
+            - link "Antonin Delpeuch" [ref=e514] [cursor=pointer]:
+              - /url: /wetneb
+              - img "Antonin Delpeuch" [ref=e515]
+            - link "xtex" [ref=e516] [cursor=pointer]:
+              - /url: /xtex
+              - img "xtex" [ref=e517]
+  - group "Footer" [ref=e518]:
+    - generic "Links" [ref=e519]:
+      - generic [ref=e520]:
+        - img [ref=e522]
+        - generic [ref=e523]:
+          - generic [ref=e524]: Powered by
+          - link "Forgejo" [ref=e525] [cursor=pointer]:
+            - /url: https://forgejo.org
+            - img [ref=e527]
+          - text: with
+          - link "modifications" [ref=e528] [cursor=pointer]:
+            - /url: /Codeberg-Infrastructure/forgejo
+      - generic [ref=e529]:
+        - text: Codeberg
+        - list [ref=e530]:
+          - listitem [ref=e531]:
+            - link "Blog" [ref=e532] [cursor=pointer]:
+              - /url: https://blog.codeberg.org
+          - listitem [ref=e533]:
+            - link "Documentation" [ref=e534] [cursor=pointer]:
+              - /url: https://docs.codeberg.org
+          - listitem [ref=e535]:
+            - link "Community Issues" [ref=e536] [cursor=pointer]:
+              - /url: /Codeberg/Community/issues
+          - listitem [ref=e537]:
+            - link "Contributing" [ref=e538] [cursor=pointer]:
+              - /url: /Codeberg/Contributing
+          - listitem [ref=e539]:
+            - link "Report Abuse" [ref=e540] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/#abuse
+      - generic [ref=e541]:
+        - text: Association
+        - list [ref=e542]:
+          - listitem [ref=e543]:
+            - link "Who are we?" [ref=e544] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+          - listitem [ref=e545]:
+            - link "Bylaws / Satzung" [ref=e546] [cursor=pointer]:
+              - /url: /codeberg/org/src/en/bylaws.md
+          - listitem [ref=e547]:
+            - link "Donate" [ref=e548] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/improving-codeberg/donate/
+          - listitem [ref=e549]:
+            - link "Join / Support" [ref=e550] [cursor=pointer]:
+              - /url: https://join.codeberg.org
+          - listitem [ref=e551]:
+            - link "Contact" [ref=e552] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/
+      - generic [ref=e553]:
+        - text: Services
+        - list [ref=e554]:
+          - listitem [ref=e555]:
+            - link "Codeberg Pages" [ref=e556] [cursor=pointer]:
+              - /url: https://codeberg.page
+          - listitem [ref=e557]:
+            - link "Codeberg Translate" [ref=e558] [cursor=pointer]:
+              - /url: https://translate.codeberg.org
+          - listitem [ref=e559]:
+            - link "Woodpecker CI" [ref=e560] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci
+          - listitem [ref=e561]:
+            - link "Forgejo API" [ref=e562] [cursor=pointer]:
+              - /url: /api/swagger
+          - listitem [ref=e563]:
+            - link "Status Page" [ref=e564] [cursor=pointer]:
+              - /url: https://status.codeberg.eu
+      - generic [ref=e565]:
+        - text: Legal
+        - list [ref=e566]:
+          - listitem [ref=e567]:
+            - link "Imprint / Impressum" [ref=e568] [cursor=pointer]:
+              - /url: /codeberg/org/src/Imprint.md
+          - listitem [ref=e569]:
+            - link "Privacy Policy" [ref=e570] [cursor=pointer]:
+              - /url: /codeberg/org/src/PrivacyPolicy.md
+          - listitem [ref=e571]:
+            - link "Licenses" [ref=e572] [cursor=pointer]:
+              - /url: /assets/licenses.txt
+          - listitem [ref=e573]:
+            - link "Terms of Use" [ref=e574] [cursor=pointer]:
+              - /url: /codeberg/org/src/TermsOfUse.md
+    - generic [ref=e575]:
+      - generic [ref=e576]:
+        - link "Mastodon" [ref=e577] [cursor=pointer]:
+          - /url: https://social.anoxinon.de/@Codeberg
+        - text: "|"
+        - link "Matrix Space" [ref=e578] [cursor=pointer]:
+          - /url: matrix:r/codeberg-space:matrix.org?action=join
+        - link "(Web link)" [ref=e579] [cursor=pointer]:
+          - /url: https://matrix.to/#/#codeberg-space:matrix.org
+        - button "Copy to clipboard" [ref=e580] [cursor=pointer]:
+          - img [ref=e581]
+      - menu [ref=e585] [cursor=pointer]:
+        - img [ref=e586]
+        - generic [ref=e588]: English
+    - img [ref=e589]

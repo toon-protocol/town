@@ -1,0 +1,1361 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Navigation bar" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - link "Explore" [ref=e8] [cursor=pointer]:
+          - /url: /explore/repos
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/faq/
+        - link "Help" [ref=e11] [cursor=pointer]:
+          - /url: https://docs.codeberg.org
+        - link "Donate" [ref=e12] [cursor=pointer]:
+          - /url: https://donate.codeberg.org
+      - generic [ref=e13]:
+        - link "Register" [ref=e14] [cursor=pointer]:
+          - /url: /user/sign_up
+          - img [ref=e15]
+          - generic [ref=e17]: Register
+        - link "Sign in" [ref=e18] [cursor=pointer]:
+          - /url: /user/login?redirect_to=%2fforgejo%2fforgejo
+          - img [ref=e19]
+          - generic [ref=e21]: Sign in
+    - 'main "forgejo/forgejo: Beyond coding. We forge." [ref=e22]':
+      - generic [ref=e23]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - img "forgejo/forgejo" [ref=e28]
+            - generic [ref=e30]:
+              - link "forgejo" [ref=e31] [cursor=pointer]:
+                - /url: /forgejo
+              - text: /
+              - link "forgejo" [ref=e32] [cursor=pointer]:
+                - /url: /forgejo/forgejo
+          - generic [ref=e33]:
+            - link "RSS feed" [ref=e34] [cursor=pointer]:
+              - /url: /forgejo/forgejo.rss
+              - img [ref=e35]
+            - generic "Sign in to watch this repository." [ref=e38] [cursor=pointer]:
+              - button "Watch" [disabled]:
+                - img
+                - generic: Watch
+              - link "111 watchers" [ref=e39]:
+                - /url: /forgejo/forgejo/watchers
+                - text: "111"
+            - generic "Sign in to star this repository." [ref=e41] [cursor=pointer]:
+              - button "Star" [disabled]:
+                - img
+                - generic: Star
+              - link "3984 stars" [ref=e42]:
+                - /url: /forgejo/forgejo/stars
+                - text: 4.0k
+            - generic "Sign in to fork this repository." [ref=e43]:
+              - generic:
+                - img
+                - generic: Fork
+              - link "699 forks" [ref=e44] [cursor=pointer]:
+                - /url: /forgejo/forgejo/forks
+                - text: "699"
+        - navigation [ref=e45]:
+          - generic [ref=e46]:
+            - link "Code" [ref=e47] [cursor=pointer]:
+              - /url: /forgejo/forgejo
+              - img [ref=e48]
+              - generic [ref=e50]: Code
+            - link "Issues 1.2k" [ref=e51] [cursor=pointer]:
+              - /url: /forgejo/forgejo/issues
+              - img [ref=e52]
+              - generic [ref=e55]: Issues
+              - generic [ref=e56]: 1.2k
+            - link "Pull requests 153" [ref=e57] [cursor=pointer]:
+              - /url: /forgejo/forgejo/pulls
+              - img [ref=e58]
+              - generic [ref=e60]: Pull requests
+              - generic [ref=e61]: "153"
+            - link "Releases 97" [ref=e62] [cursor=pointer]:
+              - /url: /forgejo/forgejo/releases
+              - img [ref=e63]
+              - generic [ref=e65]: Releases
+              - generic [ref=e66]: "97"
+            - link "Packages 1" [ref=e67] [cursor=pointer]:
+              - /url: /forgejo/forgejo/packages
+              - img [ref=e68]
+              - generic [ref=e70]: Packages
+              - generic [ref=e71]: "1"
+            - link "Activity" [ref=e72] [cursor=pointer]:
+              - /url: /forgejo/forgejo/activity
+              - img [ref=e73]
+              - generic [ref=e75]: Activity
+            - link "Actions 48" [ref=e76] [cursor=pointer]:
+              - /url: /forgejo/forgejo/actions
+              - img [ref=e77]
+              - generic [ref=e79]: Actions
+              - generic [ref=e80]: "48"
+      - generic [ref=e82]:
+        - generic [ref=e84]:
+          - text: Beyond coding. We forge.
+          - link "https://forgejo.org" [ref=e85] [cursor=pointer]:
+            - /url: https://forgejo.org
+        - generic [ref=e86]:
+          - link "forge" [ref=e87] [cursor=pointer]:
+            - /url: /explore/repos?q=forge&topic=1
+          - link "forgejo" [ref=e88] [cursor=pointer]:
+            - /url: /explore/repos?q=forgejo&topic=1
+          - link "git" [ref=e89] [cursor=pointer]:
+            - /url: /explore/repos?q=git&topic=1
+          - link "self-hosted" [ref=e90] [cursor=pointer]:
+            - /url: /explore/repos?q=self-hosted&topic=1
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - link "24,750 commits" [ref=e93] [cursor=pointer]:
+              - /url: /forgejo/forgejo/commits/branch/forgejo
+              - img [ref=e94]
+              - generic [ref=e96]: 24,750
+              - text: commits
+            - link "31 branches" [ref=e97] [cursor=pointer]:
+              - /url: /forgejo/forgejo/branches
+              - img [ref=e98]
+              - generic [ref=e100]: "31"
+              - text: branches
+            - link "278 tags" [ref=e101] [cursor=pointer]:
+              - /url: /forgejo/forgejo/tags
+              - img [ref=e102]
+              - generic [ref=e104]: "278"
+              - text: tags
+            - 'generic "git: 327 MiB, lfs: 0 B" [ref=e105]':
+              - img [ref=e106]
+              - generic [ref=e108]: "327"
+              - text: MiB
+          - group [ref=e109]:
+            - generic "Go go-html-template Roff JavaScript CSS other" [ref=e110] [cursor=pointer]:
+              - generic [ref=e111]:
+                - generic "Go" [ref=e112]
+                - generic "go-html-template" [ref=e113]
+                - generic "Roff" [ref=e114]
+                - generic "JavaScript" [ref=e115]
+                - generic "CSS" [ref=e116]
+                - generic "other" [ref=e117]
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - button "forgejo" [ref=e122] [cursor=pointer]:
+              - generic [ref=e123]:
+                - img [ref=e124]
+                - strong [ref=e126]: forgejo
+              - img [ref=e127]
+            - button "Compare" [ref=e129] [cursor=pointer]:
+              - img [ref=e130]
+            - link "Find a file" [ref=e132] [cursor=pointer]:
+              - /url: /forgejo/forgejo/find/branch/forgejo
+          - generic [ref=e134]:
+            - button "HTTPS" [ref=e135] [cursor=pointer]
+            - textbox [ref=e136]: https://codeberg.org/forgejo/forgejo.git
+            - button "Copy URL" [ref=e137] [cursor=pointer]:
+              - img [ref=e138]
+            - menu "More operations" [ref=e141] [cursor=pointer]:
+              - img [ref=e142]
+        - table [ref=e144]:
+          - rowgroup [ref=e145]:
+            - row "viceice-bot Renovate Bot b68caa311f Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764) ... Mar 27, 2026, 01:51 AM EDT" [ref=e146]:
+              - columnheader "viceice-bot Renovate Bot b68caa311f Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764) ..." [ref=e147]:
+                - generic [ref=e149]:
+                  - img "viceice-bot" [ref=e150]
+                  - link "Renovate Bot" [ref=e151] [cursor=pointer]:
+                    - /url: /viceice-bot
+                    - strong [ref=e152]: Renovate Bot
+                  - link "b68caa311f" [ref=e153] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+                    - generic [ref=e154]: b68caa311f
+                  - img [ref=e156]
+                  - generic "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764)" [ref=e158]:
+                    - generic [ref=e159]:
+                      - link "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (" [ref=e160] [cursor=pointer]:
+                        - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+                      - link "#11764" [ref=e161] [cursor=pointer]:
+                        - /url: /forgejo/forgejo/issues/11764
+                      - link ")" [ref=e162] [cursor=pointer]:
+                        - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+                    - button "..." [ref=e163] [cursor=pointer]
+              - columnheader "Mar 27, 2026, 01:51 AM EDT" [ref=e164]: 2026-03-27 06:51:45 +01:00yesterday
+          - rowgroup [ref=e165]:
+            - row ".devcontainer Update dependency go to v1.26 (forgejo) (#11320) Mar 11, 2026, 08:26 PM EDT" [ref=e166]:
+              - cell ".devcontainer" [ref=e167]:
+                - link ".devcontainer" [ref=e169] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.devcontainer
+                  - img [ref=e170]
+                  - text: .devcontainer
+              - cell "Update dependency go to v1.26 (forgejo) (#11320)" [ref=e172]:
+                - generic [ref=e173]:
+                  - link "Update dependency go to v1.26 (forgejo) (" [ref=e174] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/8e41551acb351b03dcbe48ca513b089046bfe9dd
+                  - link "#11320" [ref=e175] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11320
+                  - link ")" [ref=e176] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/8e41551acb351b03dcbe48ca513b089046bfe9dd
+              - cell "Mar 11, 2026, 08:26 PM EDT" [ref=e177]: 2026-03-12 01:26:23 +01:00two weeks ago
+            - 'row ".forgejo chore: run renovate on v15 branch (#11823) Mar 26, 2026, 06:00 AM EDT" [ref=e178]':
+              - cell ".forgejo" [ref=e179]:
+                - link ".forgejo" [ref=e181] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.forgejo
+                  - img [ref=e182]
+                  - text: .forgejo
+              - 'cell "chore: run renovate on v15 branch (#11823)" [ref=e184]':
+                - generic [ref=e185]:
+                  - 'link "chore: run renovate on v15 branch (" [ref=e186] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/8707cc10d0a5459d82f23bb391864a38501211d7
+                  - link "#11823" [ref=e187] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11823
+                  - link ")" [ref=e188] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/8707cc10d0a5459d82f23bb391864a38501211d7
+              - cell "Mar 26, 2026, 06:00 AM EDT" [ref=e189]: 2026-03-26 11:00:37 +01:00two days ago
+            - 'row ".semgrep ci: detect and prevent empty case statements in Go code (#11593) Mar 9, 2026, 09:50 PM EDT" [ref=e190]':
+              - cell ".semgrep" [ref=e191]:
+                - link ".semgrep" [ref=e193] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.semgrep
+                  - img [ref=e194]
+                  - text: .semgrep
+              - 'cell "ci: detect and prevent empty case statements in Go code (#11593)" [ref=e196]':
+                - generic [ref=e197]:
+                  - 'link "ci: detect and prevent empty case statements in Go code (" [ref=e198] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/f93d2cb261abbfe9f377d4a5b424a4d88c8b1610
+                    - text: "ci: detect and prevent empty"
+                    - code [ref=e199]: case
+                    - text: statements in Go code (
+                  - link "#11593" [ref=e200] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11593
+                  - link ")" [ref=e201] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/f93d2cb261abbfe9f377d4a5b424a4d88c8b1610
+              - cell "Mar 9, 2026, 09:50 PM EDT" [ref=e202]: 2026-03-10 02:50:28 +01:00two weeks ago
+            - row "assets Update module github.com/go-webauthn/webauthn to v0.16.1 (forgejo) (#11674) Mar 18, 2026, 11:16 PM EDT" [ref=e203]:
+              - cell "assets" [ref=e204]:
+                - link "assets" [ref=e206] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/assets
+                  - img [ref=e207]
+                  - text: assets
+              - cell "Update module github.com/go-webauthn/webauthn to v0.16.1 (forgejo) (#11674)" [ref=e209]:
+                - generic [ref=e210]:
+                  - link "Update module github.com/go-webauthn/webauthn to v0.16.1 (forgejo) (" [ref=e211] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/fcf306f6fe2515fc130b3470bb90f4f8305b54d4
+                  - link "#11674" [ref=e212] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11674
+                  - link ")" [ref=e213] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/fcf306f6fe2515fc130b3470bb90f4f8305b54d4
+              - cell "Mar 18, 2026, 11:16 PM EDT" [ref=e214]: 2026-03-19 04:16:19 +01:00last week
+            - 'row "build fix(ui): hardcode sort options in search syntax hint, improve look (#11381) Feb 23, 2026, 12:03 AM EST" [ref=e215]':
+              - cell "build" [ref=e216]:
+                - link "build" [ref=e218] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/build
+                  - img [ref=e219]
+                  - text: build
+              - 'cell "fix(ui): hardcode sort options in search syntax hint, improve look (#11381)" [ref=e221]':
+                - generic [ref=e222]:
+                  - 'link "fix(ui): hardcode sort options in search syntax hint, improve look (" [ref=e223] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/f9a22b335e80bccd5e224c492ecb512c06dcc805
+                  - link "#11381" [ref=e224] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11381
+                  - link ")" [ref=e225] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/f9a22b335e80bccd5e224c492ecb512c06dcc805
+              - cell "Feb 23, 2026, 12:03 AM EST" [ref=e226]: 2026-02-23 06:03:23 +01:00last month
+            - row "cmd Update module github.com/urfave/cli/v3 to v3.7.0 (forgejo) (#11713) Mar 18, 2026, 03:23 PM EDT" [ref=e227]:
+              - cell "cmd" [ref=e228]:
+                - link "cmd" [ref=e230] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/cmd
+                  - img [ref=e231]
+                  - text: cmd
+              - cell "Update module github.com/urfave/cli/v3 to v3.7.0 (forgejo) (#11713)" [ref=e233]:
+                - generic [ref=e234]:
+                  - link "Update module github.com/urfave/cli/v3 to v3.7.0 (forgejo) (" [ref=e235] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/05272aad9964940126ea8559722a60e341648583
+                  - link "#11713" [ref=e236] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11713
+                  - link ")" [ref=e237] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/05272aad9964940126ea8559722a60e341648583
+              - cell "Mar 18, 2026, 03:23 PM EDT" [ref=e238]: 2026-03-18 20:23:38 +01:00last week
+            - 'row "contrib chore: rename ''forgejo_migrations'' to ''forgejo_migrations_legacy'' Oct 14, 2025, 04:40 PM EDT" [ref=e239]':
+              - cell "contrib" [ref=e240]:
+                - link "contrib" [ref=e242] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/contrib
+                  - img [ref=e243]
+                  - text: contrib
+              - 'cell "chore: rename ''forgejo_migrations'' to ''forgejo_migrations_legacy''" [ref=e245]':
+                - 'link "chore: rename ''forgejo_migrations'' to ''forgejo_migrations_legacy''" [ref=e247] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/49bcd792cd5b8b840382005ddd8c3817bb79962c
+              - cell "Oct 14, 2025, 04:40 PM EDT" [ref=e248]: 2025-10-14 14:40:49 -06:005 months ago
+            - 'row "custom/conf fix: replace reference to Monaco with CodeMirror in app.example.ini (#11507) Mar 5, 2026, 03:32 PM EST" [ref=e249]':
+              - cell "custom/conf" [ref=e250]:
+                - link "custom/conf" [ref=e252] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/custom/conf
+                  - img [ref=e253]
+                  - text: custom/conf
+              - 'cell "fix: replace reference to Monaco with CodeMirror in app.example.ini (#11507)" [ref=e255]':
+                - generic [ref=e256]:
+                  - 'link "fix: replace reference to Monaco with CodeMirror in app.example.ini (" [ref=e257] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e47957e24c4856792b16d43f25bd41c744ddbdc8
+                    - text: "fix: replace reference to Monaco with CodeMirror in"
+                    - code [ref=e258]: app.example.ini
+                    - text: (
+                  - link "#11507" [ref=e259] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11507
+                  - link ")" [ref=e260] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e47957e24c4856792b16d43f25bd41c744ddbdc8
+              - cell "Mar 5, 2026, 03:32 PM EST" [ref=e261]: 2026-03-05 21:32:13 +01:003 weeks ago
+            - 'row "docker chore(Dockerfile.rootless): remove legacy config file support (#11098) Mar 2, 2026, 12:03 AM EST" [ref=e262]':
+              - cell "docker" [ref=e263]:
+                - link "docker" [ref=e265] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/docker
+                  - img [ref=e266]
+                  - text: docker
+              - 'cell "chore(Dockerfile.rootless): remove legacy config file support (#11098)" [ref=e268]':
+                - generic [ref=e269]:
+                  - 'link "chore(Dockerfile.rootless): remove legacy config file support (" [ref=e270] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/cce5f868cec11830d19126b90c659772708cd323
+                  - link "#11098" [ref=e271] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11098
+                  - link ")" [ref=e272] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/cce5f868cec11830d19126b90c659772708cd323
+              - cell "Mar 2, 2026, 12:03 AM EST" [ref=e273]: 2026-03-02 06:03:39 +01:003 weeks ago
+            - 'row "models fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776) Mar 26, 2026, 04:50 PM EDT" [ref=e274]':
+              - cell "models" [ref=e275]:
+                - link "models" [ref=e277] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/models
+                  - img [ref=e278]
+                  - text: models
+              - 'cell "fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776)" [ref=e280]':
+                - generic [ref=e281]:
+                  - 'link "fix: duplicate key violates unique constraint in concurrent debian package uploads (" [ref=e282] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+                  - link "#11776" [ref=e283] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11776
+                  - link ")" [ref=e284] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+              - cell "Mar 26, 2026, 04:50 PM EDT" [ref=e285]: 2026-03-26 21:50:25 +01:00yesterday
+            - 'row "modules feat: allow runners to request a particular job (#11676) Mar 25, 2026, 12:27 PM EDT" [ref=e286]':
+              - cell "modules" [ref=e287]:
+                - link "modules" [ref=e289] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/modules
+                  - img [ref=e290]
+                  - text: modules
+              - 'cell "feat: allow runners to request a particular job (#11676)" [ref=e292]':
+                - generic [ref=e293]:
+                  - 'link "feat: allow runners to request a particular job (" [ref=e294] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/5e1c13f50ee92e1eb061306bbbeae7e70207fa76
+                  - link "#11676" [ref=e295] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11676
+                  - link ")" [ref=e296] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/5e1c13f50ee92e1eb061306bbbeae7e70207fa76
+              - cell "Mar 25, 2026, 12:27 PM EDT" [ref=e297]: 2026-03-25 17:27:05 +01:003 days ago
+            - 'row "options i18n: update of translations from Codeberg Translate Mar 25, 2026, 07:27 AM EDT" [ref=e298]':
+              - cell "options" [ref=e299]:
+                - link "options" [ref=e301] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/options
+                  - img [ref=e302]
+                  - text: options
+              - 'cell "i18n: update of translations from Codeberg Translate" [ref=e304]':
+                - 'link "i18n: update of translations from Codeberg Translate" [ref=e306] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/d4fbbf0ac1c94612ac8063e296b8c1effd77f22c
+              - cell "Mar 25, 2026, 07:27 AM EDT" [ref=e307]: 2026-03-25 11:27:59 +00:003 days ago
+            - 'row "public chore(security): update security.txt with new expiration date (#10447) Dec 17, 2025, 06:32 AM EST" [ref=e308]':
+              - cell "public" [ref=e309]:
+                - link "public" [ref=e311] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/public
+                  - img [ref=e312]
+                  - text: public
+              - 'cell "chore(security): update security.txt with new expiration date (#10447)" [ref=e314]':
+                - generic [ref=e315]:
+                  - 'link "chore(security): update security.txt with new expiration date (" [ref=e316] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/50ff61ba058f62ef283eb0153b7bfff94df52b93
+                  - link "#10447" [ref=e317] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10447
+                  - link ")" [ref=e318] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/50ff61ba058f62ef283eb0153b7bfff94df52b93
+              - cell "Dec 17, 2025, 06:32 AM EST" [ref=e319]: 2025-12-17 12:32:42 +01:003 months ago
+            - 'row "release-notes chore: remove duplicate release notes from Jan 8 security release (#11791) Mar 26, 2026, 02:30 PM EDT" [ref=e320]':
+              - cell "release-notes" [ref=e321]:
+                - link "release-notes" [ref=e323] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/release-notes
+                  - img [ref=e324]
+                  - text: release-notes
+              - 'cell "chore: remove duplicate release notes from Jan 8 security release (#11791)" [ref=e326]':
+                - generic [ref=e327]:
+                  - 'link "chore: remove duplicate release notes from Jan 8 security release (" [ref=e328] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/bdb87ac3d3b4b187c5d17199a148d971e30db51b
+                  - link "#11791" [ref=e329] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11791
+                  - link ")" [ref=e330] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/bdb87ac3d3b4b187c5d17199a148d971e30db51b
+              - cell "Mar 26, 2026, 02:30 PM EDT" [ref=e331]: 2026-03-26 19:30:34 +01:00yesterday
+            - 'row "release-notes-published chore: 15.0.0 is now stable - first commit Mar 26, 2026, 03:40 AM EDT" [ref=e332]':
+              - cell "release-notes-published" [ref=e333]:
+                - link "release-notes-published" [ref=e335] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/release-notes-published
+                  - img [ref=e336]
+                  - text: release-notes-published
+              - 'cell "chore: 15.0.0 is now stable - first commit" [ref=e338]':
+                - 'link "chore: 15.0.0 is now stable - first commit" [ref=e340] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/75906efe932ed520efcda55c08471d8d4291ab9f
+              - cell "Mar 26, 2026, 03:40 AM EDT" [ref=e341]: 2026-03-26 08:40:14 +01:00two days ago
+            - row "releases/images [DOCS] RELEASE-NOTES.md Feb 5, 2024, 08:44 AM EST" [ref=e342]:
+              - cell "releases/images" [ref=e343]:
+                - link "releases/images" [ref=e345] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/releases/images
+                  - img [ref=e346]
+                  - text: releases/images
+              - cell "[DOCS] RELEASE-NOTES.md" [ref=e348]:
+                - link "[DOCS] RELEASE-NOTES.md" [ref=e350] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/commit/bbdf3613931880eddec713875d7a8af64a3c6e96
+              - cell "Feb 5, 2024, 08:44 AM EST" [ref=e351]: 2024-02-05 14:44:32 +01:00two years ago
+            - 'row "routers fix: out of synchronization error after interrupting a PR merge by user-agent disconnect (#11821) Mar 26, 2026, 12:11 PM EDT" [ref=e352]':
+              - cell "routers" [ref=e353]:
+                - link "routers" [ref=e355] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/routers
+                  - img [ref=e356]
+                  - text: routers
+              - 'cell "fix: out of synchronization error after interrupting a PR merge by user-agent disconnect (#11821)" [ref=e358]':
+                - generic [ref=e359]:
+                  - 'link "fix: out of synchronization error after interrupting a PR merge by user-agent disconnect (" [ref=e360] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/9c41a5f717589b86fcf55814f46899ef4691a7e3
+                  - link "#11821" [ref=e361] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11821
+                  - link ")" [ref=e362] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/9c41a5f717589b86fcf55814f46899ef4691a7e3
+              - cell "Mar 26, 2026, 12:11 PM EDT" [ref=e363]: 2026-03-26 17:11:10 +01:00two days ago
+            - 'row "services fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776) Mar 26, 2026, 04:50 PM EDT" [ref=e364]':
+              - cell "services" [ref=e365]:
+                - link "services" [ref=e367] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/services
+                  - img [ref=e368]
+                  - text: services
+              - 'cell "fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776)" [ref=e370]':
+                - generic [ref=e371]:
+                  - 'link "fix: duplicate key violates unique constraint in concurrent debian package uploads (" [ref=e372] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+                  - link "#11776" [ref=e373] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11776
+                  - link ")" [ref=e374] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+              - cell "Mar 26, 2026, 04:50 PM EDT" [ref=e375]: 2026-03-26 21:50:25 +01:00yesterday
+            - 'row "templates feat: allow runners to request a particular job (#11676) Mar 25, 2026, 12:27 PM EDT" [ref=e376]':
+              - cell "templates" [ref=e377]:
+                - link "templates" [ref=e379] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/templates
+                  - img [ref=e380]
+                  - text: templates
+              - 'cell "feat: allow runners to request a particular job (#11676)" [ref=e382]':
+                - generic [ref=e383]:
+                  - 'link "feat: allow runners to request a particular job (" [ref=e384] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/5e1c13f50ee92e1eb061306bbbeae7e70207fa76
+                  - link "#11676" [ref=e385] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11676
+                  - link ")" [ref=e386] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/5e1c13f50ee92e1eb061306bbbeae7e70207fa76
+              - cell "Mar 25, 2026, 12:27 PM EDT" [ref=e387]: 2026-03-25 17:27:05 +01:003 days ago
+            - 'row "tests fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776) Mar 26, 2026, 04:50 PM EDT" [ref=e388]':
+              - cell "tests" [ref=e389]:
+                - link "tests" [ref=e391] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/tests
+                  - img [ref=e392]
+                  - text: tests
+              - 'cell "fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776)" [ref=e394]':
+                - generic [ref=e395]:
+                  - 'link "fix: duplicate key violates unique constraint in concurrent debian package uploads (" [ref=e396] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+                  - link "#11776" [ref=e397] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11776
+                  - link ")" [ref=e398] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+              - cell "Mar 26, 2026, 04:50 PM EDT" [ref=e399]: 2026-03-26 21:50:25 +01:00yesterday
+            - 'row "tools chore: move backend-checks CI checks to Makefile: make pr-go (#11053) Feb 16, 2026, 08:41 PM EST" [ref=e400]':
+              - cell "tools" [ref=e401]:
+                - link "tools" [ref=e403] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/tools
+                  - img [ref=e404]
+                  - text: tools
+              - 'cell "chore: move backend-checks CI checks to Makefile: make pr-go (#11053)" [ref=e406]':
+                - generic [ref=e407]:
+                  - 'link "chore: move backend-checks CI checks to Makefile: make pr-go (" [ref=e408] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/a81fc2a29048dad1930bd0e6a70ded82724772b0
+                    - text: "chore: move backend-checks CI checks to Makefile:"
+                    - code [ref=e409]: make pr-go
+                    - text: (
+                  - link "#11053" [ref=e410] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11053
+                  - link ")" [ref=e411] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/a81fc2a29048dad1930bd0e6a70ded82724772b0
+              - cell "Feb 16, 2026, 08:41 PM EST" [ref=e412]: 2026-02-17 02:41:40 +01:00last month
+            - 'row "web_src feat: show workflow name for scheduled runs (#11770) Mar 23, 2026, 08:27 PM EDT" [ref=e413]':
+              - cell "web_src" [ref=e414]:
+                - link "web_src" [ref=e416] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/web_src
+                  - img [ref=e417]
+                  - text: web_src
+              - 'cell "feat: show workflow name for scheduled runs (#11770)" [ref=e419]':
+                - generic [ref=e420]:
+                  - 'link "feat: show workflow name for scheduled runs (" [ref=e421] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/b01278e534bcdc57bfa45b868cb45e15705016d6
+                  - link "#11770" [ref=e422] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11770
+                  - link ")" [ref=e423] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b01278e534bcdc57bfa45b868cb45e15705016d6
+              - cell "Mar 23, 2026, 08:27 PM EDT" [ref=e424]: 2026-03-24 01:27:32 +01:004 days ago
+            - 'row ".air.toml chore: rename ''migrations'' to ''gitea_migrations'' Oct 14, 2025, 04:40 PM EDT" [ref=e425]':
+              - cell ".air.toml" [ref=e426]:
+                - link ".air.toml" [ref=e428] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.air.toml
+                  - img [ref=e429]
+                  - text: .air.toml
+              - 'cell "chore: rename ''migrations'' to ''gitea_migrations''" [ref=e431]':
+                - 'link "chore: rename ''migrations'' to ''gitea_migrations''" [ref=e433] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/a0be0f22fc34a20e90797dada527c19cd2e1eaf1
+              - cell "Oct 14, 2025, 04:40 PM EDT" [ref=e434]: 2025-10-14 14:40:49 -06:005 months ago
+            - 'row ".deadcode-out fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776) Mar 26, 2026, 04:50 PM EDT" [ref=e435]':
+              - cell ".deadcode-out" [ref=e436]:
+                - link ".deadcode-out" [ref=e438] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.deadcode-out
+                  - img [ref=e439]
+                  - text: .deadcode-out
+              - 'cell "fix: duplicate key violates unique constraint in concurrent debian package uploads (#11776)" [ref=e441]':
+                - generic [ref=e442]:
+                  - 'link "fix: duplicate key violates unique constraint in concurrent debian package uploads (" [ref=e443] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+                  - link "#11776" [ref=e444] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11776
+                  - link ")" [ref=e445] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e823e8cd694e7fcbd18c59ca00b0e086f65be14a
+              - cell "Mar 26, 2026, 04:50 PM EDT" [ref=e446]: 2026-03-26 21:50:25 +01:00yesterday
+            - 'row ".dockerignore fix: Dockerfile should re-use bindata files when possible Jun 13, 2025, 08:00 AM EDT" [ref=e447]':
+              - cell ".dockerignore" [ref=e448]:
+                - link ".dockerignore" [ref=e450] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.dockerignore
+                  - img [ref=e451]
+                  - text: .dockerignore
+              - 'cell "fix: Dockerfile should re-use bindata files when possible" [ref=e453]':
+                - 'link "fix: Dockerfile should re-use bindata files when possible" [ref=e455] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/fd2f9e684223cf44137e44a0f13b24ccfcbdf2ec
+              - cell "Jun 13, 2025, 08:00 AM EDT" [ref=e456]: 2025-06-13 14:00:57 +02:009 months ago
+            - 'row ".editorconfig i18n(next): convert indention style to tabs: en, editorconfig (#10661) Jan 1, 2026, 11:56 PM EST" [ref=e457]':
+              - cell ".editorconfig" [ref=e458]:
+                - link ".editorconfig" [ref=e460] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.editorconfig
+                  - img [ref=e461]
+                  - text: .editorconfig
+              - 'cell "i18n(next): convert indention style to tabs: en, editorconfig (#10661)" [ref=e463]':
+                - generic [ref=e464]:
+                  - 'link "i18n(next): convert indention style to tabs: en, editorconfig (" [ref=e465] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/59c721d26b1a01e6e6ca812b63066a33e7e5e4da
+                  - link "#10661" [ref=e466] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10661
+                  - link ")" [ref=e467] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/59c721d26b1a01e6e6ca812b63066a33e7e5e4da
+              - cell "Jan 1, 2026, 11:56 PM EST" [ref=e468]: 2026-01-02 05:56:48 +01:00two months ago
+            - row ".envrc.example Make direnv optional to let developers use their own direnv configuration Nov 6, 2024, 02:34 PM EST" [ref=e469]:
+              - cell ".envrc.example" [ref=e470]:
+                - link ".envrc.example" [ref=e472] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.envrc.example
+                  - img [ref=e473]
+                  - text: .envrc.example
+              - cell "Make direnv optional to let developers use their own direnv configuration" [ref=e475]:
+                - link "Make direnv optional to let developers use their own direnv configuration" [ref=e477] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/commit/ffcf80c3a5f429420c94db1b7bd71589d5811c2d
+              - cell "Nov 6, 2024, 02:34 PM EST" [ref=e478]: 2024-11-06 20:34:49 +01:00last year
+            - 'row ".gitattributes Add interface{} to any replacement to make fmt, exclude *.pb.go (#30461) Apr 15, 2024, 02:01 PM EDT" [ref=e479]':
+              - cell ".gitattributes" [ref=e480]:
+                - link ".gitattributes" [ref=e482] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.gitattributes
+                  - img [ref=e483]
+                  - text: .gitattributes
+              - 'cell "Add interface{} to any replacement to make fmt, exclude *.pb.go (#30461)" [ref=e485]':
+                - generic [ref=e486]:
+                  - 'link "Add interface{} to any replacement to make fmt, exclude *.pb.go (" [ref=e487] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/bf933f5ca4ae928fdc840649c59641dc18585169
+                    - text: Add
+                    - code [ref=e488]: "interface{}"
+                    - text: to
+                    - code [ref=e489]: any
+                    - text: replacement to
+                    - code [ref=e490]: make fmt
+                    - text: ", exclude"
+                    - code [ref=e491]: "*.pb.go"
+                    - text: (
+                  - link "#30461" [ref=e492] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/30461
+                  - link ")" [ref=e493] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/bf933f5ca4ae928fdc840649c59641dc18585169
+              - cell "Apr 15, 2024, 02:01 PM EDT" [ref=e494]: 2024-04-15 20:01:36 +02:00last year
+            - 'row ".gitignore chore: polish linter error vs. dead code reporting (#11217) Mar 20, 2026, 02:06 AM EDT" [ref=e495]':
+              - cell ".gitignore" [ref=e496]:
+                - link ".gitignore" [ref=e498] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.gitignore
+                  - img [ref=e499]
+                  - text: .gitignore
+              - 'cell "chore: polish linter error vs. dead code reporting (#11217)" [ref=e501]':
+                - generic [ref=e502]:
+                  - 'link "chore: polish linter error vs. dead code reporting (" [ref=e503] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/6bd8c976b6689945bd584f40d067347021a3cbb5
+                  - link "#11217" [ref=e504] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11217
+                  - link ")" [ref=e505] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/6bd8c976b6689945bd584f40d067347021a3cbb5
+              - cell "Mar 20, 2026, 02:06 AM EDT" [ref=e506]: 2026-03-20 07:06:09 +01:00last week
+            - 'row ".gitmodules cleanup(tests): remove manual testing submodule Apr 21, 2024, 04:13 AM EDT" [ref=e507]':
+              - cell ".gitmodules" [ref=e508]:
+                - link ".gitmodules" [ref=e510] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.gitmodules
+                  - img [ref=e511]
+                  - text: .gitmodules
+              - 'cell "cleanup(tests): remove manual testing submodule" [ref=e513]':
+                - 'link "cleanup(tests): remove manual testing submodule" [ref=e515] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/69c614162f63a17a00ff34295742dcd04812c864
+              - cell "Apr 21, 2024, 04:13 AM EDT" [ref=e516]: 2024-04-21 10:13:51 +02:00last year
+            - row ".gitpod.yml Remove sqlite-viewer and using database client (#31223) Jun 9, 2024, 05:13 AM EDT" [ref=e517]:
+              - cell ".gitpod.yml" [ref=e518]:
+                - link ".gitpod.yml" [ref=e520] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.gitpod.yml
+                  - img [ref=e521]
+                  - text: .gitpod.yml
+              - cell "Remove sqlite-viewer and using database client (#31223)" [ref=e523]:
+                - generic [ref=e524]:
+                  - link "Remove sqlite-viewer and using database client (" [ref=e525] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3befabead064aefe1352265edd14d9ec4cd819f4
+                  - link "#31223" [ref=e526] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/31223
+                  - link ")" [ref=e527] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3befabead064aefe1352265edd14d9ec4cd819f4
+              - cell "Jun 9, 2024, 05:13 AM EDT" [ref=e528]: 2024-06-09 11:13:39 +02:00last year
+            - 'row ".golangci.yml chore(lint): enable nilnil (#11235) Feb 11, 2026, 01:08 PM EST" [ref=e529]':
+              - cell ".golangci.yml" [ref=e530]:
+                - link ".golangci.yml" [ref=e532] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.golangci.yml
+                  - img [ref=e533]
+                  - text: .golangci.yml
+              - 'cell "chore(lint): enable nilnil (#11235)" [ref=e535]':
+                - generic [ref=e536]:
+                  - 'link "chore(lint): enable nilnil (" [ref=e537] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/172bb4cefe0dfb78e131b8d19963669708c8a211
+                  - link "#11235" [ref=e538] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11235
+                  - link ")" [ref=e539] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/172bb4cefe0dfb78e131b8d19963669708c8a211
+              - cell "Feb 11, 2026, 01:08 PM EST" [ref=e540]: 2026-02-11 19:08:24 +01:00last month
+            - row ".ignore Add /options/license and /options/gitignore to .ignore (#30219) Apr 7, 2024, 09:40 AM EDT" [ref=e541]:
+              - cell ".ignore" [ref=e542]:
+                - link ".ignore" [ref=e544] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.ignore
+                  - img [ref=e545]
+                  - text: .ignore
+              - cell "Add /options/license and /options/gitignore to .ignore (#30219)" [ref=e547]:
+                - generic [ref=e548]:
+                  - link "Add /options/license and /options/gitignore to .ignore (" [ref=e549] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/f3e97bc27cb725cc89ceb0d5e0f0dc6831752b1f
+                    - text: Add
+                    - code [ref=e550]: /options/license
+                    - text: and
+                    - code [ref=e551]: /options/gitignore
+                    - text: to
+                    - code [ref=e552]: .ignore
+                    - text: (
+                  - link "#30219" [ref=e553] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/30219
+                  - link ")" [ref=e554] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/f3e97bc27cb725cc89ceb0d5e0f0dc6831752b1f
+              - cell "Apr 7, 2024, 09:40 AM EDT" [ref=e555]: 2024-04-07 15:40:31 +02:00last year
+            - row ".mailmap Add .mailmap with aliases for Unknwon (github.com/Unknwon) Aug 14, 2024, 08:26 AM EDT" [ref=e556]:
+              - cell ".mailmap" [ref=e557]:
+                - link ".mailmap" [ref=e559] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.mailmap
+                  - img [ref=e560]
+                  - text: .mailmap
+              - cell "Add .mailmap with aliases for Unknwon (github.com/Unknwon)" [ref=e562]:
+                - link "Add .mailmap with aliases for Unknwon (github.com/Unknwon)" [ref=e564] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/commit/82fcc6768a310caeefcea2d8295944c6515a98fa
+              - cell "Aug 14, 2024, 08:26 AM EDT" [ref=e565]: 2024-08-14 08:26:16 -04:00last year
+            - row ".markdownlint.yaml Update JS dependencies (#28537) Dec 30, 2023, 12:29 AM EST" [ref=e566]:
+              - cell ".markdownlint.yaml" [ref=e567]:
+                - link ".markdownlint.yaml" [ref=e569] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.markdownlint.yaml
+                  - img [ref=e570]
+                  - text: .markdownlint.yaml
+              - cell "Update JS dependencies (#28537)" [ref=e572]:
+                - generic [ref=e573]:
+                  - link "Update JS dependencies (" [ref=e574] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/ce55a74374aa1fe07cfb79ceeb8554aa7a2abce2
+                  - link "#28537" [ref=e575] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/28537
+                  - link ")" [ref=e576] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/ce55a74374aa1fe07cfb79ceeb8554aa7a2abce2
+              - cell "Dec 30, 2023, 12:29 AM EST" [ref=e577]: 2023-12-30 05:29:03 +00:00two years ago
+            - row ".node-version Update Node.js to v24.14.1 (forgejo) (#11805) Mar 25, 2026, 01:47 AM EDT" [ref=e578]:
+              - cell ".node-version" [ref=e579]:
+                - link ".node-version" [ref=e581] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.node-version
+                  - img [ref=e582]
+                  - text: .node-version
+              - cell "Update Node.js to v24.14.1 (forgejo) (#11805)" [ref=e584]:
+                - generic [ref=e585]:
+                  - link "Update Node.js to v24.14.1 (forgejo) (" [ref=e586] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/20f05f748a5f392baffd8d9a9aa8c1c1ab29a4c3
+                  - link "#11805" [ref=e587] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11805
+                  - link ")" [ref=e588] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/20f05f748a5f392baffd8d9a9aa8c1c1ab29a4c3
+              - cell "Mar 25, 2026, 01:47 AM EDT" [ref=e589]: 2026-03-25 06:47:24 +01:003 days ago
+            - row ".npmrc Upgrade to npm lockfile v3 and explicitely set it (#23561) Mar 18, 2023, 02:38 PM EDT" [ref=e590]:
+              - cell ".npmrc" [ref=e591]:
+                - link ".npmrc" [ref=e593] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.npmrc
+                  - img [ref=e594]
+                  - text: .npmrc
+              - cell "Upgrade to npm lockfile v3 and explicitely set it (#23561)" [ref=e596]:
+                - generic [ref=e597]:
+                  - link "Upgrade to npm lockfile v3 and explicitely set it (" [ref=e598] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/7eede7f8de299a8e657937d237f9d62e44bdd79b
+                  - link "#23561" [ref=e599] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/23561
+                  - link ")" [ref=e600] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/7eede7f8de299a8e657937d237f9d62e44bdd79b
+              - cell "Mar 18, 2023, 02:38 PM EDT" [ref=e601]: 2023-03-18 19:38:10 +01:003 years ago
+            - 'row ".release-notes-assistant.yaml chore(release-notes): teach release-notes-assistant that v11.0 is LTS (#10638) Dec 30, 2025, 04:00 AM EST" [ref=e602]':
+              - cell ".release-notes-assistant.yaml" [ref=e603]:
+                - link ".release-notes-assistant.yaml" [ref=e605] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.release-notes-assistant.yaml
+                  - img [ref=e606]
+                  - text: .release-notes-assistant.yaml
+              - 'cell "chore(release-notes): teach release-notes-assistant that v11.0 is LTS (#10638)" [ref=e608]':
+                - generic [ref=e609]:
+                  - 'link "chore(release-notes): teach release-notes-assistant that v11.0 is LTS (" [ref=e610] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/d8a5ee81fbb228bc44b3938988c7e43621e4831f
+                  - link "#10638" [ref=e611] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10638
+                  - link ")" [ref=e612] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/d8a5ee81fbb228bc44b3938988c7e43621e4831f
+              - cell "Dec 30, 2025, 04:00 AM EST" [ref=e613]: 2025-12-30 10:00:22 +01:00two months ago
+            - row ".spectral.yaml Add spectral linter for Swagger (#20321) Jul 11, 2022, 07:07 PM EDT" [ref=e614]:
+              - cell ".spectral.yaml" [ref=e615]:
+                - link ".spectral.yaml" [ref=e617] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.spectral.yaml
+                  - img [ref=e618]
+                  - text: .spectral.yaml
+              - cell "Add spectral linter for Swagger (#20321)" [ref=e620]:
+                - generic [ref=e621]:
+                  - link "Add spectral linter for Swagger (" [ref=e622] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/c8e0fd0bccb37898c1eb111256397c9c2e039598
+                  - link "#20321" [ref=e623] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/20321
+                  - link ")" [ref=e624] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/c8e0fd0bccb37898c1eb111256397c9c2e039598
+              - cell "Jul 11, 2022, 07:07 PM EDT" [ref=e625]: 2022-07-11 18:07:16 -05:003 years ago
+            - row ".yamllint.yaml fully replace drone with actions (#27556) Oct 11, 2023, 02:39 AM EDT" [ref=e626]:
+              - cell ".yamllint.yaml" [ref=e627]:
+                - link ".yamllint.yaml" [ref=e629] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/.yamllint.yaml
+                  - img [ref=e630]
+                  - text: .yamllint.yaml
+              - cell "fully replace drone with actions (#27556)" [ref=e632]:
+                - generic [ref=e633]:
+                  - link "fully replace drone with actions (" [ref=e634] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/dc7cf7a984f9490fb65a137a73bfbda4b58979bb
+                  - link "#27556" [ref=e635] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/27556
+                  - link ")" [ref=e636] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/dc7cf7a984f9490fb65a137a73bfbda4b58979bb
+              - cell "Oct 11, 2023, 02:39 AM EDT" [ref=e637]: 2023-10-11 06:39:32 +00:00two years ago
+            - 'row "BSDmakefile feat: Makefile & BSDmakefile changes (#7455) Apr 27, 2025, 06:04 AM EDT" [ref=e638]':
+              - cell "BSDmakefile" [ref=e639]:
+                - link "BSDmakefile" [ref=e641] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/BSDmakefile
+                  - img [ref=e642]
+                  - text: BSDmakefile
+              - 'cell "feat: Makefile & BSDmakefile changes (#7455)" [ref=e644]':
+                - generic [ref=e645]:
+                  - 'link "feat: Makefile & BSDmakefile changes (" [ref=e646] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/9289e293fd466ab1aba63ba1c2123d4eb4cadd59
+                  - link "#7455" [ref=e647] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/7455
+                  - link ")" [ref=e648] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/9289e293fd466ab1aba63ba1c2123d4eb4cadd59
+              - cell "Apr 27, 2025, 06:04 AM EDT" [ref=e649]: 2025-04-27 10:04:32 +00:0011 months ago
+            - 'row "CODEOWNERS chore: add @0xllx0 to federation codeowners (#10716) Jan 9, 2026, 05:53 PM EST" [ref=e650]':
+              - cell "CODEOWNERS" [ref=e651]:
+                - link "CODEOWNERS" [ref=e653] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/CODEOWNERS
+                  - img [ref=e654]
+                  - text: CODEOWNERS
+              - 'cell "chore: add @0xllx0 to federation codeowners (#10716)" [ref=e656]':
+                - generic [ref=e657]:
+                  - 'link "chore: add" [ref=e658] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/534e4e68ac51064e7f977279d9fc1984422c43bd
+                  - link "@0xllx0" [ref=e659] [cursor=pointer]:
+                    - /url: /0xllx0
+                  - link "to federation codeowners (" [ref=e660] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/534e4e68ac51064e7f977279d9fc1984422c43bd
+                  - link "#10716" [ref=e661] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10716
+                  - link ")" [ref=e662] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/534e4e68ac51064e7f977279d9fc1984422c43bd
+              - cell "Jan 9, 2026, 05:53 PM EST" [ref=e663]: 2026-01-09 23:53:06 +01:00two months ago
+            - 'row "CONTRIBUTING.md docs: replace Developer Guide link with the new Contributor Guide one. Aug 26, 2024, 06:22 AM EDT" [ref=e664]':
+              - cell "CONTRIBUTING.md" [ref=e665]:
+                - link "CONTRIBUTING.md" [ref=e667] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/CONTRIBUTING.md
+                  - img [ref=e668]
+                  - text: CONTRIBUTING.md
+              - 'cell "docs: replace Developer Guide link with the new Contributor Guide one." [ref=e670]':
+                - 'link "docs: replace Developer Guide link with the new Contributor Guide one." [ref=e672] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/2190b67507fb5dbd0c08d07ec2f971e534d39c3a
+              - cell "Aug 26, 2024, 06:22 AM EDT" [ref=e673]: 2024-08-26 13:22:39 +03:00last year
+            - row "DCO Remove address from DCO (#22595) Jan 24, 2023, 01:52 PM EST" [ref=e674]:
+              - cell "DCO" [ref=e675]:
+                - link "DCO" [ref=e677] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/DCO
+                  - img [ref=e678]
+                  - text: DCO
+              - cell "Remove address from DCO (#22595)" [ref=e680]:
+                - generic [ref=e681]:
+                  - link "Remove address from DCO (" [ref=e682] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b91bc680922a9f379ae026dea19c47e132d723af
+                  - link "#22595" [ref=e683] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/22595
+                  - link ")" [ref=e684] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b91bc680922a9f379ae026dea19c47e132d723af
+              - cell "Jan 24, 2023, 01:52 PM EST" [ref=e685]: 2023-01-24 18:52:38 +00:003 years ago
+            - row "Dockerfile Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (#11662) Mar 13, 2026, 03:17 AM EDT" [ref=e686]:
+              - cell "Dockerfile" [ref=e687]:
+                - link "Dockerfile" [ref=e689] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/Dockerfile
+                  - img [ref=e690]
+                  - text: Dockerfile
+              - cell "Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (#11662)" [ref=e692]:
+                - generic [ref=e693]:
+                  - link "Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (" [ref=e694] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/68702415c394743ecd5be93a03f48c196b0f7ced
+                  - link "#11662" [ref=e695] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11662
+                  - link ")" [ref=e696] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/68702415c394743ecd5be93a03f48c196b0f7ced
+              - cell "Mar 13, 2026, 03:17 AM EDT" [ref=e697]: 2026-03-13 08:17:21 +01:00two weeks ago
+            - row "Dockerfile.rootless Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (#11662) Mar 13, 2026, 03:17 AM EDT" [ref=e698]:
+              - cell "Dockerfile.rootless" [ref=e699]:
+                - link "Dockerfile.rootless" [ref=e701] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/Dockerfile.rootless
+                  - img [ref=e702]
+                  - text: Dockerfile.rootless
+              - cell "Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (#11662)" [ref=e704]:
+                - generic [ref=e705]:
+                  - link "Update data.forgejo.org/oci/golang Docker tag to v1.26 (forgejo) (" [ref=e706] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/68702415c394743ecd5be93a03f48c196b0f7ced
+                  - link "#11662" [ref=e707] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11662
+                  - link ")" [ref=e708] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/68702415c394743ecd5be93a03f48c196b0f7ced
+              - cell "Mar 13, 2026, 03:17 AM EDT" [ref=e709]: 2026-03-13 08:17:21 +01:00two weeks ago
+            - row "eslint.config.mjs Update linters (forgejo) (#11627) Mar 12, 2026, 01:27 PM EDT" [ref=e710]:
+              - cell "eslint.config.mjs" [ref=e711]:
+                - link "eslint.config.mjs" [ref=e713] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/eslint.config.mjs
+                  - img [ref=e714]
+                  - text: eslint.config.mjs
+              - cell "Update linters (forgejo) (#11627)" [ref=e716]:
+                - generic [ref=e717]:
+                  - link "Update linters (forgejo) (" [ref=e718] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/62c32f00e4de2232faf64da6117786c0b6fe0574
+                  - link "#11627" [ref=e719] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11627
+                  - link ")" [ref=e720] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/62c32f00e4de2232faf64da6117786c0b6fe0574
+              - cell "Mar 12, 2026, 01:27 PM EDT" [ref=e721]: 2026-03-12 18:27:43 +01:00two weeks ago
+            - 'row "flake.lock chore: bump nixpkgs in flake.lock (#10128) Nov 15, 2025, 07:18 PM EST" [ref=e722]':
+              - cell "flake.lock" [ref=e723]:
+                - link "flake.lock" [ref=e725] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/flake.lock
+                  - img [ref=e726]
+                  - text: flake.lock
+              - 'cell "chore: bump nixpkgs in flake.lock (#10128)" [ref=e728]':
+                - generic [ref=e729]:
+                  - 'link "chore: bump nixpkgs in flake.lock (" [ref=e730] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/3cdf0010fef86674937c055fe2e01cc787833ffa
+                  - link "#10128" [ref=e731] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10128
+                  - link ")" [ref=e732] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3cdf0010fef86674937c055fe2e01cc787833ffa
+              - cell "Nov 15, 2025, 07:18 PM EST" [ref=e733]: 2025-11-16 01:18:26 +01:004 months ago
+            - 'row "flake.nix refactor: Simplify flake.nix (#9805) Oct 22, 2025, 01:09 PM EDT" [ref=e734]':
+              - cell "flake.nix" [ref=e735]:
+                - link "flake.nix" [ref=e737] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/flake.nix
+                  - img [ref=e738]
+                  - text: flake.nix
+              - 'cell "refactor: Simplify flake.nix (#9805)" [ref=e740]':
+                - generic [ref=e741]:
+                  - 'link "refactor: Simplify flake.nix (" [ref=e742] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/3d13a1ccb833bcd001fc8b103a77c35ce24e87c9
+                  - link "#9805" [ref=e743] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/9805
+                  - link ")" [ref=e744] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3d13a1ccb833bcd001fc8b103a77c35ce24e87c9
+              - cell "Oct 22, 2025, 01:09 PM EDT" [ref=e745]: 2025-10-22 19:09:11 +02:005 months ago
+            - row "go.mod Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764) Mar 27, 2026, 01:51 AM EDT" [ref=e746]:
+              - cell "go.mod" [ref=e747]:
+                - link "go.mod" [ref=e749] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/go.mod
+                  - img [ref=e750]
+                  - text: go.mod
+              - cell "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764)" [ref=e752]:
+                - generic [ref=e753]:
+                  - link "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (" [ref=e754] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+                  - link "#11764" [ref=e755] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11764
+                  - link ")" [ref=e756] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+              - cell "Mar 27, 2026, 01:51 AM EDT" [ref=e757]: 2026-03-27 06:51:45 +01:00yesterday
+            - row "go.sum Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764) Mar 27, 2026, 01:51 AM EDT" [ref=e758]:
+              - cell "go.sum" [ref=e759]:
+                - link "go.sum" [ref=e761] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/go.sum
+                  - img [ref=e762]
+                  - text: go.sum
+              - cell "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (#11764)" [ref=e764]:
+                - generic [ref=e765]:
+                  - link "Update module github.com/klauspost/compress to v1.18.5 (forgejo) (" [ref=e766] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+                  - link "#11764" [ref=e767] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11764
+                  - link ")" [ref=e768] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/b68caa311fe5e3b7118130c2894c5b396b319681
+              - cell "Mar 27, 2026, 01:51 AM EDT" [ref=e769]: 2026-03-27 06:51:45 +01:00yesterday
+            - row "LICENSE Forgejo v9.0 is GPLv3+ Aug 22, 2024, 03:09 AM EDT" [ref=e770]:
+              - cell "LICENSE" [ref=e771]:
+                - link "LICENSE" [ref=e773] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/LICENSE
+                  - img [ref=e774]
+                  - text: LICENSE
+              - cell "Forgejo v9.0 is GPLv3+" [ref=e776]:
+                - link "Forgejo v9.0 is GPLv3+" [ref=e778] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/commit/94631ccef67eb385f416feb9017214f3da99ab3a
+              - cell "Aug 22, 2024, 03:09 AM EDT" [ref=e779]: 2024-08-22 09:09:29 +02:00last year
+            - 'row "main.go fix: do not mix urfave v2 with urfave v3 (#8168) Jun 12, 2025, 09:38 AM EDT" [ref=e780]':
+              - cell "main.go" [ref=e781]:
+                - link "main.go" [ref=e783] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/main.go
+                  - img [ref=e784]
+                  - text: main.go
+              - 'cell "fix: do not mix urfave v2 with urfave v3 (#8168)" [ref=e786]':
+                - generic [ref=e787]:
+                  - 'link "fix: do not mix urfave v2 with urfave v3 (" [ref=e788] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/e2cf8520bcdcba410f95e080cff476d36364bb60
+                  - link "#8168" [ref=e789] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/8168
+                  - link ")" [ref=e790] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/e2cf8520bcdcba410f95e080cff476d36364bb60
+              - cell "Jun 12, 2025, 09:38 AM EDT" [ref=e791]: 2025-06-12 15:38:03 +02:009 months ago
+            - row "Makefile Update renovate Docker tag to v43.86.0 (forgejo) (#11781) Mar 23, 2026, 12:09 PM EDT" [ref=e792]:
+              - cell "Makefile" [ref=e793]:
+                - link "Makefile" [ref=e795] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/Makefile
+                  - img [ref=e796]
+                  - text: Makefile
+              - cell "Update renovate Docker tag to v43.86.0 (forgejo) (#11781)" [ref=e798]:
+                - generic [ref=e799]:
+                  - link "Update renovate Docker tag to v43.86.0 (forgejo) (" [ref=e800] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/5b83cb5508bcb0bba65aca1aa7c5ad2406052c65
+                  - link "#11781" [ref=e801] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11781
+                  - link ")" [ref=e802] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/5b83cb5508bcb0bba65aca1aa7c5ad2406052c65
+              - cell "Mar 23, 2026, 12:09 PM EDT" [ref=e803]: 2026-03-23 17:09:50 +01:005 days ago
+            - row "manifest.scm Add a GNU Guix manifest (#8038) Jun 3, 2025, 02:08 AM EDT" [ref=e804]:
+              - cell "manifest.scm" [ref=e805]:
+                - link "manifest.scm" [ref=e807] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/manifest.scm
+                  - img [ref=e808]
+                  - text: manifest.scm
+              - cell "Add a GNU Guix manifest (#8038)" [ref=e810]:
+                - generic [ref=e811]:
+                  - link "Add a GNU Guix manifest (" [ref=e812] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/374def9922d140b510976792ceccdfc6e80f5a04
+                  - link "#8038" [ref=e813] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/8038
+                  - link ")" [ref=e814] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/374def9922d140b510976792ceccdfc6e80f5a04
+              - cell "Jun 3, 2025, 02:08 AM EDT" [ref=e815]: 2025-06-03 08:08:17 +02:009 months ago
+            - row "package-lock.json Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (#11836) Mar 27, 2026, 01:50 AM EDT" [ref=e816]:
+              - cell "package-lock.json" [ref=e817]:
+                - link "package-lock.json" [ref=e819] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/package-lock.json
+                  - img [ref=e820]
+                  - text: package-lock.json
+              - cell "Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (#11836)" [ref=e822]:
+                - generic [ref=e823]:
+                  - link "Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (" [ref=e824] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/326809a1334a91b3185ca76907ec5a8af47b6256
+                  - link "#11836" [ref=e825] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11836
+                  - link ")" [ref=e826] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/326809a1334a91b3185ca76907ec5a8af47b6256
+              - cell "Mar 27, 2026, 01:50 AM EDT" [ref=e827]: 2026-03-27 06:50:09 +01:00yesterday
+            - row "package.json Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (#11836) Mar 27, 2026, 01:50 AM EDT" [ref=e828]:
+              - cell "package.json" [ref=e829]:
+                - link "package.json" [ref=e831] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/package.json
+                  - img [ref=e832]
+                  - text: package.json
+              - cell "Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (#11836)" [ref=e834]:
+                - generic [ref=e835]:
+                  - link "Update dependency happy-dom to v20.8.8 [SECURITY] (forgejo) (" [ref=e836] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/326809a1334a91b3185ca76907ec5a8af47b6256
+                  - link "#11836" [ref=e837] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11836
+                  - link ")" [ref=e838] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/326809a1334a91b3185ca76907ec5a8af47b6256
+              - cell "Mar 27, 2026, 01:50 AM EDT" [ref=e839]: 2026-03-27 06:50:09 +01:00yesterday
+            - 'row "playwright.config.ts chore: remove webkit and mobile safari from playwright (#10103) Nov 13, 2025, 11:23 AM EST" [ref=e840]':
+              - cell "playwright.config.ts" [ref=e841]:
+                - link "playwright.config.ts" [ref=e843] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/playwright.config.ts
+                  - img [ref=e844]
+                  - text: playwright.config.ts
+              - 'cell "chore: remove webkit and mobile safari from playwright (#10103)" [ref=e846]':
+                - generic [ref=e847]:
+                  - 'link "chore: remove webkit and mobile safari from playwright (" [ref=e848] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/0737196842bb61bd0aeb7177a497c920443e1e68
+                  - link "#10103" [ref=e849] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10103
+                  - link ")" [ref=e850] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/0737196842bb61bd0aeb7177a497c920443e1e68
+              - cell "Nov 13, 2025, 11:23 AM EST" [ref=e851]: 2025-11-13 17:23:08 +01:004 months ago
+            - 'row "README.md chore: fix a few typos in the documentation (#9134) Sep 3, 2025, 07:53 PM EDT" [ref=e852]':
+              - cell "README.md" [ref=e853]:
+                - link "README.md" [ref=e855] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/README.md
+                  - img [ref=e856]
+                  - text: README.md
+              - 'cell "chore: fix a few typos in the documentation (#9134)" [ref=e858]':
+                - generic [ref=e859]:
+                  - 'link "chore: fix a few typos in the documentation (" [ref=e860] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/676fb7e0a74e801cc5e5eedd6af37c16f56aa63f
+                  - link "#9134" [ref=e861] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/9134
+                  - link ")" [ref=e862] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/676fb7e0a74e801cc5e5eedd6af37c16f56aa63f
+              - cell "Sep 3, 2025, 07:53 PM EDT" [ref=e863]: 2025-09-04 01:53:40 +02:006 months ago
+            - 'row "release-notes-assistant.sh chore: improve the wording of the \"not worth a release note\" category (#8542) Jul 18, 2025, 01:19 AM EDT" [ref=e864]':
+              - cell "release-notes-assistant.sh" [ref=e865]:
+                - link "release-notes-assistant.sh" [ref=e867] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/release-notes-assistant.sh
+                  - img [ref=e868]
+                  - text: release-notes-assistant.sh
+              - 'cell "chore: improve the wording of the \"not worth a release note\" category (#8542)" [ref=e870]':
+                - generic [ref=e871]:
+                  - 'link "chore: improve the wording of the \"not worth a release note\" category (" [ref=e872] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/c9949fbc6408907c426a3e8db5fd1e5460cf18fd
+                  - link "#8542" [ref=e873] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/8542
+                  - link ")" [ref=e874] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/c9949fbc6408907c426a3e8db5fd1e5460cf18fd
+              - cell "Jul 18, 2025, 01:19 AM EDT" [ref=e875]: 2025-07-18 07:19:15 +02:008 months ago
+            - 'row "RELEASE-NOTES.md chore(release-notes): fix release notes of chroma update in v8.0.0 Oct 5, 2025, 08:10 AM EDT" [ref=e876]':
+              - cell "RELEASE-NOTES.md" [ref=e877]:
+                - link "RELEASE-NOTES.md" [ref=e879] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md
+                  - img [ref=e880]
+                  - text: RELEASE-NOTES.md
+              - 'cell "chore(release-notes): fix release notes of chroma update in v8.0.0" [ref=e882]':
+                - 'link "chore(release-notes): fix release notes of chroma update in v8.0.0" [ref=e884] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/commit/1e113fd8dc3419875c996f9bb23040d41aefd2b0
+              - cell "Oct 5, 2025, 08:10 AM EDT" [ref=e885]: 2025-10-05 17:10:38 +05:005 months ago
+            - 'row "shell.nix chore: use interactive sqlite via nix (#10439) Dec 17, 2025, 07:20 AM EST" [ref=e886]':
+              - cell "shell.nix" [ref=e887]:
+                - link "shell.nix" [ref=e889] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/shell.nix
+                  - img [ref=e890]
+                  - text: shell.nix
+              - 'cell "chore: use interactive sqlite via nix (#10439)" [ref=e892]':
+                - generic [ref=e893]:
+                  - 'link "chore: use interactive sqlite via nix (" [ref=e894] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/32429c0b1334f7a876425e9563956f349cb98af3
+                  - link "#10439" [ref=e895] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10439
+                  - link ")" [ref=e896] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/32429c0b1334f7a876425e9563956f349cb98af3
+              - cell "Dec 17, 2025, 07:20 AM EST" [ref=e897]: 2025-12-17 13:20:33 +01:003 months ago
+            - row "stylelint.config.js Merge pull request 'Port \"Enable declaration-block-no-redundant-longhand-properties (#30950)' (#3769) from beowulf/gitea-port-pull-30950 into forgejo May 14, 2024, 06:23 PM EDT" [ref=e898]:
+              - cell "stylelint.config.js" [ref=e899]:
+                - link "stylelint.config.js" [ref=e901] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/stylelint.config.js
+                  - img [ref=e902]
+                  - text: stylelint.config.js
+              - cell "Merge pull request 'Port \"Enable declaration-block-no-redundant-longhand-properties (#30950)' (#3769) from beowulf/gitea-port-pull-30950 into forgejo" [ref=e904]:
+                - generic [ref=e905]:
+                  - link "Merge pull request 'Port \"Enable declaration-block-no-redundant-longhand-properties (" [ref=e906] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/48813e6be17787018c95e8eed9c306854f9def67
+                    - text: Merge pull request 'Port "Enable
+                    - code [ref=e907]: declaration-block-no-redundant-longhand-properties
+                    - text: (
+                  - link "#30950" [ref=e908] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/30950
+                  - link ")' (" [ref=e909] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/48813e6be17787018c95e8eed9c306854f9def67
+                  - link "#3769" [ref=e910] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/3769
+                  - link ") from beowulf/gitea-port-pull-30950 into forgejo" [ref=e911] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/48813e6be17787018c95e8eed9c306854f9def67
+              - cell "May 14, 2024, 06:23 PM EDT" [ref=e912]: 2024-05-14 22:23:54 +00:00last year
+            - 'row "tailwind.config.js chore(ui): change /devtest to /-/demo (#11019) Jan 26, 2026, 07:12 AM EST" [ref=e913]':
+              - cell "tailwind.config.js" [ref=e914]:
+                - link "tailwind.config.js" [ref=e916] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/tailwind.config.js
+                  - img [ref=e917]
+                  - text: tailwind.config.js
+              - 'cell "chore(ui): change /devtest to /-/demo (#11019)" [ref=e919]':
+                - generic [ref=e920]:
+                  - 'link "chore(ui): change /devtest to /-/demo (" [ref=e921] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/3cafb7fa6ced503113681eefb75f80bfd1104138
+                  - link "#11019" [ref=e922] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11019
+                  - link ")" [ref=e923] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3cafb7fa6ced503113681eefb75f80bfd1104138
+              - cell "Jan 26, 2026, 07:12 AM EST" [ref=e924]: 2026-01-26 13:12:25 +01:00two months ago
+            - 'row "tsconfig.json feat(ui): replace Monaco with CodeMirror (#10559) Jan 4, 2026, 05:52 PM EST" [ref=e925]':
+              - cell "tsconfig.json" [ref=e926]:
+                - link "tsconfig.json" [ref=e928] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/tsconfig.json
+                  - img [ref=e929]
+                  - text: tsconfig.json
+              - 'cell "feat(ui): replace Monaco with CodeMirror (#10559)" [ref=e931]':
+                - generic [ref=e932]:
+                  - 'link "feat(ui): replace Monaco with CodeMirror (" [ref=e933] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/28e0af23faf6c8e8f353ba2ae818ee0f83fd3e5c
+                  - link "#10559" [ref=e934] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10559
+                  - link ")" [ref=e935] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/28e0af23faf6c8e8f353ba2ae818ee0f83fd3e5c
+              - cell "Jan 4, 2026, 05:52 PM EST" [ref=e936]: 2026-01-04 23:52:33 +01:00two months ago
+            - 'row "vitest.config.ts feat(ui): replace Monaco with CodeMirror (#10559) Jan 4, 2026, 05:52 PM EST" [ref=e937]':
+              - cell "vitest.config.ts" [ref=e938]:
+                - link "vitest.config.ts" [ref=e940] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/vitest.config.ts
+                  - img [ref=e941]
+                  - text: vitest.config.ts
+              - 'cell "feat(ui): replace Monaco with CodeMirror (#10559)" [ref=e943]':
+                - generic [ref=e944]:
+                  - 'link "feat(ui): replace Monaco with CodeMirror (" [ref=e945] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/28e0af23faf6c8e8f353ba2ae818ee0f83fd3e5c
+                  - link "#10559" [ref=e946] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/10559
+                  - link ")" [ref=e947] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/28e0af23faf6c8e8f353ba2ae818ee0f83fd3e5c
+              - cell "Jan 4, 2026, 05:52 PM EST" [ref=e948]: 2026-01-04 23:52:33 +01:00two months ago
+            - 'row "webpack.config.js chore(ui): change /devtest to /-/demo (#11019) Jan 26, 2026, 07:12 AM EST" [ref=e949]':
+              - cell "webpack.config.js" [ref=e950]:
+                - link "webpack.config.js" [ref=e952] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo/webpack.config.js
+                  - img [ref=e953]
+                  - text: webpack.config.js
+              - 'cell "chore(ui): change /devtest to /-/demo (#11019)" [ref=e955]':
+                - generic [ref=e956]:
+                  - 'link "chore(ui): change /devtest to /-/demo (" [ref=e957] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/commit/3cafb7fa6ced503113681eefb75f80bfd1104138
+                  - link "#11019" [ref=e958] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11019
+                  - link ")" [ref=e959] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/commit/3cafb7fa6ced503113681eefb75f80bfd1104138
+              - cell "Jan 26, 2026, 07:12 AM EST" [ref=e960]: 2026-01-26 13:12:25 +01:00two months ago
+        - generic [ref=e961]:
+          - heading "README.md" [level=4] [ref=e962]:
+            - generic [ref=e963]:
+              - img [ref=e964]
+              - strong [ref=e966]:
+                - link "README.md" [ref=e967] [cursor=pointer]:
+                  - /url: "#readme"
+          - generic [ref=e969]:
+            - heading "Welcome to Forgejo" [level=1] [ref=e971]:
+              - link [ref=e972] [cursor=pointer]:
+                - /url: "#"
+              - text: Welcome to Forgejo
+            - paragraph [ref=e973]:
+              - text: Hi there! Tired of big platforms playing monopoly? Providing Git hosting for your project, friends, company or community?
+              - strong [ref=e974]: Forgejo
+              - text: (/for'd͡ʒe.jo/ inspired by forĝejo – the Esperanto word for
+              - emphasis [ref=e975]: forge
+              - text: ) has you covered with its intuitive interface, light and easy hosting and a lot of built-in functionality.
+            - paragraph [ref=e976]:
+              - text: Forgejo was
+              - link "created in 2022" [ref=e977] [cursor=pointer]:
+                - /url: https://forgejo.org/2022-12-15-hello-forgejo/
+              - text: "because we think that the project should be owned by an independent community. If you second that, then Forgejo is for you! Our promise:"
+              - strong [ref=e978]: Independent Free/Libre Software forever!
+            - heading "What does Forgejo offer?" [level=2] [ref=e979]:
+              - link [ref=e980] [cursor=pointer]:
+                - /url: "#what-does-forgejo-offer"
+              - text: What does Forgejo offer?
+            - paragraph [ref=e981]: "If you like any of the following, Forgejo is literally meant for you:"
+            - list [ref=e982]:
+              - listitem [ref=e983]:
+                - text: "Lightweight: Forgejo can easily be hosted on nearly"
+                - strong [ref=e984]: every machine
+                - text: . Running on a Raspberry? Small cloud instance? No problem!
+              - listitem [ref=e985]:
+                - text: "Project management: Besides Git hosting, Forgejo offers issues, pull requests, wikis, kanban boards and much more to"
+                - strong [ref=e986]: coordinate with your team
+                - text: .
+              - listitem [ref=e987]:
+                - text: "Publishing: Have something to share? Use"
+                - strong [ref=e988]: releases
+                - text: to host your software for download, or use the
+                - strong [ref=e989]: package registry
+                - text: to publish it for docker, npm and many other package managers.
+              - listitem [ref=e990]:
+                - text: "Customizable: Want to change your look? Change some settings? There are many"
+                - strong [ref=e991]: config switches
+                - text: to make Forgejo work exactly like you want.
+              - listitem [ref=e992]:
+                - text: "Powerful: Organizations & team permissions, CI integration, Code Search, LDAP, OAuth and much more. If you have"
+                - strong [ref=e993]: advanced needs
+                - text: ", Forgejo has you covered."
+              - listitem [ref=e994]:
+                - text: "Privacy: From update checker to default settings: Forgejo is built to be"
+                - strong [ref=e995]: privacy first
+                - text: for you and your crew.
+              - listitem [ref=e996]:
+                - text: "Federation: (WIP) We are actively working to connect software forges with each other through"
+                - strong [ref=e997]: ActivityPub
+                - text: ", and create a collaborative network of personal instances."
+            - heading "Learn more" [level=2] [ref=e998]:
+              - link [ref=e999] [cursor=pointer]:
+                - /url: "#learn-more"
+              - text: Learn more
+            - paragraph [ref=e1000]:
+              - text: Dive into the
+              - link "documentation" [ref=e1001] [cursor=pointer]:
+                - /url: https://forgejo.org/docs/latest/
+              - text: ", subscribe to releases and blog post on"
+              - link "our website" [ref=e1002] [cursor=pointer]:
+                - /url: https://forgejo.org
+              - text: ","
+              - link "find us on the Fediverse" [ref=e1003] [cursor=pointer]:
+                - /url: https://floss.social/@forgejo
+              - text: or hop into
+              - link "our Matrix room" [ref=e1004] [cursor=pointer]:
+                - /url: https://matrix.to/#/%23forgejo-chat:matrix.org
+              - text: if you have any questions or want to get involved.
+            - heading "License" [level=2] [ref=e1005]:
+              - link [ref=e1006] [cursor=pointer]:
+                - /url: "#license"
+              - text: License
+            - paragraph [ref=e1007]:
+              - text: Forgejo is distributed under the terms of the
+              - link "GPL version 3.0" [ref=e1008] [cursor=pointer]:
+                - /url: /forgejo/forgejo/src/branch/forgejo/LICENSE
+              - text: or any later version.
+            - paragraph [ref=e1009]:
+              - text: The agreement for this license
+              - link "was documented in June 2023" [ref=e1010] [cursor=pointer]:
+                - /url: https://codeberg.org/forgejo/governance/pulls/24
+              - text: and implemented during the development of Forgejo v9.0. All Forgejo versions before v9.0 are distributed under the MIT license.
+            - heading "Get involved" [level=2] [ref=e1011]:
+              - link [ref=e1012] [cursor=pointer]:
+                - /url: "#get-involved"
+              - text: Get involved
+            - paragraph [ref=e1013]:
+              - text: If you are interested in making Forgejo better, either by reporting a bug or by changing the governance, please
+              - link "take a look at the contribution guide" [ref=e1014] [cursor=pointer]:
+                - /url: /forgejo/forgejo/src/branch/forgejo/CONTRIBUTING.md
+              - text: .
+  - group "Footer" [ref=e1015]:
+    - generic "Links" [ref=e1016]:
+      - generic [ref=e1017]:
+        - img [ref=e1019]
+        - generic [ref=e1020]:
+          - generic [ref=e1021]: Powered by
+          - link "Forgejo" [ref=e1022] [cursor=pointer]:
+            - /url: https://forgejo.org
+            - img [ref=e1024]
+          - text: with
+          - link "modifications" [ref=e1025] [cursor=pointer]:
+            - /url: /Codeberg-Infrastructure/forgejo
+      - generic [ref=e1026]:
+        - text: Codeberg
+        - list [ref=e1027]:
+          - listitem [ref=e1028]:
+            - link "Blog" [ref=e1029] [cursor=pointer]:
+              - /url: https://blog.codeberg.org
+          - listitem [ref=e1030]:
+            - link "Documentation" [ref=e1031] [cursor=pointer]:
+              - /url: https://docs.codeberg.org
+          - listitem [ref=e1032]:
+            - link "Community Issues" [ref=e1033] [cursor=pointer]:
+              - /url: /Codeberg/Community/issues
+          - listitem [ref=e1034]:
+            - link "Contributing" [ref=e1035] [cursor=pointer]:
+              - /url: /Codeberg/Contributing
+          - listitem [ref=e1036]:
+            - link "Report Abuse" [ref=e1037] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/#abuse
+      - generic [ref=e1038]:
+        - text: Association
+        - list [ref=e1039]:
+          - listitem [ref=e1040]:
+            - link "Who are we?" [ref=e1041] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+          - listitem [ref=e1042]:
+            - link "Bylaws / Satzung" [ref=e1043] [cursor=pointer]:
+              - /url: /codeberg/org/src/en/bylaws.md
+          - listitem [ref=e1044]:
+            - link "Donate" [ref=e1045] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/improving-codeberg/donate/
+          - listitem [ref=e1046]:
+            - link "Join / Support" [ref=e1047] [cursor=pointer]:
+              - /url: https://join.codeberg.org
+          - listitem [ref=e1048]:
+            - link "Contact" [ref=e1049] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/
+      - generic [ref=e1050]:
+        - text: Services
+        - list [ref=e1051]:
+          - listitem [ref=e1052]:
+            - link "Codeberg Pages" [ref=e1053] [cursor=pointer]:
+              - /url: https://codeberg.page
+          - listitem [ref=e1054]:
+            - link "Codeberg Translate" [ref=e1055] [cursor=pointer]:
+              - /url: https://translate.codeberg.org
+          - listitem [ref=e1056]:
+            - link "Woodpecker CI" [ref=e1057] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci
+          - listitem [ref=e1058]:
+            - link "Forgejo API" [ref=e1059] [cursor=pointer]:
+              - /url: /api/swagger
+          - listitem [ref=e1060]:
+            - link "Status Page" [ref=e1061] [cursor=pointer]:
+              - /url: https://status.codeberg.eu
+      - generic [ref=e1062]:
+        - text: Legal
+        - list [ref=e1063]:
+          - listitem [ref=e1064]:
+            - link "Imprint / Impressum" [ref=e1065] [cursor=pointer]:
+              - /url: /codeberg/org/src/Imprint.md
+          - listitem [ref=e1066]:
+            - link "Privacy Policy" [ref=e1067] [cursor=pointer]:
+              - /url: /codeberg/org/src/PrivacyPolicy.md
+          - listitem [ref=e1068]:
+            - link "Licenses" [ref=e1069] [cursor=pointer]:
+              - /url: /assets/licenses.txt
+          - listitem [ref=e1070]:
+            - link "Terms of Use" [ref=e1071] [cursor=pointer]:
+              - /url: /codeberg/org/src/TermsOfUse.md
+    - generic [ref=e1072]:
+      - generic [ref=e1073]:
+        - link "Mastodon" [ref=e1074] [cursor=pointer]:
+          - /url: https://social.anoxinon.de/@Codeberg
+        - text: "|"
+        - link "Matrix Space" [ref=e1075] [cursor=pointer]:
+          - /url: matrix:r/codeberg-space:matrix.org?action=join
+        - link "(Web link)" [ref=e1076] [cursor=pointer]:
+          - /url: https://matrix.to/#/#codeberg-space:matrix.org
+        - button "Copy to clipboard" [ref=e1077] [cursor=pointer]:
+          - img [ref=e1078]
+      - menu [ref=e1082] [cursor=pointer]:
+        - img [ref=e1083]
+        - generic [ref=e1085]: English
+    - img [ref=e1086]

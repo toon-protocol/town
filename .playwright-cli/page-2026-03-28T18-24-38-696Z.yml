@@ -1,0 +1,827 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Navigation bar" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - link "Explore" [ref=e8] [cursor=pointer]:
+          - /url: /explore/repos
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/faq/
+        - link "Help" [ref=e11] [cursor=pointer]:
+          - /url: https://docs.codeberg.org
+        - link "Donate" [ref=e12] [cursor=pointer]:
+          - /url: https://donate.codeberg.org
+      - generic [ref=e13]:
+        - link "Register" [ref=e14] [cursor=pointer]:
+          - /url: /user/sign_up
+          - img [ref=e15]
+          - generic [ref=e17]: Register
+        - link "Sign in" [ref=e18] [cursor=pointer]:
+          - /url: /user/login?redirect_to=%2fforgejo%2fforgejo%2fissues
+          - img [ref=e19]
+          - generic [ref=e21]: Sign in
+    - main "Issues" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - img "forgejo/forgejo" [ref=e28]
+            - generic [ref=e30]:
+              - link "forgejo" [ref=e31] [cursor=pointer]:
+                - /url: /forgejo
+              - text: /
+              - link "forgejo" [ref=e32] [cursor=pointer]:
+                - /url: /forgejo/forgejo
+          - generic [ref=e33]:
+            - link "RSS feed" [ref=e34] [cursor=pointer]:
+              - /url: /forgejo/forgejo.rss
+              - img [ref=e35]
+            - generic "Sign in to watch this repository." [ref=e38] [cursor=pointer]:
+              - button "Watch" [disabled]:
+                - img
+                - generic: Watch
+              - link "111 watchers" [ref=e39]:
+                - /url: /forgejo/forgejo/watchers
+                - text: "111"
+            - generic "Sign in to star this repository." [ref=e41] [cursor=pointer]:
+              - button "Star" [disabled]:
+                - img
+                - generic: Star
+              - link "3984 stars" [ref=e42]:
+                - /url: /forgejo/forgejo/stars
+                - text: 4.0k
+            - generic "Sign in to fork this repository." [ref=e43]:
+              - generic:
+                - img
+                - generic: Fork
+              - link "699 forks" [ref=e44] [cursor=pointer]:
+                - /url: /forgejo/forgejo/forks
+                - text: "699"
+        - navigation [ref=e45]:
+          - generic [ref=e46]:
+            - link "Code" [ref=e47] [cursor=pointer]:
+              - /url: /forgejo/forgejo
+              - img [ref=e48]
+              - generic [ref=e50]: Code
+            - link "Issues 1.2k" [ref=e51] [cursor=pointer]:
+              - /url: /forgejo/forgejo/issues
+              - img [ref=e52]
+              - generic [ref=e55]: Issues
+              - generic [ref=e56]: 1.2k
+            - link "Pull requests 153" [ref=e57] [cursor=pointer]:
+              - /url: /forgejo/forgejo/pulls
+              - img [ref=e58]
+              - generic [ref=e60]: Pull requests
+              - generic [ref=e61]: "153"
+            - link "Releases 97" [ref=e62] [cursor=pointer]:
+              - /url: /forgejo/forgejo/releases
+              - img [ref=e63]
+              - generic [ref=e65]: Releases
+              - generic [ref=e66]: "97"
+            - link "Packages 1" [ref=e67] [cursor=pointer]:
+              - /url: /forgejo/forgejo/packages
+              - img [ref=e68]
+              - generic [ref=e70]: Packages
+              - generic [ref=e71]: "1"
+            - link "Activity" [ref=e72] [cursor=pointer]:
+              - /url: /forgejo/forgejo/activity
+              - img [ref=e73]
+              - generic [ref=e75]: Activity
+            - link "Actions 48" [ref=e76] [cursor=pointer]:
+              - /url: /forgejo/forgejo/actions
+              - img [ref=e77]
+              - generic [ref=e79]: Actions
+              - generic [ref=e80]: "48"
+      - generic [ref=e82]:
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - img [ref=e88]
+            - link "Dependency Dashboard" [ref=e91] [cursor=pointer]:
+              - /url: /forgejo/forgejo/issues/2779
+          - generic [ref=e93]:
+            - text: "#2779 opened 2024-03-25 12:38:46 +01:00two years ago by"
+            - link "forgejo-renovate-action" [ref=e94] [cursor=pointer]:
+              - /url: /forgejo-renovate-action
+          - generic [ref=e95]:
+            - img [ref=e96]
+            - text: 0 / 355
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - link "Labels" [ref=e100] [cursor=pointer]:
+              - /url: /forgejo/forgejo/labels
+            - link "Milestones" [ref=e101] [cursor=pointer]:
+              - /url: /forgejo/forgejo/milestones
+          - generic [ref=e102]:
+            - generic [ref=e104]:
+              - searchbox "Search issues…" [ref=e105]
+              - button "Search…" [ref=e106] [cursor=pointer]:
+                - img [ref=e107]
+            - img [ref=e110] [cursor=pointer]
+          - link "New issue" [ref=e112] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues/new/choose
+        - generic [ref=e113]:
+          - generic [ref=e115]:
+            - link "1,224 Open" [ref=e116] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e117]
+              - text: 1,224 Open
+            - link "2,360 Closed" [ref=e120] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=closed&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e121]
+              - text: 2,360 Closed
+            - link "3,584 All" [ref=e124] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=all&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e125]
+              - text: 3,584 All
+          - generic [ref=e128]:
+            - combobox [ref=e129] [cursor=pointer]:
+              - generic [ref=e130]: Label
+              - img [ref=e131]
+            - combobox [ref=e133] [cursor=pointer]:
+              - generic [ref=e134]: Milestone
+              - img [ref=e135]
+            - combobox:
+              - generic: Project
+              - img
+            - combobox "Shows a maximum of 30 users" [ref=e137] [cursor=pointer]:
+              - generic [ref=e138]: Author
+              - img [ref=e139]
+            - combobox [ref=e141] [cursor=pointer]:
+              - generic [ref=e142]: Assignee
+              - img [ref=e143]
+            - menu [ref=e145] [cursor=pointer]:
+              - generic [ref=e146]: Sort
+              - img [ref=e147]
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - img [ref=e152]
+            - generic [ref=e155]:
+              - generic [ref=e157]:
+                - 'link "bug: Fatal crash in backup on new installation without repositories (11.0.11 LTS)" [ref=e158] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11861
+                - link "bug new-report" [ref=e160] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                  - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e161]:
+                    - generic [ref=e162]: bug
+                    - generic [ref=e163]: new-report
+              - generic [ref=e165]:
+                - link "#11861" [ref=e166] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11861
+                - text: opened 2026-03-28 14:24:05 +01:005 hours ago by
+                - link "dusthole" [ref=e167] [cursor=pointer]:
+                  - /url: /dusthole
+          - generic [ref=e168]:
+            - img [ref=e170]
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - 'link "feat: new API endpoints runs/{id}/jobs, jobs/{id}/logs, runs/{id}/logs" [ref=e176] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11859
+                    - text: "feat: new API endpoints"
+                    - code [ref=e177]: "runs/{id}/jobs"
+                    - text: ","
+                    - code [ref=e178]: "jobs/{id}/logs"
+                    - text: ","
+                    - code [ref=e179]: "runs/{id}/logs"
+                  - generic [ref=e180]:
+                    - link "code/actions" [ref=e181] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=96148&milestone=0&assignee=0&poster=0"
+                      - generic "Forgejo Actions feature" [ref=e182]: code/actions
+                    - link "code/api" [ref=e183] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=181598&milestone=0&assignee=0&poster=0"
+                      - generic "API" [ref=e184]: code/api
+                    - link "enhancement/feature" [ref=e185] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                      - generic "New feature" [ref=e186]: enhancement/feature
+                    - link "impact medium" [ref=e187] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=841839&milestone=0&assignee=0&poster=0"
+                      - 'generic "Medium impact: Several users affected, degradation in UX, workarounds might be available but inconvenient." [ref=e188]':
+                        - generic [ref=e189]: impact
+                        - generic [ref=e190]: medium
+                - link "1" [ref=e193] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11859
+                  - img [ref=e194]
+                  - text: "1"
+              - generic [ref=e197]:
+                - link "#11859" [ref=e198] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11859
+                - text: opened 2026-03-28 09:38:27 +01:009 hours ago by
+                - link "elbaro" [ref=e199] [cursor=pointer]:
+                  - /url: /elbaro
+          - generic [ref=e200]:
+            - img [ref=e202]
+            - generic [ref=e205]:
+              - link "OIDC auto-registration does not create external_login_user row for all users" [ref=e208] [cursor=pointer]:
+                - /url: /forgejo/forgejo/issues/11857
+              - generic [ref=e210]:
+                - link "#11857" [ref=e211] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11857
+                - text: opened 2026-03-28 07:24:01 +01:0012 hours ago by
+                - link "Gerry9000" [ref=e212] [cursor=pointer]:
+                  - /url: /Gerry9000
+          - generic [ref=e213]:
+            - img [ref=e215]
+            - generic [ref=e218]:
+              - generic [ref=e220]:
+                - 'link "problem: OpenGraph image tag does not follow OG spec" [ref=e221] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11856
+                - generic [ref=e222]:
+                  - link "impact unknown" [ref=e223] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e224]:
+                      - generic [ref=e225]: impact
+                      - generic [ref=e226]: unknown
+                  - link "problem" [ref=e227] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e228]: problem
+              - generic [ref=e230]:
+                - link "#11856" [ref=e231] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11856
+                - text: opened 2026-03-28 06:22:10 +01:0013 hours ago by
+                - link "danielfdickinson" [ref=e232] [cursor=pointer]:
+                  - /url: /danielfdickinson
+          - generic [ref=e233]:
+            - img [ref=e235]
+            - generic [ref=e238]:
+              - generic [ref=e240]:
+                - 'link "bug: listening on dual stack networks (IPv4 & IPv6) fails" [ref=e241] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11849
+                - link "bug new-report" [ref=e243] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                  - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e244]:
+                    - generic [ref=e245]: bug
+                    - generic [ref=e246]: new-report
+              - generic [ref=e248]:
+                - link "#11849" [ref=e249] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11849
+                - text: opened 2026-03-27 20:22:24 +01:0023 hours ago by
+                - link "pr0ton11" [ref=e250] [cursor=pointer]:
+                  - /url: /pr0ton11
+          - generic [ref=e251]:
+            - img [ref=e253]
+            - generic [ref=e256]:
+              - generic [ref=e257]:
+                - generic [ref=e258]:
+                  - 'link "bug: Instance Memory Leak" [ref=e259] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11847
+                  - link "bug new-report" [ref=e261] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                    - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e262]:
+                      - generic [ref=e263]: bug
+                      - generic [ref=e264]: new-report
+                - link "1" [ref=e267] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11847
+                  - img [ref=e268]
+                  - text: "1"
+              - generic [ref=e271]:
+                - link "#11847" [ref=e272] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11847
+                - text: opened 2026-03-27 14:33:06 +01:00yesterday by
+                - link "clement-deltel" [ref=e273] [cursor=pointer]:
+                  - /url: /clement-deltel
+          - generic [ref=e274]:
+            - img [ref=e276]
+            - generic [ref=e279]:
+              - generic [ref=e281]:
+                - 'link "bug: GetBranchCommit: object does not exist" [ref=e282] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11845
+                - link "bug confirmed" [ref=e284] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201023&milestone=0&assignee=0&poster=0"
+                  - generic "it can be reproduced" [ref=e285]:
+                    - generic [ref=e286]: bug
+                    - generic [ref=e287]: confirmed
+              - generic [ref=e289]:
+                - link "#11845" [ref=e290] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11845
+                - text: opened 2026-03-27 07:39:35 +01:00yesterday by
+                - link "jtbx" [ref=e291] [cursor=pointer]:
+                  - /url: /jtbx
+          - generic [ref=e292]:
+            - img [ref=e294]
+            - generic [ref=e297]:
+              - generic [ref=e299]:
+                - 'link "problem: chicken-and-egg issue for acme certificates" [ref=e300] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11844
+                - generic [ref=e301]:
+                  - link "impact unknown" [ref=e302] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e303]:
+                      - generic [ref=e304]: impact
+                      - generic [ref=e305]: unknown
+                  - link "problem" [ref=e306] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e307]: problem
+              - generic [ref=e309]:
+                - link "#11844" [ref=e310] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11844
+                - text: opened 2026-03-27 07:15:07 +01:00yesterday by
+                - link "danielfdickinson" [ref=e311] [cursor=pointer]:
+                  - /url: /danielfdickinson
+          - generic [ref=e312]:
+            - img [ref=e314]
+            - generic [ref=e317]:
+              - generic [ref=e318]:
+                - generic [ref=e319]:
+                  - 'link "bug: modals cannot be submitted a second time if form validation errors are encountered the first time" [ref=e320] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11842
+                  - generic [ref=e321]:
+                    - link "bug confirmed" [ref=e322] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201023&milestone=0&assignee=0&poster=0"
+                      - generic "it can be reproduced" [ref=e323]:
+                        - generic [ref=e324]: bug
+                        - generic [ref=e325]: confirmed
+                    - link "forgejo/ui" [ref=e326] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=87703&milestone=0&assignee=0&poster=0"
+                      - generic "User interface" [ref=e327]: forgejo/ui
+                - link "wetneb" [ref=e330] [cursor=pointer]:
+                  - /url: /wetneb
+                  - img "Antonin Delpeuch" [ref=e331]
+              - generic [ref=e332]:
+                - generic [ref=e333]:
+                  - link "#11842" [ref=e334] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/issues/11842
+                  - text: opened 2026-03-27 06:04:15 +01:00yesterday by
+                  - link "wetneb" [ref=e335] [cursor=pointer]:
+                    - /url: /wetneb
+                - link "forgejo" [ref=e336] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - img [ref=e337]
+                  - generic [ref=e339]: forgejo
+          - generic [ref=e340]:
+            - img [ref=e342]
+            - generic [ref=e345]:
+              - generic [ref=e347]:
+                - 'link "bug: Incorrect commit count displayed when a branch name is reused for a new, unrelated history" [ref=e348] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11841
+                - generic [ref=e349]:
+                  - link "bug new-report" [ref=e350] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                    - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e351]:
+                      - generic [ref=e352]: bug
+                      - generic [ref=e353]: new-report
+                  - link "forgejo/ui" [ref=e354] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=87703&milestone=0&assignee=0&poster=0"
+                    - generic "User interface" [ref=e355]: forgejo/ui
+              - generic [ref=e357]:
+                - link "#11841" [ref=e358] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11841
+                - text: opened 2026-03-27 03:56:37 +01:00yesterday by
+                - link "4llan" [ref=e359] [cursor=pointer]:
+                  - /url: /4llan
+          - generic [ref=e360]:
+            - img [ref=e362]
+            - generic [ref=e365]:
+              - generic [ref=e366]:
+                - link "Support request-based URL generation (port Gitea's PUBLIC_URL_DETECTION)" [ref=e368] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11840
+                - link "1" [ref=e371] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11840
+                  - img [ref=e372]
+                  - text: "1"
+              - generic [ref=e375]:
+                - link "#11840" [ref=e376] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11840
+                - text: opened 2026-03-27 03:46:06 +01:00yesterday by
+                - link "Gerry9000" [ref=e377] [cursor=pointer]:
+                  - /url: /Gerry9000
+          - generic [ref=e378]:
+            - img [ref=e380]
+            - generic [ref=e383]:
+              - generic [ref=e384]:
+                - generic [ref=e385]:
+                  - 'link "bug: unable to complete a Github migration" [ref=e386] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11835
+                  - link "bug new-report" [ref=e388] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                    - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e389]:
+                      - generic [ref=e390]: bug
+                      - generic [ref=e391]: new-report
+                - link "6" [ref=e394] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11835
+                  - img [ref=e395]
+                  - text: "6"
+              - generic [ref=e398]:
+                - link "#11835" [ref=e399] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11835
+                - text: opened 2026-03-27 01:19:47 +01:00yesterday by
+                - link "acolombier" [ref=e400] [cursor=pointer]:
+                  - /url: /acolombier
+          - generic [ref=e401]:
+            - img [ref=e403]
+            - generic [ref=e406]:
+              - generic [ref=e407]:
+                - generic [ref=e408]:
+                  - 'link "suggestion: Gravatar / Federated avatars is confusing" [ref=e409] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11826
+                  - generic [ref=e410]:
+                    - link "impact unknown" [ref=e411] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                      - generic "Report was not yet triaged to assess impact." [ref=e412]:
+                        - generic [ref=e413]: impact
+                        - generic [ref=e414]: unknown
+                    - link "problem" [ref=e415] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                      - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e416]: problem
+                - link "1" [ref=e419] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11826
+                  - img [ref=e420]
+                  - text: "1"
+              - generic [ref=e423]:
+                - link "#11826" [ref=e424] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11826
+                - text: opened 2026-03-26 14:33:06 +01:00two days ago by
+                - link "Marti" [ref=e425] [cursor=pointer]:
+                  - /url: /Marti
+          - generic [ref=e426]:
+            - img [ref=e428]
+            - generic [ref=e431]:
+              - generic [ref=e432]:
+                - generic [ref=e433]:
+                  - 'link "problem: always() doesnt work for cancelled workflow" [ref=e434] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11824
+                  - generic [ref=e435]:
+                    - link "bug confirmed" [ref=e436] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201023&milestone=0&assignee=0&poster=0"
+                      - generic "it can be reproduced" [ref=e437]:
+                        - generic [ref=e438]: bug
+                        - generic [ref=e439]: confirmed
+                    - link "code/actions" [ref=e440] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=96148&milestone=0&assignee=0&poster=0"
+                      - generic "Forgejo Actions feature" [ref=e441]: code/actions
+                    - link "impact small" [ref=e442] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=841836&milestone=0&assignee=0&poster=0"
+                      - 'generic "Small impact: No data loss, workarounds might be available, affects few users." [ref=e443]':
+                        - generic [ref=e444]: impact
+                        - generic [ref=e445]: small
+                - link "2" [ref=e448] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11824
+                  - img [ref=e449]
+                  - text: "2"
+              - generic [ref=e452]:
+                - link "#11824" [ref=e453] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11824
+                - text: opened 2026-03-26 11:20:56 +01:00two days ago by
+                - link "Ilyas0Iks" [ref=e454] [cursor=pointer]:
+                  - /url: /Ilyas0Iks
+          - generic [ref=e455]:
+            - img [ref=e457]
+            - generic [ref=e460]:
+              - generic [ref=e462]:
+                - link "Set Access-Control-Allow-Origin on RSS feeds" [ref=e463] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11817
+                - generic [ref=e464]:
+                  - link "impact unknown" [ref=e465] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e466]:
+                      - generic [ref=e467]: impact
+                      - generic [ref=e468]: unknown
+                  - link "problem" [ref=e469] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e470]: problem
+              - generic [ref=e472]:
+                - link "#11817" [ref=e473] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11817
+                - text: opened 2026-03-25 22:00:33 +01:00two days ago by
+                - link "gdstr" [ref=e474] [cursor=pointer]:
+                  - /url: /gdstr
+          - generic [ref=e475]:
+            - img [ref=e477]
+            - generic [ref=e480]:
+              - generic [ref=e482]:
+                - 'link "problem: actions: retries of dynamic matrix-generated jobs \"disappears\" after finish" [ref=e483] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11814
+                - generic [ref=e484]:
+                  - link "impact unknown" [ref=e485] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e486]:
+                      - generic [ref=e487]: impact
+                      - generic [ref=e488]: unknown
+                  - link "problem" [ref=e489] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e490]: problem
+              - generic [ref=e492]:
+                - link "#11814" [ref=e493] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11814
+                - text: opened 2026-03-25 18:59:24 +01:003 days ago by
+                - link "margau" [ref=e494] [cursor=pointer]:
+                  - /url: /margau
+          - generic [ref=e495]:
+            - img [ref=e497]
+            - generic [ref=e500]:
+              - generic [ref=e501]:
+                - generic [ref=e502]:
+                  - 'link "bug: The rules for matching incorrect file tables" [ref=e503] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11812
+                  - generic [ref=e504]:
+                    - link "bug new-report" [ref=e505] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                      - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e506]:
+                        - generic [ref=e507]: bug
+                        - generic [ref=e508]: new-report
+                    - link "forgejo/ui" [ref=e509] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=87703&milestone=0&assignee=0&poster=0"
+                      - generic "User interface" [ref=e510]: forgejo/ui
+                - link "2" [ref=e513] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11812
+                  - img [ref=e514]
+                  - text: "2"
+              - generic [ref=e517]:
+                - link "#11812" [ref=e518] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11812
+                - text: opened 2026-03-25 16:42:06 +01:003 days ago by
+                - link "panc" [ref=e519] [cursor=pointer]:
+                  - /url: /panc
+          - generic [ref=e520]:
+            - img [ref=e522]
+            - generic [ref=e525]:
+              - generic [ref=e526]:
+                - generic [ref=e527]:
+                  - 'link "enh: As an administrator I need to be able to check if every user is 2FA enrolled for my ISO27001 certification." [ref=e528] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11800
+                  - link "enhancement/feature" [ref=e530] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                    - generic "New feature" [ref=e531]: enhancement/feature
+                - link "1" [ref=e534] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11800
+                  - img [ref=e535]
+                  - text: "1"
+              - generic [ref=e538]:
+                - link "#11800" [ref=e539] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11800
+                - text: opened 2026-03-24 18:07:50 +01:004 days ago by
+                - link "kwoot" [ref=e540] [cursor=pointer]:
+                  - /url: /kwoot
+          - generic [ref=e541]:
+            - img [ref=e543]
+            - generic [ref=e546]:
+              - generic [ref=e548]:
+                - 'link "problem: Docker image FORGEJO____APP_NAME is not respected" [ref=e549] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11799
+                  - text: "problem: Docker image"
+                  - code [ref=e550]: FORGEJO____APP_NAME
+                  - text: is not respected
+                - generic [ref=e551]:
+                  - link "impact unknown" [ref=e552] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e553]:
+                      - generic [ref=e554]: impact
+                      - generic [ref=e555]: unknown
+                  - link "problem" [ref=e556] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e557]: problem
+              - generic [ref=e559]:
+                - link "#11799" [ref=e560] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11799
+                - text: opened 2026-03-24 15:50:31 +01:004 days ago by
+                - link "geko" [ref=e561] [cursor=pointer]:
+                  - /url: /geko
+          - generic [ref=e562]:
+            - img [ref=e564]
+            - generic [ref=e567]:
+              - generic [ref=e569]:
+                - 'link "problem: API: Convert fork to regular repository" [ref=e570] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11796
+                - generic [ref=e571]:
+                  - link "impact unknown" [ref=e572] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e573]:
+                      - generic [ref=e574]: impact
+                      - generic [ref=e575]: unknown
+                  - link "problem" [ref=e576] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e577]: problem
+              - generic [ref=e579]:
+                - link "#11796" [ref=e580] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11796
+                - text: opened 2026-03-24 10:46:17 +01:004 days ago by
+                - link "nerduk" [ref=e581] [cursor=pointer]:
+                  - /url: /nerduk
+          - generic [ref=e582]:
+            - img [ref=e584]
+            - generic [ref=e587]:
+              - generic [ref=e588]:
+                - generic [ref=e589]:
+                  - 'link "bug: Forgejo is spam-creating repository archives, and cannot create requested archives" [ref=e590] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11787
+                  - link "bug new-report" [ref=e592] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                    - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e593]:
+                      - generic [ref=e594]: bug
+                      - generic [ref=e595]: new-report
+                - link "2" [ref=e598] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11787
+                  - img [ref=e599]
+                  - text: "2"
+              - generic [ref=e602]:
+                - link "#11787" [ref=e603] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11787
+                - text: opened 2026-03-23 15:06:35 +01:005 days ago by
+                - link "crueter" [ref=e604] [cursor=pointer]:
+                  - /url: /crueter
+          - generic [ref=e605]:
+            - img [ref=e607]
+            - generic [ref=e610]:
+              - generic [ref=e611]:
+                - generic [ref=e612]:
+                  - 'link "bug: SSRF via ActivityPub Federation Client - Missing hostmatcher Protection" [ref=e613] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11779
+                  - link "bug new-report" [ref=e615] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                    - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e616]:
+                      - generic [ref=e617]: bug
+                      - generic [ref=e618]: new-report
+                - link "3" [ref=e621] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11779
+                  - img [ref=e622]
+                  - text: "3"
+              - generic [ref=e625]:
+                - link "#11779" [ref=e626] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11779
+                - text: opened 2026-03-22 21:37:34 +01:005 days ago by
+                - link "bassia" [ref=e627] [cursor=pointer]:
+                  - /url: /bassia
+          - generic [ref=e628]:
+            - img [ref=e630]
+            - generic [ref=e633]:
+              - generic [ref=e634]:
+                - generic [ref=e635]:
+                  - 'link "bug: on.schedule.cron workflows get scheduled twice" [ref=e636] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/issues/11778
+                    - text: "bug:"
+                    - code [ref=e637]: on.schedule.cron
+                    - text: workflows get scheduled twice
+                  - link "code/actions" [ref=e639] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=96148&milestone=0&assignee=0&poster=0"
+                    - generic "Forgejo Actions feature" [ref=e640]: code/actions
+                - link "6" [ref=e643] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11778
+                  - img [ref=e644]
+                  - text: "6"
+              - generic [ref=e647]:
+                - link "#11778" [ref=e648] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11778
+                - text: opened 2026-03-22 21:03:39 +01:005 days ago by
+                - link "alexrp" [ref=e649] [cursor=pointer]:
+                  - /url: /alexrp
+          - generic [ref=e650]:
+            - img [ref=e652]
+            - generic [ref=e655]:
+              - generic [ref=e657]:
+                - 'link "problem: GitHub issue migration missing a large percentage of comments?" [ref=e658] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11773
+                - generic [ref=e659]:
+                  - link "impact unknown" [ref=e660] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841833&milestone=0&assignee=0&poster=0"
+                    - generic "Report was not yet triaged to assess impact." [ref=e661]:
+                      - generic [ref=e662]: impact
+                      - generic [ref=e663]: unknown
+                  - link "problem" [ref=e664] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=841206&milestone=0&assignee=0&poster=0"
+                    - generic "A user report about a problem. Needs to be triaged to find potential solutions." [ref=e665]: problem
+              - generic [ref=e667]:
+                - link "#11773" [ref=e668] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11773
+                - text: opened 2026-03-22 00:39:03 +01:006 days ago by
+                - link "marcusxs" [ref=e669] [cursor=pointer]:
+                  - /url: /marcusxs
+          - generic [ref=e670]:
+            - img [ref=e672]
+            - generic [ref=e675]:
+              - generic [ref=e677]:
+                - 'link "bug: Internal Server Error: executing \"repo/issue/view_content/sidebar/assignees\" at <index .Assignees 0>: error calling index: reflect: slice index out of range" [ref=e678] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/issues/11754
+                - link "bug new-report" [ref=e680] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201022&milestone=0&assignee=0&poster=0"
+                  - generic "bug has just been reported and need triage (default label on issue creation)" [ref=e681]:
+                    - generic [ref=e682]: bug
+                    - generic [ref=e683]: new-report
+              - generic [ref=e685]:
+                - link "#11754" [ref=e686] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/issues/11754
+                - text: opened 2026-03-20 14:57:47 +01:00last week by
+                - link "AdrianVollmer" [ref=e687] [cursor=pointer]:
+                  - /url: /AdrianVollmer
+        - generic [ref=e689]:
+          - generic:
+            - img
+            - generic: First
+          - generic:
+            - img
+            - generic: Previous
+          - generic [ref=e690] [cursor=pointer]: "1"
+          - link "2" [ref=e691] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=2&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "3" [ref=e692] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=3&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "4" [ref=e693] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=4&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "5" [ref=e694] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=5&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - generic: ...
+          - link "Next" [ref=e695] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=2&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+            - generic [ref=e696]: Next
+            - img [ref=e697]
+          - link "Last" [ref=e699] [cursor=pointer]:
+            - /url: /forgejo/forgejo/issues?page=49&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+            - generic [ref=e700]: Last
+            - img [ref=e701]
+  - group "Footer" [ref=e705]:
+    - generic "Links" [ref=e706]:
+      - generic [ref=e707]:
+        - img [ref=e709]
+        - generic [ref=e710]:
+          - generic [ref=e711]: Powered by
+          - link "Forgejo" [ref=e712] [cursor=pointer]:
+            - /url: https://forgejo.org
+            - img [ref=e714]
+          - text: with
+          - link "modifications" [ref=e715] [cursor=pointer]:
+            - /url: /Codeberg-Infrastructure/forgejo
+      - generic [ref=e716]:
+        - text: Codeberg
+        - list [ref=e717]:
+          - listitem [ref=e718]:
+            - link "Blog" [ref=e719] [cursor=pointer]:
+              - /url: https://blog.codeberg.org
+          - listitem [ref=e720]:
+            - link "Documentation" [ref=e721] [cursor=pointer]:
+              - /url: https://docs.codeberg.org
+          - listitem [ref=e722]:
+            - link "Community Issues" [ref=e723] [cursor=pointer]:
+              - /url: /Codeberg/Community/issues
+          - listitem [ref=e724]:
+            - link "Contributing" [ref=e725] [cursor=pointer]:
+              - /url: /Codeberg/Contributing
+          - listitem [ref=e726]:
+            - link "Report Abuse" [ref=e727] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/#abuse
+      - generic [ref=e728]:
+        - text: Association
+        - list [ref=e729]:
+          - listitem [ref=e730]:
+            - link "Who are we?" [ref=e731] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+          - listitem [ref=e732]:
+            - link "Bylaws / Satzung" [ref=e733] [cursor=pointer]:
+              - /url: /codeberg/org/src/en/bylaws.md
+          - listitem [ref=e734]:
+            - link "Donate" [ref=e735] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/improving-codeberg/donate/
+          - listitem [ref=e736]:
+            - link "Join / Support" [ref=e737] [cursor=pointer]:
+              - /url: https://join.codeberg.org
+          - listitem [ref=e738]:
+            - link "Contact" [ref=e739] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/
+      - generic [ref=e740]:
+        - text: Services
+        - list [ref=e741]:
+          - listitem [ref=e742]:
+            - link "Codeberg Pages" [ref=e743] [cursor=pointer]:
+              - /url: https://codeberg.page
+          - listitem [ref=e744]:
+            - link "Codeberg Translate" [ref=e745] [cursor=pointer]:
+              - /url: https://translate.codeberg.org
+          - listitem [ref=e746]:
+            - link "Woodpecker CI" [ref=e747] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci
+          - listitem [ref=e748]:
+            - link "Forgejo API" [ref=e749] [cursor=pointer]:
+              - /url: /api/swagger
+          - listitem [ref=e750]:
+            - link "Status Page" [ref=e751] [cursor=pointer]:
+              - /url: https://status.codeberg.eu
+      - generic [ref=e752]:
+        - text: Legal
+        - list [ref=e753]:
+          - listitem [ref=e754]:
+            - link "Imprint / Impressum" [ref=e755] [cursor=pointer]:
+              - /url: /codeberg/org/src/Imprint.md
+          - listitem [ref=e756]:
+            - link "Privacy Policy" [ref=e757] [cursor=pointer]:
+              - /url: /codeberg/org/src/PrivacyPolicy.md
+          - listitem [ref=e758]:
+            - link "Licenses" [ref=e759] [cursor=pointer]:
+              - /url: /assets/licenses.txt
+          - listitem [ref=e760]:
+            - link "Terms of Use" [ref=e761] [cursor=pointer]:
+              - /url: /codeberg/org/src/TermsOfUse.md
+    - generic [ref=e762]:
+      - generic [ref=e763]:
+        - link "Mastodon" [ref=e764] [cursor=pointer]:
+          - /url: https://social.anoxinon.de/@Codeberg
+        - text: "|"
+        - link "Matrix Space" [ref=e765] [cursor=pointer]:
+          - /url: matrix:r/codeberg-space:matrix.org?action=join
+        - link "(Web link)" [ref=e766] [cursor=pointer]:
+          - /url: https://matrix.to/#/#codeberg-space:matrix.org
+        - button "Copy to clipboard" [ref=e767] [cursor=pointer]:
+          - img [ref=e768]
+      - menu [ref=e772] [cursor=pointer]:
+        - img [ref=e773]
+        - generic [ref=e775]: English
+    - img [ref=e776]

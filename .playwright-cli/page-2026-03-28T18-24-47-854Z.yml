@@ -1,0 +1,1136 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Navigation bar" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - link "Explore" [ref=e8] [cursor=pointer]:
+          - /url: /explore/repos
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+        - link "FAQ" [ref=e10] [cursor=pointer]:
+          - /url: https://docs.codeberg.org/getting-started/faq/
+        - link "Help" [ref=e11] [cursor=pointer]:
+          - /url: https://docs.codeberg.org
+        - link "Donate" [ref=e12] [cursor=pointer]:
+          - /url: https://donate.codeberg.org
+      - generic [ref=e13]:
+        - link "Register" [ref=e14] [cursor=pointer]:
+          - /url: /user/sign_up
+          - img [ref=e15]
+          - generic [ref=e17]: Register
+        - link "Sign in" [ref=e18] [cursor=pointer]:
+          - /url: /user/login?redirect_to=%2fforgejo%2fforgejo%2fpulls
+          - img [ref=e19]
+          - generic [ref=e21]: Sign in
+    - main "Pull requests" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - img "forgejo/forgejo" [ref=e28]
+            - generic [ref=e30]:
+              - link "forgejo" [ref=e31] [cursor=pointer]:
+                - /url: /forgejo
+              - text: /
+              - link "forgejo" [ref=e32] [cursor=pointer]:
+                - /url: /forgejo/forgejo
+          - generic [ref=e33]:
+            - link "RSS feed" [ref=e34] [cursor=pointer]:
+              - /url: /forgejo/forgejo.rss
+              - img [ref=e35]
+            - generic "Sign in to watch this repository." [ref=e38] [cursor=pointer]:
+              - button "Watch" [disabled]:
+                - img
+                - generic: Watch
+              - link "111 watchers" [ref=e39]:
+                - /url: /forgejo/forgejo/watchers
+                - text: "111"
+            - generic "Sign in to star this repository." [ref=e41] [cursor=pointer]:
+              - button "Star" [disabled]:
+                - img
+                - generic: Star
+              - link "3984 stars" [ref=e42]:
+                - /url: /forgejo/forgejo/stars
+                - text: 4.0k
+            - generic "Sign in to fork this repository." [ref=e43]:
+              - generic:
+                - img
+                - generic: Fork
+              - link "699 forks" [ref=e44] [cursor=pointer]:
+                - /url: /forgejo/forgejo/forks
+                - text: "699"
+        - navigation [ref=e45]:
+          - generic [ref=e46]:
+            - link "Code" [ref=e47] [cursor=pointer]:
+              - /url: /forgejo/forgejo
+              - img [ref=e48]
+              - generic [ref=e50]: Code
+            - link "Issues 1.2k" [ref=e51] [cursor=pointer]:
+              - /url: /forgejo/forgejo/issues
+              - img [ref=e52]
+              - generic [ref=e55]: Issues
+              - generic [ref=e56]: 1.2k
+            - link "Pull requests 153" [ref=e57] [cursor=pointer]:
+              - /url: /forgejo/forgejo/pulls
+              - img [ref=e58]
+              - generic [ref=e60]: Pull requests
+              - generic [ref=e61]: "153"
+            - link "Releases 97" [ref=e62] [cursor=pointer]:
+              - /url: /forgejo/forgejo/releases
+              - img [ref=e63]
+              - generic [ref=e65]: Releases
+              - generic [ref=e66]: "97"
+            - link "Packages 1" [ref=e67] [cursor=pointer]:
+              - /url: /forgejo/forgejo/packages
+              - img [ref=e68]
+              - generic [ref=e70]: Packages
+              - generic [ref=e71]: "1"
+            - link "Activity" [ref=e72] [cursor=pointer]:
+              - /url: /forgejo/forgejo/activity
+              - img [ref=e73]
+              - generic [ref=e75]: Activity
+            - link "Actions 48" [ref=e76] [cursor=pointer]:
+              - /url: /forgejo/forgejo/actions
+              - img [ref=e77]
+              - generic [ref=e79]: Actions
+              - generic [ref=e80]: "48"
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - link "Labels" [ref=e85] [cursor=pointer]:
+              - /url: /forgejo/forgejo/labels
+            - link "Milestones" [ref=e86] [cursor=pointer]:
+              - /url: /forgejo/forgejo/milestones
+          - generic [ref=e87]:
+            - generic [ref=e89]:
+              - searchbox "Search pulls…" [ref=e90]
+              - button "Search…" [ref=e91] [cursor=pointer]:
+                - img [ref=e92]
+            - img [ref=e95] [cursor=pointer]
+          - link "New pull request":
+            - /url: ""
+        - generic [ref=e97]:
+          - generic [ref=e99]:
+            - link "153 Open" [ref=e100] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e101]
+              - text: 153 Open
+            - link "7,961 Closed" [ref=e103] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=closed&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e104]
+              - text: 7,961 Closed
+            - link "8,114 All" [ref=e107] [cursor=pointer]:
+              - /url: "?q=&type=all&sort=relevance&state=all&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false"
+              - img [ref=e108]
+              - text: 8,114 All
+          - generic [ref=e111]:
+            - combobox [ref=e112] [cursor=pointer]:
+              - generic [ref=e113]: Label
+              - img [ref=e114]
+            - combobox [ref=e116] [cursor=pointer]:
+              - generic [ref=e117]: Milestone
+              - img [ref=e118]
+            - combobox:
+              - generic: Project
+              - img
+            - combobox "Shows a maximum of 30 users" [ref=e120] [cursor=pointer]:
+              - generic [ref=e121]: Author
+              - img [ref=e122]
+            - combobox [ref=e124] [cursor=pointer]:
+              - generic [ref=e125]: Assignee
+              - img [ref=e126]
+            - menu [ref=e128] [cursor=pointer]:
+              - generic [ref=e129]: Sort
+              - img [ref=e130]
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - img [ref=e135]
+            - generic [ref=e137]:
+              - generic [ref=e139]:
+                - link "Added file age color" [ref=e140] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11864
+                - img [ref=e142]
+                - link "test needed" [ref=e145] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                  - generic "test should be added" [ref=e146]:
+                    - generic [ref=e147]: test
+                    - generic [ref=e148]: needed
+              - generic [ref=e149]:
+                - generic [ref=e150]:
+                  - link "#11864" [ref=e151] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11864
+                  - text: opened 2026-03-28 18:04:21 +01:001 hour ago by
+                  - link "codecat" [ref=e152] [cursor=pointer]:
+                    - /url: /codecat
+                - img [ref=e153]
+                - link "forgejo" [ref=e159] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e160]: forgejo
+                - generic [ref=e161]:
+                  - img [ref=e162]
+                  - text: 2 / 9
+                  - progressbar [ref=e164]
+                - generic [ref=e165]:
+                  - img [ref=e166]
+                  - text: 3 waiting reviews
+          - generic [ref=e168]:
+            - img [ref=e170]
+            - generic [ref=e172]:
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - link "Fix @mention combobox semantics for screen reader accessibility" [ref=e175] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11860
+                  - img [ref=e177]
+                  - link "test needed" [ref=e180] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                    - generic "test should be added" [ref=e181]:
+                      - generic [ref=e182]: test
+                      - generic [ref=e183]: needed
+                - link "4" [ref=e186] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11860
+                  - img [ref=e187]
+                  - text: "4"
+              - generic [ref=e189]:
+                - generic [ref=e190]:
+                  - link "#11860" [ref=e191] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11860
+                  - text: opened 2026-03-28 10:01:57 +01:009 hours ago by
+                  - link "henrycatalinismith" [ref=e192] [cursor=pointer]:
+                    - /url: /henrycatalinismith
+                - img [ref=e193]
+                - link "forgejo" [ref=e199] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e200]: forgejo
+                - generic [ref=e201]:
+                  - img [ref=e202]
+                  - text: 1 / 6
+                  - progressbar [ref=e204]
+                - generic [ref=e205]:
+                  - img [ref=e206]
+                  - text: 2 waiting reviews
+          - generic [ref=e208]:
+            - img [ref=e210]
+            - generic [ref=e212]:
+              - generic [ref=e214]:
+                - link "Make label dropdown menu items with .tw-hidden unselectable" [ref=e215] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11858
+                - img [ref=e217]
+                - link "test needed" [ref=e220] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                  - generic "test should be added" [ref=e221]:
+                    - generic [ref=e222]: test
+                    - generic [ref=e223]: needed
+              - generic [ref=e224]:
+                - generic [ref=e225]:
+                  - link "#11858" [ref=e226] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11858
+                  - text: opened 2026-03-28 07:26:14 +01:0011 hours ago by
+                  - link "henrycatalinismith" [ref=e227] [cursor=pointer]:
+                    - /url: /henrycatalinismith
+                - img [ref=e228]
+                - link "forgejo" [ref=e234] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e235]: forgejo
+                - generic [ref=e236]:
+                  - img [ref=e237]
+                  - text: 1 / 8
+                  - progressbar [ref=e239]
+                - generic [ref=e240]:
+                  - img [ref=e241]
+                  - text: 2 waiting reviews
+          - generic [ref=e243]:
+            - img [ref=e245]
+            - generic [ref=e247]:
+              - generic [ref=e249]:
+                - link "Update CodeMirror (forgejo)" [ref=e250] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11854
+                - img [ref=e252]
+                - generic [ref=e254]:
+                  - link "dependency-upgrade" [ref=e255] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e256]: dependency-upgrade
+                  - link "test not-needed" [ref=e257] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e258]:
+                      - generic [ref=e259]: test
+                      - generic [ref=e260]: not-needed
+              - generic [ref=e261]:
+                - generic [ref=e262]:
+                  - link "#11854" [ref=e263] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11854
+                  - text: opened 2026-03-28 00:06:25 +01:0019 hours ago by
+                  - link "viceice-bot" [ref=e264] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e265]
+                - link "forgejo" [ref=e271] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e272]: forgejo
+                - generic [ref=e273]:
+                  - img [ref=e274]
+                  - text: 0 / 1
+                  - progressbar [ref=e276]
+          - generic [ref=e277]:
+            - img [ref=e279]
+            - generic [ref=e281]:
+              - generic [ref=e282]:
+                - generic [ref=e283]:
+                  - 'link "WIP: feat: support timezone in scheduled workflows" [ref=e284] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11851
+                    - text: "WIP: feat: support"
+                    - code [ref=e285]: timezone
+                    - text: in scheduled workflows
+                  - img [ref=e287]
+                  - generic [ref=e289]:
+                    - link "code/actions" [ref=e290] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=96148&milestone=0&assignee=0&poster=0"
+                      - generic "Forgejo Actions feature" [ref=e291]: code/actions
+                    - link "enhancement/feature" [ref=e292] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                      - generic "New feature" [ref=e293]: enhancement/feature
+                    - link "test present" [ref=e294] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201030&milestone=0&assignee=0&poster=0"
+                      - generic "test has been added" [ref=e295]:
+                        - generic [ref=e296]: test
+                        - generic [ref=e297]: present
+                - link "1" [ref=e300] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11851
+                  - img [ref=e301]
+                  - text: "1"
+              - generic [ref=e303]:
+                - generic [ref=e304]:
+                  - link "#11851" [ref=e305] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11851
+                  - text: opened 2026-03-27 21:04:41 +01:0022 hours ago by
+                  - link "aahlenst" [ref=e306] [cursor=pointer]:
+                    - /url: /aahlenst
+                - img [ref=e307]
+                - link "forgejo" [ref=e313] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e314]: forgejo
+                - generic [ref=e315]:
+                  - img [ref=e316]
+                  - text: 4 / 9
+                  - progressbar [ref=e318]
+          - generic [ref=e319]:
+            - img [ref=e321]
+            - generic [ref=e323]:
+              - generic [ref=e324]:
+                - generic [ref=e325]:
+                  - 'link "feat: \"Add member\" button in org members list" [ref=e326] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11848
+                  - img [ref=e328]
+                  - generic [ref=e330]:
+                    - link "enhancement/feature" [ref=e331] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                      - generic "New feature" [ref=e332]: enhancement/feature
+                    - link "test present" [ref=e333] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201030&milestone=0&assignee=0&poster=0"
+                      - generic "test has been added" [ref=e334]:
+                        - generic [ref=e335]: test
+                        - generic [ref=e336]: present
+                    - link "worth a release-note" [ref=e337] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=209916&milestone=0&assignee=0&poster=0"
+                      - generic "Add this PR to the release notes" [ref=e338]: worth a release-note
+                - link "12" [ref=e341] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11848
+                  - img [ref=e342]
+                  - text: "12"
+              - generic [ref=e344]:
+                - generic [ref=e345]:
+                  - link "#11848" [ref=e346] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11848
+                  - text: opened 2026-03-27 15:46:57 +01:00yesterday by
+                  - link "wetneb" [ref=e347] [cursor=pointer]:
+                    - /url: /wetneb
+                - img [ref=e348]
+                - link "forgejo" [ref=e354] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e355]: forgejo
+                - generic [ref=e356]:
+                  - img [ref=e357]
+                  - text: 4 / 7
+                  - progressbar [ref=e359]
+                - generic [ref=e360]:
+                  - img [ref=e361]
+                  - text: 4 waiting reviews
+          - generic [ref=e363]:
+            - img [ref=e365]
+            - generic [ref=e367]:
+              - generic [ref=e368]:
+                - generic [ref=e369]:
+                  - link "Improve repo file list table semantics for screen readers" [ref=e370] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11846
+                  - img [ref=e372]
+                  - link "test needed" [ref=e375] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                    - generic "test should be added" [ref=e376]:
+                      - generic [ref=e377]: test
+                      - generic [ref=e378]: needed
+                - link "2" [ref=e381] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11846
+                  - img [ref=e382]
+                  - text: "2"
+              - generic [ref=e384]:
+                - generic [ref=e385]:
+                  - link "#11846" [ref=e386] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11846
+                  - text: opened 2026-03-27 07:55:16 +01:00yesterday by
+                  - link "henrycatalinismith" [ref=e387] [cursor=pointer]:
+                    - /url: /henrycatalinismith
+                - img [ref=e388]
+                - link "forgejo" [ref=e394] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e395]: forgejo
+                - generic [ref=e396]:
+                  - img [ref=e397]
+                  - text: 1 / 6
+                  - progressbar [ref=e399]
+                - generic [ref=e400]:
+                  - img [ref=e401]
+                  - text: 3 waiting reviews
+          - generic [ref=e403]:
+            - img [ref=e405]
+            - generic [ref=e407]:
+              - generic [ref=e408]:
+                - generic [ref=e409]:
+                  - 'link "fix: allow modals to be submitted multiple times" [ref=e410] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11843
+                  - img [ref=e412]
+                  - link "test present" [ref=e415] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201030&milestone=0&assignee=0&poster=0"
+                    - generic "test has been added" [ref=e416]:
+                      - generic [ref=e417]: test
+                      - generic [ref=e418]: present
+                - link "1" [ref=e421] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11843
+                  - img [ref=e422]
+                  - text: "1"
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - link "#11843" [ref=e426] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11843
+                  - text: opened 2026-03-27 06:28:19 +01:00yesterday by
+                  - link "wetneb" [ref=e427] [cursor=pointer]:
+                    - /url: /wetneb
+                - img [ref=e428]
+                - link "forgejo" [ref=e434] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e435]: forgejo
+                - generic [ref=e436]:
+                  - img [ref=e437]
+                  - text: 3 / 6
+                  - progressbar [ref=e439]
+                - generic [ref=e440]:
+                  - img [ref=e441]
+                  - text: 3 waiting reviews
+          - generic [ref=e443]:
+            - img [ref=e445]
+            - generic [ref=e447]:
+              - generic [ref=e449]:
+                - link "Update module github.com/urfave/cli/v3 to v3.8.0 (forgejo)" [ref=e450] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11834
+                - img [ref=e452]
+                - generic [ref=e454]:
+                  - link "dependency-upgrade" [ref=e455] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e456]: dependency-upgrade
+                  - link "test not-needed" [ref=e457] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e458]:
+                      - generic [ref=e459]: test
+                      - generic [ref=e460]: not-needed
+              - generic [ref=e461]:
+                - generic [ref=e462]:
+                  - link "#11834" [ref=e463] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11834
+                  - text: opened 2026-03-27 00:06:38 +01:00yesterday by
+                  - link "viceice-bot" [ref=e464] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e465]
+                - link "forgejo" [ref=e471] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e472]: forgejo
+                - generic [ref=e473]:
+                  - img [ref=e474]
+                  - text: 0 / 1
+                  - progressbar [ref=e476]
+          - generic [ref=e477]:
+            - img [ref=e479]
+            - generic [ref=e481]:
+              - generic [ref=e483]:
+                - 'link "fix(ui): ignore generated, vendored, and documentation files in language stats" [ref=e484] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/pulls/11813
+                - img [ref=e486]
+                - link "test needed" [ref=e489] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                  - generic "test should be added" [ref=e490]:
+                    - generic [ref=e491]: test
+                    - generic [ref=e492]: needed
+              - generic [ref=e493]:
+                - generic [ref=e494]:
+                  - link "#11813" [ref=e495] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11813
+                  - text: opened 2026-03-25 17:09:16 +01:003 days ago by
+                  - link "mahlzahn" [ref=e496] [cursor=pointer]:
+                    - /url: /mahlzahn
+                - img [ref=e497]
+                - link "forgejo" [ref=e503] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e504]: forgejo
+                - generic [ref=e505]:
+                  - img [ref=e506]
+                  - text: 2 / 7
+                  - progressbar [ref=e508]
+                - generic [ref=e509]:
+                  - img [ref=e510]
+                  - text: 1 waiting review
+          - generic [ref=e512]:
+            - img [ref=e514]
+            - generic [ref=e516]:
+              - generic [ref=e517]:
+                - generic [ref=e518]:
+                  - 'link "[skip ci] i18n: translations update from Codeberg Translate" [ref=e519] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11810
+                  - generic [ref=e520]:
+                    - link "forgejo/i18n" [ref=e521] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=82637&milestone=0&assignee=0&poster=0"
+                      - generic "t9n/translation, l10n/localization, and i18n/internationalization of Forgejo" [ref=e522]: forgejo/i18n
+                    - link "i18n/backport-stable" [ref=e523] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=292587&milestone=0&assignee=0&poster=0"
+                      - generic "This PR needs to be backported to stable branch of Forgejo safely and manually, using a migration script." [ref=e524]: i18n/backport-stable
+                    - link "test not-needed" [ref=e525] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                      - generic "no additional test is needed" [ref=e526]:
+                        - generic [ref=e527]: test
+                        - generic [ref=e528]: not-needed
+                    - link "worth a release-note" [ref=e529] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=209916&milestone=0&assignee=0&poster=0"
+                      - generic "Add this PR to the release notes" [ref=e530]: worth a release-note
+                - link "1" [ref=e533] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11810
+                  - img [ref=e534]
+                  - text: "1"
+              - generic [ref=e536]:
+                - generic [ref=e537]:
+                  - link "#11810" [ref=e538] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11810
+                  - text: opened 2026-03-25 13:59:39 +01:003 days ago by
+                  - link "translate" [ref=e539] [cursor=pointer]:
+                    - /url: /translate
+                - img [ref=e540]
+                - link "forgejo" [ref=e546] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e547]: forgejo
+                - generic [ref=e548]:
+                  - img [ref=e549]
+                  - text: 1 waiting review
+          - generic [ref=e551]:
+            - img [ref=e553]
+            - generic [ref=e555]:
+              - generic [ref=e557]:
+                - link "Update module github.com/yuin/goldmark to v1.8.2 (forgejo)" [ref=e558] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11808
+                - img [ref=e560]
+                - generic [ref=e562]:
+                  - link "dependency-upgrade" [ref=e563] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e564]: dependency-upgrade
+                  - link "test not-needed" [ref=e565] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e566]:
+                      - generic [ref=e567]: test
+                      - generic [ref=e568]: not-needed
+              - generic [ref=e569]:
+                - generic [ref=e570]:
+                  - link "#11808" [ref=e571] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11808
+                  - text: opened 2026-03-25 03:06:21 +01:003 days ago by
+                  - link "viceice-bot" [ref=e572] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e573]
+                - link "forgejo" [ref=e579] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e580]: forgejo
+                - generic [ref=e581]:
+                  - img [ref=e582]
+                  - text: 0 / 1
+                  - progressbar [ref=e584]
+          - generic [ref=e585]:
+            - img [ref=e587]
+            - generic [ref=e589]:
+              - generic [ref=e590]:
+                - generic [ref=e591]:
+                  - link "Update module code.gitea.io/sdk/gitea to v0.24.1 (forgejo)" [ref=e592] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11807
+                  - img [ref=e594]
+                  - generic [ref=e596]:
+                    - link "dependency-upgrade" [ref=e597] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                      - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e598]: dependency-upgrade
+                    - link "test not-needed" [ref=e599] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                      - generic "no additional test is needed" [ref=e600]:
+                        - generic [ref=e601]: test
+                        - generic [ref=e602]: not-needed
+                - link "1" [ref=e605] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11807
+                  - img [ref=e606]
+                  - text: "1"
+              - generic [ref=e608]:
+                - generic [ref=e609]:
+                  - link "#11807" [ref=e610] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11807
+                  - text: opened 2026-03-25 01:07:49 +01:003 days ago by
+                  - link "viceice-bot" [ref=e611] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e612]
+                - link "forgejo" [ref=e618] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e619]: forgejo
+                - generic [ref=e620]:
+                  - img [ref=e621]
+                  - text: 0 / 1
+                  - progressbar [ref=e623]
+          - generic [ref=e624]:
+            - img [ref=e626]
+            - generic [ref=e628]:
+              - generic [ref=e629]:
+                - generic [ref=e630]:
+                  - 'link "federation: protect against SSRF attacks" [ref=e631] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11795
+                  - img [ref=e633]
+                  - link "test needed" [ref=e636] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                    - generic "test should be added" [ref=e637]:
+                      - generic [ref=e638]: test
+                      - generic [ref=e639]: needed
+                - link "4" [ref=e642] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11795
+                  - img [ref=e643]
+                  - text: "4"
+              - generic [ref=e645]:
+                - generic [ref=e646]:
+                  - link "#11795" [ref=e647] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11795
+                  - text: opened 2026-03-24 01:55:00 +01:004 days ago by
+                  - link "0xllx0" [ref=e648] [cursor=pointer]:
+                    - /url: /0xllx0
+                - img [ref=e649]
+                - link "forgejo" [ref=e655] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e656]: forgejo
+                - generic [ref=e657]:
+                  - img [ref=e658]
+                  - text: 3 / 7
+                  - progressbar [ref=e660]
+                - generic [ref=e661]:
+                  - img [ref=e662]
+                  - text: 3 waiting reviews
+          - generic [ref=e664]:
+            - img [ref=e666]
+            - generic [ref=e668]:
+              - generic [ref=e670]:
+                - link "Lock file maintenance (forgejo)" [ref=e671] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11784
+                - img [ref=e673]
+                - generic [ref=e675]:
+                  - link "dependency-upgrade" [ref=e676] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e677]: dependency-upgrade
+                  - link "test not-needed" [ref=e678] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e679]:
+                      - generic [ref=e680]: test
+                      - generic [ref=e681]: not-needed
+              - generic [ref=e682]:
+                - generic [ref=e683]:
+                  - link "#11784" [ref=e684] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11784
+                  - text: opened 2026-03-23 01:08:11 +01:005 days ago by
+                  - link "viceice-bot" [ref=e685] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e686]
+                - link "forgejo" [ref=e692] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e693]: forgejo
+                - generic [ref=e694]:
+                  - img [ref=e695]
+                  - text: 0 / 1
+                  - progressbar [ref=e697]
+                - generic [ref=e698]:
+                  - img [ref=e699]
+                  - text: 2 waiting reviews
+          - generic [ref=e701]:
+            - img [ref=e703]
+            - generic [ref=e705]:
+              - generic [ref=e707]:
+                - 'link "feat: Disable mirrors after consecutive failures" [ref=e708] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/pulls/11783
+                - img [ref=e710]
+                - link "test needed" [ref=e713] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                  - generic "test should be added" [ref=e714]:
+                    - generic [ref=e715]: test
+                    - generic [ref=e716]: needed
+              - generic [ref=e717]:
+                - generic [ref=e718]:
+                  - link "#11783" [ref=e719] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11783
+                  - text: opened 2026-03-23 00:44:06 +01:005 days ago by
+                  - link "rdil" [ref=e720] [cursor=pointer]:
+                    - /url: /rdil
+                - img [ref=e721]
+                - link "forgejo" [ref=e727] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e728]: forgejo
+                - generic [ref=e729]:
+                  - img [ref=e730]
+                  - text: 4 / 5
+                  - progressbar [ref=e732]
+                - generic [ref=e733]:
+                  - img [ref=e734]
+                  - text: 3 waiting reviews
+          - generic [ref=e736]:
+            - img [ref=e738]
+            - generic [ref=e740]:
+              - generic [ref=e742]:
+                - link "Update dependency katex to v0.16.42 (forgejo)" [ref=e743] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11782
+                - img [ref=e745]
+                - generic [ref=e747]:
+                  - link "dependency-upgrade" [ref=e748] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e749]: dependency-upgrade
+                  - link "test not-needed" [ref=e750] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e751]:
+                      - generic [ref=e752]: test
+                      - generic [ref=e753]: not-needed
+              - generic [ref=e754]:
+                - generic [ref=e755]:
+                  - link "#11782" [ref=e756] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11782
+                  - text: opened 2026-03-23 00:09:46 +01:005 days ago by
+                  - link "viceice-bot" [ref=e757] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e758]
+                - link "forgejo" [ref=e764] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e765]: forgejo
+                - generic [ref=e766]:
+                  - img [ref=e767]
+                  - text: 0 / 1
+                  - progressbar [ref=e769]
+          - generic [ref=e770]:
+            - img [ref=e772]
+            - generic [ref=e774]:
+              - generic [ref=e775]:
+                - generic [ref=e776]:
+                  - 'link "feat: Add link alias for /repo/create" [ref=e777] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11780
+                  - img [ref=e779]
+                  - link "test needed" [ref=e782] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                    - generic "test should be added" [ref=e783]:
+                      - generic [ref=e784]: test
+                      - generic [ref=e785]: needed
+                - link "1" [ref=e788] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11780
+                  - img [ref=e789]
+                  - text: "1"
+              - generic [ref=e791]:
+                - generic [ref=e792]:
+                  - link "#11780" [ref=e793] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11780
+                  - text: opened 2026-03-22 23:28:24 +01:005 days ago by
+                  - link "anon_ally" [ref=e794] [cursor=pointer]:
+                    - /url: /anon_ally
+                - img [ref=e795]
+                - link "forgejo" [ref=e801] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e802]: forgejo
+                - generic [ref=e803]:
+                  - img [ref=e804]
+                  - text: 2 / 5
+                  - progressbar [ref=e806]
+                - generic [ref=e807]:
+                  - img [ref=e808]
+                  - text: 1 waiting review
+          - generic [ref=e810]:
+            - img [ref=e812]
+            - generic [ref=e814]:
+              - generic [ref=e816]:
+                - 'link "API: allow setting created_at and updated_at on issue creation" [ref=e817] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/pulls/11775
+                - img [ref=e819]
+                - link "test needed" [ref=e822] [cursor=pointer]:
+                  - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                  - generic "test should be added" [ref=e823]:
+                    - generic [ref=e824]: test
+                    - generic [ref=e825]: needed
+              - generic [ref=e826]:
+                - generic [ref=e827]:
+                  - link "#11775" [ref=e828] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11775
+                  - text: opened 2026-03-22 14:13:31 +01:006 days ago by
+                  - link "dfaure-kdab" [ref=e829] [cursor=pointer]:
+                    - /url: /dfaure-kdab
+                - img [ref=e830]
+                - link "forgejo" [ref=e836] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e837]: forgejo
+                - generic [ref=e838]:
+                  - img [ref=e839]
+                  - text: 3 / 6
+                  - progressbar [ref=e841]
+                - generic [ref=e842]:
+                  - img [ref=e843]
+                  - text: 2 waiting reviews
+          - generic [ref=e845]:
+            - img [ref=e847]
+            - generic [ref=e849]:
+              - generic [ref=e850]:
+                - generic [ref=e851]:
+                  - 'link "feat: add ci.skip push option" [ref=e852] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11768
+                    - text: "feat: add"
+                    - code [ref=e853]: ci.skip
+                    - text: push option
+                  - img [ref=e855]
+                  - generic [ref=e857]:
+                    - link "enhancement/feature" [ref=e858] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                      - generic "New feature" [ref=e859]: enhancement/feature
+                    - link "test needed" [ref=e860] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                      - generic "test should be added" [ref=e861]:
+                        - generic [ref=e862]: test
+                        - generic [ref=e863]: needed
+                - link "1" [ref=e866] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11768
+                  - img [ref=e867]
+                  - text: "1"
+              - generic [ref=e869]:
+                - generic [ref=e870]:
+                  - link "#11768" [ref=e871] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11768
+                  - text: opened 2026-03-21 02:53:59 +01:00last week by
+                  - link "minh160302" [ref=e872] [cursor=pointer]:
+                    - /url: /minh160302
+                - img [ref=e873]
+                - link "forgejo" [ref=e879] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e880]: forgejo
+                - generic [ref=e881]:
+                  - img [ref=e882]
+                  - text: 3 / 7
+                  - progressbar [ref=e884]
+                - generic [ref=e885]:
+                  - img [ref=e886]
+                  - text: 2 waiting reviews
+          - generic [ref=e888]:
+            - img [ref=e890]
+            - generic [ref=e892]:
+              - generic [ref=e894]:
+                - link "Update https://data.forgejo.org/actions/git-backporting action to v4.9.1 (forgejo)" [ref=e895] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11767
+                - img [ref=e897]
+                - generic [ref=e899]:
+                  - link "dependency-upgrade" [ref=e900] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e901]: dependency-upgrade
+                  - link "test not-needed" [ref=e902] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e903]:
+                      - generic [ref=e904]: test
+                      - generic [ref=e905]: not-needed
+              - generic [ref=e906]:
+                - generic [ref=e907]:
+                  - link "#11767" [ref=e908] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11767
+                  - text: opened 2026-03-21 01:07:13 +01:00last week by
+                  - link "viceice-bot" [ref=e909] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e910]
+                - link "forgejo" [ref=e916] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e917]: forgejo
+                - generic [ref=e918]:
+                  - img [ref=e919]
+                  - text: 0 / 1
+                  - progressbar [ref=e921]
+          - generic [ref=e922]:
+            - img [ref=e924]
+            - generic [ref=e926]:
+              - generic [ref=e928]:
+                - link "Update dependency swagger-ui-dist to v5.32.1 (forgejo)" [ref=e929] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11766
+                - img [ref=e931]
+                - generic [ref=e933]:
+                  - link "dependency-upgrade" [ref=e934] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e935]: dependency-upgrade
+                  - link "test not-needed" [ref=e936] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e937]:
+                      - generic [ref=e938]: test
+                      - generic [ref=e939]: not-needed
+              - generic [ref=e940]:
+                - generic [ref=e941]:
+                  - link "#11766" [ref=e942] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11766
+                  - text: opened 2026-03-21 01:06:51 +01:00last week by
+                  - link "viceice-bot" [ref=e943] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e944]
+                - link "forgejo" [ref=e950] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e951]: forgejo
+                - generic [ref=e952]:
+                  - img [ref=e953]
+                  - text: 0 / 1
+                  - progressbar [ref=e955]
+          - generic [ref=e956]:
+            - img [ref=e958]
+            - generic [ref=e960]:
+              - generic [ref=e962]:
+                - link "Update dependency @primer/octicons to v19.23.1 (forgejo)" [ref=e963] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11765
+                - img [ref=e965]
+                - generic [ref=e967]:
+                  - link "dependency-upgrade" [ref=e968] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=223008&milestone=0&assignee=0&poster=0"
+                    - generic "https://codeberg.org/forgejo/forgejo/issues/2779" [ref=e969]: dependency-upgrade
+                  - link "test not-needed" [ref=e970] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201029&milestone=0&assignee=0&poster=0"
+                    - generic "no additional test is needed" [ref=e971]:
+                      - generic [ref=e972]: test
+                      - generic [ref=e973]: not-needed
+              - generic [ref=e974]:
+                - generic [ref=e975]:
+                  - link "#11765" [ref=e976] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11765
+                  - text: opened 2026-03-21 00:06:34 +01:00last week by
+                  - link "viceice-bot" [ref=e977] [cursor=pointer]:
+                    - /url: /viceice-bot
+                - img [ref=e978]
+                - link "forgejo" [ref=e984] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e985]: forgejo
+                - generic [ref=e986]:
+                  - img [ref=e987]
+                  - text: 0 / 1
+                  - progressbar [ref=e989]
+          - generic [ref=e990]:
+            - img [ref=e992]
+            - generic [ref=e994]:
+              - generic [ref=e995]:
+                - generic [ref=e996]:
+                  - 'link "fix: auto-scrolling/live-tailing of actions logs" [ref=e997] [cursor=pointer]':
+                    - /url: /forgejo/forgejo/pulls/11755
+                  - img [ref=e999]
+                  - generic [ref=e1001]:
+                    - link "code/actions" [ref=e1002] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=96148&milestone=0&assignee=0&poster=0"
+                      - generic "Forgejo Actions feature" [ref=e1003]: code/actions
+                    - link "enhancement/feature" [ref=e1004] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=78139&milestone=0&assignee=0&poster=0"
+                      - generic "New feature" [ref=e1005]: enhancement/feature
+                    - link "forgejo/ui" [ref=e1006] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=87703&milestone=0&assignee=0&poster=0"
+                      - generic "User interface" [ref=e1007]: forgejo/ui
+                    - link "test needed" [ref=e1008] [cursor=pointer]:
+                      - /url: "?q=&type=all&state=open&labels=201027&milestone=0&assignee=0&poster=0"
+                      - generic "test should be added" [ref=e1009]:
+                        - generic [ref=e1010]: test
+                        - generic [ref=e1011]: needed
+                - link "1" [ref=e1014] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/pulls/11755
+                  - img [ref=e1015]
+                  - text: "1"
+              - generic [ref=e1017]:
+                - generic [ref=e1018]:
+                  - link "#11755" [ref=e1019] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11755
+                  - text: opened 2026-03-20 18:21:38 +01:00last week by
+                  - link "minh160302" [ref=e1020] [cursor=pointer]:
+                    - /url: /minh160302
+                - img [ref=e1021]
+                - link "forgejo" [ref=e1027] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e1028]: forgejo
+                - generic [ref=e1029]:
+                  - img [ref=e1030]
+                  - text: 2 / 6
+                  - progressbar [ref=e1032]
+                - generic [ref=e1033]:
+                  - img [ref=e1034]
+                  - text: 2 waiting reviews
+          - generic [ref=e1036]:
+            - img [ref=e1038]
+            - generic [ref=e1040]:
+              - generic [ref=e1042]:
+                - 'link "fix: repoGetAllCommits should allow for the use of limit with path" [ref=e1043] [cursor=pointer]':
+                  - /url: /forgejo/forgejo/pulls/11752
+                  - text: "fix: repoGetAllCommits should allow for the use of"
+                  - code [ref=e1044]: limit
+                  - text: with
+                  - code [ref=e1045]: path
+                - img [ref=e1047]
+                - generic [ref=e1049]:
+                  - link "bug confirmed" [ref=e1050] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201023&milestone=0&assignee=0&poster=0"
+                    - generic "it can be reproduced" [ref=e1051]:
+                      - generic [ref=e1052]: bug
+                      - generic [ref=e1053]: confirmed
+                  - link "code/api" [ref=e1054] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=181598&milestone=0&assignee=0&poster=0"
+                    - generic "API" [ref=e1055]: code/api
+                  - link "test present" [ref=e1056] [cursor=pointer]:
+                    - /url: "?q=&type=all&state=open&labels=201030&milestone=0&assignee=0&poster=0"
+                    - generic "test has been added" [ref=e1057]:
+                      - generic [ref=e1058]: test
+                      - generic [ref=e1059]: present
+              - generic [ref=e1060]:
+                - generic [ref=e1061]:
+                  - link "#11752" [ref=e1062] [cursor=pointer]:
+                    - /url: /forgejo/forgejo/pulls/11752
+                  - text: opened 2026-03-20 03:34:02 +01:00last week by
+                  - link "minh160302" [ref=e1063] [cursor=pointer]:
+                    - /url: /minh160302
+                - img [ref=e1064]
+                - link "forgejo" [ref=e1070] [cursor=pointer]:
+                  - /url: /forgejo/forgejo/src/branch/forgejo
+                  - generic [ref=e1071]: forgejo
+                - generic [ref=e1072]:
+                  - img [ref=e1073]
+                  - text: 3 / 5
+                  - progressbar [ref=e1075]
+                - generic [ref=e1076]:
+                  - img [ref=e1077]
+                  - text: 1 approval
+                - generic [ref=e1079]:
+                  - img [ref=e1080]
+                  - text: 2 waiting reviews
+        - generic [ref=e1083]:
+          - generic:
+            - img
+            - generic: First
+          - generic:
+            - img
+            - generic: Previous
+          - generic [ref=e1084] [cursor=pointer]: "1"
+          - link "2" [ref=e1085] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=2&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "3" [ref=e1086] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=3&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "4" [ref=e1087] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=4&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - link "5" [ref=e1088] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=5&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+          - generic: ...
+          - link "Next" [ref=e1089] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=2&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+            - generic [ref=e1090]: Next
+            - img [ref=e1091]
+          - link "Last" [ref=e1093] [cursor=pointer]:
+            - /url: /forgejo/forgejo/pulls?page=7&q=&type=all&sort=relevance&state=open&labels=&milestone=0&project=0&assignee=0&poster=0&archived=false
+            - generic [ref=e1094]: Last
+            - img [ref=e1095]
+  - group "Footer" [ref=e1099]:
+    - generic "Links" [ref=e1100]:
+      - generic [ref=e1101]:
+        - img [ref=e1103]
+        - generic [ref=e1104]:
+          - generic [ref=e1105]: Powered by
+          - link "Forgejo" [ref=e1106] [cursor=pointer]:
+            - /url: https://forgejo.org
+            - img [ref=e1108]
+          - text: with
+          - link "modifications" [ref=e1109] [cursor=pointer]:
+            - /url: /Codeberg-Infrastructure/forgejo
+      - generic [ref=e1110]:
+        - text: Codeberg
+        - list [ref=e1111]:
+          - listitem [ref=e1112]:
+            - link "Blog" [ref=e1113] [cursor=pointer]:
+              - /url: https://blog.codeberg.org
+          - listitem [ref=e1114]:
+            - link "Documentation" [ref=e1115] [cursor=pointer]:
+              - /url: https://docs.codeberg.org
+          - listitem [ref=e1116]:
+            - link "Community Issues" [ref=e1117] [cursor=pointer]:
+              - /url: /Codeberg/Community/issues
+          - listitem [ref=e1118]:
+            - link "Contributing" [ref=e1119] [cursor=pointer]:
+              - /url: /Codeberg/Contributing
+          - listitem [ref=e1120]:
+            - link "Report Abuse" [ref=e1121] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/#abuse
+      - generic [ref=e1122]:
+        - text: Association
+        - list [ref=e1123]:
+          - listitem [ref=e1124]:
+            - link "Who are we?" [ref=e1125] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F
+          - listitem [ref=e1126]:
+            - link "Bylaws / Satzung" [ref=e1127] [cursor=pointer]:
+              - /url: /codeberg/org/src/en/bylaws.md
+          - listitem [ref=e1128]:
+            - link "Donate" [ref=e1129] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/improving-codeberg/donate/
+          - listitem [ref=e1130]:
+            - link "Join / Support" [ref=e1131] [cursor=pointer]:
+              - /url: https://join.codeberg.org
+          - listitem [ref=e1132]:
+            - link "Contact" [ref=e1133] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/contact/
+      - generic [ref=e1134]:
+        - text: Services
+        - list [ref=e1135]:
+          - listitem [ref=e1136]:
+            - link "Codeberg Pages" [ref=e1137] [cursor=pointer]:
+              - /url: https://codeberg.page
+          - listitem [ref=e1138]:
+            - link "Codeberg Translate" [ref=e1139] [cursor=pointer]:
+              - /url: https://translate.codeberg.org
+          - listitem [ref=e1140]:
+            - link "Woodpecker CI" [ref=e1141] [cursor=pointer]:
+              - /url: https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci
+          - listitem [ref=e1142]:
+            - link "Forgejo API" [ref=e1143] [cursor=pointer]:
+              - /url: /api/swagger
+          - listitem [ref=e1144]:
+            - link "Status Page" [ref=e1145] [cursor=pointer]:
+              - /url: https://status.codeberg.eu
+      - generic [ref=e1146]:
+        - text: Legal
+        - list [ref=e1147]:
+          - listitem [ref=e1148]:
+            - link "Imprint / Impressum" [ref=e1149] [cursor=pointer]:
+              - /url: /codeberg/org/src/Imprint.md
+          - listitem [ref=e1150]:
+            - link "Privacy Policy" [ref=e1151] [cursor=pointer]:
+              - /url: /codeberg/org/src/PrivacyPolicy.md
+          - listitem [ref=e1152]:
+            - link "Licenses" [ref=e1153] [cursor=pointer]:
+              - /url: /assets/licenses.txt
+          - listitem [ref=e1154]:
+            - link "Terms of Use" [ref=e1155] [cursor=pointer]:
+              - /url: /codeberg/org/src/TermsOfUse.md
+    - generic [ref=e1156]:
+      - generic [ref=e1157]:
+        - link "Mastodon" [ref=e1158] [cursor=pointer]:
+          - /url: https://social.anoxinon.de/@Codeberg
+        - text: "|"
+        - link "Matrix Space" [ref=e1159] [cursor=pointer]:
+          - /url: matrix:r/codeberg-space:matrix.org?action=join
+        - link "(Web link)" [ref=e1160] [cursor=pointer]:
+          - /url: https://matrix.to/#/#codeberg-space:matrix.org
+        - button "Copy to clipboard" [ref=e1161] [cursor=pointer]:
+          - img [ref=e1162]
+      - menu [ref=e1166] [cursor=pointer]:
+        - img [ref=e1167]
+        - generic [ref=e1169]: English
+    - img [ref=e1170]

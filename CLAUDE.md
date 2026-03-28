@@ -112,10 +112,15 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | Topic | Location |
 | --- | --- |
 | **All coding rules, patterns, conventions** | `_bmad-output/project-context.md` |
-| Epic roadmap & status (Epics 1-8 complete, 9+ planned) | `_bmad-output/project-context.md` section "Epic Roadmap" |
+| Epic roadmap & status (Epics 1-9 complete, 10+ planned) | `_bmad-output/project-context.md` section "Epic Roadmap" |
 | TOON Agent Architecture (six-layer model, Loony, provider model) | `_bmad-output/project-context.md` section "TOON Agent Architecture" |
 | HyperBEAM integration strategy & R&D phases | `_bmad-output/planning-artifacts/research/toon-hyperbeam-integration-strategy.md` |
-| Known action items (Epic 8 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
+| Known action items (Epic 9 retro) | `_bmad-output/project-context.md` section "Known Action Items" |
+| Claude Agent Skills (30+ TOON skills, Epic 9) | `.claude/skills/` |
+| NIP-to-TOON Skill Pipeline | `.claude/skills/nip-to-toon-skill/SKILL.md` |
+| Skill Eval Framework | `.claude/skills/skill-eval-framework/SKILL.md` |
+| Skill structural validation tests | `tests/skills/`, `packages/core/src/skills/` |
+| Epic 9 retrospective | `_bmad-output/auto-bmad-artifacts/epic-9-retro-report.md` |
 | DVM compute marketplace architecture | `_bmad-output/project-context.md` section "DVM Compute Marketplace" |
 | Advanced DVM coordination (workflows, swarms, reputation) | `_bmad-output/project-context.md` section "Advanced DVM Coordination + TEE Integration" |
 | TEE architecture & attestation flow | `_bmad-output/project-context.md` section "TEE Integration" |
@@ -138,4 +143,12 @@ docker compose -p toon-genesis -f docker-compose-genesis.yml logs -f toon  # Nod
 | The Rig -- Arweave DVM + Forge-UI (Epic 8) | `_bmad-output/project-context.md` section "The Rig" |
 | Forge-UI source (Vite SPA) | `packages/rig/src/web/` |
 | Forge-UI Arweave deploy script | `scripts/deploy-forge-ui.mjs` |
+| Rig pointer deploy script | `scripts/deploy-rig-pointer.mjs` |
+| Repo announcement creation script | `scripts/create-rig-repo.mjs` |
+| Rig usage guide | `docs/rig-guide.md` |
+| Socialverse E2E orchestrator | `scripts/socialverse-e2e.ts` |
 | Mock USDC deployment script | `scripts/deploy-mock-usdc.sh` |
+
+## Browser Verification
+
+Use the `playwright-cli` skill (invoke via `/playwright-cli`) for browser-related tasks: verifying UI changes, debugging console/network issues, and automating E2E flows. Prefer snapshots over screenshots when interacting with elements.
