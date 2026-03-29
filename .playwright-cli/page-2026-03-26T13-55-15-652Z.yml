@@ -1,0 +1,13 @@
+- generic [active] [ref=e1]:
+  - img [ref=e2]
+  - generic [ref=e4]: kind:5094
+  - generic [ref=e5]: Upload data permanently
+  - generic [ref=e6]: "Result: Arweave TX ID"
+  - generic [ref=e7]: "Price: per KB uploaded"
+  - generic [ref=e9]: COMPUTE
+  - generic [ref=e11]: kind:5250
+  - generic [ref=e12]: Run WASM, LLM inference
+  - generic [ref=e13]: "Price: per job"
+  - generic [ref=e15]: CHAIN BRIDGE
+  - generic [ref=e17]: kind:5260
+  - generic [ref=e19]: Each vendor publishes a SkillDescriptor (kind:10035) â€” a menu of capabilities and pricing

@@ -1,0 +1,15 @@
+- generic [active] [ref=e1]:
+  - img [ref=e2]
+  - generic [ref=e4]: THIS IS TOON
+  - generic [ref=e5]: Pay to Write. Free to Read.
+  - generic [ref=e8]: CLIENT APP
+  - generic [ref=e10]: USER
+  - generic [ref=e12]: ILP CONNECTOR
+  - generic [ref=e13]: 10 micro-USDC / byte
+  - generic [ref=e15]: TOON RELAY
+  - generic [ref=e17]: WebSocket hub
+  - generic [ref=e18]: Stores Nostr events
+  - generic [ref=e20]: ILP Connector
+  - generic [ref=e21]: Pays per byte to write
+  - generic [ref=e23]: Free to read
+  - generic [ref=e24]: via WebSocket

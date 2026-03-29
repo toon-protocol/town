@@ -1,5 +1,5 @@
 /**
- * Shared helper functions for the Forge-UI Arweave deployment script.
+ * Shared helper functions for the Rig-UI Arweave deployment script.
  *
  * Extracted into a separate module so they can be imported by both
  * the deploy script (scripts/deploy-forge-ui.mjs) and the unit tests
@@ -208,7 +208,7 @@ export function parseCliArgs(argv) {
 export function generateDeploymentSummary(manifestTxId) {
   const lines = [
     '',
-    '=== Forge-UI Deployment Summary ===',
+    '=== Rig-UI Deployment Summary ===',
     '',
     `Manifest Transaction ID: ${manifestTxId}`,
     '',
@@ -226,7 +226,7 @@ export function generateDeploymentSummary(manifestTxId) {
     `  Example: ${GATEWAYS[0]}/${manifestTxId}/#relay=wss://relay.toon-protocol.org`,
     '',
     'Dogfooding:',
-    '  1. Seed data:  node scripts/seed-forge-data.mjs --container <container>',
+    '  1. Seed data:  node scripts/seed-forge-data.mjs --container <container>',  // filename kept for backwards compat
     `  2. Browse:     ${GATEWAYS[0]}/${manifestTxId}/#relay=wss://your-relay.example`,
     '',
   );

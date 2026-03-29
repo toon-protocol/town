@@ -1,0 +1,16 @@
+- generic [active] [ref=e1]:
+  - img [ref=e2]
+  - generic [ref=e4]: Autonomous Agent
+  - generic [ref=e6]: OBSERVE
+  - generic [ref=e8]: ServiceRegistry
+  - generic [ref=e10]: ORIENT
+  - generic [ref=e11]:
+    - text: Send to LLM
+    - text: via kind:5250
+    - text: Pay inference provider
+  - generic [ref=e13]: DECIDE
+  - generic [ref=e14]:
+    - text: LLM outputs action plan
+    - text: Budget governor validates
+    - text: Approve or defer actions
+  - generic [ref=e16]: ACT

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Seed Forge-UI test data into a running TOON relay.
+ * Seed Rig-UI test data into a running TOON relay.
  *
  * This script:
  * 1. Creates signed NIP-34 events (kind:30617, 30618, 1621, 1617)
@@ -515,8 +515,8 @@ try {
   console.log(`  ⚠️  Could not verify: ${e.message}`);
 }
 
-console.log(`\n🎉 Forge-UI test data seeded successfully!`);
-console.log(`\n📱 Open Forge-UI at: http://localhost:5173/?relay=ws://localhost:19700`);
+console.log(`\n🎉 Rig-UI test data seeded successfully!`);
+console.log(`\n📱 Open Rig-UI at: http://localhost:5173/?relay=ws://localhost:19700`);
 console.log(`   Routes to test:`);
 console.log(`   - /                                    → Repository list`);
 console.log(`   - /${pubkey}/${REPO_ID}/               → Tree view`);

@@ -12,11 +12,13 @@ A simple token faucet for local TOON development that provides both ETH and USDC
 
 ## Quick Start
 
-The faucet is included in `docker-compose-genesis.yml`:
+Run the faucet standalone for local development:
 
 ```bash
-# Start the full stack (includes faucet)
-docker compose -p toon-genesis -f docker-compose-genesis.yml up -d
+cd packages/faucet
+npm install
+export RPC_URL=http://localhost:18545
+npm run dev
 
 # Access the faucet UI
 open http://localhost:3500

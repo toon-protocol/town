@@ -104,7 +104,8 @@ services:
       ASSET_SCALE: '6'
 
       # No bootstrap peers (genesis)
-      ARDRIVE_ENABLED: 'false'
+      # Arweave DVM: enabled on peer1 (provider), uses free tier (<=100KB)
+      ARDRIVE_ENABLED: 'true'
 
       # Storage
       DATA_DIR: /data

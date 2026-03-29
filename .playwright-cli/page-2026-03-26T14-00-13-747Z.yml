@@ -1,0 +1,21 @@
+- generic [active] [ref=e1]:
+  - img [ref=e2]
+  - generic [ref=e4]: SOVEREIGN AGENT
+  - generic [ref=e6]: TEE
+  - generic [ref=e8]: WAKE REQUEST
+  - generic [ref=e10]: TEE ENCLAVE
+  - generic [ref=e11]:
+    - text: Born in vault,
+    - text: wakes, sleeps
+  - generic [ref=e14]: TEE ENCLAVE
+  - generic [ref=e16]: VRF SELECTION
+  - generic [ref=e17]:
+    - text: Mina zkApp selects
+    - text: executor via Poseidon hash
+  - generic [ref=e19]: PROVIDER EXECUTES
+  - generic [ref=e21]: Private key NEVER
+  - generic [ref=e22]: leaves the vault
+  - generic [ref=e24]: SELF-SCHEDULE
+  - generic [ref=e25]:
+    - text: Publishes kind:5099 next
+    - text: Container shuts down

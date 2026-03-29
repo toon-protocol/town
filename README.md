@@ -134,6 +134,10 @@ TOON Protocol uses **proven protocols** — [ILP](https://interledger.org) for p
 
 **ILP-Gated Nostr Relays** — Relay operators earn from every write while readers subscribe for free. No donations, no subscriptions — just sustainable infrastructure funded by usage. [`@toon-protocol/town`](packages/town) is the reference implementation: one command to run a relay that pays for itself.
 
+**Permanent Storage via Arweave DVM** — Clients send `kind:5094` blob storage requests through the network. A provider node uploads the blob to [Arweave](https://arweave.org) via [ArDrive Turbo](https://ardrive.io) and returns the transaction ID in the ILP FULFILL. Payment is prepaid per-byte — no API keys, no accounts, just ILP micropayments for permanent decentralized storage. Single-packet and chunked uploads are both supported. See the [`@toon-protocol/sdk` Arweave module](packages/sdk/src/arweave) for provider and client helpers.
+
+**The Rig — Decentralized Git** — [`@toon-protocol/rig`](packages/rig) is a fully decentralized, read-only git interface. A static Vite SPA deployable to Arweave — browse repositories, file trees, commit history, diffs, blame, issues, and pull requests entirely in the browser. Repository metadata lives on ILP-gated TOON relays (NIP-34 events), git objects are fetched directly from Arweave, and there is no backend server. See the [Rig Guide](docs/rig-guide.md).
+
 **Routing** — Run a peer node. Every message that passes through earns routing fees. More peers, more paths, more revenue. The network grows because participation is profitable.
 
 **Agent Swarms** — A coordinator sends paid tasks to workers. Workers earn by completing them. Thousands of agents collaborating, each earning per-byte for their contribution.
@@ -185,6 +189,7 @@ The client derives your EVM identity from your Nostr key automatically — one k
 | [`@toon-protocol/core`](packages/core) | Discovery, peering, and bootstrap | Internal |
 | [`@toon-protocol/relay`](packages/relay) | WebSocket relay server and event store | Internal |
 | [`@toon-protocol/bls`](packages/bls) | Business logic server for ILP validation | Internal |
+| [`@toon-protocol/rig`](packages/rig) | The Rig — decentralized git interface | Internal |
 | [`@toon-protocol/faucet`](packages/faucet) | Token faucet for local development | Internal |
 
 ## Documentation
@@ -198,6 +203,8 @@ The client derives your EVM identity from your Nostr key automatically — one k
 | [Bootstrap](docs/bootstrap.md) | Network discovery and peering |
 | [SDK Guide](docs/sdk-guide.md) | Building services with `@toon-protocol/sdk` |
 | [Town Guide](docs/town-guide.md) | Running relays with `@toon-protocol/town` |
+| [Arweave DVM](packages/sdk/src/arweave) | Permanent blob storage via `kind:5094` — provider handler, chunked uploads, pricing |
+| [Rig Guide](docs/rig-guide.md) | The Rig — decentralized git interface, architecture, deployment to Arweave |
 
 ## Related
 
