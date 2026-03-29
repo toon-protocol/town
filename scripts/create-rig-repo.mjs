@@ -241,15 +241,34 @@ async function main() {
   // Upload root tree
   await uploadGitObject(treeSha);
 
-  // Upload tree entries (first level only for speed)
+  // Upload root tree entries (first level — all blobs + subtree objects)
   const treeEntries = gitCmd('ls-tree', treeSha).split('\n');
-  for (const entry of treeEntries.slice(0, 20)) {
+  for (const entry of treeEntries) {
     const parts = entry.split(/\s+/);
-    if (parts.length >= 3) {
-      const entrySha = parts[2];
-      if (!arweaveMap.has(entrySha)) {
-        await uploadGitObject(entrySha);
+    if (parts.length < 4) continue;
+    const entrySha = parts[2];
+    if (!arweaveMap.has(entrySha)) {
+      await uploadGitObject(entrySha);
+    }
+  }
+
+  // Upload objects along specific paths needed for README images
+  // (walks intermediate trees + final blob for each path)
+  const README_IMAGE_PATHS = [
+    '_bmad-output/branding/social-assets/github-hero-readme.jpg',
+  ];
+  for (const imagePath of README_IMAGE_PATHS) {
+    const segments = imagePath.split('/');
+    let currentTree = treeSha;
+    for (const segment of segments) {
+      const subEntries = gitCmd('ls-tree', currentTree).split('\n');
+      const match = subEntries.find(e => e.split('\t').pop() === segment);
+      if (!match) break;
+      const sha = match.split(/\s+/)[2];
+      if (!arweaveMap.has(sha)) {
+        await uploadGitObject(sha);
       }
+      currentTree = sha;
     }
   }
 
