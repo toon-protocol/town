@@ -1,14 +1,18 @@
-# SDK E2E Test Stack — Embedded Connector
+# SDK E2E Test Stack — Embedded Connector (Multi-Chain)
 #
 # Minimal infrastructure for testing SDK createNode() with embedded ConnectorNode.
 # Each peer is a single container (no external connector needed).
+#
+# Chains: EVM (Anvil) + Solana (test-validator) + Mina (lightnet)
+# Privacy: NIP-59 gift wrapping enabled on both peers
 #
 # Usage:
 #   ./scripts/sdk-e2e-infra.sh up     # Start infrastructure
 #   ./scripts/sdk-e2e-infra.sh down   # Stop infrastructure
 #
 # Architecture:
-#   Anvil (contracts) → Peer1 (genesis-like) → Peer2 (bootstraps from Peer1)
+#   Anvil (EVM contracts) + Solana (programs) + Mina (lightnet)
+#   → Peer1 (genesis-like) → Peer2 (bootstraps from Peer1)
 
 networks:
   toon-sdk-e2e:
