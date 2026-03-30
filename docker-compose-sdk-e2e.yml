@@ -68,6 +68,71 @@ services:
       start_period: 15s
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Solana Test Validator - Local Solana with Auto-Deployed Programs
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  solana-validator:
+    image: ghcr.io/beeman/solana-test-validator:latest
+    container_name: sdk-e2e-solana
+    entrypoint: []
+    command:
+      - sh
+      - /entrypoint.sh
+    volumes:
+      - ./infra/solana/entrypoint.sh:/entrypoint.sh:ro
+      - ../connector/packages/solana-program/target/deploy:/programs:ro
+    tmpfs:
+      - /tmp/test-ledger
+    ports:
+      - '19899:8899'   # RPC
+      - '19900:8900'   # WebSocket
+    networks:
+      - toon-sdk-e2e
+    security_opt:
+      - seccomp=unconfined
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'solana cluster-version --url http://localhost:8899 >/dev/null 2>&1']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Mina Lightnet - Local Mina Network with Accounts Manager
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # NOTE: Mina lightnet requires 4-8 GB RAM. Ensure Docker Desktop has
+  # sufficient memory allocated (at least 8 GB recommended).
+  mina-lightnet:
+    image: o1labs/mina-local-network:compatible-latest-lightnet
+    container_name: sdk-e2e-mina
+    environment:
+      NETWORK_TYPE: single-node
+      PROOF_LEVEL: none
+      LOG_LEVEL: Info
+      RUN_ARCHIVE_NODE: 'false'
+      SLOT_TIME: '20000'
+    ports:
+      - '19085:3101'   # GraphQL (direct to daemon, bypassing nginx proxy)
+      - '19181:8181'   # Accounts Manager
+    networks:
+      - toon-sdk-e2e
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl -sf -X POST -H "Content-Type: application/json" -d "{\"query\":\"{syncStatus}\"}" http://localhost:3101/graphql | grep -q SYNCED || exit 1',
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 180s
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # Peer 1 — Genesis-like node (no bootstrap peers)
   # Anvil Account #0 for settlement
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -111,6 +176,15 @@ services:
       # Arweave DVM: enabled on peer1 (provider), uses free tier (<=100KB)
       ARDRIVE_ENABLED: 'true'
 
+      # Multi-chain settlement (Solana + Mina)
+      SOLANA_RPC_URL: http://solana-validator:8899
+      MINA_GRAPHQL_URL: http://mina-lightnet:3101/graphql
+      MINA_ACCOUNTS_MANAGER_URL: http://mina-lightnet:8181
+
+      # NIP-59 privacy wrapping
+      NIP59_ENABLED: 'true'
+      NIP59_PEER_PUBKEYS: ${PEER1_NIP59_PEER_PUBKEYS:-}
+
       # Storage
       DATA_DIR: /data
     ports:
@@ -124,6 +198,10 @@ services:
     depends_on:
       anvil:
         condition: service_healthy
+      solana-validator:
+        condition: service_healthy
+      mina-lightnet:
+        condition: service_started
     restart: unless-stopped
     healthcheck:
       test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']
@@ -177,6 +255,15 @@ services:
 
       ARDRIVE_ENABLED: 'false'
 
+      # Multi-chain settlement (Solana + Mina)
+      SOLANA_RPC_URL: http://solana-validator:8899
+      MINA_GRAPHQL_URL: http://mina-lightnet:3101/graphql
+      MINA_ACCOUNTS_MANAGER_URL: http://mina-lightnet:8181
+
+      # NIP-59 privacy wrapping
+      NIP59_ENABLED: 'true'
+      NIP59_PEER_PUBKEYS: ${PEER2_NIP59_PEER_PUBKEYS:-}
+
       # Storage
       DATA_DIR: /data
     ports:
@@ -190,6 +277,10 @@ services:
     depends_on:
       peer1:
         condition: service_healthy
+      solana-validator:
+        condition: service_healthy
+      mina-lightnet:
+        condition: service_started
     restart: unless-stopped
     healthcheck:
       test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:3100/health']

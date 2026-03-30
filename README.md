@@ -136,7 +136,7 @@ The only payment channel protocol where transport and settlement layers are inde
 
 Every BTP payment channel claim is wrapped in three layers before it touches the network:
 
-1. **Rumor** -- The raw claim payload, deliberately unsigned. No signature binds the sender to the content, preserving cryptographic deniability.
+1. **Rumor** -- The NIP-59 envelope is deliberately unsigned, so no transport-layer signature binds the sender to the delivery. The balance proof inside the claim remains signed (EIP-712, Ed25519, or zk-SNARK) -- it must be, because the settlement contract verifies it on-chain. The deniability is at the routing layer: you cannot prove *who sent this claim to whom via BTP*.
 2. **Seal (kind:1060)** -- The rumor is encrypted to the recipient using ECDH key agreement + XChaCha20-Poly1305 (NIP-44). The timestamp is randomized within +/-48 hours. Only the recipient can decrypt it.
 3. **Gift Wrap (kind:1059)** -- The seal is encrypted again under a fresh ephemeral keypair generated for this single message. Relays see only the ephemeral pubkey and the recipient -- never the sender, the content, or the real timestamp.
 
