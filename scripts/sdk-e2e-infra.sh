@@ -110,15 +110,17 @@ cmd_up() {
     export PEER2_NIP59_PEER_PUBKEYS="$peer1_pubkey"
   fi
 
-  # Start services
-  docker compose -p "$PROJECT_NAME" -f "$REPO_ROOT/$COMPOSE_FILE" up -d
-  log_success "Containers started"
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Stage 1: Start chain services only (need their outputs for peer env vars)
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  log_info "Stage 1: Starting chain services..."
+  docker compose -p "$PROJECT_NAME" -f "$REPO_ROOT/$COMPOSE_FILE" up -d anvil solana-validator mina-lightnet
+  log_success "Chain services started"
 
-  # Wait for health — chain devnets
+  # Wait for Anvil
   log_info "Waiting for chain devnets to become healthy..."
   wait_for_health "http://localhost:18545" "Anvil" 30 || true
 
-  # For Anvil, check JSON-RPC specifically
   local anvil_ready=false
   for i in $(seq 1 30); do
     if curl -sf -X POST http://localhost:18545 \
@@ -135,15 +137,46 @@ cmd_up() {
     log_error "Anvil JSON-RPC not responding"
   fi
 
-  # Solana health check
+  # Wait for Solana and capture program ID
   wait_for_health "http://localhost:19899/health" "Solana validator" 30
 
-  # Mina health check (takes 1-3 minutes to sync)
+  # Derive Solana program ID from vendored keypair (deterministic)
+  local solana_program_id=""
+  if [ -f "$REPO_ROOT/contracts/solana/payment_channel-keypair.json" ]; then
+    solana_program_id=$(cd "$REPO_ROOT" && node --input-type=module -e "
+      import { readFileSync } from 'fs';
+      import { bs58 } from '@noble/curves/ed25519';
+      // Keypair JSON is a 64-byte array: [secret(32) + public(32)]
+      const kp = JSON.parse(readFileSync('contracts/solana/payment_channel-keypair.json', 'utf8'));
+      const pubkey = Uint8Array.from(kp.slice(32, 64));
+      // Base58 encode the public key to get program ID
+      const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+      function toBase58(bytes) {
+        let num = BigInt(0);
+        for (const b of bytes) num = num * 256n + BigInt(b);
+        let result = '';
+        while (num > 0n) { result = ALPHABET[Number(num % 58n)] + result; num = num / 58n; }
+        for (const b of bytes) { if (b === 0) result = '1' + result; else break; }
+        return result;
+      }
+      console.log(toBase58(pubkey));
+    " 2>/dev/null) || true
+    if [ -n "$solana_program_id" ]; then
+      log_success "Solana program ID: $solana_program_id"
+    else
+      log_warning "Could not derive Solana program ID from keypair"
+    fi
+  else
+    log_warning "No Solana keypair found — program ID unknown"
+  fi
+  export SOLANA_PROGRAM_ID="${solana_program_id}"
+
+  # Wait for Mina lightnet sync (takes 1-3 minutes)
   log_info "Waiting for Mina lightnet to sync (may take up to 3 minutes)..."
   local mina_ready=false
+  local mina_zkapp_address=""
   for i in $(seq 1 90); do
     if curl -sf http://localhost:19181/list-acquired-accounts > /dev/null 2>&1; then
-      # Accounts manager is up — now check sync status
       if curl -sf -X POST -H 'Content-Type: application/json' \
         -d '{"query":"{syncStatus}"}' \
         http://localhost:19085/graphql 2>/dev/null | grep -q 'SYNCED'; then
@@ -155,58 +188,71 @@ cmd_up() {
   done
   if $mina_ready; then
     log_success "Mina lightnet is synced"
-    # Acquire and log funded accounts from the accounts manager
-    log_info "Acquiring Mina funded accounts..."
-    local mina_accounts
-    mina_accounts=$(curl -sf http://localhost:19181/acquire-account 2>/dev/null) || true
-    if [ -n "$mina_accounts" ]; then
-      log_success "Mina funded account acquired: $(echo "$mina_accounts" | head -c 120)..."
+    # Deploy Mina zkApp
+    log_info "Deploying Mina Payment Channel zkApp..."
+    mina_zkapp_address=$(cd "$REPO_ROOT" && \
+      MINA_GRAPHQL_URL="http://localhost:19085/graphql" \
+      MINA_ACCOUNTS_URL="http://localhost:19181" \
+      npx tsx scripts/deploy-mina-zkapp.ts 2>/dev/null) || true
+    if [ -n "$mina_zkapp_address" ]; then
+      log_success "Mina zkApp deployed: $mina_zkapp_address"
     else
-      log_warning "Could not acquire Mina account (non-fatal)"
-    fi
-    # Release it so tests can acquire their own
-    local mina_pk
-    mina_pk=$(echo "$mina_accounts" | node -e "
-      let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{
-        try { console.log(JSON.parse(d).pk); } catch(e) {}
-      });
-    " 2>/dev/null) || true
-    if [ -n "$mina_pk" ]; then
-      curl -sf -X PUT "http://localhost:19181/release-account?pk=$mina_pk" > /dev/null 2>&1 || true
+      log_warning "Mina zkApp deployment failed (non-fatal — Mina tests may fail)"
     fi
   else
     log_warning "Mina lightnet not synced after 3 minutes (non-fatal — Mina tests may fail)"
   fi
+  export MINA_ZKAPP_ADDRESS="${mina_zkapp_address}"
+
+  # Placeholder env vars for Solana/Mina settlement accounts on peers
+  # Peers use their own settlement keys; these are the token/program addresses
+  export SOLANA_TOKEN_MINT="${SOLANA_TOKEN_MINT:-So11111111111111111111111111111111111111112}"
+  export PEER1_SOLANA_TOKEN_ACCOUNT="${PEER1_SOLANA_TOKEN_ACCOUNT:-}"
+  export PEER2_SOLANA_TOKEN_ACCOUNT="${PEER2_SOLANA_TOKEN_ACCOUNT:-}"
+  export PEER1_MINA_ACCOUNT="${PEER1_MINA_ACCOUNT:-}"
+  export PEER2_MINA_ACCOUNT="${PEER2_MINA_ACCOUNT:-}"
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Stage 2: Start peers (env vars now resolved)
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  log_info "Stage 2: Starting TOON peers with multi-chain config..."
+  docker compose -p "$PROJECT_NAME" -f "$REPO_ROOT/$COMPOSE_FILE" up -d peer1 peer2
+  log_success "Peer containers started"
 
   # Wait for TOON peers
   log_info "Waiting for TOON peers..."
   wait_for_health "http://localhost:19100/health" "Peer1 BLS" 60
   wait_for_health "http://localhost:19110/health" "Peer2 BLS" 60
 
-  log_success "SDK E2E infrastructure is ready (multi-chain)"
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Banner
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   echo ""
-  echo "  EVM:"
-  echo "    Anvil:          http://localhost:18545"
+  echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  echo -e "${GREEN}  TOON Devnet Ready (EVM + Solana + Mina)${NC}"
+  echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
   echo ""
-  echo "  Solana:"
-  echo "    RPC:            http://localhost:19899"
-  echo "    WebSocket:      ws://localhost:19900"
+  echo "  EVM (Anvil):       http://localhost:18545"
+  echo "  Solana RPC:        http://localhost:19899"
+  echo "  Mina GraphQL:      http://localhost:19085"
+  echo "  Mina Accounts:     http://localhost:19181"
   echo ""
-  echo "  Mina:"
-  echo "    GraphQL:        http://localhost:19085"
-  echo "    Accounts Mgr:   http://localhost:19181"
+  echo "  Peer1 Relay:       ws://localhost:19700"
+  echo "  Peer1 BLS:         http://localhost:19100"
+  echo "  Peer2 Relay:       ws://localhost:19710"
+  echo "  Peer2 BLS:         http://localhost:19110"
   echo ""
-  echo "  TOON Peers:"
-  echo "    Peer1 BTP:      ws://localhost:19000"
-  echo "    Peer1 BLS:      http://localhost:19100"
-  echo "    Peer1 Relay:    ws://localhost:19700"
-  echo "    Peer2 BTP:      ws://localhost:19010"
-  echo "    Peer2 BLS:      http://localhost:19110"
-  echo "    Peer2 Relay:    ws://localhost:19710"
+  if [ -n "$solana_program_id" ]; then
+    echo "  Solana Program ID: $solana_program_id"
+  fi
+  if [ -n "$mina_zkapp_address" ]; then
+    echo "  Mina zkApp:        $mina_zkapp_address"
+  fi
+  echo "  NIP-59:            enabled (privacy wrapping)"
   echo ""
-  echo "  NIP-59:           enabled (privacy wrapping)"
+  echo "  Dogfood: cd examples/client-example && pnpm run example:03"
+  echo "  Tests:   cd packages/sdk && pnpm test:e2e:docker"
   echo ""
-  echo "Run tests: cd packages/sdk && pnpm test:e2e:docker"
 }
 
 cmd_down() {

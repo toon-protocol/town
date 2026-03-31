@@ -45,10 +45,20 @@ if ! solana balance --url http://localhost:8899 2>/dev/null | grep -q '[1-9]'; t
 fi
 
 # Deploy all programs from /programs (non-fatal, matching Anvil pattern)
+# Use keypair files for deterministic program IDs when available
 for so_file in /programs/*.so; do
   if [ -f "$so_file" ]; then
-    solana program deploy "$so_file" --url http://localhost:8899 \
-      || echo "Deploy of $so_file failed (non-fatal)"
+    basename=$(basename "$so_file" .so)
+    keypair_file="/programs/${basename}-keypair.json"
+    if [ -f "$keypair_file" ]; then
+      echo "Deploying $basename with deterministic program ID (keypair: $keypair_file)..."
+      solana program deploy "$so_file" --program-id "$keypair_file" --url http://localhost:8899 \
+        || echo "Deploy of $so_file failed (non-fatal)"
+    else
+      echo "Deploying $basename with auto-generated program ID..."
+      solana program deploy "$so_file" --url http://localhost:8899 \
+        || echo "Deploy of $so_file failed (non-fatal)"
+    fi
   fi
 done
 

@@ -71,7 +71,7 @@ services:
         echo "Anvil ready with contracts deployed!"
         wait $$ANVIL_PID
     volumes:
-      - ../connector/packages/contracts:/contracts
+      - ./contracts/evm:/contracts
     ports:
       - '18545:8545'
     networks:
@@ -100,7 +100,7 @@ services:
       - /entrypoint.sh
     volumes:
       - ./infra/solana/entrypoint.sh:/entrypoint.sh:ro
-      - ../connector/packages/solana-program/target/deploy:/programs:ro
+      - ./contracts/solana:/programs:ro
     tmpfs:
       - /tmp/test-ledger
     ports:
@@ -179,10 +179,17 @@ services:
       SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
 
       # Settlement info (published in kind:10032)
-      SUPPORTED_CHAINS: 'evm:base:31337'
+      # Peer1: all chains, prefers EVM
+      SUPPORTED_CHAINS: 'evm:base:31337,solana:devnet,mina:devnet'
       SETTLEMENT_ADDRESS_EVM_BASE_31337: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
       PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
       TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
+      SETTLEMENT_ADDRESS_SOLANA_DEVNET: '${PEER1_SOLANA_TOKEN_ACCOUNT}'
+      PREFERRED_TOKEN_SOLANA_DEVNET: '${SOLANA_TOKEN_MINT}'
+      TOKEN_NETWORK_SOLANA_DEVNET: '${SOLANA_PROGRAM_ID}'
+      SETTLEMENT_ADDRESS_MINA_DEVNET: '${PEER1_MINA_ACCOUNT}'
+      PREFERRED_TOKEN_MINA_DEVNET: 'MINA'
+      TOKEN_NETWORK_MINA_DEVNET: '${MINA_ZKAPP_ADDRESS}'
 
       # Service ports
       BLS_PORT: '3100'
@@ -199,8 +206,12 @@ services:
 
       # Multi-chain settlement (Solana + Mina)
       SOLANA_RPC_URL: http://solana-validator:8899
+      SOLANA_PROGRAM_ID: '${SOLANA_PROGRAM_ID}'
+      SOLANA_KEY_ID: 'solana-settlement'
       MINA_GRAPHQL_URL: http://mina-lightnet:3101/graphql
       MINA_ACCOUNTS_MANAGER_URL: http://mina-lightnet:8181
+      MINA_ZKAPP_ADDRESS: '${MINA_ZKAPP_ADDRESS}'
+      MINA_KEY_ID: 'mina-settlement'
 
       # NIP-59 privacy wrapping
       NIP59_ENABLED: 'true'
@@ -257,10 +268,17 @@ services:
       SETTLEMENT_TOKEN_ADDRESS: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
 
       # Settlement info (published in kind:10032)
-      SUPPORTED_CHAINS: 'evm:base:31337'
+      # Peer2: all chains, prefers Solana (different order for mixed-chain E2E testing)
+      SUPPORTED_CHAINS: 'solana:devnet,evm:base:31337,mina:devnet'
       SETTLEMENT_ADDRESS_EVM_BASE_31337: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC'
       PREFERRED_TOKEN_EVM_BASE_31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3' # Mock USDC (Anvil)
       TOKEN_NETWORK_EVM_BASE_31337: '0xCafac3dD18aC6c6e92c921884f9E4176737C052c'
+      SETTLEMENT_ADDRESS_SOLANA_DEVNET: '${PEER2_SOLANA_TOKEN_ACCOUNT}'
+      PREFERRED_TOKEN_SOLANA_DEVNET: '${SOLANA_TOKEN_MINT}'
+      TOKEN_NETWORK_SOLANA_DEVNET: '${SOLANA_PROGRAM_ID}'
+      SETTLEMENT_ADDRESS_MINA_DEVNET: '${PEER2_MINA_ACCOUNT}'
+      PREFERRED_TOKEN_MINA_DEVNET: 'MINA'
+      TOKEN_NETWORK_MINA_DEVNET: '${MINA_ZKAPP_ADDRESS}'
 
       # Service ports
       BLS_PORT: '3100'
@@ -278,8 +296,12 @@ services:
 
       # Multi-chain settlement (Solana + Mina)
       SOLANA_RPC_URL: http://solana-validator:8899
+      SOLANA_PROGRAM_ID: '${SOLANA_PROGRAM_ID}'
+      SOLANA_KEY_ID: 'solana-settlement'
       MINA_GRAPHQL_URL: http://mina-lightnet:3101/graphql
       MINA_ACCOUNTS_MANAGER_URL: http://mina-lightnet:8181
+      MINA_ZKAPP_ADDRESS: '${MINA_ZKAPP_ADDRESS}'
+      MINA_KEY_ID: 'mina-settlement'
 
       # NIP-59 privacy wrapping
       NIP59_ENABLED: 'true'
