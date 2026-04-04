@@ -195,8 +195,8 @@ services:
       BLS_PORT: '3100'
       WS_PORT: '7100'
 
-      # Pricing
-      BASE_PRICE_PER_BYTE: '10'
+      # Pricing — peer1 is cheapest DVM provider
+      BASE_PRICE_PER_BYTE: '5'
       ASSET_CODE: USD
       ASSET_SCALE: '6'
 
@@ -292,7 +292,8 @@ services:
       # Bootstrap from Peer 1 (pubkey derived from peer1's NOSTR_SECRET_KEY)
       BOOTSTRAP_PEERS: ${PEER2_BOOTSTRAP_PEERS:-[]}
 
-      ARDRIVE_ENABLED: 'false'
+      # Arweave DVM: enabled on peer2 as fallback provider (higher price than peer1)
+      ARDRIVE_ENABLED: 'true'
 
       # Multi-chain settlement (Solana + Mina)
       SOLANA_RPC_URL: http://solana-validator:8899
