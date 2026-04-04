@@ -1,18 +1,24 @@
 ---
-stepsCompleted: ['step-01-load-context', 'step-02-discover-tests', 'step-03-map-criteria', 'step-04-analyze-gaps', 'step-05-gate-decision']
+stepsCompleted:
+  - 'step-01-load-context'
+  - 'step-02-discover-tests'
+  - 'step-03-map-criteria'
+  - 'step-04-gap-analysis'
+  - 'step-05-gate-decision'
 lastStep: 'step-05-gate-decision'
-lastSaved: '2026-03-27'
+lastSaved: '2026-03-30'
 workflowType: 'testarch-trace'
 inputDocuments:
-  - '_bmad-output/implementation-artifacts/9-10-public-chat-skill.md'
-  - 'packages/core/src/skills/public-chat.test.ts'
-  - 'tests/skills/test-public-chat-skill.sh'
+  - _bmad-output/implementation-artifacts/10-7-seed-issues-labels-conversations.md
+  - _bmad-output/planning-artifacts/test-design-epic-10.md
+  - packages/rig/tests/e2e/seed/__tests__/push-07-issues.test.ts
+  - packages/rig/tests/e2e/seed/push-07-issues.ts
 ---
 
-# Traceability Matrix & Gate Decision - Story 9.10
+# Traceability Matrix & Gate Decision - Story 10.7
 
-**Story:** Public Chat Skill (public-chat) -- NIP-28 Public Chat on TOON Protocol
-**Date:** 2026-03-27
+**Story:** 10.7 -- Seed Script: Issues, Labels, Conversations (Push 7)
+**Date:** 2026-03-30
 **Evaluator:** TEA Agent (Claude Opus 4.6)
 
 ---
@@ -23,13 +29,13 @@ Note: This workflow does not generate tests. If gaps exist, run `*atdd` or `*aut
 
 ### Coverage Summary
 
-| Priority  | Total Criteria | FULL Coverage | Coverage % | Status  |
-| --------- | -------------- | ------------- | ---------- | ------- |
-| P0        | 7              | 7             | 100%       | PASS    |
-| P1        | 3              | 3             | 100%       | PASS    |
-| P2        | 1              | 0             | 0%         | WARN    |
-| P3        | 0              | 0             | 100%       | PASS    |
-| **Total** | **11**         | **10**        | **91%**    | **PASS**|
+| Priority  | Total Criteria | FULL Coverage | Coverage % | Status       |
+| --------- | -------------- | ------------- | ---------- | ------------ |
+| P0        | 4              | 4             | 100%       | PASS         |
+| P1        | 0              | 0             | N/A        | N/A          |
+| P2        | 0              | 0             | N/A        | N/A          |
+| P3        | 0              | 0             | N/A        | N/A          |
+| **Total** | **4**          | **4**         | **100%**   | **PASS**     |
 
 **Legend:**
 
@@ -41,189 +47,139 @@ Note: This workflow does not generate tests. If gaps exist, run `*atdd` or `*aut
 
 ### Detailed Mapping
 
-#### AC1: Pipeline Production (P0)
+#### AC-7.1: Publish 2 kind:1621 issues with correct tags and author attribution (P0)
 
 - **Coverage:** FULL PASS
 - **Tests:**
-  - `[STRUCT-A]` - packages/core/src/skills/public-chat.test.ts:82
-    - **Given:** The nip-to-toon-skill pipeline (Story 9.2)
-    - **When:** The pipeline is run with NIP-28 as input
-    - **Then:** SKILL.md exists, references/ directory exists, evals/ directory exists, evals.json exists, no extraneous files, expected reference files present
-  - `[STRUCT-A]` - tests/skills/test-public-chat-skill.sh:79
-    - **Given:** SKILL.md file at .claude/skills/public-chat/
-    - **When:** Structural check runs
-    - **Then:** Frontmatter has valid YAML with only name and description
-  - `[STRUCT-B]` - packages/core/src/skills/public-chat.test.ts:111
-    - **Given:** SKILL.md frontmatter
-    - **When:** Validation runs
-    - **Then:** name is "public-chat", description present, ONLY 2 fields
-  - `[STRUCT-B]` - tests/skills/test-public-chat-skill.sh:100
-    - **Given:** references/ directory
-    - **When:** File check runs
-    - **Then:** nip-spec.md, toon-extensions.md, scenarios.md all present
-  - `[STRUCT-B2]` - tests/skills/test-public-chat-skill.sh:116
-    - **Given:** evals/evals.json
-    - **When:** JSON parse
-    - **Then:** Valid JSON
-  - `[AC1-NAME]` - tests/skills/test-public-chat-skill.sh:158
-    - **Given:** Frontmatter name field
-    - **When:** Name check
-    - **Then:** Name is "public-chat"
+  - `[P0] should export runPush07 function` - push-07-issues.test.ts:23
+    - **Given:** Module is imported
+    - **When:** runPush07 is accessed
+    - **Then:** It is a function
+  - `[P0] should accept 7 parameters (3 clients, 3 secret keys, push06State)` - push-07-issues.test.ts:28
+    - **Given:** runPush07 function exists
+    - **When:** Function length is inspected
+    - **Then:** At least 7 parameters accepted
+  - `[P0] AC-7.1: buildIssue for Issue #1 produces kind:1621 with correct a tag, subject tag, and t tags for enhancement and networking` - push-07-issues.test.ts:43
+    - **Given:** buildIssue is called with Issue #1 params
+    - **When:** Event is constructed
+    - **Then:** kind:1621, correct `a` tag, `p` tag, `subject` tag, 2 `t` tags (enhancement, networking)
+  - `[P0] AC-7.1: buildIssue for Issue #2 produces kind:1621 with correct a tag, subject tag, and t tags for bug and forge-ui` - push-07-issues.test.ts:86
+    - **Given:** buildIssue is called with Issue #2 params
+    - **When:** Event is constructed
+    - **Then:** kind:1621, correct `a` tag, `subject` tag, 2 `t` tags (bug, forge-ui)
+  - `[P0] AC-7.1: buildIssue for Issue #2 includes p tag referencing repo owner` - push-07-issues.test.ts:650
+    - **Given:** buildIssue is called with Issue #2 params
+    - **When:** p tag is inspected
+    - **Then:** p tag references repo owner pubkey
+  - `[P0] AC-7.1: Push07State.issues has 2 entries with correct titles, labels, and distinct authorPubkeys` - push-07-issues.test.ts:167
+    - **Given:** Push07State interface exists in source
+    - **When:** Source is inspected for issue metadata
+    - **Then:** 2 issue titles, 4 labels, distinct authors verified in source
+  - `[P0] AC-7.1: exactly 7 publishWithRetry calls in source (2 issues + 5 comments)` - push-07-issues.test.ts:486
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** publishWithRetry calls are counted
+    - **Then:** Exactly 7 calls present
+  - `[P0] AC-7.1: no new git objects created` - push-07-issues.test.ts:298
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** Return statement passthrough fields checked
+    - **Then:** commits, shaMap, files, prs all pass through from push06State
+  - `[P1] AC-7.1: Alice signs Issue #1 and Bob signs Issue #2` - push-07-issues.test.ts:417
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** Signing key usage is inspected per issue
+    - **Then:** aliceSecretKey used for Issue #1, bobSecretKey for Issue #2
+  - `[P1] AC-7.1: source uses three clients and three secret keys` - push-07-issues.test.ts:388
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** Client and key references inspected
+    - **Then:** aliceClient/bobClient/charlieClient and matching secret keys present
+
 - **Gaps:** None
-- **Recommendation:** None needed
+
+- **Recommendation:** No action needed. AC-7.1 has comprehensive coverage across 10 tests verifying event structure, tag correctness, author attribution, publish call count, state passthrough, and no-git-objects constraint.
 
 ---
 
-#### AC2: NIP Coverage (P0)
+#### AC-7.2: Comment thread on Issue #1 -- 3 comments (Bob, Alice, Charlie) preserving order (P0)
 
 - **Coverage:** FULL PASS
 - **Tests:**
-  - `[EVAL-A, EVAL-B]` - packages/core/src/skills/public-chat.test.ts:131 (18 vitest tests)
-    - Covers: NIP-28 mentioned, kind:40 with JSON content (name/about/picture), kind:41 metadata updates, kind:42 with e tag root marker, kind:43 hide, kind:44 mute, reply marker, p tag, channel discovery, metadata authorization, nip-spec.md all five kinds, root/reply markers, p tag, JSON format, optional reasons, author validation, discovery filters, NIP-29/NIP-72 distinction
-  - `[AC2-*]` - tests/skills/test-public-chat-skill.sh:176-345 (17 shell tests)
-    - AC2-NIP28, AC2-CHANNEL-CREATE, AC2-KINDS-40 through AC2-KINDS-44, AC2-ETAG, AC2-JSON-CONTENT, AC2-TOONEXT, AC2-SCENARIOS, AC2-CHANNEL-DISCOVER, AC2-REPLY-THREADING, AC2-ROOT-MARKER, AC2-REPLY-MARKER, AC2-PTAG-REPLY, AC2-HIDE-REASON, AC2-MUTE-REASON, AC2-METADATA-AUTHOR-CHECK
+  - `[P0] AC-7.2, AC-7.3: Push07State.comments has 5 entries with correct issueEventId references and distinct authorPubkeys` - push-07-issues.test.ts:203
+    - **Given:** Push07State interface in source
+    - **When:** comments field and bodies inspected
+    - **Then:** All 5 comment bodies present in source
+  - `[P0] AC-7.2, AC-7.3: Push07State.comments preserves publication order` - push-07-issues.test.ts:235
+    - **Given:** Return statement in source
+    - **When:** Comment variable ordering is verified (c1 through c5)
+    - **Then:** c1 < c2 < c3 < c4 < c5 in return statement
+  - `[P0] AC-7.2, AC-7.4: Issue #1 comments signed by Bob, Alice, Charlie (in that order)` - push-07-issues.test.ts:522
+    - **Given:** Source between first and fourth comment
+    - **When:** Signing key ordering is verified
+    - **Then:** bobSecretKey, aliceSecretKey, charlieSecretKey in order
+  - `[P0] AC-7.2, AC-7.3: exactly 3 comments reference issue1EventId and 2 comments reference issue2EventId` - push-07-issues.test.ts:743
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** buildComment calls with issue1EventId counted
+    - **Then:** Exactly 3 match issue1EventId
+
 - **Gaps:** None
-- **Recommendation:** None needed
+
+- **Recommendation:** No action needed. AC-7.2 is verified through 4 tests covering comment count, body content, publication order, and author signing sequence.
 
 ---
 
-#### AC3: TOON Write Model (P0)
+#### AC-7.3: Comment thread on Issue #2 -- 2 comments (Alice, Bob) preserving order (P0)
 
 - **Coverage:** FULL PASS
 - **Tests:**
-  - `[TOON-A, TOON-B]` - packages/core/src/skills/public-chat.test.ts:294 (13 vitest tests)
-    - Covers: publishEvent() referenced, @toon-protocol/client referenced, per-byte cost for messages, channel creation costs, moderation costs, conciseness incentive, nostr-protocol-core for fee formula, toon-extensions.md publishEvent flow, channel creation flow, moderation flow, conciseness incentive, spam resistance, byte cost tables for all kinds, scenarios.md publishEvent + 7 scenarios
-  - `[TOON-A, TOON-B, AC3-*]` - tests/skills/test-public-chat-skill.sh:354-434 (9 shell tests)
-    - TOON-A, TOON-B, AC3-CLIENT, AC3-FEEREF, AC3-MSG-COST, AC3-CHANNEL-COST, AC3-MODERATION-COST, AC3-CONCISENESS, AC3-COREREF, AC3-SPAM-RESISTANCE
+  - `[P0] AC-7.2, AC-7.3: Push07State.comments has 5 entries with correct issueEventId references and distinct authorPubkeys` - push-07-issues.test.ts:203
+    - **Given:** Push07State interface in source
+    - **When:** Issue #2 comment bodies inspected
+    - **Then:** "Reproduced at depth 3+" and "Root cause is in tree SHA resolution" present
+  - `[P0] AC-7.2, AC-7.3: Push07State.comments preserves publication order` - push-07-issues.test.ts:235
+    - **Given:** Return statement ordering
+    - **When:** c4 and c5 position verified
+    - **Then:** c4 < c5 in return (Issue #2 comments after Issue #1 comments)
+  - `[P0] AC-7.3, AC-7.4: Issue #2 comments signed by Alice, Bob (in that order)` - push-07-issues.test.ts:557
+    - **Given:** Source after "Reproduced at depth 3+"
+    - **When:** Signing key ordering verified
+    - **Then:** aliceSecretKey before bobSecretKey
+  - `[P0] AC-7.2, AC-7.3: exactly 3 comments reference issue1EventId and 2 comments reference issue2EventId` - push-07-issues.test.ts:743
+    - **Given:** Source code buildComment calls
+    - **When:** buildComment calls with issue2EventId counted
+    - **Then:** Exactly 2 match issue2EventId
+
 - **Gaps:** None
-- **Recommendation:** None needed
+
+- **Recommendation:** No action needed. AC-7.3 has 4 tests verifying comment content, ordering, author attribution, and count.
 
 ---
 
-#### AC4: TOON Read Model (P0)
+#### AC-7.4: All comments have correct `e` tag (parent issue), `p` tag (author threading), and `a` tag (repo reference) (P0)
 
 - **Coverage:** FULL PASS
 - **Tests:**
-  - `[TOON-C]` - packages/core/src/skills/public-chat.test.ts:419 (9 vitest tests)
-    - Covers: TOON-format strings (not JSON), nostr-protocol-core for TOON format parsing, subscribing to kind:40, subscribing via #e tag filter, validating kind:41 against creator, reading is free, toon-extensions.md TOON-format + decode, reading free, scenarios.md discovery + metadata override
-  - `[TOON-C, AC4-*]` - tests/skills/test-public-chat-skill.sh:443-490 (6 shell tests)
-    - TOON-C, AC4-FORMAT, AC4-CHANNEL-SUBSCRIBE, AC4-MSG-SUBSCRIBE, AC4-METADATA-VALIDATE, AC4-READREF, AC4-METADATA-OVERRIDE
+  - `[P0] AC-7.4: buildComment produces kind:1622 with correct e tag (marker: reply), a tag, and p tag` - push-07-issues.test.ts:124
+    - **Given:** buildComment called with test parameters
+    - **When:** Event tags are inspected
+    - **Then:** kind:1622, `a` tag with repo ref, `e` tag with issue event ID and 'reply' marker, `p` tag with issue author pubkey, content matches body
+  - `[P0] AC-7.4: comments published via correct clients` - push-07-issues.test.ts:588
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** publishWithRetry calls inspected
+    - **Then:** Each comment published via its author's client (Bob->bobClient, Alice->aliceClient, Charlie->charlieClient)
+  - `[P0] AC-7.4: Issue #1 comments use issue1EventId as buildComment parent and issue1Signed.pubkey as p tag` - push-07-issues.test.ts:674
+    - **Given:** Source code around Issue #1 comments
+    - **When:** buildComment parameters inspected
+    - **Then:** All 3 comments pass issue1EventId and issue1Signed.pubkey
+  - `[P0] AC-7.4: Issue #2 comments use issue2EventId as buildComment parent and issue2Signed.pubkey as p tag` - push-07-issues.test.ts:710
+    - **Given:** Source code around Issue #2 comments
+    - **When:** buildComment parameters inspected
+    - **Then:** Both comments pass issue2EventId and issue2Signed.pubkey
+  - `[P1] AC-7.4: source does not override buildComment marker (all comments use default reply marker)` - push-07-issues.test.ts:767
+    - **Given:** Source code of push-07-issues.ts
+    - **When:** buildComment calls inspected for marker parameter
+    - **Then:** 5 buildComment calls, none use 'root' marker (all default to 'reply')
+
 - **Gaps:** None
-- **Recommendation:** None needed
 
----
-
-#### AC5: Social Context (P0)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[STRUCT-D, TOON-D]` - packages/core/src/skills/public-chat.test.ts:495 (10 vitest tests)
-    - Covers: ## Social Context section exists, >= 100 words, conciseness incentive, real-time norms, channel purpose, hide/mute personal moderation, NIP-29 distinction, NIP-72 distinction, substitution test (>= 5 chat-specific terms), anti-patterns
-  - `[STRUCT-D, TOON-D, AC5-*]` - tests/skills/test-public-chat-skill.sh:498-606 (9 shell tests)
-    - STRUCT-D, TOON-D, AC5-CONCISENESS, AC5-REALTIME, AC5-CHANNEL-PURPOSE, AC5-MODERATION-TOOLS, AC5-DISTINGUISH-GROUPS, AC5-DISTINGUISH-COMMUNITIES, AC5-SUBST
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC6: Eval Suite (P0)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[EVAL-A]` - packages/core/src/skills/public-chat.test.ts:590 (9 vitest trigger tests)
-    - Covers: valid JSON with required keys, 8-10 should-trigger, 8-10 should-not-trigger, protocol triggers, social-situation triggers, >= 5 of 9 required terms, related-but-different exclusion, NIP-29 exclusion, NIP-72 exclusion, each has query + should_trigger
-  - `[EVAL-B]` - packages/core/src/skills/public-chat.test.ts:698 (11 vitest output eval tests)
-    - Covers: 4-6 output evals, required fields (id, prompt, expected_output, rubric, assertions), rubric with correct/acceptable/incorrect, e tag root marker assertion, conciseness assertion, fee awareness assertion, three-way distinction assertion, toon-write-check, toon-format-check, write eval >= 5 assertions, read eval >= 3 assertions
-  - `[AC6-*, EVAL-*]` - tests/skills/test-public-chat-skill.sh:617-823 (12 shell tests)
-    - EVAL-A2, EVAL-B2, EVAL-C, AC6-RUBRIC, AC6-TOON-ASSERT, AC6-TRIGGER-QUERIES, AC6-NOTTRIGGER-QUERIES, AC6-EXPECTED-OPT, AC6-OUTPUT-ID, AC6-OUTPUT-ASSERT, AC6-OUTPUT-RANGE
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC7: TOON Compliance Passing (P0)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[TOON-A]` - packages/core/src/skills/public-chat.test.ts:812 (toon-write-check)
-    - Covers: publishEvent present, no bare EVENT array patterns
-  - `[TOON-B]` - packages/core/src/skills/public-chat.test.ts:822 (toon-fee-check, 3 tests)
-    - Covers: per-byte/basePricePerByte + cost/fee terms, channel creation fee, moderation fee
-  - `[TOON-C]` - packages/core/src/skills/public-chat.test.ts:844 (toon-format-check)
-    - Covers: TOON-format + not JSON
-  - `[TOON-D]` - packages/core/src/skills/public-chat.test.ts:852 (social-context-check)
-    - Covers: ## Social Context with chat/channel + concis/per-byte/cost
-  - `[TOON-A/B]` - packages/core/src/skills/public-chat.test.ts:865 (trigger-coverage)
-    - Covers: description includes NIP-28, kind:40/42/43/44, social-situation triggers
-  - `AC7: eval-completeness` - packages/core/src/skills/public-chat.test.ts:881
-    - Covers: >= 6 trigger evals + >= 4 output evals
-  - `[TOON-ALL-1]` - tests/skills/test-public-chat-skill.sh:833
-    - Covers: validate-skill.sh passes (11/11 structural checks)
-  - `[TOON-ALL-2]` - tests/skills/test-public-chat-skill.sh:844
-    - Covers: run-eval.sh passes (all TOON compliance assertions)
-  - `[AC7-NAMED-ASSERTIONS]` - tests/skills/test-public-chat-skill.sh:1089
-    - Covers: all 6 named TOON assertions checked by run-eval.sh
-  - `[AC7-EVAL-ASSERTIONS]` - tests/skills/test-public-chat-skill.sh:1110
-    - Covers: write evals have all 5 TOON assertions, read evals have 3
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC8: Description Optimization (P1)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[STRUCT-B]` - packages/core/src/skills/public-chat.test.ts:891 (13 vitest tests)
-    - Covers: 80-120 words, NIP-28 trigger, public chat trigger, kind:40 trigger, kind:42 trigger, kind:43 trigger, kind:44 trigger, kind:41 trigger, moderation trigger, real-time chat trigger, send message trigger, discover channels trigger, social-situation triggers, >= 2 chat-specific phrases
-  - `[AC8-*, TRIG-*]` - tests/skills/test-public-chat-skill.sh:861-952 (6 shell tests)
-    - AC8-STRICT-RANGE, AC8-TRIGPHRASES, AC8-SOCIAL-PHRASES, AC8-CHAT-PHRASES, TRIG-A, TRIG-B
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC9: Token Budget (P1)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[STRUCT-C]` - packages/core/src/skills/public-chat.test.ts:1007 (3 vitest tests)
-    - Covers: body < 500 lines, body <= 150 lines (5k token proxy), body <= 3500 words
-  - `[STRUCT-C]` - tests/skills/test-public-chat-skill.sh:128
-    - Covers: body under 500 lines
-  - `[AC9-TOKENS]` - tests/skills/test-public-chat-skill.sh:962
-    - Covers: body approximately 5k tokens or fewer (~3500 words)
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC10: Dependency References (P1)
-
-- **Coverage:** FULL PASS
-- **Tests:**
-  - `[DEP-A]` - packages/core/src/skills/public-chat.test.ts:1032 (8 vitest tests)
-    - Covers: nostr-protocol-core, nostr-social-intelligence, social-interactions, content-references, relay-groups, moderated-communities, no toon-protocol-context.md duplicate, all six upstream present
-  - `[DEP-A through DEP-F, AC10-*]` - tests/skills/test-public-chat-skill.sh:982-1060 (8 shell tests)
-    - DEP-A, DEP-B, DEP-C, DEP-D, DEP-E, DEP-F, AC10-NODUP, AC10-DEP-ALL
-- **Gaps:** None
-- **Recommendation:** None needed
-
----
-
-#### AC11: With/Without Baseline (P2)
-
-- **Coverage:** PARTIAL WARN
-- **Tests:**
-  - `[BASE-A]` - packages/core/src/skills/public-chat.test.ts:1093 (2 vitest proxy tests)
-    - Covers: SKILL.md provides actionable guidance (publishEvent, per-byte, TOON-format, conciseness, channel purpose), scenarios.md provides step-by-step flows (steps, publishEvent, fee/cost)
-  - `[BASE-A]` - tests/skills/test-public-chat-skill.sh:1250 (SKIPPED)
-    - **SKIPPED:** With/without baseline requires manual pipeline execution (Step 8 of nip-to-toon-skill)
-
-- **Gaps:**
-  - Missing: Full with/without baseline comparison (requires spawning two parallel agent runs with and without skill loaded, per pipeline Step 8)
-
-- **Recommendation:** AC11 is P2 and has proxy coverage via vitest that validates the skill provides actionable TOON-specific guidance beyond baseline NIP knowledge. True with/without testing requires manual pipeline execution and is intentionally skipped in automated test suites. This is acceptable for a P2 criterion.
+- **Recommendation:** No action needed. AC-7.4 has 5 tests covering tag structure (e, a, p), client-to-author mapping, parent event ID wiring for both issue threads, and marker defaulting.
 
 ---
 
@@ -243,13 +199,7 @@ Note: This workflow does not generate tests. If gaps exist, run `*atdd` or `*aut
 
 #### Medium Priority Gaps (Nightly)
 
-1 gap found.
-
-1. **AC11: With/Without Baseline** (P2)
-   - Current Coverage: PARTIAL (proxy tests pass, manual pipeline step skipped)
-   - Missing Tests: Full with/without agent comparison
-   - Recommend: Execute pipeline Step 8 manually if validation is needed before publication gate (Story 9.34)
-   - Impact: Low -- proxy tests confirm skill adds TOON-specific value; full comparison is informational
+0 gaps found.
 
 ---
 
@@ -263,15 +213,18 @@ Note: This workflow does not generate tests. If gaps exist, run `*atdd` or `*aut
 
 #### Endpoint Coverage Gaps
 
-- Not applicable. This story produces a Claude Agent Skill (markdown + JSON), not executable code with API endpoints.
+- Endpoints without direct API tests: 0
+- N/A -- Story 10.7 is a seed script (no API endpoints). All publish calls are tested via source introspection and event-builder unit tests.
 
 #### Auth/Authz Negative-Path Gaps
 
-- Not applicable. No authentication or authorization paths in skill content files.
+- Criteria missing denied/invalid-path tests: 0
+- N/A -- seed scripts use pre-provisioned secret keys. Error handling is tested via source introspection (7 `if (!result.success)` checks verified by publishWithRetry call count and error message pattern in source).
 
 #### Happy-Path-Only Criteria
 
-- Not applicable. All ACs are structural/content validation -- there are no "error paths" for a skill deliverable. Tests validate both presence (happy path) and absence (no extraneous files, no banned patterns, no duplicate content).
+- Criteria missing error/edge scenarios: 0
+- N/A -- seed scripts are infrastructure (not user-facing features). Error paths are covered by the `throw new Error(...)` pattern after each publish call. The "no git objects" constraint and "state passthrough" constraint are explicit negative tests.
 
 ---
 
@@ -285,19 +238,18 @@ None.
 
 **WARNING Issues**
 
-None.
+- All 28 tests use non-null assertions (`!`) -- consistent with established project pattern across all push test files (push-06 has 16 identical warnings). Not actionable.
 
 **INFO Issues**
 
-- `[BASE-A]` (shell) - Skipped test (requires manual pipeline execution) - Acceptable for P2 criterion; proxy coverage exists via vitest
+- Test file is 797 lines -- exceeds 300-line guideline. However, splitting would break the cohesive story-level test grouping. Acceptable for now.
+- Tests use source-introspection pattern (reading `.ts` source files with `fs.readFileSync`). This is an established project pattern for verifying structural constraints without mocking infrastructure. Acceptable but fragile if source formatting changes.
 
 ---
 
 #### Tests Passing Quality Gates
 
-**212/213 automated tests (99.5%) meet all quality criteria** PASS
-
-(129 vitest + 83 shell automated + 1 shell skipped = 213 total, 212 automated pass, 1 intentionally skipped)
+**28/28 tests (100%) meet all quality criteria** PASS
 
 ---
 
@@ -305,26 +257,25 @@ None.
 
 #### Acceptable Overlap (Defense in Depth)
 
-- AC1 (Pipeline Production): Tested at both vitest (structural validation) and shell (ATDD acceptance) levels -- appropriate defense in depth
-- AC2 (NIP Coverage): 18 vitest tests + 17 shell tests -- vitest validates programmatically, shell validates via grep patterns. Different methodologies reduce false-positive risk
-- AC3-AC7: Dual-layer testing (vitest + shell) provides defense in depth across all TOON compliance areas
-- AC8-AC10: Dual coverage is acceptable -- vitest tests are more precise (regex matching), shell tests are broader (grep patterns)
+- AC-7.1: Issue structure tested at both unit level (buildIssue event builder) and source-introspection level (verifying issue titles and labels in push-07-issues.ts). This is acceptable defense-in-depth -- unit tests verify the builder API while source tests verify correct usage.
+- AC-7.4: Comment tag structure tested at both unit level (buildComment event builder) and source-introspection level (verifying e-tag wiring). Acceptable defense-in-depth.
 
 #### Unacceptable Duplication
 
-None identified. The two test suites use different validation approaches (vitest with TypeScript parsing vs shell with grep/awk), providing complementary coverage.
+None detected.
 
 ---
 
 ### Coverage by Test Level
 
-| Test Level    | Tests | Criteria Covered | Coverage % |
-| ------------- | ----- | ---------------- | ---------- |
-| Structural    | 129   | 11/11            | 100%       |
-| ATDD (shell)  | 84    | 11/11            | 100%       |
-| **Total**     | **213** | **11/11**      | **100%**   |
+| Test Level | Tests  | Criteria Covered | Coverage % |
+| ---------- | ------ | ---------------- | ---------- |
+| Unit       | 6      | 4/4              | 100%       |
+| Source     | 22     | 4/4              | 100%       |
+| Integration| 0 (5 todo) | 0/4          | 0%         |
+| **Total**  | **28** | **4/4**          | **100%**   |
 
-Note: Traditional E2E/API/Component/Unit classification does not apply to this story. The deliverable is markdown + JSON files. "Structural" = vitest programmatic validation. "ATDD" = shell-based acceptance tests.
+Note: "Source" level tests read and analyze the implementation source file to verify structural constraints (import patterns, call counts, parameter wiring, state passthrough). These serve as a proxy for integration tests when infrastructure is not available.
 
 ---
 
@@ -332,15 +283,15 @@ Note: Traditional E2E/API/Component/Unit classification does not apply to this s
 
 #### Immediate Actions (Before PR Merge)
 
-None required. All P0 and P1 criteria have FULL coverage. All 212 automated tests pass.
+None required. All 4 acceptance criteria have FULL coverage.
 
 #### Short-term Actions (This Milestone)
 
-1. **Execute pipeline Step 8 manually** - If AC11 full with/without validation is desired before the publication gate (Story 9.34), run the nip-to-toon-skill pipeline Step 8 manually.
+1. **Implement integration test stubs** - Convert the 5 `.todo` integration tests to real tests once SDK E2E infrastructure is available in CI. These would validate end-to-end publish + relay query flows.
 
 #### Long-term Actions (Backlog)
 
-1. **Automate with/without baseline** - Consider automating pipeline Step 8 as part of CI if it becomes a recurring need across future skill stories.
+1. **Reduce source-introspection test fragility** - Consider replacing some source-reading tests with mock-based integration tests that verify runtime behavior rather than source text patterns. This would make tests resilient to refactoring.
 
 ---
 
@@ -355,22 +306,22 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 #### Test Execution Results
 
-- **Total Tests**: 213
-- **Passed**: 212 (99.5%)
+- **Total Tests**: 33
+- **Passed**: 28 (84.8%)
 - **Failed**: 0 (0%)
-- **Skipped**: 1 (0.5%)
-- **Duration**: ~1s (vitest 414ms + shell ~0.5s)
+- **Skipped/Todo**: 5 (15.2%)
+- **Duration**: 921ms
 
 **Priority Breakdown:**
 
-- **P0 Tests**: 163/163 passed (100%) PASS
-- **P1 Tests**: 47/47 passed (100%) PASS
-- **P2 Tests**: 2/3 passed (67%) -- 1 skipped (BASE-A manual) WARN
-- **P3 Tests**: 0/0 (N/A) PASS
+- **P0 Tests**: 18/18 passed (100%) PASS
+- **P1 Tests**: 10/10 passed (100%) PASS
+- **P2 Tests**: 0/0 (N/A)
+- **P3 Tests**: 0/0 (N/A)
 
-**Overall Pass Rate**: 99.5% PASS
+**Overall Pass Rate**: 100% (28/28 active tests) PASS
 
-**Test Results Source**: Local run (vitest + bash), 2026-03-27
+**Test Results Source**: Local run via `vitest run --config packages/rig/vitest.seed.config.ts` (2026-03-30)
 
 ---
 
@@ -378,47 +329,50 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 **Requirements Coverage:**
 
-- **P0 Acceptance Criteria**: 7/7 covered (100%) PASS
-- **P1 Acceptance Criteria**: 3/3 covered (100%) PASS
-- **P2 Acceptance Criteria**: 0/1 covered (0%) WARN
-- **Overall Coverage**: 91%
+- **P0 Acceptance Criteria**: 4/4 covered (100%) PASS
+- **P1 Acceptance Criteria**: 0/0 (N/A)
+- **P2 Acceptance Criteria**: 0/0 (N/A)
+- **Overall Coverage**: 100%
 
-**Code Coverage** (not applicable):
+**Code Coverage** (not available):
 
-- This story produces markdown/JSON files, not executable code. No line/branch/function coverage applicable.
+- N/A -- no instrumented code coverage report for seed scripts
 
-**Coverage Source**: Traceability analysis of test files against story ACs
+**Coverage Source**: Traceability analysis (this document)
 
 ---
 
 #### Non-Functional Requirements (NFRs)
 
 **Security**: PASS
-
 - Security Issues: 0
-- Semgrep scan (216 rules): 0 findings. OWASP review: no injection risks, no secrets, no auth flaws. Skill is markdown/JSON content, not executable code.
+- Adversarial review (Review Pass #3) confirmed no OWASP vulnerabilities, Semgrep scan clean, no credential storage in source.
 
 **Performance**: NOT_ASSESSED
+- Seed script is infrastructure tooling; no performance NFR targets defined.
 
-- Not applicable for markdown/JSON skill deliverables
-
-**Reliability**: NOT_ASSESSED
-
-- Not applicable for markdown/JSON skill deliverables
+**Reliability**: PASS
+- Error handling verified: 7 publish calls each have `if (!result.success)` guard with descriptive error messages.
+- Event ID derivation uses fallback pattern (`result.eventId ?? signed.id`) for resilience.
 
 **Maintainability**: PASS
+- Clean separation of concerns: event builders in lib, publish wrapper in lib, push script orchestrates.
+- Push07State interface explicitly typed with JSDoc.
+- No unused imports (AGENT_IDENTITIES deliberately excluded).
 
-- Skill follows D9-010 (single source of truth for protocol context), no content duplication, clear dependency references to 6 upstream skills
-
-**NFR Source**: _bmad-output/test-artifacts/nfr-assessment-9-10.md
+**NFR Source**: Story 10.7 Code Review Record (3 passes, all clean)
 
 ---
 
 #### Flakiness Validation
 
-**Burn-in Results**: Not applicable
+**Burn-in Results**: Not available (no CI burn-in for seed script unit tests)
 
-- Structural validation tests are deterministic (file content checks). No flakiness risk.
+- Unit tests are deterministic (no network calls, no timing dependencies)
+- Source-introspection tests read local files (deterministic)
+- Flakiness risk: Near zero for active tests
+
+**Burn-in Source**: Not available
 
 ---
 
@@ -426,13 +380,13 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 #### P0 Criteria (Must ALL Pass)
 
-| Criterion             | Threshold | Actual | Status  |
-| --------------------- | --------- | ------ | ------- |
-| P0 Coverage           | 100%      | 100%   | PASS    |
-| P0 Test Pass Rate     | 100%      | 100%   | PASS    |
-| Security Issues       | 0         | 0      | PASS    |
-| Critical NFR Failures | 0         | 0      | PASS    |
-| Flaky Tests           | 0         | 0      | PASS    |
+| Criterion             | Threshold | Actual  | Status  |
+| --------------------- | --------- | ------- | ------- |
+| P0 Coverage           | 100%      | 100%    | PASS    |
+| P0 Test Pass Rate     | 100%      | 100%    | PASS    |
+| Security Issues       | 0         | 0       | PASS    |
+| Critical NFR Failures | 0         | 0       | PASS    |
+| Flaky Tests           | 0         | 0       | PASS    |
 
 **P0 Evaluation**: ALL PASS
 
@@ -442,10 +396,10 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 | Criterion              | Threshold | Actual | Status  |
 | ---------------------- | --------- | ------ | ------- |
-| P1 Coverage            | >= 90%    | 100%   | PASS    |
-| P1 Test Pass Rate      | >= 90%    | 100%   | PASS    |
-| Overall Test Pass Rate | >= 80%    | 99.5%  | PASS    |
-| Overall Coverage       | >= 80%    | 91%    | PASS    |
+| P1 Coverage            | >=90%     | 100%   | PASS    |
+| P1 Test Pass Rate      | >=90%     | 100%   | PASS    |
+| Overall Test Pass Rate | >=90%     | 100%   | PASS    |
+| Overall Coverage       | >=80%     | 100%   | PASS    |
 
 **P1 Evaluation**: ALL PASS
 
@@ -453,10 +407,10 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 #### P2/P3 Criteria (Informational, Don't Block)
 
-| Criterion         | Actual | Notes                                                      |
-| ----------------- | ------ | ---------------------------------------------------------- |
-| P2 Test Pass Rate | 67%    | 1 of 3 skipped (BASE-A manual pipeline). Tracked, non-blocking. |
-| P3 Test Pass Rate | N/A    | No P3 criteria in this story                               |
+| Criterion         | Actual | Notes                         |
+| ----------------- | ------ | ----------------------------- |
+| P2 Test Pass Rate | N/A    | No P2 criteria for this story |
+| P3 Test Pass Rate | N/A    | No P3 criteria for this story |
 
 ---
 
@@ -466,12 +420,9 @@ None required. All P0 and P1 criteria have FULL coverage. All 212 automated test
 
 ### Rationale
 
-P0 coverage is 100%, P1 coverage is 100% (target: 90%), and overall coverage is 91% (minimum: 80%). All 212 automated tests pass with 0 failures. The single skipped test (BASE-A shell) is a P2 criterion requiring manual pipeline execution and has proxy coverage via vitest. No security issues detected (Semgrep 216 rules: 0 findings). Three adversarial code reviews completed with all findings resolved.
+All P0 criteria met with 100% coverage and 100% pass rate across all 28 active tests. All 4 acceptance criteria (AC-7.1 through AC-7.4) have FULL test coverage with no gaps identified. Security review (3 passes including adversarial + OWASP scan) confirmed zero vulnerabilities. No flaky tests detected -- all tests are deterministic (unit-level event builder tests and source-introspection tests with no network or timing dependencies).
 
-The story deliverable (Claude Agent Skill for NIP-28 Public Chat) is structurally sound, TOON-compliant (7/7 assertions), and has comprehensive test coverage across two independent test suites (129 vitest + 84 shell).
-
-**Uncovered ACs:**
-- **AC11 (With/Without Baseline)** - P2, PARTIAL coverage. Vitest proxy tests pass (validating skill provides actionable TOON-specific content), but the shell-based BASE-A test is skipped because true with/without comparison requires manual nip-to-toon-skill pipeline Step 8 execution. This does not block the gate.
+The 5 `.todo` integration tests are acknowledged as deferred coverage for live relay validation. These do not block the story gate because the acceptance criteria are fully verified through unit tests (event structure) and source-introspection tests (correct usage patterns, parameter wiring, publish call count, state passthrough).
 
 ---
 
@@ -479,18 +430,18 @@ The story deliverable (Claude Agent Skill for NIP-28 Public Chat) is structurall
 
 #### For PASS Decision
 
-1. **Proceed to next story**
-   - Story 9.10 is complete and validated
-   - All P0/P1 acceptance criteria have FULL automated coverage
-   - Skill is ready for the publication gate (Story 9.34)
+1. **Proceed to deployment**
+   - Story 10.7 is complete and verified
+   - All acceptance criteria have FULL coverage
+   - No blocking issues remain
 
-2. **Post-Completion Monitoring**
-   - Validate skill triggers correctly when loaded by Claude Agent
-   - Monitor trigger discrimination (NIP-28 vs NIP-29 vs NIP-72) in real usage
+2. **Post-Deployment Monitoring**
+   - Monitor integration test stub conversion when SDK E2E infra is available in CI
+   - Track source-introspection test resilience as codebase evolves
 
 3. **Success Criteria**
-   - All 129 vitest + 83 shell automated tests continue to pass in CI
-   - Skill activates for NIP-28/public chat queries and does not activate for relay group or moderated community queries
+   - All 28 tests continue passing in full regression suite (currently 4062 tests, 0 failures)
+   - Story 10.8 (push-08-close) can import Push07State without issues
 
 ---
 
@@ -498,17 +449,19 @@ The story deliverable (Claude Agent Skill for NIP-28 Public Chat) is structurall
 
 **Immediate Actions** (next 24-48 hours):
 
-1. Proceed to next Epic 9 story or publication gate (Story 9.34)
-2. No blockers or concerns requiring immediate attention
+1. Mark Story 10.7 as complete in sprint tracking
+2. Begin Story 10.8 implementation (push-08-close, depends on Push07State)
+3. No test gaps to remediate
 
 **Follow-up Actions** (next milestone/release):
 
-1. Consider automating with/without baseline testing (AC11) as part of CI for future skill stories
-2. Run publication gate validation across all Phase 3 skills (9.8, 9.9, 9.10) together
+1. Convert 5 `.todo` integration tests when CI pipeline supports SDK E2E infrastructure
+2. Consider mock-based integration tests to complement source-introspection tests
 
 **Stakeholder Communication**:
 
-- Story 9.10 PASS: Public Chat skill validated with 100% P0/P1 coverage, 213 tests (212 pass, 1 intentionally skipped)
+- Notify PM: Story 10.7 PASS -- 4/4 ACs fully covered, 28 tests passing, no gaps
+- Notify DEV lead: Push07State ready for Story 10.8 consumption
 
 ---
 
@@ -518,26 +471,26 @@ The story deliverable (Claude Agent Skill for NIP-28 Public Chat) is structurall
 traceability_and_gate:
   # Phase 1: Traceability
   traceability:
-    story_id: "9.10"
-    date: "2026-03-27"
+    story_id: "10.7"
+    date: "2026-03-30"
     coverage:
-      overall: 91%
+      overall: 100%
       p0: 100%
-      p1: 100%
-      p2: 0%
-      p3: 100%
+      p1: N/A
+      p2: N/A
+      p3: N/A
     gaps:
       critical: 0
       high: 0
-      medium: 1
+      medium: 0
       low: 0
     quality:
-      passing_tests: 212
-      total_tests: 213
+      passing_tests: 28
+      total_tests: 33
       blocker_issues: 0
-      warning_issues: 0
+      warning_issues: 1
     recommendations:
-      - "Execute pipeline Step 8 manually for AC11 full with/without validation if needed before publication gate"
+      - "Convert 5 .todo integration tests when SDK E2E infra available in CI"
 
   # Phase 2: Gate Decision
   gate_decision:
@@ -549,8 +502,8 @@ traceability_and_gate:
       p0_pass_rate: 100%
       p1_coverage: 100%
       p1_pass_rate: 100%
-      overall_pass_rate: 99.5%
-      overall_coverage: 91%
+      overall_pass_rate: 100%
+      overall_coverage: 100%
       security_issues: 0
       critical_nfrs_fail: 0
       flaky_tests: 0
@@ -559,26 +512,32 @@ traceability_and_gate:
       min_p0_pass_rate: 100
       min_p1_coverage: 90
       min_p1_pass_rate: 90
-      min_overall_pass_rate: 80
+      min_overall_pass_rate: 90
       min_coverage: 80
     evidence:
-      test_results: "local_run_2026-03-27"
+      test_results: "Local vitest run 2026-03-30"
       traceability: "_bmad-output/test-artifacts/traceability-report.md"
-      nfr_assessment: "_bmad-output/test-artifacts/nfr-assessment-9-10.md"
-      code_coverage: "N/A (markdown/JSON deliverable)"
-    next_steps: "Proceed to next story or publication gate (Story 9.34)"
+      nfr_assessment: "Story 10.7 Code Review Record (3 passes)"
+      code_coverage: "N/A"
+    next_steps: "Story complete. Begin Story 10.8. Convert integration test stubs when CI supports SDK E2E infra."
 ```
+
+---
+
+## Uncovered ACs
+
+**None.** All 4 acceptance criteria (AC-7.1, AC-7.2, AC-7.3, AC-7.4) have FULL test coverage. No gaps detected.
 
 ---
 
 ## Related Artifacts
 
-- **Story File:** _bmad-output/implementation-artifacts/9-10-public-chat-skill.md
-- **Test Design:** _bmad-output/planning-artifacts/test-design-epic-9.md
-- **Test Results:** Local run 2026-03-27 (vitest 129/129 pass, shell 83/84 pass + 1 skip)
-- **NFR Assessment:** _bmad-output/test-artifacts/nfr-assessment-9-10.md
-- **Test Files:** packages/core/src/skills/public-chat.test.ts, tests/skills/test-public-chat-skill.sh
-- **ATDD Checklist:** _bmad-output/test-artifacts/atdd-checklist-9-10.md
+- **Story File:** `_bmad-output/implementation-artifacts/10-7-seed-issues-labels-conversations.md`
+- **Test Design:** `_bmad-output/planning-artifacts/test-design-epic-10.md`
+- **Test Results:** Local vitest run (2026-03-30, 28 passed, 5 todo)
+- **NFR Assessment:** Story 10.7 Code Review Record (3 review passes)
+- **Test Files:** `packages/rig/tests/e2e/seed/__tests__/push-07-issues.test.ts`
+- **Implementation:** `packages/rig/tests/e2e/seed/push-07-issues.ts`
 
 ---
 
@@ -586,9 +545,9 @@ traceability_and_gate:
 
 **Phase 1 - Traceability Assessment:**
 
-- Overall Coverage: 91%
+- Overall Coverage: 100%
 - P0 Coverage: 100% PASS
-- P1 Coverage: 100% PASS
+- P1 Coverage: N/A
 - Critical Gaps: 0
 - High Priority Gaps: 0
 
@@ -602,10 +561,10 @@ traceability_and_gate:
 
 **Next Steps:**
 
-- PASS: Proceed to next story or publication gate (Story 9.34)
+- PASS: Proceed to Story 10.8 implementation
 
-**Generated:** 2026-03-27
-**Workflow:** testarch-trace v5.0 (Step-File Architecture)
+**Generated:** 2026-03-30
+**Workflow:** testarch-trace v5.0 (Enhanced with Gate Decision)
 
 ---
 
